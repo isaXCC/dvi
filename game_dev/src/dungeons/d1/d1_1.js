@@ -28,7 +28,7 @@ export default class D1_1 extends Room {
     }
 
     init(pl) {
-        this.player.life = pl;
+        //this.player._life = pl;
     }
 
     update(){
