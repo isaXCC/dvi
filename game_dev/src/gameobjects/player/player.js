@@ -20,12 +20,14 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this._speed = 300;
         this._isAlive = true;
         this._invulnerable = false;
+        this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
         
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         // Queremos que el jugador no se salga de los límites del mundo
         this.body.setCollideWorldBounds();
+        //this.body.setBodySize(38, 38); actual hitbox? 
 
         // Creamos los keystrokes
         this._w = this.scene.input.keyboard.addKey('W');
@@ -46,6 +48,12 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this.shoot(pointer.x, pointer.y);
             }
         });
+
+        // sprites
+
+        // generation of walk sprites
+        this.generate_walk_sprites();
+
     }
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
@@ -66,29 +74,56 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
         if(Phaser.Input.Keyboard.JustDown(this._space)){ this.dash(); }
 
+        // player's movement
         if(this._w.isDown){
             this.body.setVelocityY(-this._speed);
             if(this._a.isDown){
                 this.body.setVelocityX(-this._speed);
+                this.play('up_left_walk', true);
+                this._last_move = 'phatcat_walk_diagupleft_';
             }
             else if(this._d.isDown){
                 this.body.setVelocityX(this._speed);
+                this.play('up_right_walk', true);
+                this._last_move = 'phatcat_walk_diagupright_';
             }
+            else{
+                this.play('up_walk', true);
+                this._last_move = 'phatcat_walk_up_';
+            } 
         }
         else if(this._s.isDown){
             this.body.setVelocityY(this._speed);
             if(this._a.isDown){
                 this.body.setVelocityX(-this._speed);
+                this.play('down_left_walk', true);
+                this._last_move = 'phatcat_walk_diagdownleft_';
             }
             else if(this._d.isDown){
                 this.body.setVelocityX(this._speed);
+                this.play('down_right_walk', true);
+                this._last_move = 'phatcat_walk_diagdownright_';
             }
+            else{
+                this.play('down_walk', true);
+                this._last_move = 'phatcat_walk_down_';
+            } 
         }
         else if(this._a.isDown){
             this.body.setVelocityX(-this._speed);
+            this.play('left_walk', true);
+            this._last_move = 'phatcat_walk_left_';
         }
         else if(this._d.isDown){
             this.body.setVelocityX(this._speed);
+            this.play('right_walk', true);
+            this._last_move = 'phatcat_walk_right_';
+        }
+        else {
+            this.stop();
+
+            // when the player is still, the last direction stays (should be change if an idle animation is created)
+            this.setFrame(this._last_move.concat('1'));
         }
     }
 
@@ -152,5 +187,74 @@ export default class Player extends Phaser.GameObjects.Sprite {
                 this._invulnerable = false;
             });
         }
+    }
+
+    generate_walk_sprites(){
+        // generation of sprites, there are 8, one for each direction
+        const left_walk = {
+            key: 'left_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_left_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const up_walk = {
+            key: 'up_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_up_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const right_walk = {
+            key: 'right_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_right_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const down_walk = {
+            key: 'down_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_down_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const up_right_walk = {
+            key: 'up_right_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_diagupright_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const up_left_walk = {
+            key: 'up_left_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_diagupleft_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const down_right_walk = {
+            key: 'down_right_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_diagdownright_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        const down_left_walk = {
+            key: 'down_left_walk',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_diagdownleft_", end: 7}),
+            frameRate: 8,
+            repeat: -1
+        };
+
+        // creation of sprites
+        this.scene.anims.create(left_walk);
+        this.scene.anims.create(up_walk);
+        this.scene.anims.create(right_walk);
+        this.scene.anims.create(down_walk);
+        this.scene.anims.create(up_right_walk);
+        this.scene.anims.create(up_left_walk);
+        this.scene.anims.create(down_right_walk);
+        this.scene.anims.create(down_left_walk);
     }
 }

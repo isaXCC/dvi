@@ -7,6 +7,7 @@ import angel from '../assets/sprites/enemies/angel.png'
 import ophanim from '../assets/sprites/enemies/ophanim.png'
 import seraph from '../assets/sprites/enemies/seraph.png'
 import player from '../assets/sprites/player/player.png'
+import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
 import portal from '../assets/sprites/utils/portal.png'
 import hearts from '../assets/sprites/utils/hearts.png'
@@ -42,7 +43,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('ophanim', ophanim);
     this.load.image('room_d1_2', room_d1_2);
     this.load.image('room_d1_1', room_d1_1);
-    this.load.image('player', player);
+    this.load.atlas('player', player, player_atlas);
     this.load.spritesheet('hearts', hearts, {frameWidth:16, frameHeight:16});
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
