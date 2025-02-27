@@ -34,6 +34,7 @@ export default class Room extends Phaser.Scene {
         // Object for each array TODO
         this.bullets.forEach(bullet => bullet.update());
         this.enemies.forEach(enemy => enemy.update());
+        this.portals.forEach(portal => portal.update());
         // Update player info display
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)

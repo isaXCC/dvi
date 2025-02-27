@@ -72,6 +72,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.reload();
         }
 
+        if(Phaser.Input.Keyboard.JustDown(this._e)){
+            console.log('Interacting with the enviroment...');
+
+            // checks for possible interactable objects in range, and, if possible, interacts with them
+            this.check_interactable_objects();
+        }
+
         if(Phaser.Input.Keyboard.JustDown(this._space)){ this.dash(); }
 
         let x_orig = this.x, y_orig = this.y;
@@ -164,6 +171,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._bullets = this._max_ammo;
         this.scene.sound.play('reloadSound', { volume: 3 });
    }
+
+    // checks
+    check_interactable_objects(){
+        // first, checks every portal in the room
+        for(let portal of this.scene.portals){
+            if(portal.activated){
+                portal.transitionRoom();
+                break;
+            }
+        };
+    }
 
    dash(){
         if(this._stamina>0){
