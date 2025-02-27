@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import Bullet from '../utils/bullet.js';
 import get_norm_dist from '../../utils/vector.js'
 
-export default class Player extends Phaser.GameObjects.Sprite {
+export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     /**
      * Constructor del jugador
@@ -21,13 +21,13 @@ export default class Player extends Phaser.GameObjects.Sprite {
         this._isAlive = true;
         this._invulnerable = false;
         this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
-        
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
         // Queremos que el jugador no se salga de los límites del mundo
-        this.body.setCollideWorldBounds();
-        //this.body.setBodySize(38, 38); actual hitbox? 
+        this.setCollideWorldBounds(true);
+        this.setSize(38, 38); // to readjust player's hitbox
 
         // Creamos los keystrokes
         this._w = this.scene.input.keyboard.addKey('W');
