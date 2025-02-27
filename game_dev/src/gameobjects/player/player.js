@@ -51,8 +51,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             }
         });
 
-        // managemente of sprites
-        this.manage_sprites();
+        // management of animations
+        this.manage_animations();
 
     }
     /**
@@ -189,20 +189,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    manage_sprites(){
+    manage_animations(){
 
-        // creation of walk sprites
-        this.create_walk_sprites();
+        // creation of walk animations
+        this.create_walk_animations();
 
-        // creation of x sprite...
+        // creation of x animations...
 
         // callback for the animation change event
         this.on('animationupdate', this.updateHitbox, this);
     }
 
-    create_walk_sprites(){
+    create_walk_animations(){
 
-        // creation of walk sprites, there are 8, one for each direction
+        // creation of walk animations, there are 8, one for each direction
         const left_walk = {
             key: 'left_walk',
             frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_walk_left_", end: 7}),
@@ -259,19 +259,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             repeat: -1
         };
 
-        // creation of sprites
-        this.scene.anims.create(left_walk);
-        this.scene.anims.create(up_walk);
-        this.scene.anims.create(right_walk);
-        this.scene.anims.create(down_walk);
-        this.scene.anims.create(up_right_walk);
-        this.scene.anims.create(up_left_walk);
-        this.scene.anims.create(down_right_walk);
-        this.scene.anims.create(down_left_walk);
+        // creation of animations
+        // the player is a unique entity, so the animations are created on the sprite
+        this.anims.create(left_walk);
+        this.anims.create(up_walk);
+        this.anims.create(right_walk);
+        this.anims.create(down_walk);
+        this.anims.create(up_right_walk);
+        this.anims.create(up_left_walk);
+        this.anims.create(down_right_walk);
+        this.anims.create(down_left_walk);
     }
 
     updateHitbox(anim, frame){
         console.log(`Current animation: ${anim.key}. At frame: ${frame.index}`);
+        
         // next hitbox to be displayed, linked to the frame of the animation
         let new_hitbox = { width: 0, height: 0, offsetX: 0, offsetY: 0 };
 
