@@ -74,16 +74,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         if(Phaser.Input.Keyboard.JustDown(this._space)){ this.dash(); }
 
+        let x_orig = this.x, y_orig = this.y;
+        
         // player's movement
         if(this._w.isDown){
-            this.body.setVelocityY(-this._speed);
+            y_orig -= 1;
             if(this._a.isDown){
-                this.body.setVelocityX(-this._speed);
+                x_orig -= 1;
                 this.play('up_left_walk', true);
                 this._last_move = 'phatcat_walk_diagupleft_';
             }
             else if(this._d.isDown){
-                this.body.setVelocityX(this._speed);
+                x_orig += 1;
                 this.play('up_right_walk', true);
                 this._last_move = 'phatcat_walk_diagupright_';
             }
@@ -93,14 +95,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             } 
         }
         else if(this._s.isDown){
-            this.body.setVelocityY(this._speed);
+            y_orig += 1;
             if(this._a.isDown){
-                this.body.setVelocityX(-this._speed);
+                //this.body.setVelocityX(-this._speed);
+                x_orig -= 1;
                 this.play('down_left_walk', true);
                 this._last_move = 'phatcat_walk_diagdownleft_';
             }
             else if(this._d.isDown){
-                this.body.setVelocityX(this._speed);
+                x_orig += 1;
                 this.play('down_right_walk', true);
                 this._last_move = 'phatcat_walk_diagdownright_';
             }
@@ -110,21 +113,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             } 
         }
         else if(this._a.isDown){
-            this.body.setVelocityX(-this._speed);
+            x_orig -= 1;
             this.play('left_walk', true);
             this._last_move = 'phatcat_walk_left_';
         }
         else if(this._d.isDown){
-            this.body.setVelocityX(this._speed);
+            x_orig += 1;
             this.play('right_walk', true);
             this._last_move = 'phatcat_walk_right_';
         }
         else {
             this.stop();
-
             // when the player is still, the last direction stays (should be change if an idle animation is created)
             this.setFrame(this._last_move.concat('1'));
         }
+
+        let {x_norm, y_norm} = get_norm_dist(this.x, this.y, x_orig, y_orig);
+
+        this.setVelocity(x_norm*this._speed, y_norm*this._speed);
     }
 
    update(){
@@ -158,7 +164,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    }
 
     enableCollision(enemies) {
-        this.scene.physics.add.overlap(this, this.scene.enemies, this.enemy_touch_damage, null, this);
+        this.scene.physics.add.collider(this, this.scene.enemies, this.enemy_touch_damage, null, this);
     }
 
     enemy_touch_damage(player, enemy) {
@@ -172,18 +178,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             console.log(this._life);
     
             enemy._touch_damage = true;
-            let rate = 500;
+            let rate = 150;
             let {x_norm, y_norm} = get_norm_dist(this.x, this.y, enemy.x, enemy.y);
             enemy.body.setVelocity(x_norm*rate, y_norm*rate);
     
-            this.scene.time.delayedCall(50, () => {
+            this.scene.time.delayedCall(300, () => {
                 if(enemy.active){
                     enemy._touch_damage = false;
                     enemy.body.setVelocity(0, 0); // Stop enemy movement
                 }
             });
     
-            this.scene.time.delayedCall(1000, () => {
+            this.scene.time.delayedCall(500, () => {
                 this._invulnerable = false;
             });
         }
