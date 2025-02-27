@@ -12,7 +12,6 @@ export default class Seraph extends Enemy{
     update(){
         if(this.active){
             super.update();
-            this.follow_player();
         }
     }
 
