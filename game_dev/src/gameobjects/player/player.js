@@ -139,7 +139,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.play(new_animation, true);
 
             // forces the hitbox to update to the current animation
-            this.updateHitbox(this.anims.get(new_animation), this.anims.currentFrame);
+            this.updateHitbox(this.anims.get(new_animation));
         }
     }
 
