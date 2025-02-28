@@ -12,7 +12,7 @@
         {
          "draworder":"topdown",
          "id":8,
-         "name":"itens",
+         "name":"items",
          "objects":[],
          "opacity":1,
          "type":"objectgroup",

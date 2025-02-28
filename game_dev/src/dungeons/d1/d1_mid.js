@@ -7,7 +7,7 @@ import Bullet from '../../gameobjects/utils/bullet.js'
 import Room from '../room.js'
 import Phaser from 'phaser';
 
-export default class test extends Room {
+export default class D1_MID extends Room {
 
     constructor() {
         super('d1_mid');
@@ -15,7 +15,7 @@ export default class test extends Room {
 
     create() {
 
-        this.generateTiled('d1_mid'); 
+        super.generateTiled('d1_mid'); 
 
         super.create();
 
