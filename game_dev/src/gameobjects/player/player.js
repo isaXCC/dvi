@@ -152,7 +152,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    shoot(x, y){
         console.log('Left-click detected at:', x, y);
         console.log('Bullets:', this._bullets);
-        if(this._bullets>0){
+        if(this._bullets > 0){
             this.scene.newBullet(this.x, this.y, x, y);
             // this.scene._bullets.pushback(new Bullet(this.scene, this.x, this.y, x, y));
             this.scene.sound.play('shootSound', { volume: 1 });
@@ -176,39 +176,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    fallHole(){
         console.log('Fell');
         // this.scene.sound.play('shootSound', { volume: 1 });
-    }
-
-    enableCollision(enemies) {
-        this.scene.physics.add.collider(this, this.scene.enemies, this.enemy_touch_damage, null, this);
-    }
-
-    enemy_touch_damage(player, enemy) {
-        if(enemy.active){
-            if (this._invulnerable) return;
-    
-            console.log('touch damage');
-    
-            this._invulnerable = true;
-            this._life--;
-            console.log(this._life);
-    
-            enemy._touch_damage = true;
-            let rate = 150;
-            let {x_norm, y_norm} = get_norm_dist(this.x, this.y, enemy.x, enemy.y);
-            enemy.body.setVelocity(x_norm*rate, y_norm*rate);
-    
-            this.scene.time.delayedCall(300, () => {
-                if(enemy.active){
-                    enemy._touch_damage = false;
-                    enemy.body.setVelocity(0, 0); // Stop enemy movement
-                }
-            });
-    
-            this.scene.time.delayedCall(500, () => {
-                this._invulnerable = false;
-            });
-        }
-    }
+   }
 
     manage_animations(){
 
@@ -291,9 +259,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     updateHitbox(anim){
-        console.log(`Current animation: ${anim.key}`);
+        //console.log(`Current animation: ${anim.key}`);
         
-        // next hitbox to be displayed, linked to the frame of the animation
+        // next hitbsdox to be displayed, linked to the frame of the animation
         let new_hitbox = { width: 0, height: 0, offsetX: 0, offsetY: 0 };
 
         // changing hitbox to each animation, making them fittable
@@ -330,7 +298,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             // hitbox is updated
             this.setSize(new_hitbox.width, new_hitbox.height);
             this.setOffset(new_hitbox.offsetX, new_hitbox.offsetY);
-            console.log('Hitbox changed!');
+            //console.log('Hitbox changed!');
 
             // and now is saved as the last hitbox displayed
             this._last_hitbox = new_hitbox;
