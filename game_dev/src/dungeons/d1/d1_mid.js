@@ -10,12 +10,12 @@ import Phaser from 'phaser';
 export default class test extends Room {
 
     constructor() {
-        super('test');
+        super('d1_mid');
     }
 
     create() {
 
-        super.generateTiled('test'); 
+        this.generateTiled('d1_mid'); 
 
         super.create();
 
@@ -31,4 +31,5 @@ export default class test extends Room {
     update(){
         super.update();
     }
+
 }

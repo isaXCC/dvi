@@ -58,4 +58,43 @@ export default class Room extends Phaser.Scene {
     getPlayerInfo() {
         return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}`;
     }
+
+    generateTiled(key){
+        // Tiled creation of map, tiles and different layers
+        var map = this.make.tilemap({key: key});
+        var tiles = map.addTilesetImage('room_tileset', 'room_tiles');
+        map.createLayer('background', tiles, 0, 0);
+        var onc = map.createLayer('onc', tiles, 0, 0);
+        onc.setCollisionByExclusion([-1], true);
+        var oic = map.createLayer('oic', tiles, 0, 0);
+        oic.setCollisionByExclusion([-1], true);
+        
+        // Tiled creation of each object
+        for (const object of map.getObjectLayer('enemies').objects) {
+            if (object.type === 'Angel') {
+                this.enemies.push(new Angel(this, object.x, object.y));
+            }
+            if (object.type === 'Ophanim') {
+                this.enemies.push(new Ophanim(this, object.x, object.y));
+            }
+            if (object.type === 'Seraph') {
+                this.enemies.push(new Seraph(this, object.x, object.y));
+            }
+        }
+        for (const object of map.getObjectLayer('portals').objects) {
+            if (object.type === 'Portal') { 
+                this.portals.push(new Portal(this, object.x, object.y, object.name));
+            }
+        }
+        for (const object of map.getObjectLayer('player').objects) {
+            if (object.type === 'Player') { 
+                this.player = new Player(this, object.x, object.y);
+            }
+        }
+        // Load gameobjects  
+        this.physics.add.collider(this.player, onc);
+        this.physics.add.collider(this.enemies, onc);
+        // this.physics.add.collider(this.player, oic);
+        this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
+    }
 }

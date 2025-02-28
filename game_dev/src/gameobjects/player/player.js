@@ -163,6 +163,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
    }
 
+   fallHole(){
+        console.log('Fell');
+        // this.scene.sound.play('shootSound', { volume: 1 });
+    }
+
     enableCollision(enemies) {
         this.scene.physics.add.collider(this, this.scene.enemies, this.enemy_touch_damage, null, this);
     }

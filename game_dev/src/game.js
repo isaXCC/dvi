@@ -17,7 +17,7 @@ import D1_2 from './dungeons/d1/d1_2.js';
 // import D1_14 from './dungeons/d1/d1_14.js';
 // import D1_15 from './dungeons/d1/d1_15.js';
 // import D1_16 from './dungeons/d1/d1_16.js';
-// import D1_MID from './dungeons/d1/d1_mid.js';
+import D1_MID from './dungeons/d1/d1_mid.js';
 // import D1_BOOTS from './dungeons/d1/d1_boots.js';
 // import D1_PIT from './dungeons/d1/d1_pit.js';
 // import D1_BOSS from './dungeons/d1/d1_boss.js';
@@ -37,10 +37,10 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Test, D1_1, D1_2, End],
+    scene: [Boot, Test, D1_1, D1_2, D1_MID, End],
     // scene: [Boot, Test, D1_1, D1_2, D1_3, D1_4, D1_5, D1_6, D1_7,
     //         D1_8, D1_9, D1_10, D1_11, D1_12, D1_13, D1_14, D1_15,
-    //         D1_16, D1_MID, D1_BOOTS, D1_PIT, D1_BOSS, End],
+    //         D1_16, D1_BOOTS, D1_PIT, D1_BOSS, End],
     physics: {
         default: 'arcade',
         arcade: {

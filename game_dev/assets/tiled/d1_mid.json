@@ -51,7 +51,7 @@
                  "gid":31,
                  "height":64,
                  "id":8,
-                 "name":"d1_1",
+                 "name":"test",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -63,7 +63,7 @@
                  "gid":31,
                  "height":64,
                  "id":9,
-                 "name":"d1_2",
+                 "name":"test",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -82,6 +82,18 @@
                  "width":64,
                  "x":575.874779886519,
                  "y":258.091175895128
+                }, 
+                {
+                 "gid":31,
+                 "height":64,
+                 "id":11,
+                 "name":"d1_2",
+                 "rotation":0,
+                 "type":"Portal",
+                 "visible":true,
+                 "width":64,
+                 "x":256.563490510663,
+                 "y":512.288006261006
                 }],
          "offsetx":32,
          "offsety":-32,
@@ -97,18 +109,6 @@
          "name":"enemies",
          "objects":[
                 {
-                 "gid":28,
-                 "height":64,
-                 "id":1,
-                 "name":"eB_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":67.3333333333333,
-                 "y":96
-                }, 
-                {
                  "gid":29,
                  "height":64,
                  "id":2,
@@ -117,20 +117,8 @@
                  "type":"Angel",
                  "visible":true,
                  "width":64,
-                 "x":442.666666666667,
-                 "y":136.333333333333
-                }, 
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":3,
-                 "name":"eC_0",
-                 "rotation":0,
-                 "type":"Seraph",
-                 "visible":true,
-                 "width":64,
-                 "x":432.333333333333,
-                 "y":435.666666666667
+                 "x":162.173612469837,
+                 "y":223.987412769842
                 }],
          "offsetx":32,
          "offsety":-32,
@@ -182,7 +170,7 @@
         }, 
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAeAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAQAAHgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAAAAAAAAAAAAAAAAAeAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgEAAB4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAeAQAAHgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+         "data":"xgAAAMYAAADGAAAAxgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMYAAAAAAAAAuQAAANMAAAC3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANMAAAAAAAAA0wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2AAAA0wAAALoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
          "encoding":"base64",
          "height":8,
          "id":2,
@@ -209,7 +197,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":11,
+ "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
