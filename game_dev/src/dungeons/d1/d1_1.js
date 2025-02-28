@@ -14,11 +14,8 @@ export default class D1_1 extends Room {
     }
 
     create() {
-        // Load gameobjects
-        this.add.image(0, 0, 'room_d1_1').setOrigin(0, 0);
-        this.enemies.push(new Angel(this, 250, 400));
-        this.portals.push(new Portal(this, 320, 0, 'd1_2'));
-        this.player = new Player(this, 200, 300);
+
+        super.generateTiled('d1_1'); 
 
         super.create();
 
@@ -33,13 +30,6 @@ export default class D1_1 extends Room {
 
     update(){
         super.update();
-    }
-
-    nextRoom(){
-        // console.log('Room ' + nextRoom);
-        this.music.stop();
-        // this.scene.stop('d1_1');
-        this.scene.start('d1_2', {x:20, y:30});
     }
 
 }

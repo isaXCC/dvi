@@ -14,14 +14,9 @@ export default class D1_2 extends Room {
     }
 
     create() {
-        this.add.image(320, 256, 'room_d1_2');
-        this.enemies.push(new Angel(this, 250, 450));
-        this.enemies.push(new Seraph(this, 350, 400));
-        this.enemies.push(new Ophanim(this, 250, 400));
-        this.portals.push(new Portal(this, 320, 640, 'd1_1'));
-        this.player = new Player(this, 200, 300);
-        
-        // works?
+
+        super.generateTiled('d1_2'); 
+
         super.create();
 
         // Play the music
@@ -29,14 +24,12 @@ export default class D1_2 extends Room {
         this.music.play();
     }
 
+    init(pl) {
+        //this.player._life = pl;
+    }
+
     update(){
         super.update();
     }
 
-    nextRoom(){
-        // console.log('Room ' + nextRoom);
-        this.music.stop();
-        this.scene.stop('d1_2');
-        this.scene.start('d1_1');
-    }
 }
