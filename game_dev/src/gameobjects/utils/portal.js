@@ -9,6 +9,8 @@ export default class Portal extends Phaser.GameObjects.Sprite{
 
     constructor(scene, x, y, nextRoom) {
         super(scene, x, y, 'portal');
+        console.log('Portal Constructor ' + nextRoom);
+        this._nextRoom = nextRoom;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds();
@@ -19,7 +21,7 @@ export default class Portal extends Phaser.GameObjects.Sprite{
     }
     
     transitionRoom() {
-        // console.log(this._nextRoom);
-        this.scene.nextRoom();
+        console.log("Transition Room " + this._nextRoom);
+        this.scene.nextRoom(this._nextRoom);
     }
 }

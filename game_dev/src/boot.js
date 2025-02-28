@@ -14,6 +14,9 @@ import hearts from '../assets/sprites/utils/hearts.png'
 import shootSound from '../assets/audio/utils/shoot.wav'
 import reloadSound from '../assets/audio/utils/reload.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+// TILED IMPORTS
+import test from '../assets/tiled/test.json'
+import room_tiles from '../assets/tiled/room_tileset.png'
 
 
 /**
@@ -55,6 +58,9 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('shootSound', shootSound);
     this.load.audio('reloadSound', reloadSound);
     this.load.audio('backgroundMusic', backgroundMusic);
+    // TILED PRELOAD
+    this.load.image('room_tiles', room_tiles);
+    this.load.tilemapTiledJSON('test', test);
   }
 
   /**
@@ -63,7 +69,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('d1_1');
+    this.scene.start('test');
   }
 
   // creates, manages and shows the initial loading progress bar

@@ -35,11 +35,4 @@ export default class D1_1 extends Room {
         super.update();
     }
 
-    nextRoom(){
-        // console.log('Room ' + nextRoom);
-        this.music.stop();
-        // this.scene.stop('d1_1');
-        this.scene.start('d1_2', {x:20, y:30});
-    }
-
 }
