@@ -17,7 +17,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._stamina = 3;
         this._bullets = 7;
         this._max_ammo = 7;
-        this._speed = 100;
+        this._speed = 250;
         this._isAlive = true;
         this._invulnerable = false;
         this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
