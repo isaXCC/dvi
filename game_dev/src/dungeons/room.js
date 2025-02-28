@@ -4,23 +4,27 @@ import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
 import Portal from '../gameobjects/utils/portal.js';
 import Bullet from '../gameobjects/utils/bullet.js'
+import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
+import BulletGroup from '../gameobjects/groups/BulletGroup.js';
 import Phaser from 'phaser';
+import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
 
 export default class Room extends Phaser.Scene {
 
     constructor(key) {
         super({ key: key });
         // Load gameobjects
-        this.enemies = [];
         this.portals = [];
-        this.bullets = [];
     }
     
     create() {        
+
         // Add the colliders
         // this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
         this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
-        this.player.enableCollision(this.enemies);
+       
+        this.bullets.add_overlap(this.enemies, this.bullets.enemy_overlap);
+        this.enemies.add_collision(this.player, this.enemies.player_collision);
 
         // Add player info text in the top-left corner
         this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
@@ -31,9 +35,8 @@ export default class Room extends Phaser.Scene {
     }
 
     update(){
-        // Object for each array TODO
-        this.bullets.forEach(bullet => bullet.update());
-        this.enemies.forEach(enemy => enemy.update());
+        this.bullets.update();
+        this.enemies.update();
         // Update player info display
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)
@@ -43,7 +46,7 @@ export default class Room extends Phaser.Scene {
     }
 
     newBullet(origX, origY, destX, destY){
-        this.bullets.push(new Bullet(this, origX, origY, destX, destY));
+        this.bullets.add_element(new Bullet(this, origX, origY, destX, destY));
     }
 
     nextRoom(room){
@@ -60,6 +63,9 @@ export default class Room extends Phaser.Scene {
     }
 
     generateTiled(key){
+        this.enemies = new EnemyGroup(this);
+        this.bullets = new BulletGroup(this);
+
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
         var tiles = map.addTilesetImage('room_tileset', 'room_tiles');
@@ -72,13 +78,13 @@ export default class Room extends Phaser.Scene {
         // Tiled creation of each object
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
-                this.enemies.push(new Angel(this, object.x, object.y));
+                this.enemies.add_element(new Angel(this, object.x, object.y))
             }
             if (object.type === 'Ophanim') {
-                this.enemies.push(new Ophanim(this, object.x, object.y));
+                this.enemies.add_element(new Ophanim(this, object.x, object.y))
             }
             if (object.type === 'Seraph') {
-                this.enemies.push(new Seraph(this, object.x, object.y));
+                this.enemies.add_element(new Seraph(this, object.x, object.y))
             }
         }
         for (const object of map.getObjectLayer('portals').objects) {
@@ -93,7 +99,9 @@ export default class Room extends Phaser.Scene {
         }
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
-        this.physics.add.collider(this.enemies, onc);
+    
+        this.enemies.add_collision(onc);
+        this.bullets.add_collision(onc, this.bullets.onc_collision);
         // this.physics.add.collider(this.player, oic);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
