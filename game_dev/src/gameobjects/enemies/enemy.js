@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import get_norm_dist from '../../utils/vector';
+import getNormDist from '../../utils/vector';
 
 //This class only serves as a template. Thus, it should never be instantiated
 export default class Enemy extends Phaser.Physics.Arcade.Sprite {
@@ -13,19 +13,47 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this._touch_damage = false;
 
         // Abstract properties -> Children must override
-        this._life = null;
-        this._speed = null;
+        this._maxLife = 3;
+        this._life = 3;
+        this._speed = 50;
+        this._isAlive = true;
     }
 
     update() {
-        
+        if(this._isAlive){
+            super.update();
+            this.move();
+        }
+        else{
+            this.scene.enemies.removeElement(this);
+        }
     }
 
-    follow_player(){
-        if(!this._touch_damage){
-            let {x_norm, y_norm} = get_norm_dist(this.x, this.y, this.scene.player.x, this.scene.player.y);
-            this.body.setVelocity(x_norm*this._speed, y_norm*this._speed);
+    takeDamage(){
+        if(this._life > 0){
+            this._life--;
+            this.setAlpha(this._life/this._maxLife);
+            if(this._life <= 0){
+                this._isAlive = false;
+            }
+        }
+    }
 
+    move(){
+
+    }
+
+    followPlayer(){
+        if(!this._touch_damage){
+            let {x_norm, y_norm} = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
+            this.body.setVelocity(x_norm*this._speed, y_norm*this._speed);
+        }
+    }
+
+    runFromPlayer(){
+        if(!this._touch_damage){
+            let {x_norm, y_norm} = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
+            this.body.setVelocity(-x_norm*this._speed, -y_norm*this._speed);
         }
     }
 }

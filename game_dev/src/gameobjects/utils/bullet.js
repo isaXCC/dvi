@@ -20,6 +20,8 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.v_x = x_norm*300;
         this.v_y = y_norm*300;
 
+        this._enemyBullet = false;
+
         // Set the collision system
         this.body.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
