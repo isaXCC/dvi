@@ -24,9 +24,6 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
             super.update();
             this.move();
         }
-        else{
-            this.scene.enemies.removeElement(this);
-        }
     }
 
     takeDamage(){
@@ -35,6 +32,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.setAlpha(this._life/this._maxLife);
             if(this._life <= 0){
                 this._isAlive = false;
+                this.scene.enemies.removeElement(this);
             }
         }
     }
