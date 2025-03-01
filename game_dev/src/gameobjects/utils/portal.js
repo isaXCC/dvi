@@ -29,11 +29,10 @@ export default class Portal extends Phaser.GameObjects.Sprite{
     // checks if the portal should be activated or not
     activate(){
         // calculates the distance between this portal and the player
-        let dist;
-        if(this.scene.player) dist = Phaser.Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y);
+        let dist = Phaser.Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y);
 
         // if player is in range, the portal is activated
-        if(dist < 100){
+        if(dist < 40){
             this.activated = true;
             this.setTexture('activated_portal');
         } 

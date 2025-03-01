@@ -19,7 +19,7 @@ export default class Room extends Phaser.Scene {
     create() {        
         // Add the colliders
         // HOW ITS USING this.player ???
-        this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
+        //this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
         this.player.enableCollision(this.enemies);
 
         // Add player info text in the top-left corner
