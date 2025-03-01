@@ -8,6 +8,7 @@ import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
 import portal from '../assets/sprites/utils/portal.png'
+import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import hearts from '../assets/sprites/utils/hearts.png'
 import shootSound from '../assets/audio/utils/shoot.wav'
 import reloadSound from '../assets/audio/utils/reload.wav'
@@ -54,6 +55,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('hearts', hearts, {frameWidth:16, frameHeight:16});
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
+    this.load.image('activated_portal', activated_portal);
     this.load.audio('shootSound', shootSound);
     this.load.audio('reloadSound', reloadSound);
     this.load.audio('backgroundMusic', backgroundMusic);

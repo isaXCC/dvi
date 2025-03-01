@@ -1,3 +1,5 @@
+import Player from "../player/player";
+
 export default class Portal extends Phaser.GameObjects.Sprite{
 
     /**
@@ -15,8 +17,27 @@ export default class Portal extends Phaser.GameObjects.Sprite{
         this.body.setCollideWorldBounds();
     }
 
+    // update
     update(){
-        
+        // checks if the portal should be activated or not
+        this.activate();
+
+    }
+
+    // checks if the portal should be activated or not
+    activate(){
+        // calculates the distance between this portal and the player
+        let dist = Phaser.Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y);
+
+        // if player is in range, the portal is activated
+        if(dist < 40){
+            this.activated = true;
+            this.setTexture('activated_portal');
+        } 
+        else{ 
+            this.activated = false;
+            this.setTexture('portal');
+        }
     }
     
     transitionRoom() {
