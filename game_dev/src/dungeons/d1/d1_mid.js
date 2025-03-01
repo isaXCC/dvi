@@ -24,8 +24,10 @@ export default class D1_MID extends Room {
         this.music.play();
     }
 
-    init(pl) {
-        //this.player._life = pl;
+    init(player_state) {
+        if(player_state.life !== undefined)
+            console.log('Ping + ' + player_state);
+            super.setPlayerInfo(player_state);
     }
 
     update(){

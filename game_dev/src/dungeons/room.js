@@ -15,8 +15,9 @@ export default class Room extends Phaser.Scene {
         super({ key: key });
         // Load gameobjects
         this.portals = [];
+        this.player_state;
     }
-    
+
     create() {        
 
         // Add the colliders
@@ -32,6 +33,11 @@ export default class Room extends Phaser.Scene {
             fill: '#fff',
             fontFamily: 'Comic Sans MS'
         });
+    }
+
+    setPlayerInfo(player_state){
+        console.log('Player life after: ' + player_state.life);
+        this.player_state = player_state;
     }
 
     update(){
@@ -51,7 +57,8 @@ export default class Room extends Phaser.Scene {
 
     nextRoom(room){
         this.music.stop();
-        this.scene.start(room);
+        console.log('Player life before: ' + this.player._life);
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
     }
 
     gameOver(){
@@ -95,6 +102,16 @@ export default class Room extends Phaser.Scene {
         for (const object of map.getObjectLayer('player').objects) {
             if (object.type === 'Player') { 
                 this.player = new Player(this, object.x, object.y);
+                if(this.player_state !== undefined){
+                    if(this.player_state.life !== undefined){
+                        console.log('Set life ' + this.player_state.life);
+                        this.player._life = this.player_state.life;
+                    }
+                    if(this.player_state.bullets !== undefined){
+                        console.log('Set bullets ' + this.player_state.bullets);
+                        this.player._bullets = this.player_state.bullets;
+                    }
+                }
             }
         }
         // Load gameobjects  
@@ -102,7 +119,6 @@ export default class Room extends Phaser.Scene {
     
         this.enemies.addCollision(onc);
         this.bullets.addCollision(onc, this.bullets.oncCollision);
-        // this.physics.add.collider(this.player, oic);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
 }

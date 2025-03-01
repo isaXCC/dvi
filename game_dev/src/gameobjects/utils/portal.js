@@ -14,7 +14,7 @@ export default class Portal extends Phaser.GameObjects.Sprite{
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds();
     }
-    // lala
+
     update(){
         
     }
