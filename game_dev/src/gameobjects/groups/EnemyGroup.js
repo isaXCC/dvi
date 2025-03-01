@@ -7,7 +7,7 @@ export default class EnemyGroup extends DefaultGroup {
         super(scene);
     }
 
-    player_collision(player, enemy) {
+    playerCollision(player, enemy) {
         if(enemy.active){
             if (player._invulnerable) return;
     

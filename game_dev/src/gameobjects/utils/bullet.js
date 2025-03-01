@@ -1,4 +1,4 @@
-import get_norm_dist from "../../utils/vector";
+import getNormDist from "../../utils/vector";
 
 export default class Bullet extends Phaser.Physics.Arcade.Sprite {
 
@@ -16,14 +16,16 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        let {x_norm, y_norm} = get_norm_dist(origX, origY, destX, destY);
+        let {x_norm, y_norm} = getNormDist(origX, origY, destX, destY);
         this.v_x = x_norm*300;
         this.v_y = y_norm*300;
+
+        this._enemyBullet = false;
 
         // Set the collision system
         this.body.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
-        this.scene.physics.world.on('worldbounds', this.world_bounds_handler, this);
+        this.scene.physics.world.on('worldbounds', this.worldBoundsHandler, this);
     }
     
     update(){
@@ -31,11 +33,11 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
         // console.log('Bullet flying!');
     }
 
-    world_bounds_handler(body) {
+    worldBoundsHandler(body) {
         if (body.gameObject === this) {
             console.log('Object out of bounds!');
             // Destroy or handle the object as needed
-            this.scene.bullets.remove_element(this);
+            this.scene.bullets.removeElement(this);
         }
     }
 

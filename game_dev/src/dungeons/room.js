@@ -15,16 +15,17 @@ export default class Room extends Phaser.Scene {
         super({ key: key });
         // Load gameobjects
         this.portals = [];
+        this.player_state;
     }
-    
+
     create() {        
 
         // Add the colliders
         // this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
         this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
        
-        this.bullets.add_overlap(this.enemies, this.bullets.enemy_overlap);
-        this.enemies.add_collision(this.player, this.enemies.player_collision);
+        this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
+        this.enemies.addCollision(this.player, this.enemies.playerCollision);
 
         // Add player info text in the top-left corner
         this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
@@ -32,6 +33,11 @@ export default class Room extends Phaser.Scene {
             fill: '#fff',
             fontFamily: 'Comic Sans MS'
         });
+    }
+
+    setPlayerInfo(player_state){
+        console.log('Player life after: ' + player_state.life);
+        this.player_state = player_state;
     }
 
     update(){
@@ -46,12 +52,13 @@ export default class Room extends Phaser.Scene {
     }
 
     newBullet(origX, origY, destX, destY){
-        this.bullets.add_element(new Bullet(this, origX, origY, destX, destY));
+        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY));
     }
 
     nextRoom(room){
         this.music.stop();
-        this.scene.start(room);
+        console.log('Player life before: ' + this.player._life);
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
     }
 
     gameOver(){
@@ -78,13 +85,13 @@ export default class Room extends Phaser.Scene {
         // Tiled creation of each object
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
-                this.enemies.add_element(new Angel(this, object.x, object.y))
+                this.enemies.addElement(new Angel(this, object.x, object.y))
             }
             if (object.type === 'Ophanim') {
-                this.enemies.add_element(new Ophanim(this, object.x, object.y))
+                this.enemies.addElement(new Ophanim(this, object.x, object.y))
             }
             if (object.type === 'Seraph') {
-                this.enemies.add_element(new Seraph(this, object.x, object.y))
+                this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
         for (const object of map.getObjectLayer('portals').objects) {
@@ -95,14 +102,23 @@ export default class Room extends Phaser.Scene {
         for (const object of map.getObjectLayer('player').objects) {
             if (object.type === 'Player') { 
                 this.player = new Player(this, object.x, object.y);
+                if(this.player_state !== undefined){
+                    if(this.player_state.life !== undefined){
+                        console.log('Set life ' + this.player_state.life);
+                        this.player._life = this.player_state.life;
+                    }
+                    if(this.player_state.bullets !== undefined){
+                        console.log('Set bullets ' + this.player_state.bullets);
+                        this.player._bullets = this.player_state.bullets;
+                    }
+                }
             }
         }
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
     
-        this.enemies.add_collision(onc);
-        this.bullets.add_collision(onc, this.bullets.onc_collision);
-        // this.physics.add.collider(this.player, oic);
+        this.enemies.addCollision(onc);
+        this.bullets.addCollision(onc, this.bullets.oncCollision);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
 }

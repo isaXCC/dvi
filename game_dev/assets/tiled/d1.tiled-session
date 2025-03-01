@@ -1,0 +1,49 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "d1_1.json": {
+            "scale": 1.2216406249999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.061392850291,
+                "y": 255.8035428790689
+            }
+        },
+        "d1_1.json#room_tileset": {
+            "scaleInDock": 1
+        },
+        "d1_2.json": {
+            "scale": 1.2216406249999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.061392850291,
+                "y": 255.8035428790689
+            }
+        },
+        "d1_2.json#room_tileset": {
+            "scaleInDock": 1
+        },
+        "d1_mid.json": {
+            "scale": 1.2216406249999998,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.061392850291,
+                "y": 255.8035428790689
+            }
+        },
+        "d1_mid.json#room_tileset": {
+            "scaleInDock": 1
+        }
+    },
+    "openFiles": [
+    ],
+    "project": "d1.tiled-project",
+    "recentFiles": [
+    ]
+}

@@ -13,10 +13,14 @@ export default class test extends Room {
         super('test');
     }
 
+    init(player_state) {
+        if(player_state.life !== undefined)
+            console.log('Ping + ' + player_state);
+            super.setPlayerInfo(player_state);
+    }
+
     create() {
-
         super.generateTiled('test'); 
-
         super.create();
 
         // Play the music
@@ -24,9 +28,6 @@ export default class test extends Room {
         this.music.play();
     }
 
-    init(pl) {
-        //this.player._life = pl;
-    }
 
     update(){
         super.update();
