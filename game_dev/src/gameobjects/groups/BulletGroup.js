@@ -8,15 +8,15 @@ export default class BulletGroup extends DefaultGroup {
         
     }
 
-    onc_collision(bullet, onc){
-        this.scene.bullets.remove_element(bullet);
+    oncCollision(bullet, onc){
+        this.scene.bullets.removeElement(bullet);
     }
 
-    enemy_overlap(bullet, enemy) {
+    enemyOverlap(bullet, enemy) {
         console.log('Bullet hit an enemy!');
    
-        this.scene.enemies.remove_element(enemy);
-        this.scene.bullets.remove_element(bullet);
+        this.scene.enemies.removeElement(enemy);
+        this.scene.bullets.removeElement(bullet);
     }
 
     

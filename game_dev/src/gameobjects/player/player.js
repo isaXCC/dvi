@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import Bullet from '../utils/bullet.js';
-import get_norm_dist from '../../utils/vector.js'
+import getNormDist from '../../utils/vector.js'
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 
@@ -131,7 +131,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.setFrame(this._last_move.concat('1'));
         }
 
-        let {x_norm, y_norm} = get_norm_dist(this.x, this.y, x_orig, y_orig);
+        let {x_norm, y_norm} = getNormDist(this.x, this.y, x_orig, y_orig);
         this.setVelocity(x_norm*this._speed, y_norm*this._speed);
 
         // if player is not standing still, a new animation is played

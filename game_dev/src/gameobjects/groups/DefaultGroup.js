@@ -14,23 +14,23 @@ export default class DefaultGroup {
         this.scene.physics.add.collider(this.group, this.group);
     }
 
-    get_correct_instance(object){
+    getCorrectInstance(object){
         return object instanceof DefaultGroup ? object.group : object;
     }
 
-    add_overlap(object, overlap_handler) {
-        this.scene.physics.add.overlap(this.group, this.get_correct_instance(object), overlap_handler, null, this);
+    addOverlap(object, overlap_handler) {
+        this.scene.physics.add.overlap(this.group, this.getCorrectInstance(object), overlap_handler, null, this);
     }
 
-    add_collision(object, collision_handler) {
-        this.scene.physics.add.collider(this.group, this.get_correct_instance(object), collision_handler, null, this);
+    addCollision(object, collision_handler) {
+        this.scene.physics.add.collider(this.group, this.getCorrectInstance(object), collision_handler, null, this);
     }
 
-    add_element(gameObject) {
+    addElement(gameObject) {
         this.group.add(gameObject);
     }
 
-    remove_element(gameObject){
+    removeElement(gameObject){
         this.group.remove(gameObject, true, true);
     }
 

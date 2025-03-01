@@ -23,8 +23,8 @@ export default class Room extends Phaser.Scene {
         // this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
         this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
        
-        this.bullets.add_overlap(this.enemies, this.bullets.enemy_overlap);
-        this.enemies.add_collision(this.player, this.enemies.player_collision);
+        this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
+        this.enemies.addCollision(this.player, this.enemies.playerCollision);
 
         // Add player info text in the top-left corner
         this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
@@ -46,7 +46,7 @@ export default class Room extends Phaser.Scene {
     }
 
     newBullet(origX, origY, destX, destY){
-        this.bullets.add_element(new Bullet(this, origX, origY, destX, destY));
+        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY));
     }
 
     nextRoom(room){
@@ -78,13 +78,13 @@ export default class Room extends Phaser.Scene {
         // Tiled creation of each object
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
-                this.enemies.add_element(new Angel(this, object.x, object.y))
+                this.enemies.addElement(new Angel(this, object.x, object.y))
             }
             if (object.type === 'Ophanim') {
-                this.enemies.add_element(new Ophanim(this, object.x, object.y))
+                this.enemies.addElement(new Ophanim(this, object.x, object.y))
             }
             if (object.type === 'Seraph') {
-                this.enemies.add_element(new Seraph(this, object.x, object.y))
+                this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
         for (const object of map.getObjectLayer('portals').objects) {
@@ -100,8 +100,8 @@ export default class Room extends Phaser.Scene {
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
     
-        this.enemies.add_collision(onc);
-        this.bullets.add_collision(onc, this.bullets.onc_collision);
+        this.enemies.addCollision(onc);
+        this.bullets.addCollision(onc, this.bullets.oncCollision);
         // this.physics.add.collider(this.player, oic);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
