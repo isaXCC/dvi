@@ -19,6 +19,8 @@ export default class Room extends Phaser.Scene {
         this.player_state;
     }
 
+    // ROOM GENERATION AND TILED INTEGRATION
+
     create() {        
 
         // Add the colliders
@@ -26,6 +28,7 @@ export default class Room extends Phaser.Scene {
        
         this.portals.addOverlap(this.player, this.portals.playerOverlap);
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
+        this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
 
         // Add player info text in the top-left corner
@@ -36,12 +39,8 @@ export default class Room extends Phaser.Scene {
         });
     }
 
-    setPlayerInfo(player_state){
-        console.log('Player life after: ' + player_state.life);
-        this.player_state = player_state;
-    }
-
     update(){
+        if(this._suspend) return;
         this.bullets.update();
         this.enemies.update();
         this.portals.update();
@@ -49,37 +48,10 @@ export default class Room extends Phaser.Scene {
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)
             this.player.update();    
-        else
+        else {
+            this.music.stop();
             this.gameOver();
-    }
-
-    newBullet(origX, origY, destX, destY){
-        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY));
-    }
-
-    // checks for possible interactable objects in range, and, if possible, interacts with them
-    check_interactable_objects(){
-        // first, it checks for portals
-        this.portals.transitionRoom();
-    }
-
-    // ????? idk, there should be a better option
-    check_portal_overlapping(){
-        this.portals.deactivate();
-    }
-
-    nextRoom(room){
-        this.music.stop();
-        console.log('Player life before: ' + this.player._life);
-        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
-    }
-
-    gameOver(){
-        this.scene.start('end');
-    }
-
-    getPlayerInfo() {
-        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}`;
+        }
     }
 
     generateTiled(key){
@@ -135,4 +107,55 @@ export default class Room extends Phaser.Scene {
         this.bullets.addCollision(onc, this.bullets.oncCollision);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
+
+    // ROOM STATE LOGIC AND METHODS
+
+    enterDialogue(){
+        this.scene.pause();
+        this.scene.launch('dialogue', { parent: this.scene }); 
+        this.input.enabled = false;
+    }
+
+    nextRoom(room){
+        this.music.stop();
+        console.log('Player life before: ' + this.player._life);
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
+    }
+
+    gameOver(){
+        this.scene.start('end');
+    }
+
+    // AUXILIARY METHODS
+
+    getPlayerInfo() {
+        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}`;
+    }
+
+
+    setPlayerInfo(player_state){
+        console.log('Player life after: ' + player_state.life);
+        this.player_state = player_state;
+    }
+
+    newBullet(origX, origY, destX, destY){
+        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY, false));
+    }
+
+    newEnemyBullet(origX, origY){
+        this.bullets.addElement(new Bullet(this, origX, origY, this.player.x, this.player.y, true));
+    }
+
+    // checks for possible interactable objects in range, and, if possible, interacts with them
+    check_interactable_objects(){
+        // first, it checks for portals
+        this.portals.transitionRoom();
+    }
+
+    // ????? idk, there should be a better option
+    check_portal_overlapping(){
+        this.portals.deactivate();
+    }
+
+
 }

@@ -1,4 +1,5 @@
 import Boot from './boot.js';
+import Dialogue from './dialogue.js';
 import End from './end.js';
 import Test from './dungeons/d1/test.js';
 import D1_1 from './dungeons/d1/d1_1.js';
@@ -37,7 +38,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Test, D1_1, D1_2, D1_MID, End],
+    scene: [Boot, Test, Dialogue, D1_1, D1_2, D1_MID, End],
     // scene: [Boot, Test, D1_1, D1_2, D1_3, D1_4, D1_5, D1_6, D1_7,
     //         D1_8, D1_9, D1_10, D1_11, D1_12, D1_13, D1_14, D1_15,
     //         D1_16, D1_BOOTS, D1_PIT, D1_BOSS, End],
@@ -45,7 +46,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: true
+            debug: false
         }
     }
 };

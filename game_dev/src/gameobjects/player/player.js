@@ -39,6 +39,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._r = this.scene.input.keyboard.addKey('R');
         this._e = this.scene.input.keyboard.addKey('E');
         this._q = this.scene.input.keyboard.addKey('Q');
+        this._t = this.scene.input.keyboard.addKey('T'); // TMP
+
         this._space = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         /* Phaser triggers the pointerdown event for any mouse click. 
@@ -66,6 +68,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
+        
+        // TMP TO CHECK DIALOG
+        if(Phaser.Input.Keyboard.JustDown(this._q)){ this.scene.enterDialogue(); }
 
         if(Phaser.Input.Keyboard.JustDown(this._r)){
             console.log('Reloading...');
@@ -154,9 +159,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
-
         // ????? idk, there should be a better option
         this.scene.check_portal_overlapping();
+   }
+
+   takeDamage(){
+        if(this._life > 0){
+            this._invulnerable = true;
+            this._life--;
+            this.scene.sound.play('player_hurt', { volume: 10 });
+            if(this._life <= 0){
+                this._isAlive = false;
+            }
+            else{
+                this.scene.time.delayedCall(500, () => {
+                    this._invulnerable = false;
+                });
+            }
+        }
    }
 
    shoot(x, y){

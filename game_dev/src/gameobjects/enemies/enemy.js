@@ -29,6 +29,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     takeDamage(){
         if(this._life > 0){
             this._life--;
+            this.scene.sound.play('enemy_hurt', { volume: 3 });
             this.setAlpha(this._life/this._maxLife);
             if(this._life <= 0){
                 this._isAlive = false;
