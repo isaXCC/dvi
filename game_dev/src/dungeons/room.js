@@ -3,12 +3,14 @@ import Angel from '../gameobjects/enemies/angel.js';
 import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
 import Portal from '../gameobjects/utils/portal.js';
-import Bullet from '../gameobjects/utils/bullet.js'
+import Bullet from '../gameobjects/utils/bullet.js';
+import NPC from '../gameobjects/utils/npc.js';
 import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
 import BulletGroup from '../gameobjects/groups/BulletGroup.js';
 import Phaser from 'phaser';
 import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
 import PortalGroup from '../gameobjects/groups/PortalGroup.js';
+import NPCGroup from '../gameobjects/groups/NPCGroup.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -58,6 +60,7 @@ export default class Room extends Phaser.Scene {
         this.enemies = new EnemyGroup(this);
         this.bullets = new BulletGroup(this);
         this.portals = new PortalGroup(this);
+        this.npcs = new NPCGroup(this);
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -83,6 +86,11 @@ export default class Room extends Phaser.Scene {
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
                 this.portals.addElement(new Portal(this, object.x, object.y, object.name));
+            }
+        }
+        for (const object of map.getObjectLayer('npcs').objects) {
+            if (object.type === 'NPC') { 
+                this.npcs.addElement(new NPC(this, object.x, object.y, object.name));
             }
         }
         for (const object of map.getObjectLayer('player').objects) {
