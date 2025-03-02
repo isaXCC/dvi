@@ -51,7 +51,7 @@ export default class Dialogue extends Phaser.Scene{
         this.dialogueBox = this.parentScene.add.graphics();
 
         // Shadow effect (soft white edges)
-        this.dialogueBox.fillStyle(0xffffff, 0.7);s
+        this.dialogueBox.fillStyle(0xffffff, 0.7);
         this.dialogueBox.fillRoundedRect(this.boxX - 5, this.boxY - 5, this.boxWidth + 10, this.boxHeight + 10, 10);
 
         // Main black box
