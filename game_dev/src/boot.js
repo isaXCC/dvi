@@ -9,6 +9,8 @@ import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
 import portal from '../assets/sprites/utils/portal.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
+import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
+import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import hearts from '../assets/sprites/utils/hearts.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
@@ -56,7 +58,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('seraph', seraph);
     this.load.image('ophanim', ophanim);
     this.load.atlas('player', player, player_atlas);
-    this.load.spritesheet('hearts', hearts, {frameWidth:16, frameHeight:16});
+    this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);

@@ -5,7 +5,6 @@ export default class BulletGroup extends DefaultGroup {
     constructor(scene) {
         super(scene);
 
-        
     }
 
     oncCollision(bullet, onc){

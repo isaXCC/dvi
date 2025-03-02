@@ -203,7 +203,19 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":32,
+                 "height":64,
+                 "id":13,
+                 "name":"virgil",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":64,
+                 "x":316.969985940461,
+                 "y":244.042300874137
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -233,7 +245,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":13,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
