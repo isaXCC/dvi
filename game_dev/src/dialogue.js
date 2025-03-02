@@ -20,11 +20,11 @@ export default class Dialogue extends Phaser.Scene{
     }
     
     create(){
+        this.parentScene = this.scene.get(this.parentKey);
         // Creates the blackbox of dialogue
         this.createBox();
         // Creates the text used in dialogue
         this.createText();
-        this.parentScene = this.scene.get(this.parentKey);
 
         // If the player clicks, we get out of the dialogue
         this.input.on('pointerdown', () => {
@@ -41,8 +41,6 @@ export default class Dialogue extends Phaser.Scene{
         this.parentScene.input.enabled = true;
         this.dialogueText.destroy();
         this.dialogueBox.destroy();
-        this.dialogueText = null;
-        this.dialogueBox = null;;
         this.scene.resume(this.parentScene);
         this.scene.stop('dialogue');
     }
@@ -50,10 +48,10 @@ export default class Dialogue extends Phaser.Scene{
     createBox() {
         console.log('Ping createBox');
         // Create a graphics object for the dialogue box
-        this.dialogueBox = this.add.graphics();
+        this.dialogueBox = this.parentScene.add.graphics();
 
         // Shadow effect (soft white edges)
-        this.dialogueBox.fillStyle(0xffffff, 0.2);
+        this.dialogueBox.fillStyle(0xffffff, 0.7);s
         this.dialogueBox.fillRoundedRect(this.boxX - 5, this.boxY - 5, this.boxWidth + 10, this.boxHeight + 10, 10);
 
         // Main black box
@@ -63,7 +61,7 @@ export default class Dialogue extends Phaser.Scene{
 
     createText(){
         console.log('Ping createText');
-        this.dialogueText = this.add.text(
+        this.dialogueText = this.parentScene.add.text(
             this.boxX + 20, 
             this.boxY + 20, 
             this.getNextLine(),
