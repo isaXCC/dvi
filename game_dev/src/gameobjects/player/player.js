@@ -76,7 +76,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             console.log('Interacting with the enviroment...');
 
             // checks for possible interactable objects in range, and, if possible, interacts with them
-            this.check_interactable_objects();
+            this.scene.check_interactable_objects();
         }
 
         if(Phaser.Input.Keyboard.JustDown(this._space)){ this.dash(); }
@@ -154,6 +154,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
+
+        // ????? idk, there should be a better option
+        this.scene.check_portal_overlapping();
    }
 
    shoot(x, y){
@@ -171,17 +174,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._bullets = this._max_ammo;
         this.scene.sound.play('reloadSound', { volume: 3 });
    }
-
-    // checks
-    check_interactable_objects(){
-        // first, checks every portal in the room
-        for(let portal of this.scene.portals){
-            if(portal.activated){
-                portal.transitionRoom();
-                break;
-            }
-        };
-    }
 
    dash(){
         if(this._stamina>0){

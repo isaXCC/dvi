@@ -12,6 +12,8 @@ export default class Portal extends Phaser.GameObjects.Sprite{
     constructor(scene, x, y, nextRoom) {
         super(scene, x, y, 'portal');
         this._nextRoom = nextRoom;
+        this.isActivated = false;
+
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds();
@@ -19,13 +21,15 @@ export default class Portal extends Phaser.GameObjects.Sprite{
 
     // update
     update(){
+        /* unused
         // checks if the portal should be activated or not
         this.activate();
-
+        */
     }
 
     // checks if the portal should be activated or not
     activate(){
+        /*unused
         // calculates the distance between this portal and the player
         let dist = Phaser.Math.Distance.Between(this.scene.player.x, this.scene.player.y, this.x, this.y);
 
@@ -37,11 +41,19 @@ export default class Portal extends Phaser.GameObjects.Sprite{
         else{ 
             this.activated = false;
             this.setTexture('portal');
-        }
+        }*/
+       this.isActivated = true;
+    }
+    
+    // ????? idk, there should be a better option
+    deactivate(){
+        if(!Phaser.Geom.Intersects.RectangleToRectangle(this.scene.player.getBounds(), this.getBounds())) this.isActivated = false;
     }
     
     transitionRoom() {
-        console.log("Transition Room " + this._nextRoom);
-        this.scene.nextRoom(this._nextRoom);
+        if(this.isActivated){
+            console.log("Transition Room " + this._nextRoom);
+            this.scene.nextRoom(this._nextRoom);
+        }
     }
 }

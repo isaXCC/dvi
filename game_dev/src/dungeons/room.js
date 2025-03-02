@@ -8,22 +8,23 @@ import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
 import BulletGroup from '../gameobjects/groups/BulletGroup.js';
 import Phaser from 'phaser';
 import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
+import PortalGroup from '../gameobjects/groups/PortalGroup.js';
 
 export default class Room extends Phaser.Scene {
 
     constructor(key) {
         super({ key: key });
-        // Load gameobjects
-        this.portals = [];
+
+        // information that will be passed between rooms
         this.player_state;
     }
 
     create() {        
 
         // Add the colliders
-        // this.physics.add.overlap(this.portals, this.player, this.portals.at(0).transitionRoom, null, this.scene);
-        this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
+        //this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
        
+        this.portals.addOverlap(this.player, this.portals.playerOverlap);
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
 
@@ -43,6 +44,7 @@ export default class Room extends Phaser.Scene {
     update(){
         this.bullets.update();
         this.enemies.update();
+        this.portals.update();
         // Update player info display
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)
@@ -53,6 +55,17 @@ export default class Room extends Phaser.Scene {
 
     newBullet(origX, origY, destX, destY){
         this.bullets.addElement(new Bullet(this, origX, origY, destX, destY));
+    }
+
+    // checks for possible interactable objects in range, and, if possible, interacts with them
+    check_interactable_objects(){
+        // first, it checks for portals
+        this.portals.transitionRoom();
+    }
+
+    // ????? idk, there should be a better option
+    check_portal_overlapping(){
+        this.portals.deactivate();
     }
 
     nextRoom(room){
@@ -72,6 +85,7 @@ export default class Room extends Phaser.Scene {
     generateTiled(key){
         this.enemies = new EnemyGroup(this);
         this.bullets = new BulletGroup(this);
+        this.portals = new PortalGroup(this);
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -96,7 +110,7 @@ export default class Room extends Phaser.Scene {
         }
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
-                this.portals.push(new Portal(this, object.x, object.y, object.name));
+                this.portals.addElement(new Portal(this, object.x, object.y, object.name));
             }
         }
         for (const object of map.getObjectLayer('player').objects) {
