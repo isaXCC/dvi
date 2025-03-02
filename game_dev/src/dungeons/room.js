@@ -26,6 +26,7 @@ export default class Room extends Phaser.Scene {
        
         this.portals.addOverlap(this.player, this.portals.playerOverlap);
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
+        this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
 
         // Add player info text in the top-left corner
@@ -49,12 +50,18 @@ export default class Room extends Phaser.Scene {
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)
             this.player.update();    
-        else
+        else {
+            this.music.stop();
             this.gameOver();
+        }
     }
 
     newBullet(origX, origY, destX, destY){
-        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY));
+        this.bullets.addElement(new Bullet(this, origX, origY, destX, destY, false));
+    }
+
+    newEnemyBullet(origX, origY){
+        this.bullets.addElement(new Bullet(this, origX, origY, this.player.x, this.player.y, true));
     }
 
     // checks for possible interactable objects in range, and, if possible, interacts with them

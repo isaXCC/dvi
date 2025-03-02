@@ -47,7 +47,8 @@ export default class Portal extends Phaser.GameObjects.Sprite{
     
     // ????? idk, there should be a better option
     deactivate(){
-        if(!Phaser.Geom.Intersects.RectangleToRectangle(this.scene.player.getBounds(), this.getBounds())) this.isActivated = false;
+        if(!Phaser.Geom.Intersects.RectangleToRectangle(this.scene.player.getBounds(), this.getBounds())) 
+            this.isActivated = false;
     }
     
     transitionRoom() {

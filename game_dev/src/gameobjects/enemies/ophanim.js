@@ -6,23 +6,41 @@ export default class Ophanim extends Enemy{
         super(scene, x, y, 'ophanim');
 
         this._life = 3;
-        this._speed = 10;
+        this._speed = 25;
         this._shooting = false;
+        this._moving = true;
+        this._called = false;
     }
 
     update() {
         if(this._isAlive){
+            // not stopping to move as it should
+            if(this._moving){
+                this.move();
+            }
             if(this._shooting){
                 this._shooting = false;
-                console.log('PEW')
-            }
-            else{
-                this.move();
+                this._called = false;
+                this._moving = false;
+                console.log('Enemy shoot the CAT');
+                this.scene.sound.play('enemy_shoot', { volume: 6 });
+                this.scene.newEnemyBullet(this.x, this.y);
                 this.scene.time.delayedCall(1500, () => {
                     if(this.active && this._isAlive){
-                        this._shooting = true;
+                        this._moving = true;
                     }
                 });
+            }
+            else{
+                if(!this._called){
+                    this._called = true;
+                    this._moving = false;
+                    this.scene.time.delayedCall(5000, () => {
+                        if(this.active && this._isAlive){
+                            this._shooting = true;
+                        }
+                    });
+                }
             }
         }
         else{

@@ -11,7 +11,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
      * @param {number} destY Coordenada Y
      */
 
-    constructor(scene, origX, origY, destX, destY) {
+    constructor(scene, origX, origY, destX, destY, enemyBullet) {
         super(scene, origX, origY, 'bullet');
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
@@ -20,8 +20,10 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.v_x = x_norm*300;
         this.v_y = y_norm*300;
 
-        this._enemyBullet = false;
-
+        console.log('Enemy Bullet: ' + enemyBullet);
+        this._enemyBullet = enemyBullet;
+        console.log('_Enemy Bullet: ' + this._enemyBullet);
+        
         // Set the collision system
         this.body.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;

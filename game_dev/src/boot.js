@@ -10,8 +10,12 @@ import bullet from '../assets/sprites/utils/bullet.png'
 import portal from '../assets/sprites/utils/portal.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import hearts from '../assets/sprites/utils/hearts.png'
-import shootSound from '../assets/audio/utils/shoot.wav'
-import reloadSound from '../assets/audio/utils/reload.wav'
+// SOUND IMPORTS
+import player_shoot from '../assets/audio/utils/player_shoot.wav'
+import player_reload from '../assets/audio/utils/player_reload.wav'
+import player_hurt from '../assets/audio/utils/player_hurt.wav'
+import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
+import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
 // TILED IMPORTS
 import test from '../assets/tiled/test.json'
@@ -56,8 +60,12 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
-    this.load.audio('shootSound', shootSound);
-    this.load.audio('reloadSound', reloadSound);
+    // SOUNDS PRELOAD
+    this.load.audio('shootSound', player_shoot);
+    this.load.audio('reloadSound', player_reload);
+    this.load.audio('player_hurt', player_hurt);
+    this.load.audio('enemy_shoot', enemy_shoot);
+    this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);

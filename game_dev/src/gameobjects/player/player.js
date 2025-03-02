@@ -154,9 +154,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
-
         // ????? idk, there should be a better option
         this.scene.check_portal_overlapping();
+   }
+
+   takeDamage(){
+        if(this._life > 0){
+            this._invulnerable = true;
+            this._life--;
+            this.scene.sound.play('player_hurt', { volume: 10 });
+            if(this._life <= 0){
+                this._isAlive = false;
+            }
+            else{
+                this.scene.time.delayedCall(500, () => {
+                    this._invulnerable = false;
+                });
+            }
+        }
    }
 
    shoot(x, y){

@@ -12,10 +12,10 @@ export default class EnemyGroup extends DefaultGroup {
             if (player._invulnerable) return;
     
             console.log('touch damage');
-    
-            player._invulnerable = true;
-            player._life--;
-            console.log(player._life);
+            
+            // Decoupled the logic so we can extend it later with
+            // different amounts of damage and types of attacks
+            player.takeDamage();
     
             enemy._touch_damage = true;
             let rate = 150;
@@ -27,10 +27,6 @@ export default class EnemyGroup extends DefaultGroup {
                     enemy._touch_damage = false;
                     enemy.body.setVelocity(0, 0); // Stop enemy movement
                 }
-            });
-    
-            this.scene.time.delayedCall(500, () => {
-                player._invulnerable = false;
             });
         }
     }
