@@ -3,7 +3,7 @@ import DefaultGroup from "./DefaultGroup";
 export default class BulletGroup extends DefaultGroup {
 
     constructor(scene) {
-        super(scene);
+        super(scene, false);
 
     }
 
@@ -15,6 +15,7 @@ export default class BulletGroup extends DefaultGroup {
         console.log('Bullet hit an enemy!');
         if(bullet._enemyBullet === false){
             enemy.takeDamage();
+            //bullet.hitTarget();
             this.scene.bullets.removeElement(bullet);
         }
     }
