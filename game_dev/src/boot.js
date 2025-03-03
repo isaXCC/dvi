@@ -62,6 +62,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
+        // PROTOTYPE
+        this.load.image('tripleshot', hearts);
+        this.load.image('speedboost', hearts);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);

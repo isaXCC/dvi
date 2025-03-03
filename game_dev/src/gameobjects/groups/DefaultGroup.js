@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 
 export default class DefaultGroup {
     
-    constructor(scene) {
+    constructor(scene, collision_with_own=true) {
 
         this.scene = scene;
 
@@ -11,7 +11,9 @@ export default class DefaultGroup {
             immovable: false
         })
 
-        this.scene.physics.add.collider(this.group, this.group);
+        if(collision_with_own === true) {
+            this.scene.physics.add.collider(this.group, this.group);
+        }
     }
 
     getCorrectInstance(object){

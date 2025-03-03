@@ -11,6 +11,7 @@ import Phaser from 'phaser';
 import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
 import PortalGroup from '../gameobjects/groups/PortalGroup.js';
 import NPCGroup from '../gameobjects/groups/NPCGroup.js';
+import TripleShot from '../gameobjects/powerups/tripleshot.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -108,6 +109,10 @@ export default class Room extends Phaser.Scene {
                 }
             }
         }
+
+        //PROTOTYPE
+        let pup = new TripleShot(this.player, this, 250, 250);
+
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
     

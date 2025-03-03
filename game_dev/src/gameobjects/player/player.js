@@ -1,6 +1,9 @@
 import Phaser from 'phaser';
 import Bullet from '../utils/bullet.js';
 import getNormDist from '../../utils/vector.js'
+import PowerUp from '../powerups/powerup.js';
+import TripleShot from '../powerups/tripleshot.js';
+import SpeedBoost from '../powerups/speedboost.js';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 
@@ -56,7 +59,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // management of animations
         this.manage_animations();
 
+        this._pup = new PowerUp(this, this.scene, 0, 0);
     }
+
     /**
      * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
      * Como se puede ver, no se tratan las colisiones con las estrellas, ysa que estas colisiones 
@@ -155,15 +160,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-   update(){
+    update(){
         if(this._life <= 0){
             this._isAlive = false;
         }
         // ????? idk, there should be a better option
         this.scene.check_portal_overlapping();
-   }
+    }
 
-   takeDamage(){
+    takeDamage(){
         if(this._life > 0){
             this._invulnerable = true;
             this._life--;
@@ -177,36 +182,41 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 });
             }
         }
-   }
+    }
 
    shoot(x, y){
         console.log('Left-click detected at:', x, y);
         console.log('Bullets:', this._bullets);
         if(this._bullets > 0){
-            this.scene.newBullet(this.x, this.y, x, y);
+            this._pup.newBullet(this.x, this.y, x, y);
+            // this.scene.newBullet(this.x, this.y, x, y);
             // this.scene._bullets.pushback(new Bullet(this.scene, this.x, this.y, x, y));
             this.scene.sound.play('shootSound', { volume: 1 });
             this._bullets--;
         }
    }
 
-   reload(){
+    newBullet(p_x, p_y, b_x, b_y){
+        this.scene.newBullet(p_x, p_y, b_x, b_y);
+    }
+
+    reload(){
         this._bullets = this._max_ammo;
         this.scene.sound.play('reloadSound', { volume: 3 });
-   }
+    }
 
-   dash(){
+    dash(){
         if(this._stamina>0){
             console.log('Dash');
             // this.scene.sound.play('shootSound', { volume: 1 });
             this._stamina--;
         }
-   }
+    }
 
-   fallHole(){
+    fallHole(){
         console.log('Fell');
         // this.scene.sound.play('shootSound', { volume: 1 });
-   }
+    }
 
     manage_animations(){
 
