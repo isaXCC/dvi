@@ -12,6 +12,8 @@ import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import hearts from '../assets/sprites/utils/hearts.png'
+import speedboost from '../assets/sprites/utils/speedboost.png'
+import tripleshoot from '../assets/sprites/utils/tripleshoot.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
 import player_reload from '../assets/audio/utils/player_reload.wav'
@@ -62,8 +64,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bullet', bullet);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
-        // PROTOTYPE
-        this.load.image('hearts', hearts);
+    this.load.image('tripleshoot', tripleshoot);
+    this.load.image('speedboost', speedboost);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);

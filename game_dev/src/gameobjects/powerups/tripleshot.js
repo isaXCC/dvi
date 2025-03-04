@@ -3,7 +3,7 @@ import {getVectorAngle} from "../../utils/vector.js";
 
 export default class TripleShot extends PowerUp {
     constructor(player, scene, x, y){
-        super(player, scene, x, y, 'hearts');
+        super(player, scene, x, y, 'tripleshoot');
 
         this._count = 0;
     }
