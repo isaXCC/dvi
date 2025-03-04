@@ -111,10 +111,6 @@ export default class Room extends Phaser.Scene {
                         console.log('Set bullets ' + this.player_state.bullets);
                         this.player._bullets = this.player_state.bullets;
                     }
-                    if(this.player_state.powerup !== undefined){
-                        console.log('Set powerup ' + this.player_state.powerup.constructor.name);
-                        this.player._pup = this.player_state.powerup;
-                    }
                 }
             }
         }
@@ -145,7 +141,7 @@ export default class Room extends Phaser.Scene {
     nextRoom(room){
         this.music.stop();
         console.log('Player life before: ' + this.player._life);
-        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets, powerup: this.player._pup});
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
     }
 
     gameOver(){
