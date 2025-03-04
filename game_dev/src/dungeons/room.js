@@ -22,6 +22,7 @@ export default class Room extends Phaser.Scene {
 
         // information that will be passed between rooms
         this.player_state;
+        this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -34,6 +35,7 @@ export default class Room extends Phaser.Scene {
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
         this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
+        this.npcs.addCollision(this.player, this.npcs.playerCollision);
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
 
         // Add player info text in the top-left corner
@@ -123,17 +125,17 @@ export default class Room extends Phaser.Scene {
 
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
-    
         this.enemies.addCollision(onc);
         this.bullets.addCollision(onc, this.bullets.oncCollision);
         this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
+        this.npcs.dontMove();
     }
 
     // ROOM STATE LOGIC AND METHODS
 
     enterDialogue(){
         this.scene.pause();
-        this.scene.launch('dialogue', { parent: this.scene }); 
+        this.scene.launch('dialogue', { parent: this.scene, next: this.nextLine }); 
         this.input.enabled = false;
     }
 
