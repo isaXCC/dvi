@@ -32,14 +32,11 @@ export default class EnemyGroup extends DefaultGroup {
     }
 
     getHealed(amount){
-        this.group.getChildren().forEach(enemy => console.log(enemy._life));
-        this.group.getChildren().forEach(enemy => {
-            if(enemy._life < enemy._max_life){
-                enemy._life += amount;
-                enemy.setAlpha(enemy._life/enemy._max_life);
-            }
-        });
-        this.group.getChildren().forEach(enemy => console.log(enemy._life));
+        this.group.getChildren().forEach(enemy => enemy.getHealed(amount));
+    }
+
+    takeDamage(amount){
+        this.group.getChildren().forEach(enemy => enemy.takeDamage(amount));
     }
 
 }

@@ -16,6 +16,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
         // Init attributes
+        this._can_jumpscare = true;
+        this._jumpscare_amount = 1;
         this._life = 6;
         this._max_life = 6;
         this._stamina = 3;
@@ -76,7 +78,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setVelocityY(0);
         
         if(Phaser.Input.Keyboard.JustDown(this._q)){
-            
+            if(this._can_jumpscare){
+                this.jumpScare();
+            }
         }
 
         if(Phaser.Input.Keyboard.JustDown(this._r)){
@@ -356,5 +360,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     resetPowerup(){
         this._pup = new PowerUp(this, this.scene);
+    }
+
+    jumpScare(){
+        console.log('JUMPSCARE BITCH')
+        this.scene.enemies.takeDamage(this._jumpscare_amount);
+        this._can_jumpscare = false;
+        this.scene.time.delayedCall(10000, () => this._can_jumpscare = true);
     }
 }

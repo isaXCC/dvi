@@ -1,6 +1,6 @@
 import Enemy from "./enemy";
 
-export default class Seraph extends Enemy{
+export default class Seraph extends Enemy {
     
     constructor(scene, x, y) {
         super(scene, x, y, 'seraph');

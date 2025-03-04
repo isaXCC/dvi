@@ -12,8 +12,8 @@ export default class BulletGroup extends DefaultGroup {
     }
 
     enemyOverlap(bullet, enemy) {
-        console.log('Bullet hit an enemy!');
         if(bullet._enemyBullet === false){
+            console.log('Bullet hit an enemy!');
             enemy.takeDamage();
             //bullet.hitTarget();
             this.scene.bullets.removeElement(bullet);
