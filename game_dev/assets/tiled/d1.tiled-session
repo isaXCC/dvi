@@ -34,10 +34,13 @@
             "scaleInDock": 1
         },
         "d1_mid.json": {
+            "expandedObjectLayers": [
+                3
+            ],
             "scale": 1.2216406249999998,
-            "selectedLayer": 5,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 225.92568907079368,
+                "x": 431.3870947112618,
                 "y": 223.87926072776114
             }
         },
@@ -46,15 +49,14 @@
         },
         "test.json": {
             "expandedObjectLayers": [
-                3,
                 7,
-                8
+                5
             ],
-            "scale": 1.2780468749999998,
-            "selectedLayer": 3,
+            "scale": 0.75,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 344.666544409805,
-                "y": 255.85916009536038
+                "x": 332,
+                "y": 287.33333333333326
             }
         },
         "test.json#room_tileset": {
