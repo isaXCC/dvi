@@ -1,6 +1,6 @@
 import Player from "../player/player";
 
-export default class Portal extends Phaser.GameObjects.Sprite{
+export default class Portal extends Phaser.Physics.Arcade.Sprite {
 
     /**
      * Constructor del jugador

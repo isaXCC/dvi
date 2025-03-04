@@ -32,8 +32,8 @@ export default class DefaultGroup {
         this.group.add(gameObject);
     }
 
-    removeElement(gameObject){
-        this.group.remove(gameObject, true, true);
+    removeElement(gameObject, removeFromScene=true, destroyChild=true){
+        this.group.remove(gameObject, removeFromScene, destroyChild);
     }
 
     update(){

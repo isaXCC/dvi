@@ -344,4 +344,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this._last_hitbox = new_hitbox;
         }
     }
+
+    pickPowerUp(powerup){
+        this._pup.remove();
+        this._pup = powerup;
+        this._pup.effect();
+        this.scene.powerups.removeElement(powerup);
+    }
 }

@@ -11,7 +11,9 @@ import Phaser from 'phaser';
 import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
 import PortalGroup from '../gameobjects/groups/PortalGroup.js';
 import NPCGroup from '../gameobjects/groups/NPCGroup.js';
+import PUPGroup from '../gameobjects/groups/PUPGroup.js';
 import TripleShot from '../gameobjects/powerups/tripleshot.js';
+import SpeedBoost from '../gameobjects/powerups/speedboost.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -33,6 +35,7 @@ export default class Room extends Phaser.Scene {
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
         this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
+        this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
 
         // Add player info text in the top-left corner
         this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
@@ -62,6 +65,7 @@ export default class Room extends Phaser.Scene {
         this.bullets = new BulletGroup(this);
         this.portals = new PortalGroup(this);
         this.npcs = new NPCGroup(this);
+        this.powerups = new PUPGroup(this);
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -111,7 +115,8 @@ export default class Room extends Phaser.Scene {
         }
 
         //PROTOTYPE
-        let pup = new TripleShot(this.player, this, 250, 250);
+        this.powerups.addElement(new TripleShot(this.player, this, 600, 500));
+        this.powerups.addElement(new SpeedBoost(this.player, this, 300, 300));
 
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
@@ -142,7 +147,7 @@ export default class Room extends Phaser.Scene {
     // AUXILIARY METHODS
 
     getPlayerInfo() {
-        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}`;
+        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}\nPowerUp: ${this.player._pup.constructor.name}`;
     }
 
 
