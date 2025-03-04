@@ -52,6 +52,20 @@
          "y":0
         }, 
         {
+         "compression":"",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+         "encoding":"base64",
+         "height":8,
+         "id":10,
+         "name":"onn",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
          "class":"Player",
          "draworder":"topdown",
          "id":4,
@@ -83,30 +97,6 @@
          "name":"enemies",
          "objects":[
                 {
-                 "gid":28,
-                 "height":64,
-                 "id":1,
-                 "name":"eB_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":166.703710495752,
-                 "y":154.683293599853
-                }, 
-                {
-                 "gid":29,
-                 "height":64,
-                 "id":2,
-                 "name":"eA_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":497.437740693197,
-                 "y":136.333333333333
-                }, 
-                {
                  "gid":30,
                  "height":64,
                  "id":3,
@@ -117,30 +107,6 @@
                  "width":64,
                  "x":501.188397823828,
                  "y":481.830857631885
-                }, 
-                {
-                 "gid":28,
-                 "height":64,
-                 "id":11,
-                 "name":"eB_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":65.1032459196772,
-                 "y":185.439207775536
-                }, 
-                {
-                 "gid":28,
-                 "height":64,
-                 "id":12,
-                 "name":"eB_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":135.523198239501,
-                 "y":272.290482303319
                 }],
          "offsetx":32,
          "offsety":-32,
@@ -213,8 +179,24 @@
                  "type":"NPC",
                  "visible":true,
                  "width":64,
-                 "x":316.969985940461,
-                 "y":244.042300874137
+                 "x":302.97,
+                 "y":400.04
+                }, 
+                {
+                 "height":19,
+                 "id":16,
+                 "name":"mice_incomplete",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"Mice",
+                     "wrap":true
+                    },
+                 "type":"NPC",
+                 "visible":true,
+                 "width":83,
+                 "x":403.71058744422,
+                 "y":315.214224585855
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -276,8 +258,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":10,
- "nextobjectid":16,
+ "nextlayerid":11,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

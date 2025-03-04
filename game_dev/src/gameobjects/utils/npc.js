@@ -9,11 +9,17 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
         this.createAnims();
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this._dialoguePending = true;
     }
 
     update(){
-        this.play('virgil', true);
-        //console.log('BARK');
+        if(this._dialoguePending){
+            this.play(this.nameNPC, true);
+        }
+        else{
+            this.setFrame(this.nameNPC.concat('_0'));
+            this.stop();
+        }
     }
 
     createAnims(){
@@ -23,7 +29,14 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
             frameRate: 8,
             repeat: -1
         };
+        const mice_incomplete = {
+            key: 'mice_incomplete',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "mice_incomplete_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
 
         this.anims.create(virgil);
+        this.anims.create(mice_incomplete);
     }
 }

@@ -11,12 +11,15 @@ export default class Dialogue extends Phaser.Scene{
         this.dialogueText = null;
         this.dialogueBox = null;
         this.parentScene = null;
+        this.line = "Taka taka MABOI";
         console.log('Constructor Dialogue');
     }
     
     init(info) {
         console.log('Init Dialogue, parent key:' + info.parent.key);
+        console.log('Init Dialogue, next:' + info.next);
         this.parentKey = info.parent.key;
+        this.line = info.next;
     }
     
     create(){
@@ -76,6 +79,6 @@ export default class Dialogue extends Phaser.Scene{
     }
 
     getNextLine(){
-        return "Taka taka MABOI";
+        return this.line;
     }
 }
