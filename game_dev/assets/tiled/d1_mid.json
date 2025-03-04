@@ -49,7 +49,23 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "height":19,
+                 "id":12,
+                 "name":"mice_incomplete",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"Mice",
+                     "wrap":true
+                    },
+                 "type":"NPC",
+                 "visible":true,
+                 "width":83,
+                 "x":481.56708447912,
+                 "y":101.825701860971
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -211,7 +227,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":12,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

@@ -26,6 +26,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._speed = 250;
         this._isAlive = true;
         this._invulnerable = false;
+        this._isDashing = false;
         this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
         this._last_hitbox = { width: null, height: null, offsetX: null, offsetY: null }; // player's current hitbox, made to optimize the hitbox changes
 
@@ -155,7 +156,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
         let {x_norm, y_norm} = getNormDist(this.x, this.y, x_orig, y_orig);
-        this.setVelocity(x_norm*this._speed, y_norm*this._speed);
+
+        if(!this._isDashing){
+            this.setVelocity(x_norm*this._speed, y_norm*this._speed);
+        }
 
         // if player is not standing still, a new animation is played
         if(!player_stopped){ 
@@ -212,10 +216,35 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     dash(){
-        if(this._stamina>0){
-            console.log('Dash');
-            // this.scene.sound.play('shootSound', { volume: 1 });
-            this._stamina--;
+        if (this._stamina > 0 && !this._isDashing) {
+            console.log('Dashing...');
+    
+            this._stamina--;  // Reduce stamina
+            this._isDashing = true;  // Prevent multiple dashes
+            let dashSpeed = this._speed * 10;  // Dash speed multiplier
+    
+            // Get player's current movement direction
+            let velocityX = this.body.velocity.x;
+            let velocityY = this.body.velocity.y;
+    
+            if (velocityX === 0 && velocityY === 0) {
+                // If player is standing still, dash in the last move direction
+                ({ velocityX, velocityY } = this.getDirectionVector());
+            }
+    
+            // Normalize velocity to ensure constant dash speed
+            let { x_norm, y_norm } = getNormDist(0, 0, velocityX, velocityY);
+            this.setVelocity(x_norm * dashSpeed, y_norm * dashSpeed);
+    
+            // Stop dash after duration
+            this.scene.time.delayedCall(200, () => {
+                // this.setVelocity(0, 0);
+                this._isDashing = false;
+            });
+            this.scene.time.delayedCall(2500, () => {
+                // this.setVelocity(0, 0);
+                this._stamina++;
+            });
         }
     }
 
@@ -223,6 +252,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         console.log('Fell');
         // this.scene.sound.play('shootSound', { volume: 1 });
     }
+
+    // ANIMATIONS SECTION
 
     manage_animations(){
 
@@ -368,4 +399,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._can_jumpscare = false;
         this.scene.time.delayedCall(10000, () => this._can_jumpscare = true);
     }
+
+    // AUXILIARY FUNCIONS
+    getDirectionVector() {
+        let directionMap = {
+            'phatcat_walk_up_': { velocityX: 0, velocityY: -1 },
+            'phatcat_walk_down_': { velocityX: 0, velocityY: 1 },
+            'phatcat_walk_left_': { velocityX: -1, velocityY: 0 },
+            'phatcat_walk_right_': { velocityX: 1, velocityY: 0 },
+            'phatcat_walk_diagupleft_': { velocityX: -1, velocityY: -1 },
+            'phatcat_walk_diagupright_': { velocityX: 1, velocityY: -1 },
+            'phatcat_walk_diagdownleft_': { velocityX: -1, velocityY: 1 },
+            'phatcat_walk_diagdownright_': { velocityX: 1, velocityY: 1 }
+        };
+    
+        return directionMap[this._last_move] || { velocityX: 0, velocityY: 0 };
+    }
+
 }

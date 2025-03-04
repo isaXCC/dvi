@@ -16,9 +16,13 @@ export default class test extends Room {
     }
 
     init(player_state) {
-        if(player_state.life !== undefined)
+        if(player_state.life !== undefined){
             console.log('Ping + ' + player_state);
             super.setPlayerInfo(player_state);
+        }
+        super.nextLine = "PRESENTACION HITO 1" +
+                        "\n Phat Boi Games apresenta: " +
+                        "\n NADA porque falta MUCHO";
     }
 
     create() {
