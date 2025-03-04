@@ -27,7 +27,6 @@ export default class Room extends Phaser.Scene {
     // ROOM GENERATION AND TILED INTEGRATION
 
     create() {        
-
         // Add the colliders
         //this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
        
@@ -46,10 +45,10 @@ export default class Room extends Phaser.Scene {
     }
 
     update(){
-        if(this._suspend) return;
         this.bullets.update();
         this.enemies.update();
         this.portals.update();
+        this.npcs.update();
         // Update player info display
         this.playerInfoText.setText(this.getPlayerInfo());
         if(this.player._isAlive)
@@ -113,10 +112,14 @@ export default class Room extends Phaser.Scene {
                 }
             }
         }
-
-        //PROTOTYPE
-        this.powerups.addElement(new TripleShot(this.player, this, 600, 500));
-        this.powerups.addElement(new SpeedBoost(this.player, this, 300, 300));
+        for (const object of map.getObjectLayer('powerups').objects) {
+            if (object.type === 'SpeedBoost') { 
+                this.powerups.addElement(new SpeedBoost(this.player, this, object.x, object.y));
+            }
+            if (object.type === 'TripleShot') { 
+                this.powerups.addElement(new TripleShot(this.player, this, object.x, object.y));
+            }
+        }
 
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);

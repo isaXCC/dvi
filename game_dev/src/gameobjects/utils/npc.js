@@ -12,14 +12,15 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
     }
 
     update(){
-        // this.play(virgil);
+        this.play('virgil', true);
+        //console.log('BARK');
     }
 
     createAnims(){
         const virgil = {
             key: 'virgil',
             frames: this.scene.anims.generateFrameNames('npcs', {prefix: "virgil_", end: 1}),
-            frameRate: 2,
+            frameRate: 8,
             repeat: -1
         };
 

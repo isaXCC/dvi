@@ -22,6 +22,17 @@
         }, 
         {
          "draworder":"topdown",
+         "id":9,
+         "name":"powerups",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":7,
          "name":"npcs",
          "objects":[
@@ -149,7 +160,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
+ "nextlayerid":10,
  "nextobjectid":12,
  "orientation":"orthogonal",
  "renderorder":"right-up",

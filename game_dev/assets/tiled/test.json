@@ -237,7 +237,39 @@
          "draworder":"topdown",
          "id":8,
          "name":"powerups",
-         "objects":[],
+         "objects":[
+                {
+                 "height":19,
+                 "id":14,
+                 "name":"",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"TripleShot",
+                     "wrap":true
+                    },
+                 "type":"TripleShot",
+                 "visible":true,
+                 "width":83,
+                 "x":282.43178067119,
+                 "y":466.225900116144
+                }, 
+                {
+                 "height":19,
+                 "id":15,
+                 "name":"",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"SpeedBoost",
+                     "wrap":true
+                    },
+                 "type":"SpeedBoost",
+                 "visible":true,
+                 "width":83,
+                 "x":440.485451433462,
+                 "y":470.920563604132
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -245,7 +277,7 @@
          "y":0
         }],
  "nextlayerid":10,
- "nextobjectid":14,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
