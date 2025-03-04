@@ -74,8 +74,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setVelocityX(0);
         this.body.setVelocityY(0);
         
-        // TMP TO CHECK DIALOG
-        if(Phaser.Input.Keyboard.JustDown(this._q)){ this.scene.enterDialogue(); }
+        if(Phaser.Input.Keyboard.JustDown(this._q)){
+            
+        }
 
         if(Phaser.Input.Keyboard.JustDown(this._r)){
             console.log('Reloading...');
