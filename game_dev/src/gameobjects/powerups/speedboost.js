@@ -15,6 +15,7 @@ export default class SpeedBoost extends PowerUp {
 
     remove(){
         this.player._speed = this.original_speed;
+        this.player.resetPowerup();
     }
 
 }
