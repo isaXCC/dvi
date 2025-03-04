@@ -6,14 +6,16 @@ export default class SpeedBoost extends PowerUp {
         super(player, scene, x, y, 'speedboost');
 
         this.original_speed = this.player._speed;
+    }
 
-        this.player._speed *= 1.3;
-
-        this.player.scene.time.delayedCall(10000, () => this.remove(), [], this);
+    effect(){
+        this.player._speed *= 1.75;
+        this.player.scene.time.delayedCall(5000, () => this.remove(), [], this);
     }
 
     remove(){
         this.player._speed = this.original_speed;
+        this.player.resetPowerup();
     }
 
 }

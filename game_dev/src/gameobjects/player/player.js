@@ -59,7 +59,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // management of animations
         this.manage_animations();
 
-        this._pup = new PowerUp(this, this.scene, 0, 0);
+        this._pup = new PowerUp(this, this.scene);
     }
 
     /**
@@ -343,5 +343,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             // and now is saved as the last hitbox displayed
             this._last_hitbox = new_hitbox;
         }
+    }
+
+    pickPowerUp(powerup){
+        this._pup.remove();
+        this._pup = powerup;
+        this._pup.effect();
+        this.scene.powerups.removeElement(powerup);
+    }
+
+    resetPowerup(){
+        this._pup = new PowerUp(this, this.scene);
     }
 }
