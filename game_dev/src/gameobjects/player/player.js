@@ -17,6 +17,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'player');
         // Init attributes
         this._life = 6;
+        this._max_life = 6;
         this._stamina = 3;
         this._bullets = 7;
         this._max_ammo = 7;

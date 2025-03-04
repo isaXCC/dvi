@@ -13,7 +13,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this._touch_damage = false;
 
         // Abstract properties -> Children must override
-        this._maxLife = 3;
+        this._max_life = 3;
         this._life = 3;
         this._speed = 50;
         this._isAlive = true;
@@ -30,7 +30,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         if(this._life > 0){
             this._life--;
             this.scene.sound.play('enemy_hurt', { volume: 3 });
-            this.setAlpha(this._life/this._maxLife);
+            this.setAlpha(this._life/this._max_life);
             if(this._life <= 0){
                 this._isAlive = false;
                 this.scene.enemies.removeElement(this);
