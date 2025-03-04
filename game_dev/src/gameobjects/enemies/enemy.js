@@ -41,7 +41,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     getHealed(amount=1){
         if(this._life < this._max_life){
             this._life += amount;
-            this.setAlpha(enemy._life/enemy._max_life);
+            this.setAlpha(this._life/this._max_life);
         }
     }
 
