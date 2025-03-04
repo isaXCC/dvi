@@ -30,4 +30,13 @@ export default class EnemyGroup extends DefaultGroup {
             });
         }
     }
+
+    getHealed(amount){
+        this.group.getChildren().forEach(enemy => enemy.getHealed(amount));
+    }
+
+    takeDamage(amount){
+        this.group.getChildren().forEach(enemy => enemy.takeDamage(amount));
+    }
+
 }

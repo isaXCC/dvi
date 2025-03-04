@@ -5,6 +5,7 @@ export default class Ophanim extends Enemy{
     constructor(scene, x, y) {
         super(scene, x, y, 'ophanim');
 
+        this._max_life = 3;
         this._life = 3;
         this._speed = 25;
         this._shooting = false;

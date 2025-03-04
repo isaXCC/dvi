@@ -3,11 +3,7 @@ import DefaultGroup from "./DefaultGroup";
 export default class NPCGroup extends DefaultGroup {
 
     constructor(scene) {
-        super(scene);
-    }
-
-    dontMove(){
-        this.group.getChildren().forEach(element => element.setImmovable(true));
+        super(scene, true, true);
     }
     
     playerCollision(player, npc) {

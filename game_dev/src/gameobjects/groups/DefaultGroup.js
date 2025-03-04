@@ -2,13 +2,13 @@ import Phaser from 'phaser'
 
 export default class DefaultGroup {
     
-    constructor(scene, collision_with_own=true) {
+    constructor(scene, collision_with_own=true, immovable=false) {
 
         this.scene = scene;
 
         this.group = this.scene.physics.add.group({
             collideWorldBounds: true,
-            immovable: false
+            immovable: immovable
         })
 
         if(collision_with_own === true) {
