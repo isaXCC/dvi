@@ -25,7 +25,7 @@
         }, 
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAeAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAQAAHgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAAAAAAAAAAAAAAAAAeAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgEAAB4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4BAAAeAQAAHgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
          "encoding":"base64",
          "height":8,
          "id":2,
@@ -107,6 +107,30 @@
                  "width":64,
                  "x":501.188397823828,
                  "y":481.830857631885
+                }, 
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":17,
+                 "name":"eC_0",
+                 "rotation":0,
+                 "type":"Angel",
+                 "visible":true,
+                 "width":64,
+                 "x":51.7667339079406,
+                 "y":121.009352649918
+                }, 
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":18,
+                 "name":"eC_0",
+                 "rotation":0,
+                 "type":"Ophanim",
+                 "visible":true,
+                 "width":64,
+                 "x":452,
+                 "y":125.333333333333
                 }],
          "offsetx":32,
          "offsety":-32,
@@ -149,7 +173,7 @@
                  "gid":31,
                  "height":64,
                  "id":10,
-                 "name":"test",
+                 "name":"d1_mid",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -171,18 +195,6 @@
          "name":"npcs",
          "objects":[
                 {
-                 "gid":32,
-                 "height":64,
-                 "id":13,
-                 "name":"virgil",
-                 "rotation":0,
-                 "type":"NPC",
-                 "visible":true,
-                 "width":64,
-                 "x":302.97,
-                 "y":400.04
-                }, 
-                {
                  "height":19,
                  "id":16,
                  "name":"mice_incomplete",
@@ -195,8 +207,24 @@
                  "type":"NPC",
                  "visible":true,
                  "width":83,
-                 "x":403.71058744422,
-                 "y":315.214224585855
+                 "x":491.71058744422,
+                 "y":241.880891252522
+                }, 
+                {
+                 "height":19,
+                 "id":19,
+                 "name":"virgil",
+                 "rotation":0,
+                 "text":
+                    {
+                     "text":"Virgil",
+                     "wrap":true
+                    },
+                 "type":"NPC",
+                 "visible":true,
+                 "width":83,
+                 "x":482.5,
+                 "y":321.166666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -259,7 +287,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":17,
+ "nextobjectid":20,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
