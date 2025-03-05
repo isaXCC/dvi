@@ -7,6 +7,7 @@ import seraph from '../assets/sprites/enemies/seraph.png'
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
+import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
@@ -62,6 +63,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('bullet', bullet);
+    this.load.image('fireball', fireball);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
     this.load.image('tripleshot', tripleshot);
