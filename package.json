@@ -13,15 +13,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/L-Killjoy/Phaser_lab.git"
+        "url": "git+https://github.com/daniji09/dvi.git"
     },
     "keywords": [],
     "author": "Leo Prado <leoprado@ucm.es>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/L-Killjoy/Phaser_lab/issues"
+        "url": "https://github.com/daniji09/dvi/issues"
     },
-    "homepage": "https://github.com/L-Killjoy/Phaser_lab/#readme",
+    "homepage": "https://github.com/daniji09/dvi/#readme",
     "type": "module",
     "devDependencies": {
         "electron": "^34.0.1",
@@ -31,6 +31,6 @@
         "vite": "5.4.6"
     },
     "dependencies": {
-        "phaser": "^3.85.2"
+        "phaser": "3.85.2"
     }
 }
