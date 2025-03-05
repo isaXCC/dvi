@@ -1,7 +1,5 @@
 import Phaser from 'phaser'
 
-import room_d1_2 from '../assets/sprites/misc/room_d1_2.png'
-import room_d1_1 from '../assets/sprites/misc/room_d1_1.png'
 import loading from '../assets/sprites/misc/loading.png'
 import angel from '../assets/sprites/enemies/angel.png'
 import ophanim from '../assets/sprites/enemies/ophanim.png'
@@ -9,11 +7,27 @@ import seraph from '../assets/sprites/enemies/seraph.png'
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
+import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
+import activated_portal from '../assets/sprites/utils/activated_portal.png'
+import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
+import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import hearts from '../assets/sprites/utils/hearts.png'
-import shootSound from '../assets/audio/utils/shoot.wav'
-import reloadSound from '../assets/audio/utils/reload.wav'
+import speedboost from '../assets/sprites/utils/speedboost.png'
+import tripleshot from '../assets/sprites/utils/tripleshot.png'
+// SOUND IMPORTS
+import player_shoot from '../assets/audio/utils/player_shoot.wav'
+import player_reload from '../assets/audio/utils/player_reload.wav'
+import player_hurt from '../assets/audio/utils/player_hurt.wav'
+import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
+import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+// TILED IMPORTS
+import test from '../assets/tiled/test.json'
+import d1_1 from '../assets/tiled/d1_1.json'
+import d1_2 from '../assets/tiled/d1_2.json'
+import d1_mid from '../assets/tiled/d1_mid.json'
+import room_tiles from '../assets/tiled/room_tileset.png'
 
 
 /**
@@ -46,15 +60,27 @@ export default class Boot extends Phaser.Scene {
     this.load.image('angel', angel);
     this.load.image('seraph', seraph);
     this.load.image('ophanim', ophanim);
-    this.load.image('room_d1_2', room_d1_2);
-    this.load.image('room_d1_1', room_d1_1);
     this.load.atlas('player', player, player_atlas);
-    this.load.spritesheet('hearts', hearts, {frameWidth:16, frameHeight:16});
+    this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('bullet', bullet);
+    this.load.image('fireball', fireball);
     this.load.image('portal', portal);
-    this.load.audio('shootSound', shootSound);
-    this.load.audio('reloadSound', reloadSound);
+    this.load.image('activated_portal', activated_portal);
+    this.load.image('tripleshot', tripleshot);
+    this.load.image('speedboost', speedboost);
+    // SOUNDS PRELOAD
+    this.load.audio('shootSound', player_shoot);
+    this.load.audio('reloadSound', player_reload);
+    this.load.audio('player_hurt', player_hurt);
+    this.load.audio('enemy_shoot', enemy_shoot);
+    this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
+    // TILED PRELOAD
+    this.load.image('room_tiles', room_tiles);
+    this.load.tilemapTiledJSON('test', test);
+    this.load.tilemapTiledJSON('d1_1', d1_1);
+    this.load.tilemapTiledJSON('d1_2', d1_2);
+    this.load.tilemapTiledJSON('d1_mid', d1_mid);
   }
 
   /**
@@ -63,7 +89,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('d1_1');
+    this.scene.start('test', {life: 6});
   }
 
   // creates, manages and shows the initial loading progress bar

@@ -1,4 +1,6 @@
-export default class Bullet extends Phaser.GameObjects.Sprite{
+import getNormDist from "../../utils/vector";
+
+export default class Bullet extends Phaser.Physics.Arcade.Sprite {
 
     /**
      * Constructor del jugador
@@ -9,51 +11,38 @@ export default class Bullet extends Phaser.GameObjects.Sprite{
      * @param {number} destY Coordenada Y
      */
 
-    constructor(scene, origX, origY, destX, destY) {
-        super(scene, origX, origY, 'bullet');
+    constructor(scene, origX, origY, destX, destY, enemyBullet) {
+        let sprite = enemyBullet ? 'fireball' : 'bullet';
+        super(scene, origX, origY, sprite);
+        this.rotation = Phaser.Math.Angle.Between(destX, destY, this.x, this.y) + 1.5708;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 
-        // Initialize the direction of the bullet
-        this.setSpeed(origX, origY, destX, destY);
+        let {x_norm, y_norm} = getNormDist(origX, origY, destX, destY);
+        this.v_x = x_norm*300;
+        this.v_y = y_norm*300;
 
+        console.log('Enemy Bullet: ' + enemyBullet);
+        this._enemyBullet = enemyBullet;
+        console.log('_Enemy Bullet: ' + this._enemyBullet);
+        
         // Set the collision system
         this.body.setCollideWorldBounds(true);
         this.body.onWorldBounds = true;
-        this.scene.physics.world.on('worldbounds', this.handleWorldBounds, this);
-        this.scene.physics.add.overlap(this, this.scene.enemies, this.enemyHit, null, this);
+        this.scene.physics.world.on('worldbounds', this.worldBoundsHandler, this);
     }
     
     update(){
+        this.setVelocity(this.v_x, this.v_y);
         // console.log('Bullet flying!');
     }
-    
-    setSpeed(origX, origY, destX, destY){
-        const speed = 300;
-        let dx = destX - origX;
-        let dy = destY - origY;
-        let length = Math.sqrt(dx * dx + dy * dy);
-        if (length !== 0) {
-            dx /= length;
-            dy /= length;
-        }
-        this.body.setVelocity(dx * speed, dy * speed);
-    }
-    
-    enemyHit(bullet, enemy) {
-        console.log('Bullet hit an enemy!');
-        this.scene.enemies.splice(this.scene.enemies.indexOf(enemy), 1);
-        this.scene.bullets.splice(this.scene.bullets.indexOf(bullet), 1);
-        enemy.destroy(); // Remove the enemy
-        bullet.destroy(); // Remove the bullet
-    }
 
-    handleWorldBounds(body) {
+    worldBoundsHandler(body) {
         if (body.gameObject === this) {
             console.log('Object out of bounds!');
             // Destroy or handle the object as needed
-            this.scene.bullets.splice(this.scene.bullets.indexOf(this), 1);
-            this.destroy();
+            this.scene.bullets.removeElement(this);
         }
     }
+
 }
