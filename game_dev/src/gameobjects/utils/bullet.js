@@ -12,7 +12,9 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
      */
 
     constructor(scene, origX, origY, destX, destY, enemyBullet) {
-        super(scene, origX, origY, 'bullet');
+        let sprite = enemyBullet ? 'fireball' : 'bullet';
+        super(scene, origX, origY, sprite);
+        this.rotation = Phaser.Math.Angle.Between(destX, destY, this.x, this.y) + 1.5708;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
 

@@ -22,7 +22,7 @@ export default class test extends Room {
         }
         super.nextLine = "PRESENTACION HITO 1" +
                         "\n Phat Boi Games apresenta: " +
-                        "\n NADA porque falta MUCHO";
+                        "\n POCO porque falta MUCHO";
     }
 
     create() {
