@@ -44,6 +44,8 @@ export default class Room extends Phaser.Scene {
             fill: '#fff',
             fontFamily: 'Comic Sans MS'
         });
+        // Blocking context menu to open
+        window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 
     update(){

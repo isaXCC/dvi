@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import Bullet from '../utils/bullet.js';
 import getNormDist from '../../utils/vector.js'
 import PowerUp from '../powerups/powerup.js';
+import PARAMETERS from "../../parameters.js";
 import TripleShot from '../powerups/tripleshot.js';
 import SpeedBoost from '../powerups/speedboost.js';
 
@@ -16,14 +17,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'player');
         // Init attributes
+        this._life = PARAMETERS.PLAYER.LIFE;
+        this._max_life = PARAMETERS.PLAYER.MAX_LIFE;
+        this._stamina = PARAMETERS.PLAYER.STAMINA;
+        this._bullets = PARAMETERS.PLAYER.BULLETS;
+        this._max_ammo = PARAMETERS.PLAYER.MAX_AMMO;
+        this._speed = PARAMETERS.PLAYER.SPEED;
+        this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
         this._can_jumpscare = true;
-        this._jumpscare_amount = 1;
-        this._life = 6;
-        this._max_life = 6;
-        this._stamina = 3;
-        this._bullets = 7;
-        this._max_ammo = 7;
-        this._speed = 250;
         this._isAlive = true;
         this._invulnerable = false;
         this._isDashing = false;
@@ -57,6 +58,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
                 this.shoot(pointer.x, pointer.y);
+            }
+            if (pointer.rightButtonDown()) {
+                console.log("Right-click blocked!");
             }
         });
 
@@ -239,11 +243,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.setVelocity(x_norm * dashSpeed, y_norm * dashSpeed);
     
             // Stop dash after duration
-            this.scene.time.delayedCall(200, () => {
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.DASH_DURATION, () => {
                 // this.setVelocity(0, 0);
                 this._isDashing = false;
             });
-            this.scene.time.delayedCall(2500, () => {
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.STAMINA_RECOVER, () => {
                 // this.setVelocity(0, 0);
                 this._stamina++;
             });
@@ -400,9 +404,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     jumpScare(){
         console.log('JUMPSCARE BITCH')
-        this.scene.enemies.takeDamage(this._jumpscare_amount);
+        this.scene.enemies.takeDamage(this._jumpscare_damage);
         this._can_jumpscare = false;
-        this.scene.time.delayedCall(10000, () => this._can_jumpscare = true);
+        this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_RECOVER, () => this._can_jumpscare = true);
     }
 
     // AUXILIARY FUNCIONS
