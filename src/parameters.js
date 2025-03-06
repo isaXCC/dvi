@@ -32,8 +32,14 @@ const PARAMETERS = {
         ATK_DURATION: 800, // in milliseconds
         ATK_SPEED: 200,
         ATK_FRAMERATE: 4,
-        MOVE_DURATION: 2500,
-        MOVE_FRAMERATE: 8
+        MOVE_DURATION: 2500, // in milliseconds
+        MOVE_FRAMERATE: 8,
+        HEIGHT: 46,
+        WIDTH: 64,
+        SCALE_X: 1.5,
+        SCALE_Y: 1.5,
+        HITBOX_X: 50,
+        HITBOX_Y: 40
     },
     OPHANIM: {
         // TODO

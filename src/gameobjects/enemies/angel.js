@@ -19,14 +19,15 @@ export default class Angel extends Enemy{
         this._called = false;
         this.pos; // TMP
 
+        this.setSize(PARAMETERS.ANGEL.HITBOX_X, PARAMETERS.ANGEL.HITBOX_Y);
+        this.setScale(PARAMETERS.ANGEL.SCALE_X, PARAMETERS.ANGEL.SCALE_Y);
+
         this.createAnims();
     }
 
     update() {
         if(this._isAlive){
-            // wathis.setFrame('angel_walk_down_0');
             if(this._isIdle){
-                console.log('Angel is Idle');
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
                     this.scene.time.delayedCall(PARAMETERS.ANGEL.IDLE_DURATION, () => {
@@ -37,7 +38,6 @@ export default class Angel extends Enemy{
                 }
             }
             else if(this._isMoving){
-                console.log('Angel is Moving');
                 this.move();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
@@ -50,9 +50,6 @@ export default class Angel extends Enemy{
                 }
             } 
             else if(this._isAttacking){
-                console.log('Angel is Attacking');
-                // It goes by if the player moves
-                this.play('atk_down', true);
                 this.attack();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
@@ -65,6 +62,7 @@ export default class Angel extends Enemy{
                 }
             }
         }
+        this.updateAnims();
     }
 
     move() {
@@ -76,6 +74,40 @@ export default class Angel extends Enemy{
             this.pos = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
         }
         this.body.setVelocity(this.pos.x_norm*this._speed, this.pos.y_norm*this._speed);
+    }
+
+    // ANIMATION SECTION
+    updateAnims(){
+        if(!this._isAttacking){
+            if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+                if (this.body.velocity.x > 0) {
+                    this.play('walk_right', true);
+                } else {
+                    this.play('walk_left', true);
+                }
+            } else {
+                if (this.body.velocity.y > 0) {
+                    this.play('walk_down', true);
+                } else {
+                    this.play('walk_up', true);
+                }
+            }
+        }
+        else {
+            if (Math.abs(this.body.velocity.x) > Math.abs(this.body.velocity.y)) {
+                if (this.body.velocity.x > 0) {
+                    this.play('atk_right', true);
+                } else {
+                    this.play('atk_left', true);
+                }
+            } else {
+                if (this.body.velocity.y > 0) {
+                    this.play('atk_down', true);
+                } else {
+                    this.play('atk_up', true);
+                }
+            }
+        }
     }
 
     createAnims(){

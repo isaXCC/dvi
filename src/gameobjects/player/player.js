@@ -200,17 +200,17 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-   shoot(x, y){
-        console.log('Left-click detected at:', x, y);
-        console.log('Bullets:', this._bullets);
-        if(this._bullets > 0){
-            this._pup.newBullet(this.x, this.y, x, y);
-            // this.scene.newBullet(this.x, this.y, x, y);
-            // this.scene._bullets.pushback(new Bullet(this.scene, this.x, this.y, x, y));
-            this.scene.sound.play('shootSound', { volume: 1 });
-            this._bullets--;
-        }
-   }
+    shoot(x, y){
+            console.log('Left-click detected at:', x, y);
+            console.log('Bullets:', this._bullets);
+            if(this._bullets > 0){
+                this._pup.newBullet(this.x, this.y, x, y);
+                // this.scene.newBullet(this.x, this.y, x, y);
+                // this.scene._bullets.pushback(new Bullet(this.scene, this.x, this.y, x, y));
+                this.scene.sound.play('shootSound', { volume: 1 });
+                this._bullets--;
+            }
+    }
 
     newBullet(p_x, p_y, b_x, b_y){
         this.scene.newBullet(p_x, p_y, b_x, b_y);
@@ -391,7 +391,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             default:
                 new_hitbox = { width: 24, height: 25, offsetX: 20, offsetY: 22.5 };
                 break;
-
         }
 
         // hitbox is updated only if it has to change, for optimization reasons
