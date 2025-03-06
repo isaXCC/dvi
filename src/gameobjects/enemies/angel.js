@@ -19,9 +19,9 @@ export default class Angel extends Enemy{
         this._called = false;
         this.pos; // TMP
 
+        // SPRITE CONFIG
         this.setSize(PARAMETERS.ANGEL.HITBOX_X, PARAMETERS.ANGEL.HITBOX_Y);
         this.setScale(PARAMETERS.ANGEL.SCALE_X, PARAMETERS.ANGEL.SCALE_Y);
-
         this.createAnims();
     }
 
@@ -61,8 +61,11 @@ export default class Angel extends Enemy{
                     });
                 }
             }
+            this.updateAnims();
         }
-        this.updateAnims();
+        else{
+            this.scene.enemies.removeElement(this);
+        }
     }
 
     move() {
@@ -142,28 +145,28 @@ export default class Angel extends Enemy{
 
         const atk_up = {
             key: 'atk_up',
-            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_up_", end: 4}),
+            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_up_", end: 3}),
             frameRate: PARAMETERS.ANGEL.ATK_FRAMERATE,
             repeat: -1
         };
 
         const atk_left = {
             key: 'atk_left',
-            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_left_", end: 4}),
+            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_left_", end: 3}),
             frameRate: PARAMETERS.ANGEL.ATK_FRAMERATE,
             repeat: -1
         };
 
         const atk_right = {
             key: 'atk_right',
-            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_right_", end: 4}),
+            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_right_", end: 3}),
             frameRate: PARAMETERS.ANGEL.ATK_FRAMERATE,
             repeat: -1
         };
 
         const atk_down = {
             key: 'atk_down',
-            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_down_", end: 4}),
+            frames: this.scene.anims.generateFrameNames('angel', {prefix: "angel_atk_down_", end: 3}),
             frameRate: PARAMETERS.ANGEL.ATK_FRAMERATE,
             repeat: -1
         };
