@@ -1,10 +1,10 @@
 import Phaser from 'phaser'
 
 import loading from '../assets/sprites/misc/loading.png'
-// import angel from '../assets/sprites/enemies/angel.png'
 import angel from '../assets/sprites/enemies/angel_spreadsheet.png'
 import angel_atlas from '../assets/sprites/enemies/angel_atlas.json'
-import ophanim from '../assets/sprites/enemies/ophanim.png'
+import ophanim from '../assets/sprites/enemies/ophanim_spreadsheet.png'
+import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
 import seraph from '../assets/sprites/enemies/seraph.png'
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
@@ -61,7 +61,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('loading', loading);
     this.load.atlas('angel', angel, angel_atlas);
     this.load.image('seraph', seraph);
-    this.load.image('ophanim', ophanim);
+    this.load.atlas('ophanim', ophanim, ophanim_atlas);
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('bullet', bullet);

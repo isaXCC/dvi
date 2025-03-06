@@ -38,11 +38,26 @@ const PARAMETERS = {
         WIDTH: 64,
         SCALE_X: 1.5,
         SCALE_Y: 1.5,
-        HITBOX_X: 50,
-        HITBOX_Y: 40
+        HITBOX_X: 46*0.8,
+        HITBOX_Y: 64*0.5
     },
     OPHANIM: {
-        // TODO
+        LIFE: 6,
+        MAX_LIFE: 6,
+        SPEED: 50,
+        DAMAGE: 1,
+        IDLE_DURATION: 500, // in milliseconds
+        ATK_DURATION: 800, // in milliseconds
+        ATK_SPEED: 200,
+        ATK_FRAMERATE: 4,
+        MOVE_DURATION: 2500, // in milliseconds
+        MOVE_FRAMERATE: 8,
+        HEIGHT: 64,
+        WIDTH: 64,
+        SCALE_X: 1.7,
+        SCALE_Y: 1.7,
+        HITBOX_X: 64*0.5,
+        HITBOX_Y: 64*0.5
     },
     SERAPH: {
         // TODO
