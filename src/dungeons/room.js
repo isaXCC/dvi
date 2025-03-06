@@ -92,6 +92,13 @@ export default class Room extends Phaser.Scene {
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
                 this.portals.addElement(new Portal(this, object.x, object.y, object.name));
+                console.log('player_state.portal:' + this.player_state.portal);
+                console.log('portal name:' + object.name);
+                if(object.name === this.player_state.portal){
+                    console.log('NEW POS');
+                    this.player_state.x = object.x;
+                    this.player_state.y = object.y;
+                }
             }
         }
         for (const object of map.getObjectLayer('npcs').objects) {
@@ -110,6 +117,12 @@ export default class Room extends Phaser.Scene {
                     if(this.player_state.bullets !== undefined){
                         console.log('Set bullets ' + this.player_state.bullets);
                         this.player._bullets = this.player_state.bullets;
+                    }
+                    if(this.player_state.x !== undefined){
+                        this.player.x = this.player_state.x;
+                    }
+                    if(this.player_state.y !== undefined){
+                        this.player.y = this.player_state.y;
                     }
                 }
             }
@@ -141,7 +154,7 @@ export default class Room extends Phaser.Scene {
     nextRoom(room){
         this.music.stop();
         console.log('Player life before: ' + this.player._life);
-        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets});
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets, portal: this.scene.key});
     }
 
     gameOver(){
@@ -156,7 +169,7 @@ export default class Room extends Phaser.Scene {
 
 
     setPlayerInfo(player_state){
-        console.log('Player life after: ' + player_state.life);
+        console.log('ROOM: ' + player_state.portal);
         this.player_state = player_state;
     }
 
