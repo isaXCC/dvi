@@ -164,7 +164,7 @@ export default class Room extends Phaser.Scene {
     // AUXILIARY METHODS
 
     getPlayerInfo() {
-        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}\nPowerUp: ${this.player._pup.constructor.name == 'PowerUp' ? '-' : this.player._pup.constructor.name}`;
+        return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}\nPowerUp: `;
     }
 
 
