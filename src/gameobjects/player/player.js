@@ -259,8 +259,30 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         // this.scene.sound.play('shootSound', { volume: 1 });
     }
 
-    // ANIMATIONS SECTION
+    pickPowerUp(powerup){
+        this._pup.removePowerUp();
+        this._pup = powerup;
+        this.scene.newPowerUpDisplay(powerup);
+        this._pup.effect();
+        this.scene.powerups.removeElement(powerup);
+    }
 
+    resetPowerUp(){
+        this._pup.removePowerUp();
+    }
+
+    removePowerUp(){
+        this._pup = new PowerUp(this, this.scene);
+    }
+
+    jumpScare(){
+        console.log('JUMPSCARE BITCH')
+        this.scene.enemies.takeDamage(this._jumpscare_damage);
+        this._can_jumpscare = false;
+        this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_RECOVER, () => this._can_jumpscare = true);
+    }
+
+    // ANIMATIONS SECTION
     manage_animations(){
 
         // creation of walk animations
@@ -386,29 +408,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             // and now is saved as the last hitbox displayed
             this._last_hitbox = new_hitbox;
         }
-    }
-
-    pickPowerUp(powerup){
-        this._pup.removePowerUp();
-        this._pup = powerup;
-        this.scene.newPowerUpDisplay(powerup);
-        this._pup.effect();
-        this.scene.powerups.removeElement(powerup);
-    }
-
-    resetPowerUp(){
-        this._pup.removePowerUp();
-    }
-
-    removePowerUp(){
-        this._pup = new PowerUp(this, this.scene);
-    }
-
-    jumpScare(){
-        console.log('JUMPSCARE BITCH')
-        this.scene.enemies.takeDamage(this._jumpscare_damage);
-        this._can_jumpscare = false;
-        this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_RECOVER, () => this._can_jumpscare = true);
     }
 
     // AUXILIARY FUNCIONS
