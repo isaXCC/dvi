@@ -64,6 +64,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.manage_animations();
 
         this._pup = new PowerUp(this, this.scene);
+        this.pup_image = this.scene.add.image(100, 85, this._pup.sprite);
+        this.pup_image.setVisible(false);
     }
 
     /**
@@ -383,6 +385,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     pickPowerUp(powerup){
+        this.pup_image.destroy();
+        this.pup_image = this.scene.add.image(100, 85, powerup.sprite);
+        this.pup_image.setAlpha(0.5);
         this._pup.remove();
         this._pup = powerup;
         this._pup.effect();
