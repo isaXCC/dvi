@@ -23,6 +23,7 @@ export default class Room extends Phaser.Scene {
         // information that will be passed between rooms
         this.player_state;
         this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
+        this.powerup_image;
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -44,6 +45,7 @@ export default class Room extends Phaser.Scene {
             fill: '#fff',
             fontFamily: 'Comic Sans MS'
         });
+        this.defaultPowerUpDisplay();
         // Blocking context menu to open
         window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
@@ -194,5 +196,22 @@ export default class Room extends Phaser.Scene {
         this.portals.deactivate();
     }
 
+    defaultPowerUpDisplay(){
+        this.deletePreviousPowerUpImage();
+        this.powerup_image = this.add.image(100, 85, null);
+        this.powerup_image.setVisible(false);
+    }
+
+    newPowerUpDisplay(powerup){
+        this.deletePreviousPowerUpImage();
+        this.powerup_image = this.add.image(100, 85, powerup.sprite);
+        this.powerup_image.setAlpha(0.5);
+    }
+
+    deletePreviousPowerUpImage(){
+        if(this.powerup_image !== undefined){
+            this.powerup_image.destroy();
+        }
+    }
 
 }
