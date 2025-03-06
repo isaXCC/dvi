@@ -22,7 +22,9 @@ export default class PowerUp extends Phaser.Physics.Arcade.Sprite {
 
     effect(){}
 
-    remove(){}
+    removePowerUp(){
+        this.player.removePowerUp();
+    }
 
 
 }
