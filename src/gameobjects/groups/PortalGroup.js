@@ -6,16 +6,9 @@ export default class PortalGroup extends DefaultGroup {
         super(scene);        
     }
 
-    playerOverlap(player, portal) {
+    playerOverlap(ghost_hitbox, portal) {
         console.log(`Player is on a portal!`);
-        portal.activate();
-    }
-
-    transitionRoom(){
-        this.group.getChildren().forEach(portal => portal.transitionRoom());
-    }
-
-    deactivate(){
-        this.group.getChildren().forEach(portal => portal.deactivate());
+        portal.transitionRoom();
+        ghost_hitbox.destroy();
     }
 }

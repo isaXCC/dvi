@@ -7,9 +7,14 @@ export default class NPCGroup extends DefaultGroup {
     }
     
     playerCollision(player, npc) {
+
+    }
+
+    playerOverlap(ghost_hitbox, npc) {
         if(npc.active && npc._dialoguePending){
             this.scene.enterDialogue();
             npc._dialoguePending = false;
+            ghost_hitbox.destroy();
         }
     }
 
