@@ -1,3 +1,4 @@
+import PARAMETERS from "../../parameters";
 
 export default class Hole extends Phaser.Physics.Arcade.Sprite {
 
@@ -6,7 +7,7 @@ export default class Hole extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
-        //64x64
-        this.setSize(64*0.7, 64*0.7);
+
+        this.setSize(PARAMETERS.HOLE.HITBOX_X, PARAMETERS.HOLE.HITBOX_Y);
     }
 }
