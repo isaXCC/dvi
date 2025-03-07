@@ -96,8 +96,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(Phaser.Input.Keyboard.JustDown(this._e)){
             console.log('Interacting with the enviroment...');
 
-            // checks for possible interactable objects in range, and, if possible, interacts with them
-            this.scene.check_interactable_objects();
+            // interacts with the enviroment
+            this.interact();
         }
 
         if(Phaser.Input.Keyboard.JustDown(this._space)){ this.dash(); }
@@ -178,8 +178,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
-        // ????? idk, there should be a better option
-        this.scene.check_portal_overlapping();
     }
 
     takeDamage(){
@@ -219,6 +217,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     reload(){
         this._bullets = this._max_ammo;
         this.scene.sound.play('reloadSound', { volume: 3 });
+    }
+
+    interact(){
+        // calls scene to create the ghost hitbox and making interactions possible
+        this.scene.interact(this.x, this.y, this._last_hitbox);
     }
 
     dash(){

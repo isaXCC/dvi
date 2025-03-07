@@ -14,6 +14,7 @@ import NPCGroup from '../gameobjects/groups/NPCGroup.js';
 import PUPGroup from '../gameobjects/groups/PUPGroup.js';
 import TripleShot from '../gameobjects/powerups/tripleshot.js';
 import SpeedBoost from '../gameobjects/powerups/speedboost.js';
+import GhostHitbox from '../gameobjects/utils/ghosthitbox.js';
 import Hole from '../gameobjects/utils/hole.js';
 import HoleGroup from '../gameobjects/groups/HoleGroup.js';
 
@@ -32,9 +33,6 @@ export default class Room extends Phaser.Scene {
 
     create() {        
         // Add the colliders
-        //this.physics.add.overlap(this.portals, this.player, (portal) => portal.transitionRoom(), null, this.scene);
-       
-        this.portals.addOverlap(this.player, this.portals.playerOverlap);
         this.bullets.addOverlap(this.enemies, this.bullets.enemyOverlap);
         this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
@@ -195,15 +193,16 @@ export default class Room extends Phaser.Scene {
         this.bullets.addElement(new Bullet(this, origX, origY, this.player.x, this.player.y, true));
     }
 
-    // checks for possible interactable objects in range, and, if possible, interacts with them
-    check_interactable_objects(){
-        // first, it checks for portals
-        this.portals.transitionRoom();
-    }
+    // creates the ghost hitbox to make interactions possible
+    interact(player_x, player_y, player_hitbox){
 
-    // ????? idk, there should be a better option
-    check_portal_overlapping(){
-        this.portals.deactivate();
+        // destroy should be in room update(), but, for some reason, doesnt work properly
+        if(this.ghost_hitbox !== undefined) this.ghost_hitbox.destroy();
+        this.ghost_hitbox = new GhostHitbox(this, player_x, player_y, player_hitbox, this.player.getDirectionVector());
+
+        // its overlaps are created. cannot be done in room create() because the ghost_hitbox object changes (and using a group doesnt make sens)
+        this.portals.addOverlap(this.ghost_hitbox, this.portals.playerOverlap);
+        this.npcs.addOverlap(this.ghost_hitbox, this.npcs.playerOverlap);
     }
 
     defaultPowerUpDisplay(){
