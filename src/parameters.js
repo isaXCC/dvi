@@ -67,7 +67,9 @@ const PARAMETERS = {
     },
     HOLE: {
         DURATION: 1750,
-        DELAY: 500
+        DELAY: 500,
+        HITBOX_X: 64*0.7,
+        HITBOX_Y: 64*0.7
     },
     ROOM: {
         // TODO
