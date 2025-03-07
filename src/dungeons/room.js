@@ -15,6 +15,8 @@ import PUPGroup from '../gameobjects/groups/PUPGroup.js';
 import TripleShot from '../gameobjects/powerups/tripleshot.js';
 import SpeedBoost from '../gameobjects/powerups/speedboost.js';
 import GhostHitbox from '../gameobjects/utils/ghosthitbox.js';
+import Hole from '../gameobjects/utils/hole.js';
+import HoleGroup from '../gameobjects/groups/HoleGroup.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -36,6 +38,10 @@ export default class Room extends Phaser.Scene {
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
         this.npcs.addCollision(this.player, this.npcs.playerCollision);
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
+        this.holes.addOverlap(this.player, this.holes.playerOverlap);
+        //maybe?
+        //this.holes.addCollision(this.enemies); 
+
 
         // Add player info text in the top-left corner
         this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
@@ -69,6 +75,7 @@ export default class Room extends Phaser.Scene {
         this.portals = new PortalGroup(this);
         this.npcs = new NPCGroup(this);
         this.powerups = new PUPGroup(this);
+        this.holes = new HoleGroup(this);
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -77,19 +84,11 @@ export default class Room extends Phaser.Scene {
         var onc = map.createLayer('onc', tiles, 0, 0);
         onc.setCollisionByExclusion([-1], true);
         var oic = map.createLayer('oic', tiles, 0, 0);
-        oic.setCollisionByExclusion([-1], true);
+        //oic.setCollisionByExclusion([-1], true);
         
         // Tiled creation of each object
-        for (const object of map.getObjectLayer('enemies').objects) {
-            if (object.type === 'Angel') {
-                this.enemies.addElement(new Angel(this, object.x, object.y))
-            }
-            if (object.type === 'Ophanim') {
-                this.enemies.addElement(new Ophanim(this, object.x, object.y))
-            }
-            if (object.type === 'Seraph') {
-                this.enemies.addElement(new Seraph(this, object.x, object.y))
-            }
+        for (const object of map.getObjectLayer('holes').objects) {
+            this.holes.addElement(new Hole(this, object.x, object.y));
         }
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
@@ -101,6 +100,17 @@ export default class Room extends Phaser.Scene {
                     this.player_state.x = object.x;
                     this.player_state.y = object.y;
                 }
+            }
+        }
+        for (const object of map.getObjectLayer('enemies').objects) {
+            if (object.type === 'Angel') {
+                this.enemies.addElement(new Angel(this, object.x, object.y))
+            }
+            if (object.type === 'Ophanim') {
+                this.enemies.addElement(new Ophanim(this, object.x, object.y))
+            }
+            if (object.type === 'Seraph') {
+                this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
         for (const object of map.getObjectLayer('npcs').objects) {
@@ -142,7 +152,7 @@ export default class Room extends Phaser.Scene {
         this.physics.add.collider(this.player, onc);
         this.enemies.addCollision(onc);
         this.bullets.addCollision(onc, this.bullets.oncCollision);
-        this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
+        //this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
     }
 
     // ROOM STATE LOGIC AND METHODS
