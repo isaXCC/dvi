@@ -17,13 +17,16 @@ import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import hearts from '../assets/sprites/utils/hearts.png'
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
+import hole from '../assets/sprites/utils/hole.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
 import player_reload from '../assets/audio/utils/player_reload.wav'
+import player_falling from '../assets/audio/utils/player_falling.wav'
 import player_hurt from '../assets/audio/utils/player_hurt.wav'
 import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 // TILED IMPORTS
 import test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -70,13 +73,16 @@ export default class Boot extends Phaser.Scene {
     this.load.image('activated_portal', activated_portal);
     this.load.image('tripleshot', tripleshot);
     this.load.image('speedboost', speedboost);
+    this.load.image('hole', hole);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
     this.load.audio('player_hurt', player_hurt);
+    this.load.audio('fallingSound', player_falling);
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
+    this.load.audio('powerup_pick', powerup_pick);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('test', test);

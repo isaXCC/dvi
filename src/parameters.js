@@ -65,6 +65,10 @@ const PARAMETERS = {
     BULLET: {
         // TODO
     },
+    HOLE: {
+        DURATION: 1750,
+        DELAY: 500
+    },
     ROOM: {
         // TODO
     },
