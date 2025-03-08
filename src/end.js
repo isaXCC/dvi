@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import PARAMETERS from "./parameters.js";
 
 /**
  * Escena de fin de juego. Cuando se han recogido todas las estrellas, se presenta un
@@ -17,7 +18,7 @@ export default class End extends Phaser.Scene {
    * Creación de la escena. Tan solo contiene el texto que indica que el juego se ha acabado
    */
   create() {
-    this.add.text(320, 256, 'GAME OVER!\nStrike any key to go back to the start')
+    this.add.text(PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2, 'GAME OVER!\nStrike any key to go back to the start')
         .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
         .setAlign('center');  // Centramos el texto dentro del cuadro de texto
 

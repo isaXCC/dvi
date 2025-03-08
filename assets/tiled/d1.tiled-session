@@ -3,31 +3,36 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "d1_1.json",
+    "activeFile": "d1_2.json",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "d1_1.json": {
             "expandedObjectLayers": [
-                7
+                7,
+                5
             ],
-            "scale": 1.2216406249999998,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 451.03280680437433,
-                "y": 136.29212764596792
+                "x": 529.3333333333333,
+                "y": 261.33333333333326
             }
         },
         "d1_1.json#room_tileset": {
             "scaleInDock": 1
         },
         "d1_2.json": {
-            "scale": 1.2216406249999998,
-            "selectedLayer": 4,
+            "expandedObjectLayers": [
+                11,
+                5
+            ],
+            "scale": 1,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 317.60567883865195,
-                "y": 255.80354287906897
+                "x": 525,
+                "y": 198
             }
         },
         "d1_2.json#room_tileset": {
@@ -35,13 +40,14 @@
         },
         "d1_mid.json": {
             "expandedObjectLayers": [
-                3
+                3,
+                5
             ],
-            "scale": 1.2216406249999998,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 455.94423482765245,
-                "y": 223.87926072776116
+                "x": 629.3333333333333,
+                "y": 310.6666666666667
             }
         },
         "d1_mid.json#room_tileset": {
@@ -50,14 +56,13 @@
         "test.json": {
             "expandedObjectLayers": [
                 12,
-                5,
-                7
+                5
             ],
             "scale": 0.75,
-            "selectedLayer": 4,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 370.66666666666674,
-                "y": 287.33333333333337
+                "x": 713.3333333333333,
+                "y": 286.6666666666667
             }
         },
         "test.json#room_tileset": {
@@ -73,8 +78,8 @@
     "project": "d1.tiled-project",
     "recentFiles": [
         "test.json",
-        "d1_2.json",
+        "d1_1.json",
         "d1_mid.json",
-        "d1_1.json"
+        "d1_2.json"
     ]
 }
