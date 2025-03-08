@@ -28,6 +28,7 @@ export default class Room extends Phaser.Scene {
         this.player_state;
         this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
         this.powerup_image;
+
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -43,16 +44,75 @@ export default class Room extends Phaser.Scene {
         //maybe?
         //this.holes.addCollision(this.enemies); 
 
+        // adds player info to the HUD
+        this.createPlayerHUD();
 
-        // Add player info text in the top-left corner
-        this.playerInfoText = this.add.text(10, 10, this.getPlayerInfo(), {
+        // Blocking context menu to open
+        window.addEventListener('contextmenu', (event) => event.preventDefault());
+    }
+
+    // adds player info to the HUD
+    createPlayerHUD(){
+        // first creates the life
+        this.hearts = [];
+        let heart;
+        let i = 0;
+        for(i; i < Math.floor(this.player._max_life/2); i++){
+            heart = this.add.sprite(20 + (i + 1)*12, 30, 'hearts').setFrame(2);  // creates the array of frames
+            this.hearts.push(heart);
+        }
+        this.last_life = this.player._max_life;
+
+        // then, the stamina bar
+        this.stamina_bar = [];
+        let stamina;
+        for(i = 0; i < this.player._stamina; i++){
+            stamina = this.add.sprite(10 + (i + 1)*32, 50, 'stamina').setFrame(1);  // creates the array of frames
+            this.stamina_bar.push(stamina);
+        }
+        this.last_stamina = this.player._stamina;
+
+        // the default power up        
+        this.defaultPowerUpDisplay();
+
+        // lastly, the bullets 
+        this.playerBulletsText = this.add.text(920, 548, `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
             fontSize: '16px',
             fill: '#fff',
             fontFamily: 'Comic Sans MS'
         });
-        this.defaultPowerUpDisplay();
-        // Blocking context menu to open
-        window.addEventListener('contextmenu', (event) => event.preventDefault());
+    }
+
+    updatePlayerHUD(){
+
+        // updates life
+        if(this.player._life !== this.last_life){
+            for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {
+                if (this.player._life >= (i + 1) * 2) {
+                    this.hearts[i].setFrame(2); // full heart
+                } else if (this.player._life === (i * 2) + 1) {
+                    this.hearts[i].setFrame(1); // half heart
+                } else {
+                    this.hearts[i].setFrame(0); // lost heart
+                }
+            }
+            this.last_life = this.player._life;
+        }
+
+        // updates stamina
+        if(this.player._stamina !== this.last_stamina){
+            for (let i = 0; i < this.stamina_bar.length; i++) {
+                if (this.player._stamina >= (i + 1)) {
+                    this.stamina_bar[i].setFrame(1); // full heart
+                } else {
+                    this.stamina_bar[i].setFrame(0); // lost heart
+                }
+            }
+            this.last_stamina = this.player._stamina;
+        }
+
+        // updates bullets
+        this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
     }
 
     update(){
@@ -60,8 +120,10 @@ export default class Room extends Phaser.Scene {
         this.enemies.update();
         this.portals.update();
         this.npcs.update();
+
         // Update player info display
-        this.playerInfoText.setText(this.getPlayerInfo());
+        this.updatePlayerHUD();
+
         if(this.player._isAlive)
             this.player.update();    
         else {
@@ -205,21 +267,21 @@ export default class Room extends Phaser.Scene {
         if(this.ghost_hitbox !== undefined) this.ghost_hitbox.destroy();
         this.ghost_hitbox = new GhostHitbox(this, player_x, player_y, player_hitbox, this.player.getDirectionVector());
 
-        // its overlaps are created. cannot be done in room create() because the ghost_hitbox object changes (and using a group doesnt make sens)
+        // its overlaps are created. cannot be done in room create() because the ghost_hitbox object changes (and using a group doesnt make sense)
         this.portals.addOverlap(this.ghost_hitbox, this.portals.playerOverlap);
         this.npcs.addOverlap(this.ghost_hitbox, this.npcs.playerOverlap);
     }
 
     defaultPowerUpDisplay(){
         this.deletePreviousPowerUpImage();
-        this.powerup_image = this.add.image(100, 85, null);
+        this.powerup_image = this.add.image(32, 556, null);
         this.powerup_image.setVisible(false);
     }
 
     newPowerUpDisplay(powerup){
         this.deletePreviousPowerUpImage();
-        this.powerup_image = this.add.image(100, 85, powerup.sprite);
-        this.powerup_image.setAlpha(0.5);
+        this.powerup_image = this.add.image(32, 556, powerup.sprite);
+        this.powerup_image.setAlpha(0.75);
     }
 
     deletePreviousPowerUpImage(){
