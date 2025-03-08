@@ -7,8 +7,8 @@
 
 const PARAMETERS = {
     GAME: { // General configuration and parameters
-        WIDTH: 640, 
-        HEIGHT: 512,
+        WIDTH: 1024, 
+        HEIGHT: 576,
         DEBUG: true
     },
     PLAYER: {
@@ -69,7 +69,18 @@ const PARAMETERS = {
         DURATION: 1750,
         DELAY: 500,
         HITBOX_X: 64*0.7,
-        HITBOX_Y: 64*0.7
+        HITBOX_Y: 64*0.7,
+        GRID_OFFSET_Y: -64
+    },
+    PORTAL: {
+        GRID_OFFSET_X: 32,
+        GRID_OFFSET_Y: -32
+    },
+    DIALOGUE: {
+        SCALE_X: 30,
+        SCALE_Y: 0.3,
+        OFFSET_X: 15,
+        OFFSET_Y: 10
     },
     ROOM: {
         // TODO

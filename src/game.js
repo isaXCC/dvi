@@ -1,3 +1,4 @@
+import PARAMETERS from "./parameters.js";
 import Boot from './boot.js';
 import Dialogue from './dialogue.js';
 import End from './end.js';
@@ -23,7 +24,6 @@ import D1_MID from './dungeons/d1/d1_mid.js';
 // import D1_PIT from './dungeons/d1/d1_pit.js';
 // import D1_BOSS from './dungeons/d1/d1_boss.js';
 import Phaser from 'phaser';
-import PARAMETERS from "./parameters.js";
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos

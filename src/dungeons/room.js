@@ -17,6 +17,7 @@ import SpeedBoost from '../gameobjects/powerups/speedboost.js';
 import GhostHitbox from '../gameobjects/utils/ghosthitbox.js';
 import Hole from '../gameobjects/utils/hole.js';
 import HoleGroup from '../gameobjects/groups/HoleGroup.js';
+import PARAMETERS from '../parameters.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -88,11 +89,15 @@ export default class Room extends Phaser.Scene {
         
         // Tiled creation of each object
         for (const object of map.getObjectLayer('holes').objects) {
-            this.holes.addElement(new Hole(this, object.x, object.y));
+            // GRID_OFFSET_Y necesary to make Tiled more managable
+            this.holes.addElement(new Hole(this, object.x, object.y+PARAMETERS.HOLE.GRID_OFFSET_Y));
         }
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
-                this.portals.addElement(new Portal(this, object.x, object.y, object.name));
+                this.portals.addElement(new Portal(this, 
+                    object.x + PARAMETERS.PORTAL.GRID_OFFSET_X, 
+                    object.y + PARAMETERS.PORTAL.GRID_OFFSET_Y,
+                     object.name));
                 console.log('player_state.portal:' + this.player_state.portal);
                 console.log('portal name:' + object.name);
                 if(object.name === this.player_state.portal){

@@ -1,13 +1,15 @@
+import PARAMETERS from "./parameters";
+
 export default class Dialogue extends Phaser.Scene{
     // Only works in the first room for some reason
     constructor() {
         super({ key: 'dialogue' });
 
         // Box dimensions (covering bottom 33%)
-        this.boxWidth = 620;
-        this.boxHeight = 512 / 3;
-        this.boxX = 10;
-        this.boxY = 500 - this.boxHeight;
+        this.boxWidth = PARAMETERS.GAME.WIDTH - PARAMETERS.DIALOGUE.SCALE_X;
+        this.boxHeight = PARAMETERS.GAME.HEIGHT * PARAMETERS.DIALOGUE.SCALE_Y;
+        this.boxX = PARAMETERS.DIALOGUE.OFFSET_X;
+        this.boxY = PARAMETERS.GAME.HEIGHT - this.boxHeight - PARAMETERS.DIALOGUE.OFFSET_Y;
         this.dialogueText = null;
         this.dialogueBox = null;
         this.parentScene = null;
