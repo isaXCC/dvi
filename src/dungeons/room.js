@@ -30,6 +30,12 @@ export default class Room extends Phaser.Scene {
         this.powerup_image;
     }
 
+    init(player_state) {
+        if(player_state !== undefined){
+            this.setPlayerInfo(player_state);
+        }
+    }
+
     // ROOM GENERATION AND TILED INTEGRATION
 
     create() {        

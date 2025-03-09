@@ -25,10 +25,7 @@ export default class D1_2 extends Room {
     }
 
     init(player_state) {
-        if(player_state.life !== undefined){
-            console.log('Ping + ' + player_state);
-            super.setPlayerInfo(player_state);
-        }
+        super.init(player_state);
     }
 
     update(){
