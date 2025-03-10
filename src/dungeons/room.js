@@ -28,7 +28,12 @@ export default class Room extends Phaser.Scene {
         this.player_state;
         this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
         this.powerup_image;
+    }
 
+    init(player_state) {
+        if(player_state !== undefined){
+            this.setPlayerInfo(player_state);
+        }
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -113,6 +118,9 @@ export default class Room extends Phaser.Scene {
 
         // updates bullets
         this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
+        //this.defaultPowerUpDisplay();
+        // Blocking context menu to open
+        window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 
     update(){
@@ -203,6 +211,19 @@ export default class Room extends Phaser.Scene {
                     if(this.player_state.y !== undefined){
                         this.player.y = this.player_state.y;
                     }
+                    if(this.player_state.powerup !== undefined){
+                        let pup = new this.player_state.powerup.constructor(this.player, this);
+                        this.powerups.addElement(pup);
+                        this.player._pup = pup;
+                        if(pup.constructor.name === 'PowerUp'){
+                            this.defaultPowerUpDisplay();
+                        }
+                        else{
+                            this.newPowerUpDisplay(pup);
+                        }
+                        this.powerups.removeElement(pup);
+                        this.player._pup.effect();
+                    }
                 }
             }
         }
@@ -233,7 +254,7 @@ export default class Room extends Phaser.Scene {
     nextRoom(room){
         this.music.stop();
         console.log('Player life before: ' + this.player._life);
-        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets, portal: this.scene.key});
+        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets, portal: this.scene.key, powerup: this.player._pup});
     }
 
     gameOver(){

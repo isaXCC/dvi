@@ -258,17 +258,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     fallHole(){
-        console.log('Fell');
-        // this.scene.sound.play('shootSound', { volume: 1 });
+        this.takeDamage();
     }
 
     pickPowerUp(powerup){
         this.scene.sound.play('powerup_pick', { volume: 0.5 });
+        //exit function
         this._pup.removePowerUp();
+        //save
         this._pup = powerup;
+        //display
         this.scene.newPowerUpDisplay(powerup);
-        this._pup.effect();
+        //remove from scene
         this.scene.powerups.removeElement(powerup);
+        //effects function
+        this._pup.effect();
     }
 
     resetPowerUp(){

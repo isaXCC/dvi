@@ -25,10 +25,7 @@ export default class D1_1 extends Room {
     }
 
     init(player_state) {
-        if(player_state.life !== undefined){
-            console.log('Ping + ' + player_state);
-            super.setPlayerInfo(player_state);
-        }
+        super.init(player_state);
         super.nextLine = "Maybe WASD move lil' Cat, this is a Dungeon Crawler after all. " 
                 + "\nI think... Therefore:" +
                 "\nBARK BARK!";
