@@ -77,9 +77,6 @@ export default class Room extends Phaser.Scene {
         }
         this.last_stamina = this.player._stamina;
 
-        // the default power up        
-        this.defaultPowerUpDisplay();
-
         // lastly, the bullets 
         this.playerBulletsText = this.add.text(920, 548, `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
             fontSize: '16px',
