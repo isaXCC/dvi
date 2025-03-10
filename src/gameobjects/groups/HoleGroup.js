@@ -25,9 +25,10 @@ export default class HoleGroup extends DefaultGroup {
                 duration: PARAMETERS.HOLE.DURATION, // 1 second
                 ease: 'Sine',
                 onComplete: () => {
+                    player.fallHole();
                     player.setScale(58/38, 58/38);
                     let {x_norm, y_norm} = getNormDist(hole_x, hole_y, prev_x, prev_y);
-                    player.setPosition((x_norm*12)+prev_x, (y_norm*12)+prev_y);
+                    player.setPosition((x_norm*PARAMETERS.HOLE.RESPAWN_DISTANCE)+prev_x, (y_norm*PARAMETERS.HOLE.RESPAWN_DISTANCE)+prev_y);
                     player.setSize(24, 25).setOffset(20, 22.5);
                     this.scene.time.delayedCall(PARAMETERS.HOLE.DELAY, () => {
                         player._speed = speed;
