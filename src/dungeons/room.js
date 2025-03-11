@@ -233,6 +233,8 @@ export default class Room extends Phaser.Scene {
             }
         }
 
+        //LALA
+
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
         this.enemies.addCollision(onc);
