@@ -25,7 +25,6 @@ export default class HoleGroup extends DefaultGroup {
                 duration: PARAMETERS.HOLE.DURATION, // 1 second
                 ease: 'Sine',
                 onComplete: () => {
-                    player.fallHole();
                     player.setScale(58/38, 58/38);
                     let {x_norm, y_norm} = getNormDist(hole_x, hole_y, prev_x, prev_y);
                     player.setPosition((x_norm*PARAMETERS.HOLE.RESPAWN_DISTANCE)+prev_x, (y_norm*PARAMETERS.HOLE.RESPAWN_DISTANCE)+prev_y);
@@ -33,6 +32,9 @@ export default class HoleGroup extends DefaultGroup {
                     this.scene.time.delayedCall(PARAMETERS.HOLE.DELAY, () => {
                         player._speed = speed;
                         this.falling = false;
+                        //The problem is that we are manually getting speed for player...etc
+                        //When decoupled to player should be solved
+                        player.fallHole();
                     });
                 }
             });
