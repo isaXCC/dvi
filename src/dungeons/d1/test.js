@@ -8,6 +8,7 @@ import Room from '../room.js'
 import Phaser from 'phaser';
 import TripleShot from '../../gameobjects/powerups/tripleshot.js';
 import SpeedBoost from '../../gameobjects/powerups/speedboost.js';
+import TimeAttackRoom from '../timeattackroom.js';
 
 export default class test extends Room {
 
@@ -29,10 +30,14 @@ export default class test extends Room {
         // Play the music
         this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
         this.music.play();
+
+        // this room is a time attack
+        this.time_attack_room = new TimeAttackRoom(this, 5, this.enemies.isEmpty, null);
     }
 
 
     update(){
         super.update();
+        this.time_attack_room.update();
     }
 }
