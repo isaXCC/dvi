@@ -13,6 +13,7 @@ export default class HoleGroup extends DefaultGroup {
         if(!this.falling){
             this.scene.sound.play('fallingSound', { volume: 2 });
             this.falling = true;
+            player._isFalling = true;
             let prev_x =  player.x, prev_y = player.y;
             let hole_x = hole.x + 32, hole_y = hole.y + 32;
             let speed = player._speed;
@@ -32,6 +33,7 @@ export default class HoleGroup extends DefaultGroup {
                     this.scene.time.delayedCall(PARAMETERS.HOLE.DELAY, () => {
                         player._speed = speed;
                         this.falling = false;
+                        player._isFalling = false;
                         //The problem is that we are manually getting speed for player...etc
                         //When decoupled to player should be solved
                         player.fallHole();

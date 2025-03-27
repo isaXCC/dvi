@@ -17,6 +17,8 @@ import SpeedBoost from '../gameobjects/powerups/speedboost.js';
 import GhostHitbox from '../gameobjects/utils/ghosthitbox.js';
 import Hole from '../gameobjects/utils/hole.js';
 import HoleGroup from '../gameobjects/groups/HoleGroup.js';
+import Fire from '../gameobjects/utils/fire.js';
+import FireGroup from '../gameobjects/groups/FireGroup.js';
 import PARAMETERS from '../parameters.js';
 
 export default class Room extends Phaser.Scene {
@@ -46,6 +48,7 @@ export default class Room extends Phaser.Scene {
         this.npcs.addCollision(this.player, this.npcs.playerCollision);
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
         this.holes.addOverlap(this.player, this.holes.playerOverlap);
+        this.fires.addOverlap(this.player, this.fires.playerOverlap);
         //maybe?
         //this.holes.addCollision(this.enemies); 
 
@@ -144,6 +147,7 @@ export default class Room extends Phaser.Scene {
         this.npcs = new NPCGroup(this);
         this.powerups = new PUPGroup(this);
         this.holes = new HoleGroup(this);
+        this.fires = new FireGroup(this);
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -158,6 +162,10 @@ export default class Room extends Phaser.Scene {
         for (const object of map.getObjectLayer('holes').objects) {
             // GRID_OFFSET_Y necesary to make Tiled more managable
             this.holes.addElement(new Hole(this, object.x, object.y+PARAMETERS.HOLE.GRID_OFFSET_Y));
+        }
+        for (const object of map.getObjectLayer('fires').objects) {
+            // GRID_OFFSET_Y necesary to make Tiled more managable
+            this.fires.addElement(new Fire(this, object.x, object.y));
         }
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
@@ -174,6 +182,7 @@ export default class Room extends Phaser.Scene {
                 }
             }
         }
+        /*
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
                 this.enemies.addElement(new Angel(this, object.x, object.y))
@@ -185,6 +194,7 @@ export default class Room extends Phaser.Scene {
                 this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
+        */
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
                 this.npcs.addElement(new NPC(this, object.x, object.y, object.name));

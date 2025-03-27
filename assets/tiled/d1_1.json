@@ -150,6 +150,17 @@
         }, 
         {
          "draworder":"topdown",
+         "id":13,
+         "name":"fires",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":3,
          "name":"enemies",
          "objects":[],
@@ -187,7 +198,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
+ "nextlayerid":14,
  "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-up",

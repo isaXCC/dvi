@@ -3,21 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "d1_2.json",
+    "activeFile": "test.json",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "d1_1.json": {
             "expandedObjectLayers": [
-                7,
-                5
+                5,
+                7
             ],
             "scale": 0.75,
-            "selectedLayer": 8,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 529.3333333333333,
-                "y": 261.33333333333326
+                "x": 513.3333333333333,
+                "y": 287.33333333333337
             }
         },
         "d1_1.json#room_tileset": {
@@ -25,14 +25,14 @@
         },
         "d1_2.json": {
             "expandedObjectLayers": [
-                11,
-                5
+                5,
+                11
             ],
             "scale": 1,
-            "selectedLayer": 8,
+            "selectedLayer": 9,
             "viewCenter": {
                 "x": 525,
-                "y": 198
+                "y": 197.5
             }
         },
         "d1_2.json#room_tileset": {
@@ -40,14 +40,14 @@
         },
         "d1_mid.json": {
             "expandedObjectLayers": [
-                3,
-                5
+                5,
+                3
             ],
             "scale": 0.75,
-            "selectedLayer": 8,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 629.3333333333333,
-                "y": 310.6666666666667
+                "x": 513.3333333333333,
+                "y": 287.33333333333337
             }
         },
         "d1_mid.json#room_tileset": {
@@ -55,14 +55,14 @@
         },
         "test.json": {
             "expandedObjectLayers": [
-                12,
-                5
+                5,
+                12
             ],
             "scale": 0.75,
-            "selectedLayer": 7,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 713.3333333333333,
-                "y": 286.6666666666667
+                "x": 515.9999999999999,
+                "y": 286
             }
         },
         "test.json#room_tileset": {
@@ -77,9 +77,9 @@
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
-        "test.json",
-        "d1_1.json",
+        "d1_2.json",
         "d1_mid.json",
-        "d1_2.json"
+        "d1_1.json",
+        "test.json"
     ]
 }
