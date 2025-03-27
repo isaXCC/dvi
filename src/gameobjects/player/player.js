@@ -28,6 +28,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._isAlive = true;
         this._invulnerable = false;
         this._isDashing = false;
+        this._isFalling = false;
         this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
         this._last_hitbox = { width: null, height: null, offsetX: null, offsetY: null }; // player's current hitbox, made to optimize the hitbox changes
 
@@ -79,9 +80,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
 
-        this.body.setVelocityX(0);
-        this.body.setVelocityY(0);
-        
+        if(!this._isDashing || this._isFalling){
+            this.body.setVelocityX(0);
+            this.body.setVelocityY(0);
+        }
+
         if(Phaser.Input.Keyboard.JustDown(this._q)){
             if(this._can_jumpscare){
                 this.jumpScare();
@@ -175,8 +178,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(){
+        console.log(this.body.velocity.x, this.body.velocity.y)
         if(this._life <= 0){
             this._isAlive = false;
+            
         }
     }
 
@@ -230,8 +235,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     
             this._stamina--;  // Reduce stamina
             this._isDashing = true;  // Prevent multiple dashes
-            let dashSpeed = this._speed * 10;  // Dash speed multiplier
-    
+            let dashSpeed = PARAMETERS.PLAYER.DASH_SPEED;
+
             // Get player's current movement direction
             let velocityX = this.body.velocity.x;
             let velocityY = this.body.velocity.y;
@@ -243,6 +248,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     
             // Normalize velocity to ensure constant dash speed
             let { x_norm, y_norm } = getNormDist(0, 0, velocityX, velocityY);
+
             this.setVelocity(x_norm * dashSpeed, y_norm * dashSpeed);
     
             // Stop dash after duration

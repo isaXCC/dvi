@@ -18,7 +18,8 @@ const PARAMETERS = {
         MAX_AMMO: 7,
         STAMINA: 3,
         SPEED: 250,
-        DASH_DURATION: 200, // in milliseconds
+        DASH_DURATION: 50, // in milliseconds
+        DASH_SPEED: 2000,
         STAMINA_RECOVER: 2500, // in milliseconds
         JUMPSCARE_RECOVER: 5000, // in milliseconds
         JUMPSCARE_DAMAGE: 1
@@ -72,6 +73,11 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.7,
         GRID_OFFSET_Y: -64,
         RESPAWN_DISTANCE: 12
+    },
+    FIRE: {
+        HITBOX_X: 64*0.7,
+        HITBOX_Y: 64*0.7
+        //GRID_OFFSET_Y: -64,
     },
     PORTAL: {
         GRID_OFFSET_X: 32,
