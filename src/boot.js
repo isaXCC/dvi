@@ -29,6 +29,8 @@ import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
 import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
+import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
+import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
 // TILED IMPORTS
 import test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -88,6 +90,8 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
     this.load.audio('powerup_pick', powerup_pick);
+    this.load.audio('time_attack_succeded', time_attack_succeded);
+    this.load.audio('time_attack_failed', time_attack_failed);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('test', test);
