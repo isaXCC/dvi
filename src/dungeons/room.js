@@ -182,7 +182,6 @@ export default class Room extends Phaser.Scene {
                 }
             }
         }
-        /*
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
                 this.enemies.addElement(new Angel(this, object.x, object.y))
@@ -194,7 +193,6 @@ export default class Room extends Phaser.Scene {
                 this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
-        */
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
                 this.npcs.addElement(new NPC(this, object.x, object.y, object.name));
