@@ -1,4 +1,5 @@
 import Player from '../../gameobjects/player/player.js';
+import AllEnemiesKilledCondition from '../timeattack/conditions/AllEnemiesKilledCondition.js';
 import Angel from '../../gameobjects/enemies/angel.js';
 import Ophanim from '../../gameobjects/enemies/ophanim.js';
 import Seraph from '../../gameobjects/enemies/seraph.js';
@@ -8,7 +9,8 @@ import Room from '../room.js'
 import Phaser from 'phaser';
 import TripleShot from '../../gameobjects/powerups/tripleshot.js';
 import SpeedBoost from '../../gameobjects/powerups/speedboost.js';
-import TimeAttackRoom from '../timeattackroom.js';
+import TimeAttackRoom from '../timeattack/timeattackroom.js';
+import SpeedBoostPowerUpBenefit from '../timeattack/benefits/SpeedBoostPowerUpBenefit.js';
 
 export default class test extends Room {
 
@@ -32,12 +34,16 @@ export default class test extends Room {
         this.music.play();
 
         // this room is a time attack
-        this.time_attack_room = new TimeAttackRoom(this, 5, this.enemies.isEmpty, null);
+        this.time_attack_room = new TimeAttackRoom(this, 5, new AllEnemiesKilledCondition(this), new SpeedBoostPowerUpBenefit(this));
     }
 
 
     update(){
         super.update();
-        this.time_attack_room.update();
+        if(this.time_attack_room !== null) this.time_attack_room.update();
+    }
+
+    destroyTimeAttackRoom(){
+        this.time_attack_room = null;
     }
 }

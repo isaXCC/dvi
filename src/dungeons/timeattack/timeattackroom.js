@@ -35,6 +35,17 @@ export default class TimeAttackRoom {
     }
 
     update(){
-        if(this.condition()) this.scene.player.takeDamage();
+        // if the count gets to 0, this time attack room is destroyed
+        if(this.count === 0) {
+            this.scene.destroyTimeAttackRoom();
+            this.timer = null;
+        }
+
+        // if the condition is completed, the beneift is granted
+        if(this.condition.condition()) {
+            this.benefit.benefit();
+            this.scene.destroyTimeAttackRoom();
+            this.timer = null;
+        }
     }
 }
