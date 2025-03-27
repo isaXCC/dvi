@@ -34,16 +34,10 @@ export default class test extends Room {
         this.music.play();
 
         // this room is a time attack
-        this.time_attack_room = new TimeAttackRoom(this, 5, new AllEnemiesKilledCondition(this), new SpeedBoostPowerUpBenefit(this));
+        this.time_attack_room = new TimeAttackRoom(this, 15, new AllEnemiesKilledCondition(this), new SpeedBoostPowerUpBenefit(this));
     }
-
 
     update(){
         super.update();
-        if(this.time_attack_room !== null) this.time_attack_room.update();
-    }
-
-    destroyTimeAttackRoom(){
-        this.time_attack_room = null;
     }
 }

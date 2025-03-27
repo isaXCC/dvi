@@ -135,6 +135,9 @@ export default class Room extends Phaser.Scene {
             this.music.stop();
             this.gameOver();
         }
+
+        // if the room is a time attack room, it gets updated
+        if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
     }
 
     generateTiled(key){
@@ -308,6 +311,11 @@ export default class Room extends Phaser.Scene {
         if(this.powerup_image !== undefined){
             this.powerup_image.destroy();
         }
+    }
+
+    // to destroy the possible attack room
+    destroyTimeAttackRoom(){
+        this.time_attack_room = null;
     }
 
 }

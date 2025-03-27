@@ -16,9 +16,9 @@ export default class TimeAttackRoom {
         this.benefit = benefit;
 
         // timer text
-        this.timerText = this.scene.add.text(420, 250, `${this.count}`, {
+        this.timerText = this.scene.add.text(130, 15, `${this.count}`, {
             fontSize: '40px',
-            fill: '#fff',
+            fill: '#f0f',
             fontFamily: 'Comic Sans MS'
         });
 
@@ -27,6 +27,8 @@ export default class TimeAttackRoom {
             callback: () => {
                 this.count--;
                 this.timerText.setText(this.count);
+
+                // the update could be done here, but it would look less exact (although it would be a little bit more efficient)
             },
             callbackScope: this,
             loop: true
@@ -37,15 +39,21 @@ export default class TimeAttackRoom {
     update(){
         // if the count gets to 0, this time attack room is destroyed
         if(this.count === 0) {
-            this.scene.destroyTimeAttackRoom();
-            this.timer = null;
+            this.scene.sound.play('time_attack_failed');
+            this.destroy();
         }
 
-        // if the condition is completed, the beneift is granted
+        // if the condition is completed, the benefit is granted
         if(this.condition.condition()) {
             this.benefit.benefit();
-            this.scene.destroyTimeAttackRoom();
-            this.timer = null;
+            this.scene.sound.play('time_attack_succeded');
+            this.destroy();
         }
+    }
+
+    destroy(){
+        this.scene.destroyTimeAttackRoom();
+        this.scene.time.removeEvent(this.timer);
+        this.timerText.destroy();
     }
 }
