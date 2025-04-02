@@ -3,21 +3,24 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.json",
+    "activeFile": "dp_3.tmx",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
+        "": {
+            "scaleInDock": 1.5
+        },
+        "#room_tileset": {
+            "scaleInDock": 1
+        },
         "d1_1.json": {
-            "expandedObjectLayers": [
-                5,
-                7
-            ],
             "scale": 0.75,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 513.3333333333333,
-                "y": 287.33333333333337
+                "x": 618.6666666666665,
+                "y": 287.33333333333326
             }
         },
         "d1_1.json#room_tileset": {
@@ -29,14 +32,14 @@
                 11
             ],
             "scale": 1,
-            "selectedLayer": 9,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 525,
-                "y": 197.5
+                "y": 329.5
             }
         },
         "d1_2.json#room_tileset": {
-            "scaleInDock": 1
+            "scaleInDock": 0.75
         },
         "d1_mid.json": {
             "expandedObjectLayers": [
@@ -44,32 +47,146 @@
                 3
             ],
             "scale": 0.75,
-            "selectedLayer": 9,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 513.3333333333333,
-                "y": 287.33333333333337
+                "x": 513.3333333333334,
+                "y": 287.33333333333326
             }
         },
         "d1_mid.json#room_tileset": {
             "scaleInDock": 1
         },
-        "test.json": {
+        "dp_0.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 1,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 484,
+                "y": 263.5
+            }
+        },
+        "dp_0.tmx#room_tileset": {
+            "scaleInDock": 1.5
+        },
+        "dp_1.tmx": {
             "expandedObjectLayers": [
                 5,
-                12
+                6,
+                3,
+                9,
+                4
             ],
-            "scale": 0.75,
+            "scale": 1,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 484,
+                "y": 263.5
+            }
+        },
+        "dp_2.tmx": {
+            "expandedObjectLayers": [
+                12,
+                5,
+                6,
+                3,
+                4
+            ],
+            "scale": 1,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 476,
+                "y": 284.5
+            }
+        },
+        "dp_3.tmx": {
+            "expandedObjectLayers": [
+                5,
+                6,
+                3,
+                11,
+                9,
+                4
+            ],
+            "scale": 3,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 515.9999999999999,
-                "y": 286
+                "x": 454.66666666666663,
+                "y": -21.5
+            }
+        },
+        "dp_4.tmx": {
+            "expandedObjectLayers": [
+                5,
+                6,
+                3,
+                4
+            ],
+            "scale": 1,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 484,
+                "y": 263.5
+            }
+        },
+        "room_tileset_updated.tsx": {
+            "scaleInDock": 0.75
+        },
+        "test.json": {
+            "expandedObjectLayers": [
+                13,
+                12,
+                8,
+                5,
+                3,
+                4,
+                7
+            ],
+            "scale": 1,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 500,
+                "y": 210.5
             }
         },
         "test.json#room_tileset": {
-            "scaleInDock": 1
+            "scaleInDock": 0.75
+        },
+        "tile-set.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 521,
+                "y": 244.5
+            }
+        },
+        "tile-set.tmx#room_tileset": {
+            "scaleInDock": 0.5
+        },
+        "tile-set.tmx#tile-set": {
+            "scaleInDock": 0.75
         }
     },
+    "last.exportedFilePath": "C:/Users/Lenovo/Documents/PROGRAMACIÓN/HTML/PHATCAT/dvi/assets/tiled",
+    "last.externalTilesetPath": "C:/Users/Lenovo/Documents/PROGRAMACIÓN/HTML/PHATCAT/dvi/assets/tiled",
+    "last.imagePath": "C:/Users/Lenovo/Documents/PROGRAMACIÓN/HTML/PHATCAT/dvi/assets/tiled",
+    "map.height": 9,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": "1",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 16,
     "openFiles": [
+        "dp_0.tmx",
+        "dp_1.tmx",
+        "dp_2.tmx",
+        "dp_3.tmx",
+        "dp_4.tmx",
         "test.json",
         "d1_1.json",
         "d1_mid.json",
@@ -77,9 +194,20 @@
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
+        "dp_0.tmx",
+        "dp_1.tmx",
+        "dp_2.tmx",
         "d1_2.json",
         "d1_mid.json",
         "d1_1.json",
-        "test.json"
-    ]
+        "test.json",
+        "dp_4.tmx",
+        "dp_3.tmx",
+        "tile-set.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
 }

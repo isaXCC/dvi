@@ -36,7 +36,14 @@ import test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
 import d1_2 from '../assets/tiled/d1_2.json'
 import d1_mid from '../assets/tiled/d1_mid.json'
-import room_tiles from '../assets/tiled/room_tileset.png'
+//import room_tiles from '../assets/tiled/room_tileset.png'
+// PLAYTEST IMPORTS
+import dp_0 from '../assets/tiled/dp_0.json'
+import dp_1 from '../assets/tiled/dp_1.json'
+import dp_2 from '../assets/tiled/dp_2.json'
+import dp_3 from '../assets/tiled/dp_3.json'
+import dp_4 from '../assets/tiled/dp_4.json'
+import room_tiles from '../assets/tiled/room_tileset_updated.png'
 
 
 /**
@@ -98,6 +105,12 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d1_1', d1_1);
     this.load.tilemapTiledJSON('d1_2', d1_2);
     this.load.tilemapTiledJSON('d1_mid', d1_mid);
+    // PLAYTEST IMPORTS
+    this.load.tilemapTiledJSON('dp_0', dp_0);
+    this.load.tilemapTiledJSON('dp_1', dp_1);
+    this.load.tilemapTiledJSON('dp_2', dp_2);
+    this.load.tilemapTiledJSON('dp_3', dp_3);
+    this.load.tilemapTiledJSON('dp_4', dp_4);
   }
 
   /**
@@ -106,7 +119,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('test');
+    this.scene.start('dp_0');
   }
 
   // creates, manages and shows the initial loading progress bar

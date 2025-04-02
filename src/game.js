@@ -25,6 +25,14 @@ import D1_MID from './dungeons/d1/d1_mid.js';
 // import D1_BOSS from './dungeons/d1/d1_boss.js';
 import Phaser from 'phaser';
 
+//PLAYTEST
+import DP_0 from './dungeons/dp/dp_0.js'
+import DP_0_TUTORIAL from "./dungeons/dp/dp_0_tutorial.js";
+import DP_1 from "./dungeons/dp/dp_1.js";
+import DP_2 from "./dungeons/dp/dp_2.js";
+import DP_3 from "./dungeons/dp/dp_3.js";
+import DP_4 from "./dungeons/dp/dp_4.js";
+
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
@@ -39,7 +47,8 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Test, Dialogue, D1_1, D1_2, D1_MID, End],
+    scene: [Boot, DP_0, DP_0_TUTORIAL, DP_1, DP_2, DP_3, DP_4, Dialogue, End],
+    //scene: [Boot, Test, Dialogue, D1_1, D1_2, D1_MID, End],
     // scene: [Boot, Test, D1_1, D1_2, D1_3, D1_4, D1_5, D1_6, D1_7,
     //         D1_8, D1_9, D1_10, D1_11, D1_12, D1_13, D1_14, D1_15,
     //         D1_16, D1_BOOTS, D1_PIT, D1_BOSS, End],
@@ -47,7 +56,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: PARAMETERS.GAME.DEBUG
+            //debug: PARAMETERS.GAME.DEBUG
         }
     }
 };
