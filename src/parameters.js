@@ -18,10 +18,13 @@ const PARAMETERS = {
         MAX_AMMO: 7,
         STAMINA: 3,
         SPEED: 250,
-        DASH_DURATION: 50, // in milliseconds
-        DASH_SPEED: 2000,
-        STAMINA_RECOVER: 2500, // in milliseconds
-        JUMPSCARE_RECOVER: 5000, // in milliseconds
+        DASH_DURATION: 200, // in milliseconds
+        DASH_RECOVER: 500,
+        DASH_SPEED: 500,
+        STAMINA_RECOVER: 2500, // in millisecond
+        RELOAD_DURATION: 500,
+        SHOOT_DURATION: 350,
+        JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_DAMAGE: 1
     },
     ANGEL: {
@@ -61,7 +64,16 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.5
     },
     SERAPH: {
-        // TODO
+        LIFE: 6,
+        MAX_LIFE: 6,
+        SPEED: 1,
+        SUP_RECOVER: 5000,
+        SUP_DURATION: 1000,
+        SUP_EFFECT: 1,
+        SCALE_X: 1.5,
+        SCALE_Y: 1.5,
+        HITBOX_X: 38*0.8,
+        HITBOX_Y: 48*0.90
     },
     BULLET: {
         // TODO
@@ -90,7 +102,12 @@ const PARAMETERS = {
         OFFSET_Y: 10
     },
     ROOM: {
-        // TODO
+        HEART_SCALE: 1.5,
+        PUP_X: 24,
+        PUP_Y: 550,
+        PUP_RAD: 19,
+        AMMO_X: 25,
+        AMMO_Y: 55
     },
     SCENES: {
         // TODO

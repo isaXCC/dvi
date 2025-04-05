@@ -3,21 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "test.json",
+    "activeFile": "d1_2.json",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "d1_1.json": {
             "expandedObjectLayers": [
-                5,
-                7
+                7,
+                5
             ],
             "scale": 0.75,
-            "selectedLayer": 9,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 513.3333333333333,
-                "y": 287.33333333333337
+                "x": 512.6666666666667,
+                "y": 288
             }
         },
         "d1_1.json#room_tileset": {
@@ -29,10 +29,10 @@
                 11
             ],
             "scale": 1,
-            "selectedLayer": 9,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 525,
-                "y": 197.5
+                "x": 525.5,
+                "y": 197
             }
         },
         "d1_2.json#room_tileset": {
@@ -44,10 +44,10 @@
                 3
             ],
             "scale": 0.75,
-            "selectedLayer": 9,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 513.3333333333333,
-                "y": 287.33333333333337
+                "x": 512.6666666666667,
+                "y": 288
             }
         },
         "d1_mid.json#room_tileset": {
@@ -55,14 +55,14 @@
         },
         "test.json": {
             "expandedObjectLayers": [
-                5,
-                12
+                12,
+                5
             ],
             "scale": 0.75,
-            "selectedLayer": 8,
+            "selectedLayer": -1,
             "viewCenter": {
-                "x": 515.9999999999999,
-                "y": 286
+                "x": 390,
+                "y": 173.3333333333333
             }
         },
         "test.json#room_tileset": {
@@ -77,9 +77,9 @@
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
-        "d1_2.json",
-        "d1_mid.json",
+        "test.json",
         "d1_1.json",
-        "test.json"
+        "d1_mid.json",
+        "d1_2.json"
     ]
 }
