@@ -5,7 +5,8 @@ import angel from '../assets/sprites/enemies/angel_spreadsheet.png'
 import angel_atlas from '../assets/sprites/enemies/angel_atlas.json'
 import ophanim from '../assets/sprites/enemies/ophanim_spreadsheet.png'
 import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
-import seraph from '../assets/sprites/enemies/seraph.png'
+import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
+import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 import bullet from '../assets/sprites/utils/bullet.png'
@@ -67,7 +68,7 @@ export default class Boot extends Phaser.Scene {
     // loading each sprite
     this.load.image('loading', loading);
     this.load.atlas('angel', angel, angel_atlas);
-    this.load.image('seraph', seraph);
+    this.load.atlas('seraph', seraph, seraph_atlas);
     this.load.atlas('ophanim', ophanim, ophanim_atlas);
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
@@ -79,7 +80,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('speedboost', speedboost);
     this.load.image('hole', hole);
     this.load.image('fire', fire);
-    this.load.spritesheet('hearts', hearts, {frameWidth: 16, frameHeight: 16});
+    this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
     this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);

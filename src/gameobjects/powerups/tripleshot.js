@@ -12,12 +12,8 @@ export default class TripleShot extends PowerUp {
         //REGULAR
         super.newBullet(p_x, p_y, b_x, b_y);
         //IN THE THIRD SHOT -> TRIPLE SHOT
-        this._count++;
-        if(this._count % 3 === 0){
-            this._count = 0;
-            this.newBullet_aux(p_x, p_y, b_x, b_y, -10);
-            this.newBullet_aux(p_x, p_y, b_x, b_y, +10);
-        }
+        this.newBullet_aux(p_x, p_y, b_x, b_y, -10);
+        this.newBullet_aux(p_x, p_y, b_x, b_y, +10);
     }
 
     newBullet_aux(p_x, p_y, b_x, b_y, angle){

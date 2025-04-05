@@ -49,8 +49,7 @@ export default class Ophanim extends Enemy{
             } 
             else if(this._isAttacking){
                 if(this.active && this._isAlive && !this._called){
-                    this.scene.sound.play('enemy_shoot', { volume: 6 });
-                    this.scene.newEnemyBullet(this.x, this.y);
+                    this.shoot(this.x, this.y);
                     this._called = true;
                     this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
                         this._isAttacking = false;
@@ -68,9 +67,8 @@ export default class Ophanim extends Enemy{
     }
 
     shoot(x, y){
-        this.scene.newBullet(this.x, this.y, x, y);
-        // this.scene._bullets.pushback(new Bullet(this.scene, this.x, this.y, x, y));
-        this.scene.sound.play('shootSound', { volume: 1 });
+        this.scene.sound.play('enemy_shoot', { volume: 6 });
+        this.scene.newEnemyBullet(x, y);
     }
 
     move(){

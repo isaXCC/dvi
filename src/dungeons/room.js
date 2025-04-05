@@ -20,6 +20,8 @@ import HoleGroup from '../gameobjects/groups/HoleGroup.js';
 import Fire from '../gameobjects/utils/fire.js';
 import FireGroup from '../gameobjects/groups/FireGroup.js';
 import PARAMETERS from '../parameters.js';
+import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
+import MovingFire from '../gameobjects/utils/movingfire.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -49,6 +51,7 @@ export default class Room extends Phaser.Scene {
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
         this.holes.addOverlap(this.player, this.holes.playerOverlap);
         this.fires.addOverlap(this.player, this.fires.playerOverlap);
+        this.movingFires.addOverlap(this.player);
         //maybe?
         //this.holes.addCollision(this.enemies); 
 
@@ -59,75 +62,12 @@ export default class Room extends Phaser.Scene {
         window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 
-    // adds player info to the HUD
-    createPlayerHUD(){
-        // first creates the life
-        this.hearts = [];
-        let heart;
-        let i = 0;
-        for(i; i < Math.floor(this.player._max_life/2); i++){
-            heart = this.add.sprite(20 + (i + 1)*12, 30, 'hearts').setFrame(2);  // creates the array of frames
-            this.hearts.push(heart);
-        }
-        this.last_life = this.player._max_life;
-
-        // then, the stamina bar
-        this.stamina_bar = [];
-        let stamina;
-        for(i = 0; i < this.player._stamina; i++){
-            stamina = this.add.sprite(10 + (i + 1)*32, 50, 'stamina').setFrame(1);  // creates the array of frames
-            this.stamina_bar.push(stamina);
-        }
-        this.last_stamina = this.player._stamina;
-
-        // lastly, the bullets 
-        this.playerBulletsText = this.add.text(920, 548, `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
-            fontSize: '16px',
-            fill: '#fff',
-            fontFamily: 'Comic Sans MS'
-        });
-    }
-
-    updatePlayerHUD(){
-
-        // updates life
-        if(this.player._life !== this.last_life){
-            for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {
-                if (this.player._life >= (i + 1) * 2) {
-                    this.hearts[i].setFrame(2); // full heart
-                } else if (this.player._life === (i * 2) + 1) {
-                    this.hearts[i].setFrame(1); // half heart
-                } else {
-                    this.hearts[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_life = this.player._life;
-        }
-
-        // updates stamina
-        if(this.player._stamina !== this.last_stamina){
-            for (let i = 0; i < this.stamina_bar.length; i++) {
-                if (this.player._stamina >= (i + 1)) {
-                    this.stamina_bar[i].setFrame(1); // full heart
-                } else {
-                    this.stamina_bar[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_stamina = this.player._stamina;
-        }
-
-        // updates bullets
-        this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
-        //this.defaultPowerUpDisplay();
-        // Blocking context menu to open
-        window.addEventListener('contextmenu', (event) => event.preventDefault());
-    }
-
     update(){
         this.bullets.update();
         this.enemies.update();
         this.portals.update();
         this.npcs.update();
+        this.movingFires.update();
 
         // Update player info display
         this.updatePlayerHUD();
@@ -151,6 +91,7 @@ export default class Room extends Phaser.Scene {
         this.powerups = new PUPGroup(this);
         this.holes = new HoleGroup(this);
         this.fires = new FireGroup(this);
+        this.movingFires = new MovingFireGroup();
 
         // Tiled creation of map, tiles and different layers
         var map = this.make.tilemap({key: key});
@@ -162,14 +103,6 @@ export default class Room extends Phaser.Scene {
         //oic.setCollisionByExclusion([-1], true);
         
         // Tiled creation of each object
-        for (const object of map.getObjectLayer('holes').objects) {
-            // GRID_OFFSET_Y necesary to make Tiled more managable
-            this.holes.addElement(new Hole(this, object.x, object.y+PARAMETERS.HOLE.GRID_OFFSET_Y));
-        }
-        for (const object of map.getObjectLayer('fires').objects) {
-            // GRID_OFFSET_Y necesary to make Tiled more managable
-            this.fires.addElement(new Fire(this, object.x, object.y));
-        }
         for (const object of map.getObjectLayer('portals').objects) {
             if (object.type === 'Portal') { 
                 this.portals.addElement(new Portal(this, 
@@ -184,6 +117,24 @@ export default class Room extends Phaser.Scene {
                     this.player_state.y = object.y;
                 }
             }
+        }
+        for (const object of map.getObjectLayer('holes').objects) {
+            // GRID_OFFSET_Y necesary to make Tiled more managable
+            this.holes.addElement(new Hole(this, object.x, object.y+PARAMETERS.HOLE.GRID_OFFSET_Y));
+        }
+        for (const object of map.getObjectLayer('fires').objects) {
+            // GRID_OFFSET_Y necesary to make Tiled more managable
+            this.fires.addElement(new Fire(this, object.x, object.y));
+        }
+        for (const object of map.getObjectLayer('moving_fires').objects) {
+            const c = {};
+            if (object.properties) {
+                object.properties.forEach(p => {
+                    c[p.name] = p.value;
+                });
+            }
+            // GRID_OFFSET_Y necesary to make Tiled more managable
+            this.movingFires.addElement(new MovingFire(this, object.x, object.y, c.length, c.movement, c.fill, c.starts));
         }
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
@@ -243,8 +194,6 @@ export default class Room extends Phaser.Scene {
                 this.powerups.addElement(new TripleShot(this.player, this, object.x, object.y));
             }
         }
-
-        //LALA
 
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
@@ -308,10 +257,12 @@ export default class Room extends Phaser.Scene {
         this.powerup_image = this.add.image(32, 556, null);
         this.powerup_image.setVisible(false);
     }
+a
 
-    newPowerUpDisplay(powerup){
+    newPowerUpDisplay(powerup) {
         this.deletePreviousPowerUpImage();
-        this.powerup_image = this.add.image(32, 556, powerup.sprite);
+        // Add the power-up image on top
+        this.powerup_image = this.add.image(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, powerup.sprite);
         this.powerup_image.setAlpha(0.75);
     }
 
@@ -324,6 +275,83 @@ export default class Room extends Phaser.Scene {
     // to destroy the possible attack room
     destroyTimeAttackRoom(){
         this.time_attack_room = null;
+    }
+
+    // DISPLAY METHODS
+
+    // adds player info to the HUD
+    createPlayerHUD(){
+        // first creates the life
+        this.hearts = [];
+        let heart;
+        let i = 0;
+        for(i; i < Math.floor(this.player._max_life/2); i++){
+            heart = this.add.sprite(30 + i*22*PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts').setFrame(2);  // creates the array of frames
+            heart.setScale(PARAMETERS.ROOM.HEART_SCALE, PARAMETERS.ROOM.HEART_SCALE);
+            this.hearts.push(heart);
+        }
+        this.last_life = this.player._max_life;
+
+        // then, the stamina bar
+        this.stamina_bar = [];
+        let stamina;
+        for(i = 0; i < this.player._stamina; i++){
+            stamina = this.add.sprite(10 + (i + 1)*32, 50, 'stamina').setFrame(1);  // creates the array of frames
+            this.stamina_bar.push(stamina);
+        }
+        this.last_stamina = this.player._stamina;
+
+        // The bullets 
+        this.playerBulletsText = this.add.text(PARAMETERS.ROOM.AMMO_X, PARAMETERS.ROOM.AMMO_Y, 
+            `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
+            fontSize: '16px',
+            fill: '#fff',
+            fontFamily: 'Comic Sans MS'
+        });
+
+        // The PowerUP Display circle
+        // Create graphics for white circle with black border
+        const graphics = this.add.graphics();
+    
+        graphics.lineStyle(2.5, 0x000000, 1); // black border
+        graphics.fillStyle(0xffffff, 0.5);   // white fill
+        graphics.strokeCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
+        graphics.fillCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
+    }
+
+    updatePlayerHUD(){
+
+        // updates life
+        if(this.player._life !== this.last_life){
+            for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {
+                if (this.player._life >= (i + 1) * 2) {
+                    this.hearts[i].setFrame(2); // full heart
+                } else if (this.player._life === (i * 2) + 1) {
+                    this.hearts[i].setFrame(1); // half heart
+                } else {
+                    this.hearts[i].setFrame(0); // lost heart
+                }
+            }
+            this.last_life = this.player._life;
+        }
+
+        // updates stamina
+        if(this.player._stamina !== this.last_stamina){
+            for (let i = 0; i < this.stamina_bar.length; i++) {
+                if (this.player._stamina >= (i + 1)) {
+                    this.stamina_bar[i].setFrame(1); // full heart
+                } else {
+                    this.stamina_bar[i].setFrame(0); // lost heart
+                }
+            }
+            this.last_stamina = this.player._stamina;
+        }
+
+        // updates bullets
+        this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
+        //this.defaultPowerUpDisplay();
+        // Blocking context menu to open
+        window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 
 }
