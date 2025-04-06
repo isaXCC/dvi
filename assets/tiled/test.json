@@ -135,7 +135,7 @@
                  "gid":30,
                  "height":64,
                  "id":3,
-                 "name":"eC_0",
+                 "name":"eS_0",
                  "rotation":0,
                  "type":"Seraph",
                  "visible":true,
@@ -144,75 +144,27 @@
                  "y":481.830857631885
                 }, 
                 {
-                 "gid":30,
+                 "gid":29,
                  "height":64,
-                 "id":17,
-                 "name":"eC_0",
+                 "id":41,
+                 "name":"eA_0",
                  "rotation":0,
                  "type":"Angel",
                  "visible":true,
                  "width":64,
-                 "x":51.7667339079406,
-                 "y":121.009352649918
+                 "x":832,
+                 "y":384
                 }, 
                 {
-                 "gid":30,
+                 "gid":28,
                  "height":64,
-                 "id":18,
-                 "name":"eC_0",
+                 "id":42,
+                 "name":"eO_0",
                  "rotation":0,
                  "type":"Ophanim",
                  "visible":true,
                  "width":64,
-                 "x":452,
-                 "y":125.333333333333
-                }, 
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":24,
-                 "name":"eC_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":834.666666666667,
-                 "y":285.333333333333
-                }, 
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":25,
-                 "name":"eC_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":862.666666666667,
-                 "y":526.666666666667
-                }, 
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":26,
-                 "name":"eC_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":713.333333333333,
-                 "y":565.333333333333
-                }, 
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":27,
-                 "name":"eC_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":856,
+                 "x":512,
                  "y":128
                 }],
          "offsetx":32,
@@ -232,7 +184,7 @@
                  "gid":31,
                  "height":64,
                  "id":8,
-                 "name":"d1_1",
+                 "name":"d1_pit",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -244,7 +196,7 @@
                  "gid":31,
                  "height":64,
                  "id":9,
-                 "name":"d1_2",
+                 "name":"d1_mid",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -256,7 +208,7 @@
                  "gid":31,
                  "height":64,
                  "id":10,
-                 "name":"d1_mid",
+                 "name":"d1_8",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -299,36 +251,16 @@
          "name":"npcs",
          "objects":[
                 {
-                 "height":19,
-                 "id":16,
-                 "name":"mice_incomplete",
+                 "gid":227,
+                 "height":64,
+                 "id":43,
+                 "name":"mice_kid",
                  "rotation":0,
-                 "text":
-                    {
-                     "text":"Mice",
-                     "wrap":true
-                    },
                  "type":"NPC",
                  "visible":true,
-                 "width":83,
-                 "x":709.043920777553,
-                 "y":141.880891252522
-                }, 
-                {
-                 "height":19,
-                 "id":19,
-                 "name":"virgil",
-                 "rotation":0,
-                 "text":
-                    {
-                     "text":"Virgil",
-                     "wrap":true
-                    },
-                 "type":"NPC",
-                 "visible":true,
-                 "width":83,
-                 "x":717.166666666667,
-                 "y":58.5000000000004
+                 "width":64,
+                 "x":896,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -353,36 +285,28 @@
          "name":"powerups",
          "objects":[
                 {
-                 "height":19,
-                 "id":14,
+                 "gid":251,
+                 "height":64,
+                 "id":44,
                  "name":"",
                  "rotation":0,
-                 "text":
-                    {
-                     "text":"TripleShot",
-                     "wrap":true
-                    },
-                 "type":"TripleShot",
-                 "visible":true,
-                 "width":83,
-                 "x":282.43178067119,
-                 "y":466.225900116144
-                }, 
-                {
-                 "height":19,
-                 "id":15,
-                 "name":"",
-                 "rotation":0,
-                 "text":
-                    {
-                     "text":"SpeedBoost",
-                     "wrap":true
-                    },
                  "type":"SpeedBoost",
                  "visible":true,
-                 "width":83,
-                 "x":440.485451433462,
-                 "y":470.920563604132
+                 "width":64,
+                 "x":448,
+                 "y":512
+                }, 
+                {
+                 "gid":252,
+                 "height":64,
+                 "id":45,
+                 "name":"",
+                 "rotation":0,
+                 "type":"TripleShot",
+                 "visible":true,
+                 "width":64,
+                 "x":256,
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -399,7 +323,7 @@
                  "gid":226,
                  "height":64,
                  "id":34,
-                 "name":"",
+                 "name":"Verti",
                  "properties":[
                         {
                          "name":"fill",
@@ -432,7 +356,7 @@
                  "gid":226,
                  "height":64,
                  "id":35,
-                 "name":"",
+                 "name":"Hori",
                  "properties":[
                         {
                          "name":"fill",
@@ -465,7 +389,7 @@
                  "gid":226,
                  "height":64,
                  "id":38,
-                 "name":"",
+                 "name":"Rotating",
                  "properties":[
                         {
                          "name":"fill",
@@ -475,7 +399,7 @@
                         {
                          "name":"length",
                          "type":"string",
-                         "value":"7"
+                         "value":"3"
                         }, 
                         {
                          "name":"movement",
@@ -491,8 +415,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":141.333333333333,
-                 "y":322.666666666667
+                 "x":512,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -501,7 +425,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":39,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

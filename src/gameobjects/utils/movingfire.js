@@ -1,6 +1,11 @@
 import PARAMETERS from "../../parameters";
 import Fire from "./fire";
 
+// fill (up, down, right, left)
+// length (1, ..., N)
+// movement (vertical, horizontal, clockwise, anticlockwise)
+// moves (-1, 1)
+
 export default class MovingFire {
     constructor(scene, x, y, length=1, movement='horizontal', fill='right', starts=1) {
         this.scene = scene;
@@ -14,23 +19,21 @@ export default class MovingFire {
         for (let i = 1; i <= this.length; i++) {
             let new_x = 0, new_y = 0;
             if(this.fill === 'up'){
-                new_y = -32*i;
+                new_y = -PARAMETERS.FIRE.HEIGHT*i;
             }
             else if(this.fill === 'down'){
-                new_y = 32*i;
+                new_y = PARAMETERS.FIRE.HEIGHT*i;
             }
             else if(this.fill === 'right'){
-                new_x = 32*i;
+                new_x = PARAMETERS.FIRE.WIDTH*i;
             }
             else if(this.fill === 'left'){
-                new_x = -32*i;
+                new_x = -PARAMETERS.FIRE.WIDTH*i;
             }
             const fireball = new Fire(scene, new_x, new_y); // place in line
-            //THIS SHOULD BE REMOVED WHEN ADDED A GOOD SPRITE
-            fireball.setScale(32/260, 32/360);
-            fireball.setOrigin(0.5);
-            //THIS SHOULD BE ADDED WHEN ADDED A GOOD SPRITE
-            //fireball.setSize(PARAMETERS.FIRE.HITBOX_X, PARAMETERS.FIRE.HITBOX_Y);
+            fireball.setScale(PARAMETERS.FIRE.SCALE, PARAMETERS.FIRE.SCALE);
+            // fireball.setOrigin(1.1);
+            fireball.setSize(PARAMETERS.FIRE.HITBOX_X, PARAMETERS.FIRE.HITBOX_Y);
             this.pivot.add(fireball);
             this.fireballs.add(fireball);
         }
@@ -48,7 +51,8 @@ export default class MovingFire {
 
     update() {
         if(this.movement === 'vertical'){
-            if (this.pivot.y > PARAMETERS.GAME.HEIGHT - 12 || this.pivot.y < 12) {
+            // NEEDS TO BE CHECKED
+            if (this.pivot.y > PARAMETERS.GAME.HEIGHT - 64*1.3 || this.pivot.y < -9 ) {
                 this.speedSides *= -1;
             }
             this.pivot.y += this.speedSides;

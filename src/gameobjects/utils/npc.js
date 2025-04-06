@@ -1,10 +1,14 @@
 import Player from "../player/player";
+import CONDITIONS from "../../dungeons/conditions"
 
 export default class NPC extends Phaser.Physics.Arcade.Sprite{
 
     constructor(scene, x, y, sprite) {
         super(scene, x, y, 'npcs');
         this.nameNPC = sprite;
+        if(this.nameNPC === "mice_incomplete" && CONDITIONS.D1.MICE_FAMILY){
+            this.nameNPC = "mice_complete";
+        }
         this.scene = scene;
         this.createAnims();
         this.scene.add.existing(this);
@@ -35,8 +39,28 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
             frameRate: 4,
             repeat: -1
         };
-
+        const mice_complete = {
+            key: 'mice_complete',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "mice_complete_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
+        const mice_kid = {
+            key: 'mice_kid',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "mice_kid_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
+        const bunny = {
+            key: 'bunny',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "bunny_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
         this.anims.create(virgil);
         this.anims.create(mice_incomplete);
+        this.anims.create(mice_complete);
+        this.anims.create(mice_kid);
+        this.anims.create(bunny);
     }
 }

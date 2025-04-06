@@ -1,13 +1,13 @@
 import Room from '../room.js'
 
-export default class D1_2 extends Room {
+export default class D1_9 extends Room {
 
     constructor() {
-        super('d1_2');
+        super('d1_9');
     }
 
     create() {
-        super.generateTiled('d1_2'); 
+        super.generateTiled('d1_9'); 
         super.create();
     }
 

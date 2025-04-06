@@ -146,6 +146,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
+        console.log("Player LIFE: " + this._life);
     }
 
     // PLAYER ACTIONS
@@ -337,6 +338,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // SETTERS AND GETTERS
     isInvulnerable(){ return this._isInvulnerable || this._isDashing || this._isJumpScare;}
 
+    changeMaxLife(i){
+        this._max_life = this._max_life + i;
+        this._life = this._life + i;
+        console.log("Player new MAXLIFE: " + this._max_life);
+        console.log("Player new LIFE: " + this._life);
+    }
 
     // ANIMATIONS SECTION
     createAnims(){

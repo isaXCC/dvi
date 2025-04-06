@@ -15,10 +15,10 @@ export default class Seraph extends Enemy {
 
         // Patrol area
         this.patrolArea = {
-            x1: x - Phaser.Math.Between(50, 100),
-            y1: y - Phaser.Math.Between(50, 100),
-            x2: x + Phaser.Math.Between(50, 100),
-            y2: y + Phaser.Math.Between(50, 100)
+            x1: x - Phaser.Math.Between(PARAMETERS.SERAPH.PATROL_LOW, PARAMETERS.SERAPH.PATROL_HIGH),
+            y1: y - Phaser.Math.Between(PARAMETERS.SERAPH.PATROL_LOW, PARAMETERS.SERAPH.PATROL_HIGH),
+            x2: x + Phaser.Math.Between(PARAMETERS.SERAPH.PATROL_LOW, PARAMETERS.SERAPH.PATROL_HIGH),
+            y2: y + Phaser.Math.Between(PARAMETERS.SERAPH.PATROL_LOW, PARAMETERS.SERAPH.PATROL_HIGH)
         };
 
         // Direction state (vx, vy) — either 1 or -1

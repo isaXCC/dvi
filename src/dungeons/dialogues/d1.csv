@@ -1,0 +1,23 @@
+npc_name;cond;cmd;options;index;text;option1;option2;option3;option4
+virgil;base;;;0;hi;;;;
+;;;;1;go kill;;;;
+;;;;2;bye;;;;
+;killed_angel;;;0;go pit;;;;
+;visited_pit;;;0;hi;;;;
+;;set-start;2;1;do you?;be;not be;;
+;;;;2.1;hmm;;;;
+;;;;2.2;nice;;;;
+;;;3;3;am I?;the best; period;amazing;fabulous
+;;;;4.1;you right;;;;
+;;;;4.2;you right;;;;
+;;;;4.3;you right baby;;;;
+;;check-2x;;5;you wise;;;;
+;;;;6;try again;;;;
+;;;;7;you did it;;;;
+;;count-0;;8;dont come back;;;;
+;count == 0;count++;;0;Man...;;;;
+;count == 1;count++;;1;for real...;;;;
+;count > 1;;;2;fuck off bitch;;;;
+mice_incomplete;base;;;0;hi;;;;
+;;;;1;lalala;;;;
+;;;;2;bye;;;;
