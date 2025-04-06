@@ -36,7 +36,19 @@ import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
 import test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
 import d1_2 from '../assets/tiled/d1_2.json'
+import d1_3 from '../assets/tiled/d1_3.json'
 import d1_mid from '../assets/tiled/d1_mid.json'
+import d1_4 from '../assets/tiled/d1_4.json'
+import d1_pit from '../assets/tiled/d1_pit.json'
+import d1_5 from '../assets/tiled/d1_5.json'
+import d1_6 from '../assets/tiled/d1_6.json'
+import d1_7 from '../assets/tiled/d1_7.json'
+import d1_8 from '../assets/tiled/d1_8.json'
+import d1_9 from '../assets/tiled/d1_9.json'
+import d1_10 from '../assets/tiled/d1_10.json'
+import d1_11 from '../assets/tiled/d1_11.json'
+import d1_boots from '../assets/tiled/d1_boots.json'
+import d1_boss from '../assets/tiled/d1_boss.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
 
@@ -99,6 +111,18 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d1_1', d1_1);
     this.load.tilemapTiledJSON('d1_2', d1_2);
     this.load.tilemapTiledJSON('d1_mid', d1_mid);
+    this.load.tilemapTiledJSON('d1_3', d1_3);
+    this.load.tilemapTiledJSON('d1_4', d1_4); 
+    this.load.tilemapTiledJSON('d1_pit', d1_pit); 
+    this.load.tilemapTiledJSON('d1_5', d1_5); 
+    this.load.tilemapTiledJSON('d1_6', d1_6); 
+    this.load.tilemapTiledJSON('d1_7', d1_7); 
+    this.load.tilemapTiledJSON('d1_8', d1_8); 
+    this.load.tilemapTiledJSON('d1_9', d1_9); 
+    this.load.tilemapTiledJSON('d1_10', d1_10); 
+    this.load.tilemapTiledJSON('d1_11', d1_11); 
+    this.load.tilemapTiledJSON('d1_boots', d1_boots); 
+    this.load.tilemapTiledJSON('d1_boss', d1_boss); 
   }
 
   /**

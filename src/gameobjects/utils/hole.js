@@ -10,4 +10,5 @@ export default class Hole extends Phaser.Physics.Arcade.Sprite {
         this.setOrigin(0, 0);
         this.setSize(PARAMETERS.HOLE.HITBOX_X, PARAMETERS.HOLE.HITBOX_Y);
     }
+
 }

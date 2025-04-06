@@ -43,7 +43,9 @@ const PARAMETERS = {
         SCALE_X: 1.5,
         SCALE_Y: 1.5,
         HITBOX_X: 46*0.8,
-        HITBOX_Y: 64*0.5
+        HITBOX_Y: 64*0.5, 
+        RAND_LOW: -250,
+        RAND_HIGH: 250
     },
     OPHANIM: {
         LIFE: 6,
@@ -61,7 +63,9 @@ const PARAMETERS = {
         SCALE_X: 1.7,
         SCALE_Y: 1.7,
         HITBOX_X: 64*0.5,
-        HITBOX_Y: 64*0.5
+        HITBOX_Y: 64*0.5,
+        RAND_LOW: -500,
+        RAND_HIGH: 500
     },
     SERAPH: {
         LIFE: 6,
@@ -73,7 +77,9 @@ const PARAMETERS = {
         SCALE_X: 1.5,
         SCALE_Y: 1.5,
         HITBOX_X: 38*0.8,
-        HITBOX_Y: 48*0.90
+        HITBOX_Y: 48*0.90,
+        PATROL_LOW: 50, 
+        PATROL_HIGH: 100
     },
     BULLET: {
         // TODO
@@ -88,10 +94,21 @@ const PARAMETERS = {
     },
     FIRE: {
         HITBOX_X: 64*0.7,
-        HITBOX_Y: 64*0.7
-        //GRID_OFFSET_Y: -64,
+        HITBOX_Y: 64*0.7,
+        WIDTH: 64, 
+        HEIGHT: 64,
+        SCALE: 1.5,
+        GRID_OFFSET_X: 0,
+        GRID_OFFSET_Y: -64*1.3
+    },
+    MOVING_FIRE: {
+        GRID_OFFSET_X: -64
     },
     PORTAL: {
+        GRID_OFFSET_X: 32,
+        GRID_OFFSET_Y: -32
+    },
+    NPC: {
         GRID_OFFSET_X: 32,
         GRID_OFFSET_Y: -32
     },

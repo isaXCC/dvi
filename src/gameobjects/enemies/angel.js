@@ -13,10 +13,12 @@ export default class Angel extends Enemy{
         this._damage = PARAMETERS.ANGEL.DAMAGE;
 
         // State machine
-        this._isIdle = true;
         this._isAttacking = false;
+        this._isIdle = true;
         this._isMoving = false;
         this._called = false;
+        
+        this._rand = Phaser.Math.Between(PARAMETERS.ANGEL.RAND_LOW, PARAMETERS.ANGEL.RAND_HIGH);
         this.pos; // TMP
 
         // SPRITE CONFIG
@@ -30,7 +32,7 @@ export default class Angel extends Enemy{
             if(this._isIdle){
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.ANGEL.IDLE_DURATION, () => {
+                    this.scene.time.delayedCall((PARAMETERS.ANGEL.IDLE_DURATION + this._rand), () => {
                         this._isIdle = false;
                         this._isMoving = true;
                         this._called = false;
@@ -41,7 +43,7 @@ export default class Angel extends Enemy{
                 this.move();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.ANGEL.MOVE_DURATION, () => {
+                    this.scene.time.delayedCall((PARAMETERS.ANGEL.MOVE_DURATION + this._rand), () => {
                         this._isMoving = false;
                         this._isAttacking = true;
                         this._speed = this._speed + PARAMETERS.ANGEL.ATK_SPEED;
@@ -53,7 +55,7 @@ export default class Angel extends Enemy{
                 this.attack();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.ANGEL.ATK_DURATION, () => {
+                    this.scene.time.delayedCall((PARAMETERS.ANGEL.ATK_DURATION + this._rand), () => {
                         this._isAttacking = false;
                         this._isIdle = true;
                         this._speed = this._speed - PARAMETERS.ANGEL.ATK_SPEED;

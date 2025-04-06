@@ -8,7 +8,6 @@ import NPC from '../gameobjects/utils/npc.js';
 import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
 import BulletGroup from '../gameobjects/groups/BulletGroup.js';
 import Phaser from 'phaser';
-import DefaultGroup from '../gameobjects/groups/DefaultGroup.js';
 import PortalGroup from '../gameobjects/groups/PortalGroup.js';
 import NPCGroup from '../gameobjects/groups/NPCGroup.js';
 import PUPGroup from '../gameobjects/groups/PUPGroup.js';
@@ -20,6 +19,7 @@ import HoleGroup from '../gameobjects/groups/HoleGroup.js';
 import Fire from '../gameobjects/utils/fire.js';
 import FireGroup from '../gameobjects/groups/FireGroup.js';
 import PARAMETERS from '../parameters.js';
+import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 
@@ -32,6 +32,7 @@ export default class Room extends Phaser.Scene {
         this.player_state;
         this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
         this.powerup_image;
+
     }
 
     init(player_state) {
@@ -55,6 +56,16 @@ export default class Room extends Phaser.Scene {
         //maybe?
         //this.holes.addCollision(this.enemies); 
 
+        // MUSIC SECTION
+        // Background music is always playing
+        if (!this.sound.get('backgroundMusic')) {
+            this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
+            this.music.play();
+        } else {
+            this.music = this.sound.get('backgroundMusic');
+            if(!this.music.isPlaying) this.music.play();
+        }
+
         // adds player info to the HUD
         this.createPlayerHUD();
 
@@ -68,10 +79,7 @@ export default class Room extends Phaser.Scene {
         this.portals.update();
         this.npcs.update();
         this.movingFires.update();
-
-        // Update player info display
-        this.updatePlayerHUD();
-
+        
         if(this.player._isAlive)
             this.player.update();    
         else {
@@ -79,6 +87,9 @@ export default class Room extends Phaser.Scene {
             this.gameOver();
         }
 
+        // Update player info display
+        this.updatePlayerHUD();
+        
         // if the room is a time attack room, it gets updated
         if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
     }
@@ -124,7 +135,9 @@ export default class Room extends Phaser.Scene {
         }
         for (const object of map.getObjectLayer('fires').objects) {
             // GRID_OFFSET_Y necesary to make Tiled more managable
-            this.fires.addElement(new Fire(this, object.x, object.y));
+            this.fires.addElement(new Fire(this, 
+                object.x + PARAMETERS.FIRE.GRID_OFFSET_X, 
+                object.y + PARAMETERS.FIRE.GRID_OFFSET_Y));
         }
         for (const object of map.getObjectLayer('moving_fires').objects) {
             const c = {};
@@ -134,7 +147,7 @@ export default class Room extends Phaser.Scene {
                 });
             }
             // GRID_OFFSET_Y necesary to make Tiled more managable
-            this.movingFires.addElement(new MovingFire(this, object.x, object.y, c.length, c.movement, c.fill, c.starts));
+            this.movingFires.addElement(new MovingFire(this, object.x + PARAMETERS.MOVING_FIRE.GRID_OFFSET_X, object.y, c.length, c.movement, c.fill, c.starts));
         }
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
@@ -149,16 +162,25 @@ export default class Room extends Phaser.Scene {
         }
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
-                this.npcs.addElement(new NPC(this, object.x, object.y, object.name));
+                this.npcs.addElement(new NPC(this, object.x + PARAMETERS.NPC.GRID_OFFSET_X,
+                                                 object.y + PARAMETERS.NPC.GRID_OFFSET_Y, object.name));
             }
         }
         for (const object of map.getObjectLayer('player').objects) {
             if (object.type === 'Player') { 
                 this.player = new Player(this, object.x, object.y);
                 if(this.player_state !== undefined){
+                    if(this.player_state.max_life !== undefined){
+                        console.log('Set max_life ' + this.player_state.life);
+                        this.player._max_life = this.player_state.max_life;
+                    }
                     if(this.player_state.life !== undefined){
                         console.log('Set life ' + this.player_state.life);
                         this.player._life = this.player_state.life;
+                    }
+                    if(this.player_state.max_ammo !== undefined){
+                        console.log('Set max ammo ' + this.player_state.max_ammo);
+                        this.player._max_ammo = this.player_state.max_ammo;
                     }
                     if(this.player_state.bullets !== undefined){
                         console.log('Set bullets ' + this.player_state.bullets);
@@ -211,9 +233,10 @@ export default class Room extends Phaser.Scene {
     }
 
     nextRoom(room){
-        this.music.stop();
         console.log('Player life before: ' + this.player._life);
-        this.scene.start(room, {life: this.player._life, bullets: this.player._bullets, portal: this.scene.key, powerup: this.player._pup});
+        this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
+             max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
+             portal: this.scene.key, powerup: this.player._pup});
     }
 
     gameOver(){
@@ -290,7 +313,8 @@ a
             heart.setScale(PARAMETERS.ROOM.HEART_SCALE, PARAMETERS.ROOM.HEART_SCALE);
             this.hearts.push(heart);
         }
-        this.last_life = this.player._max_life;
+        this.last_life = -1;
+        this.last_max_life = this.player._max_life;
 
         // then, the stamina bar
         this.stamina_bar = [];
@@ -320,7 +344,22 @@ a
     }
 
     updatePlayerHUD(){
+        // Detect and update max_life change
+        if (this.player._max_life !== this.last_max_life) {
+            // Remove old hearts from scene
+            this.hearts.forEach(heart => heart.destroy());
 
+            // Recreate hearts based on new max life
+            this.hearts = [];
+            for (let i = 0; i < Math.floor(this.player._max_life / 2); i++) {
+                const heart = this.add.sprite(30 + i * 22 * PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts');
+                heart.setScale(PARAMETERS.ROOM.HEART_SCALE);
+                this.hearts.push(heart);
+            }
+
+            this.last_max_life = this.player._max_life;
+            this.last_life = -1; // force life update this frame
+        }
         // updates life
         if(this.player._life !== this.last_life){
             for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {

@@ -1,6 +1,7 @@
 import DefaultGroup from "./DefaultGroup";
 import getNormDist from "../../utils/vector";
 import PARAMETERS from "../../parameters";
+import CONDITIONS from "../../dungeons/conditions";
 
 export default class HoleGroup extends DefaultGroup {
 
@@ -11,6 +12,14 @@ export default class HoleGroup extends DefaultGroup {
     
     playerOverlap(player, hole) {
         if(!this.falling){
+            // Special condition for D_PIT
+            if(this.scene.scene.key === "d1_pit"){
+                CONDITIONS.D1.PIT = true;
+                if(CONDITIONS.D1.BOOTS){
+                    this.scene.nextRoom("d1_boss");
+                    return;
+                }
+            }
             this.scene.sound.play('fallingSound', { volume: 2 });
             this.falling = true;
             player._isFalling = true;
