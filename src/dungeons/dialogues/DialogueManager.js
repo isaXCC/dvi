@@ -173,13 +173,13 @@ export default class DialogueManager {
 
         launchNext();
     }
-    
+
     loadData(key){
         return new Promise((resolve, reject) => {
             let dungeon = key.slice(0, 2);
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
-                fetch(new URL('./'+this.current_dungeon+'.csv', import.meta.url).href)
+                fetch('/dungeons/dialogues/' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     let i = 0;
