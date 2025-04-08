@@ -13,11 +13,14 @@ export default class Hoarder extends Enemy{
         this._speed = PARAMETERS.HOARDER.SPEED;
         this._damage = PARAMETERS.HOARDER.DAMAGE;
 
+        this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X;
+
         // State machine
-        this._isIdle = true;
         this._isAttacking = false;
-        this._isMoving = false;
+        this._isMoving = true;
         this._called = false;
+        this._shift = false;
+        this._hole = false;
 
         this.lifeBar = new LifeBar(scene, 
             PARAMETERS.HOARDER.LIFEBAR_X, 
@@ -33,13 +36,13 @@ export default class Hoarder extends Enemy{
         if(this._isAlive){
             this.lifeBar.setLife(this._life);
             if(this._life > (this._max_life/3)*2){
-                this.faseOne();
+                this.phase(1);
             }
             else if(this._life > (this._max_life/3)){
-                this.faseTwo();
+                this.phase(2);
             }
             else{
-                this.faseThree();
+                this.phase(3);
             }
         }
         else{
@@ -48,131 +51,102 @@ export default class Hoarder extends Enemy{
             CONDITIONS.D1.KILLED_BOSS = true;
         }
     }
-    faseOne(){
-        if(this._isIdle){
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.IDLE_DURATION, () => {
-                    this._isIdle = false;
-                    this._isMoving = true;
-                    this._called = false;
-                });
-            }
+    phase(ph){
+        this.move();
+        if(!this._called){
+            this.shoot(ph);
         }
-        else if(this._isMoving){
-            this.move();
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION, () => {
-                    this._isMoving = false;
-                    this._isAttacking = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
-                    this._called = false;
-                });
-            }
-        } 
-        else if(this._isAttacking){
-            if(this.active && this._isAlive && !this._called){
-                this.shoot(this.x, this.y);
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
-                    this._isAttacking = false;
-                    this._isIdle = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
-                    this._called = false;
-                });
-            }
+        if(!this._shift){
+            this.shift(ph);
         }
-    }
-    faseTwo(){
-        if(this._isIdle){
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.IDLE_DURATION, () => {
-                    this._isIdle = false;
-                    this._isMoving = true;
-                    this._called = false;
-                });
-            }
-        }
-        else if(this._isMoving){
-            this.move();
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION, () => {
-                    this._isMoving = false;
-                    this._isAttacking = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
-                    this._called = false;
-                });
-            }
-        } 
-        else if(this._isAttacking){
-            if(this.active && this._isAlive && !this._called){
-                this.shootTwo(this.x, this.y);
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
-                    this._isAttacking = false;
-                    this._isIdle = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
-                    this._called = false;
-                });
-            }
-        }
-    }
-    faseThree(){
-        if(this._isIdle){
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.IDLE_DURATION, () => {
-                    this._isIdle = false;
-                    this._isMoving = true;
-                    this._called = false;
-                });
-            }
-        }
-        else if(this._isMoving){
-            this.move();
-            if(this.active && this._isAlive && !this._called){
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION, () => {
-                    this._isMoving = false;
-                    this._isAttacking = true;
-                    this._called = false;
-                });
-            }
-        } 
-        else if(this._isAttacking){
-            if(this.active && this._isAlive && !this._called){
-                this.shootThree(this.x, this.y);
-                this._called = true;
-                this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
-                    this._isAttacking = false;
-                    this._isIdle = true;
-                    this._called = false;
-                });
-            }
+        if(!this._hole){
+            this.hole();
         }
     }
 
-    shoot(x, y){
+    shoot(ph){
+        this._called = true;
+        this.scene.time.delayedCall(PARAMETERS.HOARDER.ATK_DURATION, () => {
+            if (this.active && this.scene) {
+                this._called = false;
+                switch(ph){
+                    case 1:
+                        this.shootOne(this.x, this.y);
+                        break;
+                    case 2:
+                        this.shootTwo(this.x, this.y);
+                        break;
+                    case 3:
+                        this.shootThree(this.x, this.y);
+                        break;
+                }
+            }
+        });
+    }
+
+    shift(ph){
+        this._shift = true;
+        this.scene.time.delayedCall(
+            Phaser.Math.Between(PARAMETERS.HOARDER.MOVE_LOW, PARAMETERS.HOARDER.MOVE_HIGH),
+            () => {
+            if (this.active && this.scene) {
+                this._shift = false;
+                if(this.x === PARAMETERS.HOARDER.MOVE_X){
+                    this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X;
+                    this.flipX = false;
+                }
+                else if (this.x === PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X) {
+                    this.x = PARAMETERS.HOARDER.MOVE_X;
+                    this.flipX = true;
+                }
+                if(ph >= 2) {
+                    console.log("ping");
+                    this.y = Phaser.Math.Between(PARAMETERS.HOARDER.OFFSET_Y, PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y)
+                }
+            }
+        });
+    }
+
+    hole(){
+        this._hole = true;
+        this.scene.time.delayedCall(
+            Phaser.Math.Between(PARAMETERS.HOARDER.MOVE_LOW, PARAMETERS.HOARDER.MOVE_HIGH),
+            () => {
+                if (this.active && this.scene) {
+                    this._hole = false;
+                    let hole_x = Phaser.Math.Between(3, 12)*64;
+                    let hole_y = Phaser.Math.Between(1, 7)*64;
+                    this.scene.spawnHole(hole_x, hole_y);
+                }
+        });
+    }
+
+    move() {
+        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y){
+            this._speed *= -1;
+            this.y += 2;
+        }
+        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y){
+            this._speed *= -1;
+            this.y -= 2;
+        }
+        this.body.setVelocity(0, this._speed); 
+    }
+
+    shootOne(x, y){
         this.scene.sound.play('enemy_shoot', { volume: 6 });
-        this.scene.newEnemyBullet(x, y);
+        this.scene.newEnemyForwardBullet(x, y);
     }
 
     shootTwo(x, y){
-        this.scene.newEnemyBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/3);
-        this.scene.newEnemyBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/3);
+        this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
+        this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
     }
 
     shootThree(x, y){
-        this.scene.newEnemyBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/3);
-        this.scene.newEnemyBullet(x, y);
-        this.scene.newEnemyBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/3);
-    }
-
-    move(){
-        this.runFromPlayer();
+        this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
+        this.scene.newEnemyForwardBullet(x, y);
+        this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
     }
 
     takeDamage(amount=1){
@@ -185,6 +159,4 @@ export default class Hoarder extends Enemy{
             }
         }
     }
-
-
 }

@@ -9,7 +9,8 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: true
+        DEBUG: true,
+        TILE: 64
     },
     PLAYER: {
         LIFE: 6,
@@ -82,8 +83,8 @@ const PARAMETERS = {
         PATROL_HIGH: 100
     },
     HOARDER: {
-        LIFE: 60,
-        MAX_LIFE: 60,
+        LIFE: 9,
+        MAX_LIFE: 9,
         SPEED: 50,
         DAMAGE: 1,
         LIFEBAR_X: 75, 
@@ -91,10 +92,18 @@ const PARAMETERS = {
         HITBOX_X: 128*0.7,
         HITBOX_Y: 128*0.75,
         SCALE_X: 1.7,
-        SCALE_Y: 1.7
+        SCALE_Y: 1.7,
+        MOVE_X: 128*0.8,
+        MOVE_DURATION: 2500, // in milliseconds
+        ATK_DURATION: 500, // in milliseconds
+        OFFSET_Y: 85,
+        MOVE_LOW: 5000, // in milliseconds
+        MOVE_HIGH: 10000, // in milliseconds
+        HOLE_LOW: 5000, // in milliseconds
+        HOLE_HIGH: 10000 // in milliseconds
     },
-    BULLET: {
-        // TODO
+    PUP: {
+        PUP_OFFSET: 32
     },
     HOLE: {
         DURATION: 1750,

@@ -1,4 +1,5 @@
 import Room from '../room.js'
+import Boots from '../../gameobjects/powerups/boots.js';
 
 export default class D1_BOOTS extends Room {
 
@@ -9,6 +10,7 @@ export default class D1_BOOTS extends Room {
     create() {
         super.generateTiled('d1_boots'); 
         super.create();
+        this.powerups.addElement(new Boots(this.player, this, 15*64 +32, 4*64 +32));
     }
 
     init(player_state) {

@@ -183,17 +183,17 @@
         },
         "d1_boots.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 11,
+                5,
                 12,
-                3,
-                4
+                3
             ],
             "scale": 1.060400390625,
-            "selectedLayer": 9,
+            "selectedLayer": 12,
             "viewCenter": {
-                "x": 287.6272044941751,
-                "y": 276.7822443247226
+                "x": 1010.9388957959204,
+                "y": 333.36464520882265
             }
         },
         "d1_boots.json#room_tileset": {
@@ -248,7 +248,7 @@
                 5
             ],
             "scale": 0.75,
-            "selectedLayer": 3,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 409.3333333333333,
                 "y": 391.33333333333326

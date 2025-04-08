@@ -222,12 +222,12 @@ export default class Room extends Phaser.Scene {
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
         this.enemies.addCollision(onc);
-        this.bullets.addCollision(onc, this.bullets.oncCollision);
+        this.bullets.addCollision(onc, this.bullets.oancCollision);
         // OIC is useful for cage logic in d1_mid
         this.physics.add.collider(this.player, oic, null, null, this);
     }
 
-    // ROOM STATE LOGIC AND METHODS
+    // ROOM STATE LOGIC AND METHOD
 
     enterDialogue(nameNPC){
         this.dialogue_manager.enterDialogue(nameNPC, this.key);
@@ -238,6 +238,11 @@ export default class Room extends Phaser.Scene {
         this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
              max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
              portal: this.scene.key, powerup: this.player._pup});
+    }
+
+    spawnHole(x, y){
+        this.holes.addElement(new Hole(this, x, y));
+        this.player.setDepth(500);
     }
 
     gameOver(){
@@ -266,6 +271,10 @@ export default class Room extends Phaser.Scene {
 
     newEnemyBullet(origX, origY){
         this.bullets.addElement(new Bullet(this, origX, origY, this.player.x, this.player.y, true));
+    }
+
+    newEnemyForwardBullet(origX, origY){
+        this.bullets.addElement(new Bullet(this, origX, origY, this.player.x, origY, true));
     }
 
     // creates the ghost hitbox to make interactions possible

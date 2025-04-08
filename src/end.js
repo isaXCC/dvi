@@ -20,7 +20,8 @@ export default class End extends Phaser.Scene {
   create() {
     this.add.text(PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2, 'GAME OVER!\nStrike any key to go back to the start')
         .setOrigin(0.5, 0.5)  // Colocamos el pivote en el centro de cuadro de texto 
-        .setAlign('center');  // Centramos el texto dentro del cuadro de texto
+        .setAlign('center')  // Centramos el texto dentro del cuadro de texto
+        .setStyle({ fontSize: '36px' }); 
 
     // Añadimos el listener para cuando se haya pulsado una tecla. Es probable que no
     // lleguemos a ver el mensaje porque veníamos con una tecla pulsada del juego (al 
