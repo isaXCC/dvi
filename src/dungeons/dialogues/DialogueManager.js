@@ -179,7 +179,7 @@ export default class DialogueManager {
             let dungeon = key.slice(0, 2);
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
-                fetch('/'+this.current_dungeon+'.csv')
+                fetch('public/'+this.current_dungeon+'.csv')
                 .then(res => res.text())
                 .then(data => {
                     let i = 0;
