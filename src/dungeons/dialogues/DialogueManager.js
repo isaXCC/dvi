@@ -180,8 +180,8 @@ export default class DialogueManager {
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
                 //FOR LOCALHOST
-                fetch('dvi/public/'+this.current_dungeon+'.csv')
-                //fetch('./' + this.current_dungeon + '.csv')
+                //fetch('dvi/public/'+this.current_dungeon+'.csv')
+                fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     console.log(data)
