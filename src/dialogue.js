@@ -39,6 +39,22 @@ export default class Dialogue extends Phaser.Scene{
         // Creates the text used in dialogue
         this.createText();
 
+        
+        this.input.on('pointermove', (pointer) => {
+            let x = pointer.x, y = pointer.y;
+            let i;
+            for(i = 0; i < this.choices.length; i++){
+                if(x >= this.optionX && x <= this.optionX + this.optionWidth &&
+                    y >= this.optionY - i*this.optionHeight*1.25 && y <= this.optionY + this.optionHeight - i*this.optionHeight*1.25
+                ){
+                    this.choiceElements[i].setAlpha(0.5);
+                }
+                else{
+                    this.choiceElements[i].setAlpha(1);
+                }
+            }
+        }, this.parentScene);
+
         // If the player clicks, we get out of the dialogue
         this.input.on('pointerdown', (pointer) => {
             if(this.choices.length == 0){

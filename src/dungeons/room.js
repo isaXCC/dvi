@@ -222,7 +222,7 @@ export default class Room extends Phaser.Scene {
         // Load gameobjects  
         this.physics.add.collider(this.player, onc);
         this.enemies.addCollision(onc);
-        this.bullets.addCollision(onc, this.bullets.oancCollision);
+        this.bullets.addCollision(onc, this.bullets.oncCollision);
         // OIC is useful for cage logic in d1_mid
         this.physics.add.collider(this.player, oic, null, null, this);
     }
