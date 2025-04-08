@@ -138,7 +138,6 @@ export default class Hoarder extends Enemy{
                 this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION, () => {
                     this._isMoving = false;
                     this._isAttacking = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
                     this._called = false;
                 });
             }
@@ -150,7 +149,6 @@ export default class Hoarder extends Enemy{
                 this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
                     this._isAttacking = false;
                     this._isIdle = true;
-                    // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
                     this._called = false;
                 });
             }
