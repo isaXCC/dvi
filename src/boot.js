@@ -131,7 +131,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('test');
+    this.scene.start('d1_1');
   }
 
   // creates, manages and shows the initial loading progress bar

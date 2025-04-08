@@ -22,6 +22,7 @@ import PARAMETERS from '../parameters.js';
 import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
+import DialogueManager from './dialogues/DialogueManager.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -32,10 +33,11 @@ export default class Room extends Phaser.Scene {
         this.player_state;
         this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
         this.powerup_image;
-
+        this.key = key;
     }
 
     init(player_state) {
+        this.dialogue_manager = new DialogueManager(this);
         if(player_state !== undefined){
             this.setPlayerInfo(player_state);
         }
@@ -149,6 +151,7 @@ export default class Room extends Phaser.Scene {
             // GRID_OFFSET_Y necesary to make Tiled more managable
             this.movingFires.addElement(new MovingFire(this, object.x + PARAMETERS.MOVING_FIRE.GRID_OFFSET_X, object.y, c.length, c.movement, c.fill, c.starts));
         }
+        /*
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
                 this.enemies.addElement(new Angel(this, object.x, object.y))
@@ -160,6 +163,7 @@ export default class Room extends Phaser.Scene {
                 this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
+            */
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
                 this.npcs.addElement(new NPC(this, object.x + PARAMETERS.NPC.GRID_OFFSET_X,
@@ -226,9 +230,8 @@ export default class Room extends Phaser.Scene {
 
     // ROOM STATE LOGIC AND METHODS
 
-    enterDialogue(){
-        this.scene.pause();
-        this.scene.launch('dialogue', { parent: this.scene, next: this.nextLine }); 
+    enterDialogue(nameNPC){
+        this.dialogue_manager.enterDialogue(nameNPC, this.key);
         this.input.enabled = false;
     }
 

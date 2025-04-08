@@ -146,7 +146,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life <= 0){
             this._isAlive = false;
         }
-        console.log("Player LIFE: " + this._life);
     }
 
     // PLAYER ACTIONS
