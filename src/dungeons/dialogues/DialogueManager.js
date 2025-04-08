@@ -180,8 +180,8 @@ export default class DialogueManager {
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
                 //FOR LOCALHOST
-                //('dvi/src/dungeons/dialogues/'+this.current_dungeon+'.csv')
-                fetch('./' + this.current_dungeon + '.csv')
+                fetch('dvi/public/'+this.current_dungeon+'.csv')
+                //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     console.log(data)
@@ -227,6 +227,7 @@ export default class DialogueManager {
                                     //colect everything except double quotes
                                     while(char.charCodeAt(0) !== 34){
                                         str += char;
+                                        console.log(str)
                                         i++;
                                         char = data[i];
                                     }
@@ -236,6 +237,7 @@ export default class DialogueManager {
                                 // anything but /r
                                 else if(char.charCodeAt(0) != 13){
                                     str += char;
+                                    console.log(str)
                                 }
                                 
                                 i++;
@@ -284,6 +286,8 @@ export default class DialogueManager {
                                 }
                             }
         
+                            console.log(this.info)
+
                             if(char === '\n'){
                                 this.info[current_npc].paths[current_path].contents.push(content);
                                 content = {};
