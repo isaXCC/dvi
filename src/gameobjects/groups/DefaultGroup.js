@@ -36,6 +36,10 @@ export default class DefaultGroup {
         this.group.remove(gameObject, removeFromScene, destroyChild);
     }
 
+    isEmpty() {
+        return this.group !== undefined ? this.group.getLength() === 0 : false;
+    }
+
     update(){
         this.group.getChildren().forEach(element => element.update());
     }

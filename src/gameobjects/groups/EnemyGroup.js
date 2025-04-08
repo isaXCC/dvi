@@ -9,7 +9,7 @@ export default class EnemyGroup extends DefaultGroup {
 
     playerCollision(player, enemy) {
         if(enemy.active){
-            if (player._invulnerable) return;
+            if (player.isInvulnerable()) return;
     
             console.log('touch damage');
             

@@ -1,0 +1,9 @@
+Commands to use in the csv:
+count-x (set count to value x)
+count-plus (one up)
+count-minus (one down)
+set-start (sets a checkpoint)
+check-xyz (check if the set of decisions matches the regular expresion. x means any option)
+	if true goes to dialogue +2
+	else goes to dialogue +1 and then to dialogue checkpoint
+toggle-COND (toggles value of cond)

@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import PARAMETERS from "../../parameters.js";
 import getNormDist from '../../utils/vector';
 
 //This class only serves as a template. Thus, it should never be instantiated

@@ -1,0 +1,320 @@
+{
+    "frames": [
+        {
+            "filename": "seraph_walk_eff_up_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_up_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_up_2",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 76,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_up_3",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 114,
+                "y": 0
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_left_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_left_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_left_2",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 76,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_left_3",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 114,
+                "y": 48
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_right_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_right_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_right_2",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 76,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_right_3",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 114,
+                "y": 96
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_down_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_down_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_down_2",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 76,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_eff_down_3",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 114,
+                "y": 144
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_up_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_up_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 192
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_left_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 240
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_left_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 240
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_right_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_right_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 288
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_down_0",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 0,
+                "y": 336
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        },
+        {
+            "filename": "seraph_walk_down_1",
+            "frame": {
+                "w": 38,
+                "h": 48,
+                "x": 38,
+                "y": 336
+            },
+            "anchor": {
+                "x": 0.5,
+                "y": 0.5
+            }
+        }
+    ],
+    "meta": {
+        "description": "Atlas generado con Atlas Packer Gamma V2",
+        "web": "https://gammafp.github.io/atlas-packer-phaser/"
+    }
+}

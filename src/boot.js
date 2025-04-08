@@ -1,32 +1,62 @@
 import Phaser from 'phaser'
 
 import loading from '../assets/sprites/misc/loading.png'
-import angel from '../assets/sprites/enemies/angel.png'
-import ophanim from '../assets/sprites/enemies/ophanim.png'
-import seraph from '../assets/sprites/enemies/seraph.png'
+// Enemies
+import angel from '../assets/sprites/enemies/angel_spreadsheet.png'
+import angel_atlas from '../assets/sprites/enemies/angel_atlas.json'
+import ophanim from '../assets/sprites/enemies/ophanim_spreadsheet.png'
+import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
+import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
+import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
+import hoarder from '../assets/sprites/enemies/hoarder.png'
+// Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
+// Utils
 import bullet from '../assets/sprites/utils/bullet.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
-import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
+import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import hearts from '../assets/sprites/utils/hearts.png'
+import stamina from '../assets/sprites/utils/stamina.png'
+// POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
+import boots from '../assets/sprites/utils/boots.png'
+import hole from '../assets/sprites/utils/hole.png'
+import fire from '../assets/sprites/utils/fire.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
 import player_reload from '../assets/audio/utils/player_reload.wav'
+import player_falling from '../assets/audio/utils/player_falling.wav'
 import player_hurt from '../assets/audio/utils/player_hurt.wav'
 import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
+import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
+import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
 // TILED IMPORTS
 import test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
 import d1_2 from '../assets/tiled/d1_2.json'
+import d1_3 from '../assets/tiled/d1_3.json'
 import d1_mid from '../assets/tiled/d1_mid.json'
+import d1_4 from '../assets/tiled/d1_4.json'
+import d1_pit from '../assets/tiled/d1_pit.json'
+import d1_5 from '../assets/tiled/d1_5.json'
+import d1_6 from '../assets/tiled/d1_6.json'
+import d1_7 from '../assets/tiled/d1_7.json'
+import d1_8 from '../assets/tiled/d1_8.json'
+import d1_9 from '../assets/tiled/d1_9.json'
+import d1_10 from '../assets/tiled/d1_10.json'
+import d1_11 from '../assets/tiled/d1_11.json'
+import d1_boots from '../assets/tiled/d1_boots.json'
+import d1_boss from '../assets/tiled/d1_boss.json'
+import d2_1 from '../assets/tiled/d2_1.json'
+import df_1 from '../assets/tiled/df_1.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
 
@@ -57,30 +87,57 @@ export default class Boot extends Phaser.Scene {
 
     // loading each sprite
     this.load.image('loading', loading);
-    this.load.image('angel', angel);
-    this.load.image('seraph', seraph);
-    this.load.image('ophanim', ophanim);
+    // ENEMIES
+    this.load.atlas('angel', angel, angel_atlas);
+    this.load.atlas('seraph', seraph, seraph_atlas);
+    this.load.atlas('ophanim', ophanim, ophanim_atlas);
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
+    this.load.image('hoarder', hoarder);
+
     this.load.image('bullet', bullet);
     this.load.image('fireball', fireball);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
+    // POWERUPS AND ITENS
     this.load.image('tripleshot', tripleshot);
     this.load.image('speedboost', speedboost);
+    this.load.image('boots', boots);
+    this.load.image('hole', hole);
+    this.load.image('fire', fire);
+    this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
+    this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
     this.load.audio('player_hurt', player_hurt);
+    this.load.audio('fallingSound', player_falling);
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
+    this.load.audio('powerup_pick', powerup_pick);
+    this.load.audio('time_attack_succeded', time_attack_succeded);
+    this.load.audio('time_attack_failed', time_attack_failed);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('test', test);
     this.load.tilemapTiledJSON('d1_1', d1_1);
     this.load.tilemapTiledJSON('d1_2', d1_2);
     this.load.tilemapTiledJSON('d1_mid', d1_mid);
+    this.load.tilemapTiledJSON('d1_3', d1_3);
+    this.load.tilemapTiledJSON('d1_4', d1_4); 
+    this.load.tilemapTiledJSON('d1_pit', d1_pit); 
+    this.load.tilemapTiledJSON('d1_5', d1_5); 
+    this.load.tilemapTiledJSON('d1_6', d1_6); 
+    this.load.tilemapTiledJSON('d1_7', d1_7); 
+    this.load.tilemapTiledJSON('d1_8', d1_8); 
+    this.load.tilemapTiledJSON('d1_9', d1_9); 
+    this.load.tilemapTiledJSON('d1_10', d1_10); 
+    this.load.tilemapTiledJSON('d1_11', d1_11); 
+    this.load.tilemapTiledJSON('d1_boots', d1_boots); 
+    this.load.tilemapTiledJSON('d1_boss', d1_boss); 
+    this.load.tilemapTiledJSON('d2_1', d2_1);
+    this.load.tilemapTiledJSON('df_1', df_1);
   }
 
   /**
@@ -89,7 +146,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('test', {life: 6});
+    this.scene.start('menu');
   }
 
   // creates, manages and shows the initial loading progress bar
