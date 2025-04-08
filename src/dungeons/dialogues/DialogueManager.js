@@ -181,6 +181,7 @@ export default class DialogueManager {
                 this.current_dungeon = dungeon;
                 //FOR LOCALHOST
                 //fetch('dvi/public/'+this.current_dungeon+'.csv')
+                //FOR GITHUB PAGES
                 fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
@@ -289,6 +290,9 @@ export default class DialogueManager {
                             console.log(this.info)
 
                             if(char === '\n'){
+                                console.log(content)
+                                console.log(current_path)
+                                console.log(this.info[current_npc].paths[current_path].contents)
                                 this.info[current_npc].paths[current_path].contents.push(content);
                                 content = {};
                                 i++;
