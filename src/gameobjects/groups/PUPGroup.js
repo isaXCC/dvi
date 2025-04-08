@@ -7,6 +7,11 @@ export default class PUPGroup extends DefaultGroup {
     }
 
     playerOverlap(player, powerup) {
-        player.pickPowerUp(powerup);
+        if(powerup.isStored()){
+            player.pickPowerUp(powerup);
+        }
+        else{
+            player.pickItem(powerup);
+        }
     }
 }
