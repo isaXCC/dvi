@@ -14,44 +14,55 @@ export default class DialogueManager {
     }
 
     decidePath(nameNPC){
-        let canMove = false;
-
+        
         let next = this.info[nameNPC].last + 1;
-        if(next >= this.info[nameNPC].paths.length)
-            return next - 1;
-        let cond = this.info[nameNPC].paths[next].cond.split(" ");
-        if(cond[0] === 'base'){
-            canMove = true;
-        }
-        else if (cond[0] === 'count'){
-            let num =  Number(cond[2]);
-            switch(cond[1]){
-                case '>':
-                    canMove = this.info[nameNPC].count > num;
-                    break;
-                case '>=':
-                    canMove = this.info[nameNPC].count >= num;
-                    break;
-                case '<':
-                    canMove = this.info[nameNPC].count < num;
-                    break;
-                case '<=':
-                    canMove = this.info[nameNPC].count <= num;
-                    break;
-                case '!=':
-                    canMove = this.info[nameNPC].count != num;
-                    break;
-                case '==':
-                    canMove = this.info[nameNPC].count == num;
-                    break;
+        let canMove = true;
+
+        while(canMove && next < this.info[nameNPC].paths.length){
+            let cond = this.info[nameNPC].paths[next].cond.split(" ");
+            console.log(cond)
+            if(cond[0] === 'base'){
+                canMove = true;
             }
-        }
-        else{
-            let dungeon = this.current_dungeon.toUpperCase();
-            canMove = CONDITIONS[dungeon][cond[0]];
+            else if (cond[0] === 'count'){
+                let num =  Number(cond[2]);
+                switch(cond[1]){
+                    case '>':
+                        canMove = this.info[nameNPC].count > num;
+                        break;
+                    case '>=':
+                        canMove = this.info[nameNPC].count >= num;
+                        break;
+                    case '<':
+                        canMove = this.info[nameNPC].count < num;
+                        break;
+                    case '<=':
+                        canMove = this.info[nameNPC].count <= num;
+                        break;
+                    case '!=':
+                        canMove = this.info[nameNPC].count != num;
+                        break;
+                    case '==':
+                        canMove = this.info[nameNPC].count == num;
+                        break;
+                }
+            }
+            else{
+                let dungeon = this.current_dungeon.toUpperCase();
+                canMove = CONDITIONS[dungeon][cond[0]];
+            }
+            if(canMove)
+                next++;
+            else
+                next--;
+
+            console.log(next)
         }
 
-        return canMove ? next : next - 1;
+        if(next == this.info[nameNPC].paths.length)
+            next--;
+
+        return next;
     }
 
     processData(nameNPC, path){
@@ -66,6 +77,7 @@ export default class DialogueManager {
         let passed_check;
 
         const launchNext = () => {
+            console.log(this.info)
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
                 this.RoomScene.scene.resume(); // Resume room when done
                 return;
