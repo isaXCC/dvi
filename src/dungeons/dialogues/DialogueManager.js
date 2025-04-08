@@ -1,4 +1,4 @@
-import conditions from '../conditions.js';
+import CONDITIONS from '../conditions.js';
 
 export default class DialogueManager {
     constructor(scene) {
@@ -17,6 +17,8 @@ export default class DialogueManager {
         let canMove = false;
 
         let next = this.info[nameNPC].last + 1;
+        if(next >= this.info[nameNPC].paths.length)
+            return next - 1;
         let cond = this.info[nameNPC].paths[next].cond.split(" ");
         if(cond[0] === 'base'){
             canMove = true;
@@ -46,7 +48,7 @@ export default class DialogueManager {
         }
         else{
             let dungeon = this.current_dungeon.toUpperCase();
-            canMove = conditions[dungeon][cond[0]];
+            canMove = CONDITIONS[dungeon][cond[0]];
         }
 
         return canMove ? next : next - 1;
@@ -58,11 +60,59 @@ export default class DialogueManager {
         this.RoomScene.scene.pause();
 
         let currentIndex = 0;
+        let next = -1;
+        let check_point = -1;
+        let choices_set = [];
+        let passed_check;
 
         const launchNext = () => {
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
                 this.RoomScene.scene.resume(); // Resume room when done
                 return;
+            }
+
+            let cmd = [];
+            if('cmd' in this.info[nameNPC].paths[path].contents[currentIndex]){
+                cmd = this.info[nameNPC].paths[path].contents[currentIndex].cmd.split("-");
+            }
+                
+            switch(cmd[0]){
+                case 'count':
+                    switch(cmd[1]){
+                        case 'plus':
+                            this.info[nameNPC].count++;
+                            break;
+                        case 'minus':
+                            this.info[nameNPC].count--;
+                            break;
+                        default:
+                            this.info[nameNPC].count = Number(cmd[1]);
+                            break;
+                    }
+                    break;
+                case 'set':
+                    check_point = currentIndex;
+                    break;
+                case 'check':
+                    let i = 0;
+                    let different = false;
+                    while(i < cmd[1].length && !different){
+                        if(cmd[1][i] !== 'x'){
+                            if(cmd[1][i] != choices_set[i]){
+                                different = true;
+                            }
+                        }
+                        i++;
+                    }
+
+                    choices_set = []
+                    passed_check = !different;
+                    
+                    break;
+                case 'toggle':
+                    let dungeon = this.current_dungeon.toUpperCase();
+                    CONDITIONS[dungeon][cmd[1]] = !CONDITIONS[dungeon][cmd[1]];
+                    break;
             }
 
             // Launch dialogue and wait for it to finish
@@ -71,8 +121,39 @@ export default class DialogueManager {
                 next: this.info[nameNPC].paths[path].contents[currentIndex].texto,
                 choices: this.info[nameNPC].paths[path].contents[currentIndex].options || [],
                 onComplete: (choice) => {
-                    console.log("chose option " + choice)
-                    currentIndex++;
+                    if(choice != undefined){
+                        choices_set.push(choice + 1);
+                    }
+                        
+
+                    if(next !== -1){
+                        currentIndex = next;
+                        next = -1;
+                    }
+                    else{
+                        if(cmd[0] === 'check'){
+                            if(passed_check){
+                                currentIndex = currentIndex + 2;
+                                next = -1;
+                            }
+                            else{
+                                currentIndex = currentIndex + 1;
+                                next = check_point;
+                            }
+                        }
+                        else{
+                            if(choice != undefined){
+                                let l = this.info[nameNPC].paths[path].contents[currentIndex].options.length;
+                                currentIndex = currentIndex + 1 + choice;
+                                next = currentIndex + l - choice;
+                            }
+                            else{
+                                currentIndex = currentIndex + 1;
+                                next = -1;
+                            }
+                        }
+                    }
+
                     launchNext(); // Launch next line
                 }
             });

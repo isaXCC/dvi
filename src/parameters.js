@@ -81,6 +81,18 @@ const PARAMETERS = {
         PATROL_LOW: 50, 
         PATROL_HIGH: 100
     },
+    HOARDER: {
+        LIFE: 60,
+        MAX_LIFE: 60,
+        SPEED: 50,
+        DAMAGE: 1,
+        LIFEBAR_X: 75, 
+        LIFEBAR_Y: 30,
+        HITBOX_X: 128*0.7,
+        HITBOX_Y: 128*0.75,
+        SCALE_X: 1.7,
+        SCALE_Y: 1.7
+    },
     BULLET: {
         // TODO
     },

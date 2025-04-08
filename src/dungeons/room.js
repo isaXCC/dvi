@@ -113,7 +113,7 @@ export default class Room extends Phaser.Scene {
         var onc = map.createLayer('onc', tiles, 0, 0);
         onc.setCollisionByExclusion([-1], true);
         var oic = map.createLayer('oic', tiles, 0, 0);
-        //oic.setCollisionByExclusion([-1], true);
+        oic.setCollisionByExclusion([-1], true);
         
         // Tiled creation of each object
         for (const object of map.getObjectLayer('portals').objects) {
@@ -122,8 +122,6 @@ export default class Room extends Phaser.Scene {
                     object.x + PARAMETERS.PORTAL.GRID_OFFSET_X, 
                     object.y + PARAMETERS.PORTAL.GRID_OFFSET_Y,
                      object.name));
-                console.log('player_state.portal:' + this.player_state.portal);
-                console.log('portal name:' + object.name);
                 if(object.name === this.player_state.portal){
                     console.log('NEW POS');
                     this.player_state.x = object.x;
@@ -151,10 +149,11 @@ export default class Room extends Phaser.Scene {
             // GRID_OFFSET_Y necesary to make Tiled more managable
             this.movingFires.addElement(new MovingFire(this, object.x + PARAMETERS.MOVING_FIRE.GRID_OFFSET_X, object.y, c.length, c.movement, c.fill, c.starts));
         }
-        /*
         for (const object of map.getObjectLayer('enemies').objects) {
             if (object.type === 'Angel') {
                 this.enemies.addElement(new Angel(this, object.x, object.y))
+                console.log("X: " +object.x);
+                console.log("Y: " +object.y);
             }
             if (object.type === 'Ophanim') {
                 this.enemies.addElement(new Ophanim(this, object.x, object.y))
@@ -163,7 +162,6 @@ export default class Room extends Phaser.Scene {
                 this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
         }
-            */
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
                 this.npcs.addElement(new NPC(this, object.x + PARAMETERS.NPC.GRID_OFFSET_X,
@@ -225,7 +223,8 @@ export default class Room extends Phaser.Scene {
         this.physics.add.collider(this.player, onc);
         this.enemies.addCollision(onc);
         this.bullets.addCollision(onc, this.bullets.oncCollision);
-        //this.physics.add.collider(this.player, oic, (player) => player.fallHole(), null, this);
+        // OIC is useful for cage logic in d1_mid
+        this.physics.add.collider(this.player, oic, null, null, this);
     }
 
     // ROOM STATE LOGIC AND METHODS
@@ -236,7 +235,6 @@ export default class Room extends Phaser.Scene {
     }
 
     nextRoom(room){
-        console.log('Player life before: ' + this.player._life);
         this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
              max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
              portal: this.scene.key, powerup: this.player._pup});
@@ -244,6 +242,10 @@ export default class Room extends Phaser.Scene {
 
     gameOver(){
         this.scene.start('end');
+    }
+
+    menu(){
+        this.scene.start('menu');
     }
 
     // AUXILIARY METHODS

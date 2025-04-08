@@ -1,14 +1,18 @@
 import Phaser from 'phaser'
 
 import loading from '../assets/sprites/misc/loading.png'
+// Enemies
 import angel from '../assets/sprites/enemies/angel_spreadsheet.png'
 import angel_atlas from '../assets/sprites/enemies/angel_atlas.json'
 import ophanim from '../assets/sprites/enemies/ophanim_spreadsheet.png'
 import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
 import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
 import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
+import hoarder from '../assets/sprites/enemies/hoarder.png'
+// Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
+// Utils
 import bullet from '../assets/sprites/utils/bullet.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
@@ -49,6 +53,8 @@ import d1_10 from '../assets/tiled/d1_10.json'
 import d1_11 from '../assets/tiled/d1_11.json'
 import d1_boots from '../assets/tiled/d1_boots.json'
 import d1_boss from '../assets/tiled/d1_boss.json'
+import d2_1 from '../assets/tiled/d2_1.json'
+import df_1 from '../assets/tiled/df_1.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
 
@@ -84,6 +90,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('ophanim', ophanim, ophanim_atlas);
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
+    this.load.image('hoarder', hoarder);
     this.load.image('bullet', bullet);
     this.load.image('fireball', fireball);
     this.load.image('portal', portal);
@@ -123,6 +130,8 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d1_11', d1_11); 
     this.load.tilemapTiledJSON('d1_boots', d1_boots); 
     this.load.tilemapTiledJSON('d1_boss', d1_boss); 
+    this.load.tilemapTiledJSON('d2_1', d2_1);
+    this.load.tilemapTiledJSON('df_1', df_1);
   }
 
   /**
@@ -131,7 +140,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('d1_1');
+    this.scene.start('d1_boss');
   }
 
   // creates, manages and shows the initial loading progress bar
