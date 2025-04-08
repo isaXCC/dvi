@@ -19,6 +19,9 @@ export default class HoleGroup extends DefaultGroup {
                     this.scene.nextRoom("d1_boss");
                     return;
                 }
+                else{
+                    this.scene.enterDialogue('d1_pit');
+                }
             }
             this.scene.sound.play('fallingSound', { volume: 2 });
             this.falling = true;

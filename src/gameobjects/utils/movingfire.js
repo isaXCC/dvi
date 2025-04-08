@@ -58,16 +58,18 @@ export default class MovingFire {
             this.pivot.y += this.speedSides;
         }
         else if(this.movement === 'horizontal'){
-            if (this.pivot.x > PARAMETERS.GAME.WIDTH - 12 || this.pivot.x < 12) {
+            if (this.pivot.x > PARAMETERS.GAME.WIDTH - 64*1.3 || this.pivot.x < -9) {
                 this.speedSides *= -1;
             }
             this.pivot.x += this.speedSides;
         }
         else if(this.movement === 'clockwise'){
             this.pivot.rotation += this.speedRotation;
+            this.fireballs.getChildren().forEach(element => element.rotation = -this.pivot.rotation);
         }
         else if(this.movement === 'anticlockwise'){
             this.pivot.rotation -= this.speedRotation;
+            this.fireballs.getChildren().forEach(element => element.rotation = -this.pivot.rotation);
         }
         
         //console.log(this.pivot.x, this.pivot.y)

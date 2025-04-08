@@ -21,8 +21,10 @@ import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import hearts from '../assets/sprites/utils/hearts.png'
 import stamina from '../assets/sprites/utils/stamina.png'
+// POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
+import boots from '../assets/sprites/utils/boots.png'
 import hole from '../assets/sprites/utils/hole.png'
 import fire from '../assets/sprites/utils/fire.png'
 // SOUND IMPORTS
@@ -85,18 +87,22 @@ export default class Boot extends Phaser.Scene {
 
     // loading each sprite
     this.load.image('loading', loading);
+    // ENEMIES
     this.load.atlas('angel', angel, angel_atlas);
     this.load.atlas('seraph', seraph, seraph_atlas);
     this.load.atlas('ophanim', ophanim, ophanim_atlas);
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
+
     this.load.image('bullet', bullet);
     this.load.image('fireball', fireball);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
+    // POWERUPS AND ITENS
     this.load.image('tripleshot', tripleshot);
     this.load.image('speedboost', speedboost);
+    this.load.image('boots', boots);
     this.load.image('hole', hole);
     this.load.image('fire', fire);
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
@@ -140,7 +146,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('d1_boss');
+    this.scene.start('menu');
   }
 
   // creates, manages and shows the initial loading progress bar

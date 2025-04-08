@@ -10,13 +10,13 @@ export default class Menu extends Phaser.Scene {
       this.add.text(PARAMETERS.GAME.WIDTH/2, 20, 'Game Menu', { font: '32px Arial', fill: '#fff' }).setOrigin(0.5);
   
       // Create an array of available scenes
-      this.sceneOptions = ['test', 'd1_1', 'd1_mid', 'd1_7', 'd1_8', 'd1_boots', 'd1_pit',
+      this.sceneOptions = ['test', 'd1_1', 'd1_mid', 'd1_6', 'd1_7', 'd1_8', 'd1_11', 'd1_boots', 'd1_pit',
                             'd1_boss', 'd2_1', 'df_1']; // Add your scene names here
       this.selectedIndex = 0;
   
       // Display the options with system font
       this.optionTexts = this.sceneOptions.map((scene, index) => {
-        return this.add.text(PARAMETERS.GAME.WIDTH/2, 120 + index * 40, scene, { font: '24px Arial', fill: '#fff' }).setOrigin(0.5);
+        return this.add.text(PARAMETERS.GAME.WIDTH/2, 80 + index * 40, scene, { font: '24px Arial', fill: '#fff' }).setOrigin(0.5);
       });
   
       // Highlight the default selected option

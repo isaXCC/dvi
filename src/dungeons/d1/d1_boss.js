@@ -32,6 +32,8 @@ export default class D1_BOSS extends Room {
                  'd2_1'));
             this.powerups.addElement(new HeartUp(this.player, this, PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2));
             CONDITIONS.D1.PORTAL_D2 = true;
+            // Make sure the player is in front of portal
+            this.player.setDepth(500);
         }
     }
 

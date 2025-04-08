@@ -1,7 +1,7 @@
 import AllEnemiesKilledCondition from '../timeattack/conditions/AllEnemiesKilledCondition.js';
 import Room from '../room.js'
 import TimeAttackRoom from '../timeattack/timeattackroom.js';
-import SpeedBoostPowerUpBenefit from '../timeattack/benefits/SpeedBoostPowerUpBenefit.js';
+import PARAMETERS from '../../parameters.js';
 
 export default class test extends Room {
 
@@ -20,8 +20,9 @@ export default class test extends Room {
         super.generateTiled('test'); 
         super.create();
 
-        // this room is a time attack
-        this.time_attack_room = new TimeAttackRoom(this, 15, new AllEnemiesKilledCondition(this), new SpeedBoostPowerUpBenefit(this));
+        // this room have a TIME ATK
+        this.time_attack_room = new TimeAttackRoom(this, 15, new AllEnemiesKilledCondition(this), 'TripleShot', 
+        7*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 4*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET);
     }
 
     update(){
