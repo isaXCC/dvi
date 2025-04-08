@@ -331,6 +331,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._pup.effect();
     }
 
+    pickItem(powerup){
+        this.scene.sound.play('powerup_pick', { volume: 0.5 });
+        let tmp = this._pup;
+        this._pup = powerup;
+        //remove from scene
+        this.scene.powerups.removeElement(powerup);
+        this._pup.effect();
+        this._pup = tmp;
+    }
+
     resetPowerUp(){
         this._pup.removePowerUp();
     }
