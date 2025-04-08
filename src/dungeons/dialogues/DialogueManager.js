@@ -179,9 +179,12 @@ export default class DialogueManager {
             let dungeon = key.slice(0, 2);
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
+                //FOR LOCALHOST
+                //('dvi/src/dungeons/dialogues/'+this.current_dungeon+'.csv')
                 fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
+                    console.log(data)
                     let i = 0;
                     let char = data[i];
                     let fields = [];
