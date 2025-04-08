@@ -23,6 +23,9 @@ import D1_MID from './dungeons/d1/d1_mid.js';
 import D1_BOOTS from './dungeons/d1/d1_boots.js';
 import D1_PIT from './dungeons/d1/d1_pit.js';
 import D1_BOSS from './dungeons/d1/d1_boss.js';
+import D2_1 from './dungeons/d2/d2_1.js';
+import DF_1 from './dungeons/df/df_1.js';
+import MENU from './menu.js';
 import Phaser from 'phaser';
 
 /**
@@ -39,8 +42,9 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Test, Dialogue, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
-            D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS, End],
+    scene: [Boot, Test, Dialogue, MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
+            D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS,
+            D2_1, DF_1, End],
     // scene: [ D1_12, D1_13, D1_14, D1_15,
     //         D1_16,  End],
     physics: {

@@ -198,8 +198,8 @@
                  "type":"Player",
                  "visible":true,
                  "width":64,
-                 "x":220,
-                 "y":416
+                 "x":448,
+                 "y":320
                 }],
          "offsetx":19,
          "offsety":-19,
@@ -210,7 +210,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":13,
+ "nextobjectid":14,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

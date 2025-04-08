@@ -55,6 +55,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._e = this.scene.input.keyboard.addKey('E');
         this._q = this.scene.input.keyboard.addKey('Q');
         this._t = this.scene.input.keyboard.addKey('T'); // TMP
+        this._m = this.scene.input.keyboard.addKey('M'); // DEBUG
 
         this._space = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
@@ -88,6 +89,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
         
+        if(Phaser.Input.Keyboard.JustDown(this._m) && PARAMETERS.GAME.DEBUG){
+            this.scene.menu();
+        }
+
         // Implicit State Machine
         if(!this._isFalling){
 
