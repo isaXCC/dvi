@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import PARAMETERS from "./parameters.js";
+import CONDITIONS from './dungeons/conditions.js';
 
 /**
  * Escena de fin de juego. Cuando se han recogido todas las estrellas, se presenta un
@@ -27,8 +28,13 @@ export default class End extends Phaser.Scene {
     // lleguemos a ver el mensaje porque veníamos con una tecla pulsada del juego (al 
     // ir moviendo al jugador). Se puede mejorar añadiendo un temporizador que 
     // añada este listener pasado un segundo
-    this.input.keyboard.on('keydown', function (_event) { 
-      this.scene.start('test', {life: 6});
+    this.input.keyboard.on('keydown', function (_event) {
+      if(CONDITIONS.D1.FIGHT_BOSS){
+        this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
+      }
+      else{
+        this.scene.start('test', {life: PARAMETERS.PLAYER.MAX_LIFE});
+      }
     }, this);
   }
 

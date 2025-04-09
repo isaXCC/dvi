@@ -69,31 +69,7 @@
          "draworder":"topdown",
          "id":12,
          "name":"holes",
-         "objects":[
-                {
-                 "gid":114,
-                 "height":64,
-                 "id":22,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":257.333333333333,
-                 "y":320
-                }, 
-                {
-                 "gid":114,
-                 "height":64,
-                 "id":23,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":321.333333333333,
-                 "y":320
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -130,43 +106,7 @@
          "draworder":"topdown",
          "id":3,
          "name":"enemies",
-         "objects":[
-                {
-                 "gid":30,
-                 "height":64,
-                 "id":3,
-                 "name":"eS_0",
-                 "rotation":0,
-                 "type":"Seraph",
-                 "visible":true,
-                 "width":64,
-                 "x":501.188397823828,
-                 "y":481.830857631885
-                }, 
-                {
-                 "gid":29,
-                 "height":64,
-                 "id":41,
-                 "name":"eA_0",
-                 "rotation":0,
-                 "type":"Angel",
-                 "visible":true,
-                 "width":64,
-                 "x":832,
-                 "y":384
-                }, 
-                {
-                 "gid":28,
-                 "height":64,
-                 "id":42,
-                 "name":"eO_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":512,
-                 "y":128
-                }],
+         "objects":[],
          "offsetx":32,
          "offsety":-32,
          "opacity":1,
@@ -184,7 +124,7 @@
                  "gid":31,
                  "height":64,
                  "id":8,
-                 "name":"d1_pit",
+                 "name":"d1_1",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -196,7 +136,7 @@
                  "gid":31,
                  "height":64,
                  "id":9,
-                 "name":"d1_mid",
+                 "name":"d2_1",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -208,7 +148,7 @@
                  "gid":31,
                  "height":64,
                  "id":10,
-                 "name":"d1_8",
+                 "name":"df_1",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -226,19 +166,7 @@
          "draworder":"topdown",
          "id":13,
          "name":"fires",
-         "objects":[
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":30,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":640,
-                 "y":322.666666666667
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -254,7 +182,7 @@
                  "gid":227,
                  "height":64,
                  "id":43,
-                 "name":"mice_kid",
+                 "name":"virgil",
                  "rotation":0,
                  "type":"NPC",
                  "visible":true,
@@ -283,31 +211,7 @@
          "draworder":"topdown",
          "id":8,
          "name":"powerups",
-         "objects":[
-                {
-                 "gid":251,
-                 "height":64,
-                 "id":44,
-                 "name":"",
-                 "rotation":0,
-                 "type":"SpeedBoost",
-                 "visible":true,
-                 "width":64,
-                 "x":448,
-                 "y":512
-                }, 
-                {
-                 "gid":252,
-                 "height":64,
-                 "id":45,
-                 "name":"",
-                 "rotation":0,
-                 "type":"TripleShot",
-                 "visible":true,
-                 "width":64,
-                 "x":256,
-                 "y":512
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -318,106 +222,7 @@
          "draworder":"topdown",
          "id":15,
          "name":"moving_fires",
-         "objects":[
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":34,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"5"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":190.666666666667,
-                 "y":188
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":35,
-                 "name":"Hori",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"up"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"3"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"horizontal"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":277.333333333333,
-                 "y":500
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":38,
-                 "name":"Rotating",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"3"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"clockwise"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":512,
-                 "y":192
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

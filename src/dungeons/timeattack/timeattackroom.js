@@ -3,6 +3,7 @@ import PARAMETERS from '../../parameters';
 import SpeedBoost from "../../gameobjects/powerups/speedboost";
 import TripleShot from "../../gameobjects/powerups/tripleshot";
 import HeartUp from "../../gameobjects/powerups/heartup";
+import CONDITIONS from '../conditions';
 
 
 export default class TimeAttackRoom {
@@ -13,7 +14,7 @@ export default class TimeAttackRoom {
      * @param {number} condition Condition which has to be completed in order to surpass the Time Attack
      * @param {number} benefit Benefit granted when the Time Attack is surpassed
      */
-    constructor(scene, count, condition, benefit, x, y) {
+    constructor(scene, count, condition, benefit, x, y, room) {
 
         this.scene = scene;
         this.count = count;
@@ -21,6 +22,7 @@ export default class TimeAttackRoom {
         this._benefit = benefit;
         this._x = x;
         this._y = y;
+        this._room = room;
 
         // timer text
         this.timerText = this.scene.add.text(PARAMETERS.GAME.WIDTH/2, 10, `${this.count}`, {
@@ -69,6 +71,16 @@ export default class TimeAttackRoom {
                 break;
             case 'HeartUp':
                 this.scene.powerups.addElement(new HeartUp(this.scene.player, this.scene, this._x, this._y));
+                break;
+            default:
+                break;
+        }
+        switch(this._room){
+            case 'd1_6':
+                CONDITIONS.D1.TIMEATK1 = true;
+                break;
+            case 'd1_11':
+                CONDITIONS.D1.TIMEATK2 = true;
                 break;
             default:
                 break;

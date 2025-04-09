@@ -11,18 +11,12 @@ export default class test extends Room {
 
     init(player_state) {
         super.init(player_state);
-        super.nextLine = "PRESENTACION HITO 1" +
-                        "\n Phat Boi Games apresenta: " +
-                        "\n POCO porque falta MUCHO";
     }
 
     create() {
         super.generateTiled('test'); 
         super.create();
-
-        // this room have a TIME ATK
-        this.time_attack_room = new TimeAttackRoom(this, 15, new AllEnemiesKilledCondition(this), 'TripleShot', 
-        7*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 4*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET);
+        this.enterDialogue('test');
     }
 
     update(){

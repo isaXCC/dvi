@@ -7,6 +7,7 @@ const CONDITIONS = {
         MICE_FAMILY: false, // Activates in NPCGroup -> Changes MICE Family PNG
         TIMEATK1: false,
         TIMEATK2: false,
+        FIGHT_BOSS: false,
         KILLED_BOSS: false,
         PORTAL_D2: false
     }, 

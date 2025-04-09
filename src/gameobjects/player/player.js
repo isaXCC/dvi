@@ -353,10 +353,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     isInvulnerable(){ return this._isInvulnerable || this._isDashing || this._isJumpScare;}
 
     changeMaxLife(i){
+        PARAMETERS.PLAYER.MAX_LIFE = this._max_life + i;
+        PARAMETERS.PLAYER.LIFE = this._life + i;
         this._max_life = this._max_life + i;
         this._life = this._life + i;
-        console.log("Player new MAXLIFE: " + this._max_life);
-        console.log("Player new LIFE: " + this._life);
     }
 
     // ANIMATIONS SECTION
