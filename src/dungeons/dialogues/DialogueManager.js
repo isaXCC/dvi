@@ -176,9 +176,9 @@ export default class DialogueManager {
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
                 //FOR LOCALHOST
-                //fetch('dvi/public/'+this.current_dungeon+'.csv')
+                fetch('dvi/public/'+this.current_dungeon+'.csv')
                 //FOR GITHUB PAGES
-                fetch('./' + this.current_dungeon + '.csv')
+                //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     console.log(data)
@@ -186,7 +186,7 @@ export default class DialogueManager {
                     let char = data[i];
                     let fields = [];
                     //LOAD FIELDS
-                    while(char !== '\n'){
+                    while(char.charCodeAt(0) !== 10){
                         let str = '';
                         while(char !== ','){
                             if(char.charCodeAt(0) > 41)
@@ -235,7 +235,7 @@ export default class DialogueManager {
                                     char = data[i];
                                 }
                                 // anything but /r
-                                else if(char.charCodeAt(0) != 13){
+                                else if(char.charCodeAt(0) !== 13 && char.charCodeAt(0) !== 10){
                                     str += char;
                                 }
                                 
