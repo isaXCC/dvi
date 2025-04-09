@@ -239,14 +239,15 @@ export default class DialogueManager {
                                     str += char;
                                 }
                                 
+                                if(char.charCodeAt(0) === 10)
+                                    break;
                                 i++;
                                 char = data[i];
 
                                 console.log(char)
                                 console.log(char.charCodeAt(0))
 
-                                if(char.charCodeAt(0) === 10)
-                                    break;
+                                
 
                             }
                             if(str !== ''){
