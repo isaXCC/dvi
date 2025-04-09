@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "d1_11.json",
+    "activeFile": "d1_7.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -43,9 +43,7 @@
         },
         "d1_11.json": {
             "expandedObjectLayers": [
-                11,
-                5,
-                3
+                4
             ],
             "scale": 1.060400390625,
             "selectedLayer": 12,
@@ -79,10 +77,10 @@
                 3
             ],
             "scale": 0.64755859375,
-            "selectedLayer": 11,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 511.9227869099683,
-                "y": 288.00482581812696
+                "x": 511.1506560096516,
+                "y": 830.0407178404464
             }
         },
         "d1_3.json#room_tileset": {
@@ -143,10 +141,10 @@
                 3
             ],
             "scale": 0.6048828125,
-            "selectedLayer": 0,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 866.2835001614467,
-                "y": 159.53503390377796
+                "x": 479.4317081046175,
+                "y": 351.3077171456249
             }
         },
         "d1_7.json#room_tileset": {
@@ -245,6 +243,7 @@
         },
         "d2_1.json": {
             "expandedObjectLayers": [
+                7,
                 5
             ],
             "scale": 0.75,
@@ -275,13 +274,14 @@
                 5,
                 12,
                 8,
+                15,
                 3
             ],
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 589.3333333333333,
-                "y": 351.33333333333326
+                "x": 672,
+                "y": 355.33333333333326
             }
         },
         "test.json#room_tileset": {
@@ -290,29 +290,28 @@
     },
     "openFiles": [
         "test.json",
-        "d1_3.json",
-        "d1_4.json",
-        "d1_pit.json",
-        "d1_7.json",
-        "d1_1.json",
-        "d1_9.json",
+        "d2_1.json",
+        "df_1.json",
+        "d1_boots.json",
         "d1_11.json",
-        "d1_mid.json",
-        "d1_boss.json"
+        "d1_1.json",
+        "d1_2.json",
+        "d1_3.json",
+        "d1_7.json"
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
+        "test.json",
+        "d2_1.json",
+        "df_1.json",
+        "d1_boots.json",
+        "d1_11.json",
+        "d1_1.json",
+        "d1_2.json",
+        "d1_3.json",
+        "d1_7.json",
         "d1_boss.json",
         "d1_mid.json",
-        "d1_11.json",
-        "d1_9.json",
-        "d1_1.json",
-        "d1_7.json",
-        "d1_pit.json",
-        "d1_4.json",
-        "d1_3.json",
-        "test.json",
-        "d1_5.json",
-        "d1_8.json"
+        "d1_9.json"
     ]
 }

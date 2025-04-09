@@ -817,8 +817,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":320
+                 "x":512,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",

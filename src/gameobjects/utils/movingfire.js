@@ -71,7 +71,7 @@ export default class MovingFire {
             this.pivot.rotation -= this.speedRotation;
             this.fireballs.getChildren().forEach(element => element.rotation = -this.pivot.rotation);
         }
-        
+        this.fireballs.getChildren().forEach(element => element.update());
         //console.log(this.pivot.x, this.pivot.y)
     }
 
