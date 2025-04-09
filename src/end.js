@@ -33,7 +33,7 @@ export default class End extends Phaser.Scene {
         this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
       }
       else{
-        this.scene.start('d1_test', {life: PARAMETERS.PLAYER.MAX_LIFE});
+        this.scene.start('d1_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
       }
     }, this);
   }
