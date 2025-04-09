@@ -18,9 +18,9 @@
                 5
             ],
             "scale": 0.75,
-            "selectedLayer": 12,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 306.66666666666663,
+                "x": 513.3333333333333,
                 "y": 460.6666666666667
             }
         },
@@ -48,10 +48,10 @@
                 3
             ],
             "scale": 1.060400390625,
-            "selectedLayer": 8,
+            "selectedLayer": 12,
             "viewCenter": {
-                "x": 728.0268913754203,
-                "y": 389.0040060781877
+                "x": 644.0963300640052,
+                "y": 333.36464520882265
             }
         },
         "d1_11.json#room_tileset": {
@@ -59,18 +59,18 @@
         },
         "d1_2.json": {
             "expandedObjectLayers": [
-                5,
-                11
+                11,
+                5
             ],
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 500,
-                "y": 317.5
+                "x": 530,
+                "y": 276.5
             }
         },
         "d1_2.json#room_tileset": {
-            "scaleInDock": 1
+            "scaleInDock": 0.33
         },
         "d1_3.json": {
             "expandedObjectLayers": [
@@ -248,10 +248,10 @@
                 5
             ],
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 409.3333333333333,
-                "y": 391.33333333333326
+                "x": 740,
+                "y": 124.66666666666663
             }
         },
         "d2_1.json#room_tileset": {
@@ -273,14 +273,15 @@
                 13,
                 7,
                 5,
+                12,
                 8,
                 3
             ],
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 415.9999999999999,
-                "y": 95.33333333333326
+                "x": 589.3333333333333,
+                "y": 351.33333333333326
             }
         },
         "test.json#room_tileset": {

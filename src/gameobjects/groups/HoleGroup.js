@@ -48,8 +48,8 @@ export default class HoleGroup extends DefaultGroup {
                         player._isFalling = false;
                         //The problem is that we are manually getting speed for player...etc
                         //When decoupled to player should be solved
-                        player.fallHole();
                     });
+                    player.fallHole();
                 }
             });
         }

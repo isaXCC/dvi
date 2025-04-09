@@ -1,5 +1,6 @@
 import Room from '../room.js'
 import DummyAngel from '../../gameobjects/enemies/dummy_angel.js';
+import CONDITIONS from '../conditions.js';
 
 export default class D1_MID extends Room {
 
@@ -10,7 +11,9 @@ export default class D1_MID extends Room {
     create() {
         super.generateTiled('d1_mid'); 
         super.create();
-        this.enemies.addElement(new DummyAngel(this, 225, 160));
+        if(!CONDITIONS.D1.KILLED_ANGEL){
+            this.enemies.addElement(new DummyAngel(this, 225, 160));
+        }
     }
 
     init(player_state) {

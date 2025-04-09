@@ -8,7 +8,8 @@ export default class D1_1 extends Room {
 
     create() {
         super.generateTiled('d1_1'); 
-        super.create();;
+        super.create();
+        this.enterDialogue('d1_1');
     }
 
     init(player_state) {
