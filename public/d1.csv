@@ -1,5 +1,5 @@
 npc_name,cond,cmd,options,index,text,option1,option2,option3,option4
-test,base,,,0,"""Bienvenidos a la presentacion del HITO2!""",,,,
+d1_test,base,,,0,"""Bienvenidos a la presentacion del HITO2!""",,,,
 d1_1,base,,,0,"""After escaping HELL, you have a second chance.""",,,,
 ,,,,1,"""A chance to make every wrong right - a chance to kill your former masters.""",,,,
 ,,,,2,"""Don't be weird and move yourself with WASD. Interact with the DOG and SANDBOX with E!""",,,,

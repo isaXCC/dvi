@@ -3,10 +3,10 @@ import Room from '../room.js'
 import TimeAttackRoom from '../timeattack/timeattackroom.js';
 import PARAMETERS from '../../parameters.js';
 
-export default class test extends Room {
+export default class D1_Test extends Room {
 
     constructor() {
-        super('test');
+        super('d1_test');
     }
 
     init(player_state) {
@@ -14,9 +14,9 @@ export default class test extends Room {
     }
 
     create() {
-        super.generateTiled('test'); 
+        super.generateTiled('d1_test'); 
         super.create();
-        this.enterDialogue('test');
+        this.enterDialogue('d1_test');
     }
 
     update(){

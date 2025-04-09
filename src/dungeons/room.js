@@ -81,6 +81,7 @@ export default class Room extends Phaser.Scene {
         this.portals.update();
         this.npcs.update();
         this.movingFires.update();
+        this.fires.update();
         
         if(this.player._isAlive)
             this.player.update();    

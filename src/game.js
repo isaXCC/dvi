@@ -2,7 +2,7 @@ import PARAMETERS from "./parameters.js";
 import Boot from './boot.js';
 import Dialogue from './dialogue.js';
 import End from './end.js';
-import Test from './dungeons/d1/test.js';
+import D1_Test from './dungeons/d1/d1_test.js';
 import D1_1 from './dungeons/d1/d1_1.js';
 import D1_2 from './dungeons/d1/d1_2.js';
 import D1_3 from './dungeons/d1/d1_3.js';
@@ -42,7 +42,7 @@ let config = {
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, Test, Dialogue, MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
+    scene: [Boot, D1_Test, Dialogue, MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
             D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS,
             D2_1, DF_1, End],
     // scene: [ D1_12, D1_13, D1_14, D1_15,
