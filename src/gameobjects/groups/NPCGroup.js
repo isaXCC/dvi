@@ -1,5 +1,7 @@
 import DefaultGroup from "./DefaultGroup";
 import CONDITIONS from "../../dungeons/conditions"
+import HeartUp from "../powerups/heartup";
+import PARAMETERS from "../../parameters";
 
 export default class NPCGroup extends DefaultGroup {
 
@@ -20,6 +22,7 @@ export default class NPCGroup extends DefaultGroup {
                 CONDITIONS.D1.MICE_FAMILY = true;
                 CONDITIONS.D1.MICE_KID = true;
                 this.scene.scene.get(this.scene.key).events.once('resume', () => {
+                    this.scene.powerups.addElement(new HeartUp(this.scene.player, this.scene, PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2));
                     npc.destroy();
                 });
             };

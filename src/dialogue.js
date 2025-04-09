@@ -20,6 +20,7 @@ export default class Dialogue extends Phaser.Scene{
         this.optionHeight = PARAMETERS.GAME.HEIGHT * 0.1;
         this.optionX = PARAMETERS.GAME.WIDTH*(1/2) + 20;
         this.optionY = this.boxY - this.optionHeight - 15;
+        this.count = 0;
     }
     
     init(info) {
@@ -57,24 +58,32 @@ export default class Dialogue extends Phaser.Scene{
 
         // If the player clicks, we get out of the dialogue
         this.input.on('pointerdown', (pointer) => {
-            if(this.choices.length == 0){
-                console.log("no options")
-                this.getOut();
-                if(this.onComplete) this.onComplete();
-            }
-            else {
-                let x = pointer.x, y = pointer.y;
-                let i;
-                for(i = 0; i < this.choices.length; i++){
-                    if(x >= this.optionX && x <= this.optionX + this.optionWidth &&
-                        y >= this.optionY - i*this.optionHeight*1.25 && y <= this.optionY + this.optionHeight - i*this.optionHeight*1.25
-                    ){
-                        this.getOut();
-                        if(this.onComplete) this.onComplete(i);
+            this.count++;
+            if(this.dialogueText.text.length == this.fullText.length || this.count == 2){
+                if(this.choices.length == 0){
+                    this.count = 0;
+                    console.log("no options")
+                    this.getOut();
+                    if(this.onComplete) this.onComplete();
+                }
+                else {
+                    let x = pointer.x, y = pointer.y;
+                    let i;
+                    for(i = 0; i < this.choices.length; i++){
+                        if(x >= this.optionX && x <= this.optionX + this.optionWidth &&
+                            y >= this.optionY - i*this.optionHeight*1.25 && y <= this.optionY + this.optionHeight - i*this.optionHeight*1.25
+                        ){
+                            this.count = 0;
+                            this.getOut();
+                            if(this.onComplete) this.onComplete(i);
+                        }
                     }
                 }
             }
-            
+            else {
+                this.dialogueText.text = this.fullText;
+            }
+                
         });
     }
     
@@ -132,7 +141,7 @@ export default class Dialogue extends Phaser.Scene{
         this.typeEvent = this.time.addEvent({
             delay: 50, // ms between each character
             callback: () => { 
-                if (this.currentCharIndex < this.fullText.length) {
+                if (this.currentCharIndex < this.fullText.length && this.count == 0) {
                     this.dialogueText.text += this.fullText[this.currentCharIndex];
                     this.currentCharIndex++;
                 } 
