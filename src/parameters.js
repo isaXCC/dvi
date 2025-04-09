@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: true,
+        DEBUG: false,
         TILE: 64
     },
     PLAYER: {
@@ -83,8 +83,8 @@ const PARAMETERS = {
         PATROL_HIGH: 100
     },
     HOARDER: {
-        LIFE: 9,
-        MAX_LIFE: 9,
+        LIFE: 60,
+        MAX_LIFE: 60,
         SPEED: 50,
         DAMAGE: 1,
         LIFEBAR_X: 75, 

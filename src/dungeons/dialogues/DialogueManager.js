@@ -72,6 +72,7 @@ export default class DialogueManager {
         let check_point = -1;
         let choices_set = [];
         let passed_check;
+        let should_store = false;
 
         const launchNext = () => {
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
@@ -100,6 +101,7 @@ export default class DialogueManager {
                     break;
                 case 'set':
                     check_point = currentIndex;
+                    should_store = true;
                     break;
                 case 'check':
                     let i = 0;
@@ -130,7 +132,9 @@ export default class DialogueManager {
                 choices: this.info[nameNPC].paths[path].contents[currentIndex].options || [],
                 onComplete: (choice) => {
                     if(choice != undefined){
-                        choices_set.push(choice + 1);
+                        if(should_store){
+                            choices_set.push(choice + 1);
+                        }
                     }
                         
 
@@ -181,7 +185,6 @@ export default class DialogueManager {
                 //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
-                    console.log(data)
                     let i = 0;
                     let char = data[i];
                     let fields = [];
@@ -217,8 +220,6 @@ export default class DialogueManager {
                     //}
                     while(i < data.length){
                         for(n = 0; n < fields.length; n++){
-                            console.log(char)
-                            console.log(char.charCodeAt(0))
                             let str = '';
                             while(char !== ','){
                                 // double quotes
@@ -243,12 +244,6 @@ export default class DialogueManager {
                                     break;
                                 i++;
                                 char = data[i];
-
-                                console.log(char)
-                                console.log(char.charCodeAt(0))
-
-                                
-
                             }
                             if(str !== ''){
                                 switch(n){
