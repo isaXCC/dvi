@@ -39,7 +39,7 @@ import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
 import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
 // TILED IMPORTS
-import test from '../assets/tiled/test.json'
+import d1_test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
 import d1_2 from '../assets/tiled/d1_2.json'
 import d1_3 from '../assets/tiled/d1_3.json'
@@ -104,7 +104,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('speedboost', speedboost);
     this.load.image('boots', boots);
     this.load.image('hole', hole);
-    this.load.image('fire', fire);
+    this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
     this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
     // SOUNDS PRELOAD
@@ -120,7 +120,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('time_attack_failed', time_attack_failed);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
-    this.load.tilemapTiledJSON('test', test);
+    this.load.tilemapTiledJSON('d1_test', d1_test);
     this.load.tilemapTiledJSON('d1_1', d1_1);
     this.load.tilemapTiledJSON('d1_2', d1_2);
     this.load.tilemapTiledJSON('d1_mid', d1_mid);
