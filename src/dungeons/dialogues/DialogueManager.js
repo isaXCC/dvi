@@ -20,7 +20,6 @@ export default class DialogueManager {
 
         while(canMove && next < this.info[nameNPC].paths.length){
             let cond = this.info[nameNPC].paths[next].cond.split(" ");
-            console.log(cond)
             if(cond[0] === 'base'){
                 canMove = true;
             }
@@ -55,8 +54,6 @@ export default class DialogueManager {
                 next++;
             else
                 next--;
-
-            console.log(next)
         }
 
         if(next == this.info[nameNPC].paths.length)
@@ -77,7 +74,6 @@ export default class DialogueManager {
         let passed_check;
 
         const launchNext = () => {
-            console.log(this.info)
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
                 this.RoomScene.scene.resume(); // Resume room when done
                 return;
@@ -180,9 +176,9 @@ export default class DialogueManager {
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
                 //FOR LOCALHOST
-                //fetch('dvi/public/'+this.current_dungeon+'.csv')
+                fetch('dvi/public/'+this.current_dungeon+'.csv')
                 //FOR GITHUB PAGES
-                fetch('./' + this.current_dungeon + '.csv')
+                //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     console.log(data)
@@ -201,10 +197,12 @@ export default class DialogueManager {
                                 break;
                         }
                         fields.push(str);
-                        if(char === '\n')
+                        if(char.charCodeAt(0) === 10)
                             break;
-                        i++;
-                        char = data[i];
+                        else{
+                            i++;
+                            char = data[i];
+                        }
                     }
                     i++;
                     char = data[i]
@@ -219,6 +217,8 @@ export default class DialogueManager {
                     //}
                     while(i < data.length){
                         for(n = 0; n < fields.length; n++){
+                            console.log(char)
+                            console.log(char.charCodeAt(0))
                             let str = '';
                             while(char !== ','){
                                 // double quotes
@@ -228,7 +228,6 @@ export default class DialogueManager {
                                     //colect everything except double quotes
                                     while(char.charCodeAt(0) !== 34){
                                         str += char;
-                                        console.log(str)
                                         i++;
                                         char = data[i];
                                     }
@@ -238,14 +237,17 @@ export default class DialogueManager {
                                 // anything but /r
                                 else if(char.charCodeAt(0) != 13){
                                     str += char;
-                                    console.log(str)
                                 }
                                 
                                 i++;
                                 char = data[i];
 
+                                console.log(char)
+                                console.log(char.charCodeAt(0))
+
                                 if(char.charCodeAt(0) === 10)
                                     break;
+
                             }
                             if(str !== ''){
                                 switch(n){
@@ -280,19 +282,14 @@ export default class DialogueManager {
                                         content['options'].push(str);
                                         break;
                                     case 9:
+                                        content['options'].push(str);
                                         break;
                                     default:
-                                        content['options'].push(str);
                                         break;
                                 }
                             }
         
-                            console.log(this.info)
-
-                            if(char === '\n'){
-                                console.log(content)
-                                console.log(current_path)
-                                console.log(this.info[current_npc].paths[current_path].contents)
+                            if(char.charCodeAt(0) === 10){
                                 this.info[current_npc].paths[current_path].contents.push(content);
                                 content = {};
                                 i++;
