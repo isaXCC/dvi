@@ -22,7 +22,6 @@ export default class D1_8 extends Room {
         super.update();
         if(CONDITIONS.D1.MICE_KID){
             CONDITIONS.D1.MICE_KID = false;
-            this.powerups.addElement(new HeartUp(this.player, this, PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2));
         }
     }
 

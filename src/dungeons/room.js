@@ -80,7 +80,9 @@ export default class Room extends Phaser.Scene {
         this.enemies.update();
         this.portals.update();
         this.npcs.update();
+        this.fires.update();
         this.movingFires.update();
+        this.fires.update();
         
         if(this.player._isAlive)
             this.player.update();    
@@ -110,6 +112,7 @@ export default class Room extends Phaser.Scene {
         var map = this.make.tilemap({key: key});
         var tiles = map.addTilesetImage('room_tileset', 'room_tiles');
         map.createLayer('background', tiles, 0, 0);
+        map.createLayer('onn', tiles, 0, 0);
         var onc = map.createLayer('onc', tiles, 0, 0);
         onc.setCollisionByExclusion([-1], true);
         var oic = map.createLayer('oic', tiles, 0, 0);
