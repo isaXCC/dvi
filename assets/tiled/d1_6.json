@@ -11,7 +11,7 @@
  "layers":[
         {
          "compression":"",
-         "data":"GgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAANgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAA0AAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAA1AAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAADUAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAA",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAANgAAABoAAAAaAAAAGgAAAAAAAAAAAAAAGgAAABoAAAA0AAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAiwAAABoAAAAaAAAAGgAAABoAAAAAAAAAAAAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAACLAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAAAAAAAAAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAAAAAAAAAAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAiwAAABoAAAA1AAAAGgAAABoAAAAAAAAAAAAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAACLAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAAAAAAAAAAAAaAAAAGgAAABoAAAAaAAAAGgAAADUAAAAaAAAAGgAAABoAAAAaAAAAGgAAABoAAAAaAAAAGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
          "encoding":"base64",
          "height":9,
          "id":1,
@@ -53,7 +53,7 @@
         }, 
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+         "data":"JAAAACIAAAAiAAAAIgAAACIAAAAiAAAAIgAAACIAAAAiAAAAIgAAACIAAAAiAAAAIgAAACIAAAAiAAAAJQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEAAAAnAAAAIwAAACMAAAAjAAAAIwAAACMAAAAjAAAAIwAAACMAAAAjAAAAIwAAACMAAAAjAAAAIwAAACMAAAAmAAAA",
          "encoding":"base64",
          "height":9,
          "id":2,
@@ -71,22 +71,22 @@
          "name":"holes",
          "objects":[
                 {
-                 "gid":114,
+                 "gid":228,
                  "height":64,
-                 "id":91,
-                 "name":"Hole",
+                 "id":102,
+                 "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":512,
-                 "y":256
+                 "x":640,
+                 "y":192
                 }, 
                 {
-                 "gid":114,
+                 "gid":228,
                  "height":64,
-                 "id":92,
-                 "name":"Hole",
+                 "id":103,
+                 "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -95,10 +95,10 @@
                  "y":384
                 }, 
                 {
-                 "gid":114,
+                 "gid":228,
                  "height":64,
-                 "id":93,
-                 "name":"Hole",
+                 "id":104,
+                 "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -107,16 +107,16 @@
                  "y":448
                 }, 
                 {
-                 "gid":114,
+                 "gid":228,
                  "height":64,
-                 "id":94,
-                 "name":"Hole",
+                 "id":105,
+                 "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":640,
-                 "y":192
+                 "x":512,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -171,7 +171,7 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":0,
+                 "x":64,
                  "y":320
                 }, 
                 {
@@ -183,7 +183,7 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":960,
+                 "x":896,
                  "y":320
                 }, 
                 {
@@ -196,7 +196,7 @@
                  "visible":true,
                  "width":64,
                  "x":448,
-                 "y":64
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -219,7 +219,7 @@
                  "visible":true,
                  "width":64,
                  "x":192,
-                 "y":576
+                 "y":512
                 }, 
                 {
                  "gid":226,
@@ -231,7 +231,7 @@
                  "visible":true,
                  "width":64,
                  "x":192,
-                 "y":512
+                 "y":448
                 }, 
                 {
                  "gid":226,
@@ -243,7 +243,7 @@
                  "visible":true,
                  "width":64,
                  "x":192,
-                 "y":448
+                 "y":384
                 }, 
                 {
                  "gid":226,
@@ -255,7 +255,7 @@
                  "visible":true,
                  "width":64,
                  "x":128,
-                 "y":576
+                 "y":512
                 }, 
                 {
                  "gid":226,
@@ -267,7 +267,7 @@
                  "visible":true,
                  "width":64,
                  "x":64,
-                 "y":576
+                 "y":512
                 }, 
                 {
                  "gid":226,
@@ -279,7 +279,7 @@
                  "visible":true,
                  "width":64,
                  "x":256,
-                 "y":576
+                 "y":512
                 }, 
                 {
                  "gid":226,
@@ -291,7 +291,7 @@
                  "visible":true,
                  "width":64,
                  "x":256,
-                 "y":512
+                 "y":448
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -324,8 +324,8 @@
                  "type":"Ophanim",
                  "visible":true,
                  "width":64,
-                 "x":256,
-                 "y":128
+                 "x":320,
+                 "y":192
                 }, 
                 {
                  "gid":30,
@@ -348,8 +348,8 @@
                  "type":"Angel",
                  "visible":true,
                  "width":64,
-                 "x":832,
-                 "y":512
+                 "x":768,
+                 "y":448
                 }, 
                 {
                  "gid":30,
@@ -360,8 +360,8 @@
                  "type":"Angel",
                  "visible":true,
                  "width":64,
-                 "x":64,
-                 "y":128
+                 "x":128,
+                 "y":192
                 }, 
                 {
                  "gid":30,
@@ -372,7 +372,7 @@
                  "type":"Ophanim",
                  "visible":true,
                  "width":64,
-                 "x":0,
+                 "x":64,
                  "y":512
                 }, 
                 {
@@ -385,7 +385,7 @@
                  "visible":true,
                  "width":64,
                  "x":640,
-                 "y":576
+                 "y":512
                 }],
          "offsetx":32,
          "offsety":-32,
@@ -422,7 +422,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":102,
+ "nextobjectid":106,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
