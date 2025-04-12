@@ -25,7 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._speed = PARAMETERS.PLAYER.SPEED;
         this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
         
-        this._last_move = 'phatcat_walk_up_';    // player's last move, initialized for the first update
+        this._last_move = 'phatcat_walk_down_'
         this._last_hitbox = { width: 25, height: 25, offsetX: 20, offsetY: 22 }; // player's current hitbox, made to optimize the hitbox changes
 
         // State machine variables
@@ -516,6 +516,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         };
     
         return directionMap[this._last_move] || { velocityX: 0, velocityY: 0 };
+    }
+
+    initFrame(){
+        let x_ratio = this.x / PARAMETERS.GAME.WIDTH;
+        let y_ratio = this.y / PARAMETERS.GAME.HEIGHT;
+        console.log(this.x, this.y)
+        console.log(PARAMETERS.GAME.WIDTH, PARAMETERS.GAME.HEIGHT)
+        console.log(x_ratio, y_ratio)
+        if(y_ratio < 0.5){
+            this._last_move = 'phatcat_walk_down_';
+        }
+        else{
+            this._last_move = 'phatcat_walk_up_';
+        }
+        this._last_move
     }
 
 }

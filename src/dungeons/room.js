@@ -192,10 +192,10 @@ export default class Room extends Phaser.Scene {
                         this.player._bullets = this.player_state.bullets;
                     }
                     if(this.player_state.x !== undefined){
-                        this.player.x = this.player_state.x;
+                        this.player.x = this.player_state.x + 32;
                     }
                     if(this.player_state.y !== undefined){
-                        this.player.y = this.player_state.y;
+                        this.player.y = this.player_state.y - 48;
                     }
                     if(this.player_state.powerup !== undefined){
                         let pup = new this.player_state.powerup.constructor(this.player, this);
@@ -210,6 +210,7 @@ export default class Room extends Phaser.Scene {
                         this.powerups.removeElement(pup);
                         this.player._pup.effect();
                     }
+                    //this.player.initFrame();
                 }
             }
         }
