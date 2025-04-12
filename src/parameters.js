@@ -124,7 +124,7 @@ const PARAMETERS = {
         HEIGHT: 64,
         SCALE: 1.5,
         GRID_OFFSET_X: 0,
-        GRID_OFFSET_Y: -64*1.3,
+        GRID_OFFSET_Y: -64*1.3 +15.5,
         ANIMS_DURATION: 100
     },
     MOVING_FIRE: {
