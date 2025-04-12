@@ -225,7 +225,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    takeDamage(){
+    takeDamage(isHole=false){
         if(this._life > 0){
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
@@ -233,8 +233,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this._life--;
             this.scene.sound.play('player_hurt', { volume: 10 });
 
+            let time_tint = isHole ? PARAMETERS.HOLE.DURATION : 500;
+
             this.setTint(PARAMETERS.PLAYER.DAMAGE_TINT);
-            this.scene.time.delayedCall(500, () => {
+            this.scene.time.delayedCall(time_tint, () => {
                 this.clearTint();
             });
             
@@ -313,7 +315,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     fallHole(){
-        this.takeDamage();
+        this.takeDamage(true);
     }
 
     jumpScare(){

@@ -11,7 +11,11 @@ h2 {
 
 body {
   background-color: #d7ace4;
-  cursor: url('../assets/html-utils/cursor.png'), auto;
+  cursor: url('../assets/html-utils/cursor_default.png'), auto;
+}
+
+body:active {
+  cursor: url('../assets/html-utils/cursor_pressed.png'), auto;
 }
 
 .links{

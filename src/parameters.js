@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: false,
+        DEBUG: true,
         TILE: 64
     },
     PLAYER: {
@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_DAMAGE: 1,
-        DAMAGE_TINT: 0xFF3D82
+        DAMAGE_TINT: 0xE45F82
     },
     ANGEL: {
         LIFE: 6,
@@ -108,11 +108,14 @@ const PARAMETERS = {
     },
     HOLE: {
         DURATION: 1750,
+        DURATION_BOSS: 1750,
         DELAY: 500,
         HITBOX_X: 64*0.7,
         HITBOX_Y: 64*0.7,
         GRID_OFFSET_Y: -64,
-        RESPAWN_DISTANCE: 12
+        RESPAWN_DISTANCE: 12,
+        RATIO_START_BOSS: 1/4,
+        SPEED_BOSS: 1000
     },
     FIRE: {
         HITBOX_X: 64*0.7,

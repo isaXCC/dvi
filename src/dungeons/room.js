@@ -244,7 +244,7 @@ export default class Room extends Phaser.Scene {
     }
 
     spawnHole(x, y){
-        this.holes.addElement(new Hole(this, x, y));
+        this.holes.addElement(new Hole(this, x, y, true));
         this.player.setDepth(500);
     }
 
