@@ -232,6 +232,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this._isInvulnerable = true;
             this._life--;
             this.scene.sound.play('player_hurt', { volume: 10 });
+
+            this.setTint(PARAMETERS.PLAYER.DAMAGE_TINT);
+            this.scene.time.delayedCall(500, () => {
+                this.clearTint();
+            });
+            
             if(this._life <= 0){
                 this._isAlive = false;
             }
