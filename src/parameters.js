@@ -26,7 +26,8 @@ const PARAMETERS = {
         RELOAD_DURATION: 500,
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
-        JUMPSCARE_DAMAGE: 1
+        JUMPSCARE_DAMAGE: 1,
+        DAMAGE_TINT: 0xE45F82
     },
     ANGEL: {
         LIFE: 6,
@@ -107,11 +108,14 @@ const PARAMETERS = {
     },
     HOLE: {
         DURATION: 1750,
+        DURATION_BOSS: 1750,
         DELAY: 500,
         HITBOX_X: 64*0.7,
         HITBOX_Y: 64*0.7,
         GRID_OFFSET_Y: -64,
-        RESPAWN_DISTANCE: 12
+        RESPAWN_DISTANCE: 12,
+        RATIO_START_BOSS: 1/4,
+        SPEED_BOSS: 1000
     },
     FIRE: {
         HITBOX_X: 64*0.7,
@@ -120,7 +124,7 @@ const PARAMETERS = {
         HEIGHT: 64,
         SCALE: 1.5,
         GRID_OFFSET_X: 0,
-        GRID_OFFSET_Y: -64*1.3,
+        GRID_OFFSET_Y: -64*1.3 +15.5,
         ANIMS_DURATION: 100
     },
     MOVING_FIRE: {

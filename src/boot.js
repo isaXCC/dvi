@@ -26,6 +26,7 @@ import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
 import boots from '../assets/sprites/utils/boots.png'
 import hole from '../assets/sprites/utils/hole.png'
+import hole_filled from '../assets/sprites/utils/hole_filled.png'
 import fire from '../assets/sprites/utils/fire.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
@@ -104,6 +105,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('speedboost', speedboost);
     this.load.image('boots', boots);
     this.load.image('hole', hole);
+    this.load.image('hole_filled', hole_filled);
     this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
     this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
