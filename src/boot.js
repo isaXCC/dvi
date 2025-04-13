@@ -58,6 +58,16 @@ import d1_11 from '../assets/tiled/d1_11.json'
 import d1_boots from '../assets/tiled/d1_boots.json'
 import d1_boss from '../assets/tiled/d1_boss.json'
 import d2_1 from '../assets/tiled/d2_1.json'
+import d2_2 from '../assets/tiled/d2_2.json'
+import d2_3 from '../assets/tiled/d2_3.json'
+import d2_4 from '../assets/tiled/d2_4.json'
+import d2_5 from '../assets/tiled/d2_5.json'
+import d2_6 from '../assets/tiled/d2_6.json'
+import d2_7 from '../assets/tiled/d2_7.json'
+import d2_8 from '../assets/tiled/d2_8.json'
+import d2_9 from '../assets/tiled/d2_9.json'
+import d2_10 from '../assets/tiled/d2_10.json'
+import d2_boss from '../assets/tiled/d2_boss.json'
 import df_1 from '../assets/tiled/df_1.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
@@ -141,6 +151,16 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d1_boots', d1_boots); 
     this.load.tilemapTiledJSON('d1_boss', d1_boss); 
     this.load.tilemapTiledJSON('d2_1', d2_1);
+    this.load.tilemapTiledJSON('d2_2', d2_2);
+    this.load.tilemapTiledJSON('d2_3', d2_3);
+    this.load.tilemapTiledJSON('d2_4', d2_4);
+    this.load.tilemapTiledJSON('d2_5', d2_5);
+    this.load.tilemapTiledJSON('d2_6', d2_6);
+    this.load.tilemapTiledJSON('d2_7', d2_7);
+    this.load.tilemapTiledJSON('d2_8', d2_8);
+    this.load.tilemapTiledJSON('d2_9', d2_9);
+    this.load.tilemapTiledJSON('d2_10', d2_10);
+    this.load.tilemapTiledJSON('d2_boss', d2_boss);
     this.load.tilemapTiledJSON('df_1', df_1);
   }
 

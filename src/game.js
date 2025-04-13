@@ -14,16 +14,21 @@ import D1_8 from './dungeons/d1/d1_8.js';
 import D1_9 from './dungeons/d1/d1_9.js';
 import D1_10 from './dungeons/d1/d1_10.js';
 import D1_11 from './dungeons/d1/d1_11.js';
-// import D1_12 from './dungeons/d1/d1_12.js';
-// import D1_13 from './dungeons/d1/d1_13.js';
-// import D1_14 from './dungeons/d1/d1_14.js';
-// import D1_15 from './dungeons/d1/d1_15.js';
-// import D1_16 from './dungeons/d1/d1_16.js';
 import D1_MID from './dungeons/d1/d1_mid.js';
 import D1_BOOTS from './dungeons/d1/d1_boots.js';
 import D1_PIT from './dungeons/d1/d1_pit.js';
 import D1_BOSS from './dungeons/d1/d1_boss.js';
 import D2_1 from './dungeons/d2/d2_1.js';
+import D2_2 from './dungeons/d2/d2_2.js';
+import D2_3 from './dungeons/d2/d2_3.js';
+import D2_4 from './dungeons/d2/d2_4.js';
+import D2_5 from './dungeons/d2/d2_5.js';
+import D2_6 from './dungeons/d2/d2_6.js';
+import D2_7 from './dungeons/d2/d2_7.js';
+import D2_8 from './dungeons/d2/d2_8.js';
+import D2_9 from './dungeons/d2/d2_9.js';
+import D2_10 from './dungeons/d2/d2_10.js';
+import D2_BOSS from './dungeons/d2/d2_boss.js';
 import DF_1 from './dungeons/df/df_1.js';
 import MENU from './menu.js';
 import Phaser from 'phaser';
@@ -44,9 +49,8 @@ let config = {
     pixelArt: true,
     scene: [Boot, D1_Test, Dialogue, MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
             D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS,
-            D2_1, DF_1, End],
-    // scene: [ D1_12, D1_13, D1_14, D1_15,
-    //         D1_16,  End],
+            D2_1, D2_2, D2_3, D2_4, D2_5, D2_6, D2_7, D2_8, D2_9, D2_10, D2_BOSS, 
+            DF_1, End],
     physics: {
         default: 'arcade',
         arcade: {
