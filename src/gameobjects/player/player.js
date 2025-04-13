@@ -24,6 +24,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._max_ammo = PARAMETERS.PLAYER.MAX_AMMO;
         this._speed = PARAMETERS.PLAYER.SPEED;
         this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
+        this._take_damage_count = 1;
+        this._used_jumpscare = false;
         
         this._last_move = 'phatcat_walk_down_'
         this._last_hitbox = { width: 25, height: 25, offsetX: 20, offsetY: 22 }; // player's current hitbox, made to optimize the hitbox changes
@@ -227,6 +229,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     takeDamage(isHole=false){
         if(this._life > 0){
+            this._take_damage_count++;
+            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
+                this.scene.add.image(50, 50, 'letters').setFrame(6)
+            }
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
@@ -319,21 +325,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     jumpScare(){
-        this._isJumpScare = true;
-        this.scene.enemies.takeDamage(this._jumpscare_damage);
-        let scratch1 = this.scene.add.image(PARAMETERS.GAME.WIDTH/2 - 50, PARAMETERS.GAME.HEIGHT/2, 'scratch');
-        this.scene.time.delayedCall(200, () => {
-            scratch1.destroy();
-        });
-        let scratch2 = this.scene.add.image(PARAMETERS.GAME.WIDTH/2 + 50, PARAMETERS.GAME.HEIGHT/2, 'scratch');
-        scratch2.rotation = 2;
-        this.scene.time.delayedCall(250, () => {
-            scratch2.destroy();
-        });
+        if(!this._used_jumpscare){
+            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
+                this._used_jumpscare = true;
+                this._isJumpScare = true;
+                this.scene.enemies.takeDamage(this._jumpscare_damage);
+                this.displayScratch();
+                this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
+                this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
+            }
+        }
+        else if(this._take_damage_count % PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1 === 1){
+            this._used_jumpscare = false;
+        }
         
-
-        this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
-        this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
     }
 
     // POWERUP LOGIC
@@ -543,6 +548,47 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this._last_move = 'phatcat_walk_up_';
         }
         this._last_move
+    }
+
+    displayScratch(){
+        let count_meow = 0;
+        for(let i = 0; i < PARAMETERS.PLAYER.NUM_SCRATCHES; i++){ 
+            this.scene.time.delayedCall(50 + 100*i, () => {
+                if(i % 5 == 0){
+                    switch(count_meow % 3){
+                        case 0:
+                            this.scene.sound.play('cat_meow3', { volume: 0.75 });
+                            break;
+                        case 1:
+                            this.scene.sound.play('cat_meow2', { volume: 0.5 });
+                            break;
+                        case 2:
+                            this.scene.sound.play('cat_meow1', { volume: 0.5 });
+                            break;
+                    }
+                    count_meow++;
+                }
+                else{
+                    if(i % 2 == 0){
+                        this.scene.sound.play('cat_ripping1', { volume: 0.5 });
+                    }
+                    else {
+                        this.scene.sound.play('cat_ripping2', { volume: 0.5 });
+                    }
+                }
+                //random between -350 and 350
+                let rand_x = Math.floor(Math.random() * (400 - (-400) + 1)) + (-400);
+                //random between -150 and 150
+                let rand_y = Math.floor(Math.random() * (150 - (-150) + 1)) + (-150);
+                let scratch1 = this.scene.add.image(PARAMETERS.GAME.WIDTH/2 + rand_x, PARAMETERS.GAME.HEIGHT/2 + rand_y, 'scratch'.concat(String(Math.floor(Math.random() * 3) + 2)));
+                // 0 = 0º, 0.5 = 90º, 1 = 180º, 1.5 = 270º, 2 = 360º
+                scratch1.rotation = Math.PI * Math.random() * 2;
+                let dispear_time = Math.floor(Math.random() * (350 - 250 + 1)) + 250; 
+                this.scene.time.delayedCall(dispear_time, () => {
+                    scratch1.destroy();
+                });
+            });
+        }
     }
 
 }
