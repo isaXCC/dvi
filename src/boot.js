@@ -13,6 +13,7 @@ import hoarder from '../assets/sprites/enemies/hoarder.png'
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 // Utils
+import letters from '../assets/sprites/utils/letter_spreadsheet.png'
 import bullet from '../assets/sprites/utils/bullet.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
@@ -21,7 +22,10 @@ import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import hearts from '../assets/sprites/utils/hearts.png'
 import stamina from '../assets/sprites/utils/stamina.png'
-import scratch from '../assets/sprites/utils/scratch.png'
+import scratch1 from '../assets/sprites/utils/scratch1.png'
+import scratch2 from '../assets/sprites/utils/scratch2.png'
+import scratch3 from '../assets/sprites/utils/scratch3.png'
+import scratch4 from '../assets/sprites/utils/scratch4.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
@@ -40,6 +44,11 @@ import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
 import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
 import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
+import cat_meow1 from '../assets/audio/utils/cat_meow1.wav'
+import cat_meow2 from '../assets/audio/utils/cat_meow2.wav'
+import cat_meow3 from '../assets/audio/utils/cat_meow3.wav'
+import cat_ripping1 from '../assets/audio/utils/cat_ripping1.wav'
+import cat_ripping2 from '../assets/audio/utils/cat_ripping2.wav'
 // TILED IMPORTS
 import d1_test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -112,6 +121,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
     // POWERUPS AND ITENS
+    this.load.spritesheet('letters', letters, {frameWidth: 16, frameHeight: 18});
     this.load.image('tripleshot', tripleshot);
     this.load.image('speedboost', speedboost);
     this.load.image('boots', boots);
@@ -120,7 +130,10 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
     this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
-    this.load.image('scratch', scratch);
+    this.load.image('scratch1', scratch1);
+    this.load.image('scratch2', scratch2);
+    this.load.image('scratch3', scratch3);
+    this.load.image('scratch4', scratch4);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
@@ -132,6 +145,11 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('powerup_pick', powerup_pick);
     this.load.audio('time_attack_succeded', time_attack_succeded);
     this.load.audio('time_attack_failed', time_attack_failed);
+    this.load.audio('cat_meow1', cat_meow1);
+    this.load.audio('cat_meow2', cat_meow2);
+    this.load.audio('cat_meow3', cat_meow3);
+    this.load.audio('cat_ripping1', cat_ripping1);
+    this.load.audio('cat_ripping2', cat_ripping2);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('d1_test', d1_test);
