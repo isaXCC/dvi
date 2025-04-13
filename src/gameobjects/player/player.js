@@ -321,6 +321,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     jumpScare(){
         this._isJumpScare = true;
         this.scene.enemies.takeDamage(this._jumpscare_damage);
+        let scratch1 = this.scene.add.image(PARAMETERS.GAME.WIDTH/2 - 50, PARAMETERS.GAME.HEIGHT/2, 'scratch');
+        this.scene.time.delayedCall(200, () => {
+            scratch1.destroy();
+        });
+        let scratch2 = this.scene.add.image(PARAMETERS.GAME.WIDTH/2 + 50, PARAMETERS.GAME.HEIGHT/2, 'scratch');
+        scratch2.rotation = 2;
+        this.scene.time.delayedCall(250, () => {
+            scratch2.destroy();
+        });
+        
+
+        this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
         this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
     }
 

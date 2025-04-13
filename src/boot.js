@@ -21,6 +21,7 @@ import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
 import hearts from '../assets/sprites/utils/hearts.png'
 import stamina from '../assets/sprites/utils/stamina.png'
+import scratch from '../assets/sprites/utils/scratch.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
@@ -109,6 +110,7 @@ export default class Boot extends Phaser.Scene {
     this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
     this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
+    this.load.image('scratch', scratch);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
