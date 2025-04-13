@@ -1,0 +1,5 @@
+npc_name,cond,cmd,options,index,text,option1,option2,option3,option4
+bunny,base,,,0,"""Hello, S-s-s-tranger.""",,,,
+,,,,1,"""What'cha here f-f-for??""",,,,
+,,,,2,"""I d-d-don't sup-p-p-pose you here to kill that rich BASTARD, are ya?""",,,,
+,,,,3,"""Well, then g-g-great! I'll help ya, that is, if you can s-s-survive my t-t-training!""",,,,

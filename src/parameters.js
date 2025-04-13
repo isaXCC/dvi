@@ -26,8 +26,12 @@ const PARAMETERS = {
         RELOAD_DURATION: 500,
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
-        JUMPSCARE_DAMAGE: 1,
-        DAMAGE_TINT: 0xE45F82
+        JUMPSCARE_DAMAGE: 2,
+        JUMPSCARE_COUNT: 4,
+        DAMAGE_TINT: 0xE45F82,
+        SHAKE_DURATION: 1500,
+        SHAKE_INTENSITY: 0.01,
+        NUM_SCRATCHES: 12
     },
     ANGEL: {
         LIFE: 6,
