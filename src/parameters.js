@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: false,
+        DEBUG: true,
         TILE: 64
     },
     PLAYER: {
