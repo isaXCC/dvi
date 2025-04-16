@@ -18,6 +18,10 @@ body:active {
   cursor: url('../assets/html-utils/cursor_pressed.png'), auto;
 }
 
+button:hover, .interactive:hover {
+  cursor: url('../assets/html-utils/cursor_hover.png'), auto;
+}
+
 .links{
   text-align: center;
 }
@@ -25,4 +29,13 @@ body:active {
 @font-face {
   font-family: 'font';
   src: url('../assets/html-utils/VT323Regular.ttf');
+}
+
+/* div initial dimensions when fullscreen is not active */
+#game {
+  width: 1024px;
+  height: 576px;
+  margin: 0 auto; /* div is centered horizontally */
+  display: block;
+  background-color: #000; /* bg color, in case it is shown */
 }

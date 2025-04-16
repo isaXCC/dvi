@@ -27,6 +27,7 @@ import scratch1 from '../assets/sprites/utils/scratch1.png'
 import scratch2 from '../assets/sprites/utils/scratch2.png'
 import scratch3 from '../assets/sprites/utils/scratch3.png'
 import scratch4 from '../assets/sprites/utils/scratch4.png'
+import fullscreen from '../assets/sprites/utils/fullscreen.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
@@ -135,6 +136,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('scratch2', scratch2);
     this.load.image('scratch3', scratch3);
     this.load.image('scratch4', scratch4);
+    this.load.spritesheet('fullscreen', fullscreen, {frameWidth: 32, frameHeight: 32});
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
