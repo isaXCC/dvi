@@ -41,9 +41,10 @@ let config = {
     type: Phaser.AUTO,
     width: PARAMETERS.GAME.WIDTH,
     height: PARAMETERS.GAME.HEIGHT,
-    parent: 'juego',
+    parent: 'game',
     scale: {
-        //mode: Phaser.Scale.FIT,  
+        // the game window size fits its parents. initially a div that is 1024x576. if fullscreen, fits the whole screen.
+        mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
