@@ -161,7 +161,8 @@ const PARAMETERS = {
             PUP_Y: 48,
             PUP_RADIUS: 28,
             JS_RADIUS: 33,
-            JS_THICKNES: 10
+            JS_THICKNES: 10,
+            JS_SEGMENTS: 4
         },
         LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
             ALPHA: 0.5,
@@ -170,7 +171,12 @@ const PARAMETERS = {
             WIDTH: 210,
             HEIGHT: 58
         },
-        STAMINA_BAR_SCALE: 1.5
+        STAMINA_BAR_PROPERTIES: {
+            X_OFFSET: -2,
+            Y_OFFSET: 4,
+            SCALE: 1.5,
+            TIME_TO_DISAPPEAR: 500
+        }
     },
     SCENES: {
         // TODO
