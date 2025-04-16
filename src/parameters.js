@@ -149,12 +149,28 @@ const PARAMETERS = {
         OFFSET_Y: 10
     },
     ROOM: {
-        HEART_SCALE: 1.5,
-        PUP_X: 24,
-        PUP_Y: 550,
-        PUP_RAD: 19,
+
         AMMO_X: 25,
         AMMO_Y: 55
+    },
+    PLAYER_HUD: {
+        HEART_SCALE: 1.25,
+        BULLET_SCALE: 1.25,
+        POWERUP_JUMPSCARE_CIRCLE_PROPERTIES: {
+            PUP_X: 48,
+            PUP_Y: 48,
+            PUP_RADIUS: 28,
+            JS_RADIUS: 33,
+            JS_THICKNES: 10
+        },
+        LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
+            ALPHA: 0.5,
+            X: 42,
+            Y: 19,
+            WIDTH: 210,
+            HEIGHT: 58
+        },
+        STAMINA_BAR_SCALE: 1.5
     },
     SCENES: {
         // TODO

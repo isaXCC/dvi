@@ -23,6 +23,7 @@ import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
+import PlayerHUD from '../utils/ui/playerHUD.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -298,12 +299,11 @@ export default class Room extends Phaser.Scene {
         this.powerup_image = this.add.image(32, 556, null);
         this.powerup_image.setVisible(false);
     }
-a
-
+    
     newPowerUpDisplay(powerup) {
         this.deletePreviousPowerUpImage();
         // Add the power-up image on top
-        this.powerup_image = this.add.image(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, powerup.sprite);
+        this.powerup_image = this.add.image(PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_X, PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_Y, powerup.sprite);
         this.powerup_image.setAlpha(0.75);
     }
 
@@ -322,92 +322,15 @@ a
 
     // adds player info to the HUD
     createPlayerHUD(){
-        // first creates the life
-        this.hearts = [];
-        let heart;
-        let i = 0;
-        for(i; i < Math.floor(this.player._max_life/2); i++){
-            heart = this.add.sprite(30 + i*22*PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts').setFrame(2);  // creates the array of frames
-            heart.setScale(PARAMETERS.ROOM.HEART_SCALE, PARAMETERS.ROOM.HEART_SCALE);
-            this.hearts.push(heart);
-        }
-        this.last_life = -1;
-        this.last_max_life = this.player._max_life;
-
-        // then, the stamina bar
-        this.stamina_bar = [];
-        let stamina;
-        for(i = 0; i < this.player._stamina; i++){
-            stamina = this.add.sprite(10 + (i + 1)*32, 50, 'stamina').setFrame(1);  // creates the array of frames
-            this.stamina_bar.push(stamina);
-        }
-        this.last_stamina = this.player._stamina;
-
-        // The bullets 
-        this.playerBulletsText = this.add.text(PARAMETERS.ROOM.AMMO_X, PARAMETERS.ROOM.AMMO_Y, 
-            `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
-            fontSize: '16px',
-            fill: '#fff',
-            fontFamily: 'Comic Sans MS'
-        });
-
-        // The PowerUP Display circle
-        // Create graphics for white circle with black border
-        const graphics = this.add.graphics();
-    
-        graphics.lineStyle(2.5, 0x000000, 1); // black border
-        graphics.fillStyle(0xffffff, 0.5);   // white fill
-        graphics.strokeCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
-        graphics.fillCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
+        // creates player HUD
+        this.playerHUD = new PlayerHUD(this);
     }
 
     updatePlayerHUD(){
-        // Detect and update max_life change
-        if (this.player._max_life !== this.last_max_life) {
-            // Remove old hearts from scene
-            this.hearts.forEach(heart => heart.destroy());
+        // updates player HUD
+        this.playerHUD.update();
 
-            // Recreate hearts based on new max life
-            this.hearts = [];
-            for (let i = 0; i < Math.floor(this.player._max_life / 2); i++) {
-                const heart = this.add.sprite(30 + i * 22 * PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts');
-                heart.setScale(PARAMETERS.ROOM.HEART_SCALE);
-                this.hearts.push(heart);
-            }
-
-            this.last_max_life = this.player._max_life;
-            this.last_life = -1; // force life update this frame
-        }
-        // updates life
-        if(this.player._life !== this.last_life){
-            for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {
-                if (this.player._life >= (i + 1) * 2) {
-                    this.hearts[i].setFrame(2); // full heart
-                } else if (this.player._life === (i * 2) + 1) {
-                    this.hearts[i].setFrame(1); // half heart
-                } else {
-                    this.hearts[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_life = this.player._life;
-        }
-
-        // updates stamina
-        if(this.player._stamina !== this.last_stamina){
-            for (let i = 0; i < this.stamina_bar.length; i++) {
-                if (this.player._stamina >= (i + 1)) {
-                    this.stamina_bar[i].setFrame(1); // full heart
-                } else {
-                    this.stamina_bar[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_stamina = this.player._stamina;
-        }
-
-        // updates bullets
-        this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
-        //this.defaultPowerUpDisplay();
-        // Blocking context menu to open
+        // blocking context menu to open
         window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 

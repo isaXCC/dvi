@@ -15,6 +15,7 @@ import player_atlas from '../assets/sprites/player/player_atlas.json'
 // Utils
 import letters from '../assets/sprites/utils/letter_spreadsheet.png'
 import bullet from '../assets/sprites/utils/bullet.png'
+import bullet_shot from '../assets/sprites/utils/bullet_shot.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
@@ -115,8 +116,8 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
-
     this.load.image('bullet', bullet);
+    this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
@@ -129,7 +130,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('hole_filled', hole_filled);
     this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
-    this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
+    this.load.spritesheet('stamina', stamina, {frameWidth: 6, frameHeight: 24});
     this.load.image('scratch1', scratch1);
     this.load.image('scratch2', scratch2);
     this.load.image('scratch3', scratch3);
