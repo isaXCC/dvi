@@ -231,7 +231,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(this._life > 0){
             this._take_damage_count++;
             if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this.scene.add.image(50, 50, 'letters').setFrame(6)
+                this.scene.addJumpScare();
             }
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
@@ -327,6 +327,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     jumpScare(){
         if(!this._used_jumpscare){
             if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
+                this.scene.removeJumpScare();
                 this._used_jumpscare = true;
                 this._isJumpScare = true;
                 this.scene.enemies.takeDamage(this._jumpscare_damage);

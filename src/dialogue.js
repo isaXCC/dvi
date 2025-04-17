@@ -22,6 +22,7 @@ export default class Dialogue extends Phaser.Scene{
         this.optionY = this.boxY - this.optionHeight - 15;
         this.count = 0;
         this.speech = 0;
+        this.choiceElements = []
     }
     
     init(info) {
@@ -45,7 +46,7 @@ export default class Dialogue extends Phaser.Scene{
         this.input.on('pointermove', (pointer) => {
             let x = pointer.x, y = pointer.y;
             let i;
-            for(i = 0; i < this.choices.length; i++){
+            for(i = 0; i < this.choiceElements.length; i++){
                 if(x >= this.optionX && x <= this.optionX + this.optionWidth &&
                     y >= this.optionY - i*this.optionHeight*1.25 && y <= this.optionY + this.optionHeight - i*this.optionHeight*1.25
                 ){
@@ -210,6 +211,7 @@ export default class Dialogue extends Phaser.Scene{
             delay: 50,
             callback: () => {
                 if (charIndex < texto.length) {
+                    this.playAudio(texto[charIndex].toLowerCase());
                     optionText.text += texto[charIndex];
                     charIndex++;
                 } else {
