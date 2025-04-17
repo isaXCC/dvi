@@ -148,8 +148,9 @@ export default class Dialogue extends Phaser.Scene{
                     this.currentCharIndex++;
                 } 
                 else {
-                    this.writeOptions()
+                    
                     this.typeEvent.remove(); // Stop the event once all characters are shown
+                    this.writeOptions();
                 }
             },
             callbackScope: this,
@@ -205,22 +206,21 @@ export default class Dialogue extends Phaser.Scene{
     
         let charIndex = 0;
     
-        this.time.addEvent({
+        this.typeEvent = this.time.addEvent({
             delay: 50,
-            loop: true,
             callback: () => {
                 if (charIndex < texto.length) {
                     optionText.text += texto[charIndex];
                     charIndex++;
                 } else {
-                    // Once done, move to the next option
+                    this.typeEvent.remove();
                     this.currentOptionIndex++;
-                    this.typeNextOption(); // Recursively start the next one
-                    // Stop this r
-                    return false; // Phaser 3 will auto-remove the event if callback returns false
+                    this.typeNextOption();
+                    
                 }
             },
-            callbackScope: this
+            callbackScope: this,
+            loop: true
         });
     }
 
