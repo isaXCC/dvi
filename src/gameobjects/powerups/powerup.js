@@ -2,7 +2,7 @@ import Player from "../player/player.js";
 import Phaser from 'phaser';
 
 export default class PowerUp extends Phaser.Physics.Arcade.Sprite {
-    constructor(player, scene, x=0, y=0, sprite=null) {
+    constructor(player, scene, x=0, y=0, sprite='hole') {
         super(scene, x, y, sprite);
 
         this._isStored = true;

@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_DAMAGE: 2,
-        JUMPSCARE_COUNT: 4,
+        JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
         SHAKE_INTENSITY: 0.01,

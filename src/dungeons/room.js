@@ -38,10 +38,10 @@ export default class Room extends Phaser.Scene {
     }
 
     init(player_state) {
-        this.dialogue_manager = new DialogueManager(this);
         if(player_state !== undefined){
             this.setPlayerInfo(player_state);
         }
+        this.dialogue_manager = new DialogueManager(this, player_state.dialogue_info);
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -242,7 +242,7 @@ export default class Room extends Phaser.Scene {
     nextRoom(room){
         this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
              max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
-             portal: this.scene.key, powerup: this.player._pup});
+             portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo()});
     }
 
     spawnHole(x, y){

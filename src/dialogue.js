@@ -21,6 +21,7 @@ export default class Dialogue extends Phaser.Scene{
         this.optionX = PARAMETERS.GAME.WIDTH*(1/2) + 20;
         this.optionY = this.boxY - this.optionHeight - 15;
         this.count = 0;
+        this.speech = 0;
     }
     
     init(info) {
@@ -142,12 +143,14 @@ export default class Dialogue extends Phaser.Scene{
             delay: 50, // ms between each character
             callback: () => { 
                 if (this.currentCharIndex < this.fullText.length && this.count == 0) {
+                    this.playAudio(this.fullText[this.currentCharIndex].toLowerCase());
                     this.dialogueText.text += this.fullText[this.currentCharIndex];
                     this.currentCharIndex++;
                 } 
                 else {
-                    this.writeOptions()
+                    
                     this.typeEvent.remove(); // Stop the event once all characters are shown
+                    this.writeOptions();
                 }
             },
             callbackScope: this,
@@ -203,22 +206,46 @@ export default class Dialogue extends Phaser.Scene{
     
         let charIndex = 0;
     
-        this.time.addEvent({
+        this.typeEvent = this.time.addEvent({
             delay: 50,
-            loop: true,
             callback: () => {
                 if (charIndex < texto.length) {
                     optionText.text += texto[charIndex];
                     charIndex++;
                 } else {
-                    // Once done, move to the next option
+                    this.typeEvent.remove();
                     this.currentOptionIndex++;
-                    this.typeNextOption(); // Recursively start the next one
-                    // Stop this r
-                    return false; // Phaser 3 will auto-remove the event if callback returns false
+                    this.typeNextOption();
+                    
                 }
             },
-            callbackScope: this
+            callbackScope: this,
+            loop: true
         });
+    }
+
+    playAudio(character){
+        
+        let audio_file = this.getCharacterAudioFile(character);
+        if(this.speech % 2 == 0 && audio_file !== null){
+            let player = new Audio();
+            player.src = audio_file;
+            player.mozPreservesPitch = false;
+            player.playbackRate = Math.random() * (2 - 1.5) + 1.5;
+            player.play();
+        }
+        
+    }
+
+    getCharacterAudioFile(character){
+        if (character.match(/[a-z]/i)) {
+            this.speech++;
+            return "dvi/assets/audio/dialogue/" + character + ".wav";
+        } else if (character == " ") {
+            return null;
+        } else {
+            this.speech = 0;
+            return "dvi/assets/audio/dialogue/bebebese.wav";
+        }
     }
 }
