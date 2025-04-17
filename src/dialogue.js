@@ -21,6 +21,7 @@ export default class Dialogue extends Phaser.Scene{
         this.optionX = PARAMETERS.GAME.WIDTH*(1/2) + 20;
         this.optionY = this.boxY - this.optionHeight - 15;
         this.count = 0;
+        this.speech = 0;
     }
     
     init(info) {
@@ -142,6 +143,7 @@ export default class Dialogue extends Phaser.Scene{
             delay: 50, // ms between each character
             callback: () => { 
                 if (this.currentCharIndex < this.fullText.length && this.count == 0) {
+                    this.playAudio(this.fullText[this.currentCharIndex].toLowerCase());
                     this.dialogueText.text += this.fullText[this.currentCharIndex];
                     this.currentCharIndex++;
                 } 
@@ -220,5 +222,30 @@ export default class Dialogue extends Phaser.Scene{
             },
             callbackScope: this
         });
+    }
+
+    playAudio(character){
+        
+        let audio_file = this.getCharacterAudioFile(character);
+        if(this.speech % 2 == 0 && audio_file !== null){
+            let player = new Audio();
+            player.src = audio_file;
+            player.mozPreservesPitch = false;
+            player.playbackRate = Math.random() * (2 - 1.5) + 1.5;
+            player.play();
+        }
+        
+    }
+
+    getCharacterAudioFile(character){
+        if (character.match(/[a-z]/i)) {
+            this.speech++;
+            return "dvi/assets/audio/dialogue/" + character + ".wav";
+        } else if (character == " ") {
+            return null;
+        } else {
+            this.speech = 0;
+            return "dvi/assets/audio/dialogue/bebebese.wav";
+        }
     }
 }
