@@ -59,7 +59,7 @@ button:hover, .interactive:hover {
 /* div initial dimensions when fullscreen is not active */
 #game {
   width: 1024px;
-  height: 576px;
+  height: 560px;
   margin: 0 auto; /* div is centered horizontally */
   display: block;
   background-color: #000; /* bg color, in case it is shown */

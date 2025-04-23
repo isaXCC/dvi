@@ -178,6 +178,12 @@ const PARAMETERS = {
             TIME_TO_DISAPPEAR: 500
         }
     },
+    UI: {
+        FULLSCREEN_BUTTON: {
+            X: 992,
+            Y: 32
+        }
+    },
     SCENES: {
         // TODO
     }

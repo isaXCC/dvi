@@ -13,25 +13,36 @@ export default class FullscreenButton extends Phaser.GameObjects.Sprite{
         this._scene = scene;
 
         // the button is added
-        const button = this._scene.add.sprite(992, 32, 'fullscreen')
+        this.button = this._scene.add.sprite(PARAMETERS.UI.FULLSCREEN_BUTTON.X, PARAMETERS.UI.FULLSCREEN_BUTTON.Y, 'fullscreen')
         .setInteractive({ useHandCursor: true }).setScrollFactor(0).setFrame(0);        
         
         // button on click event
-        button.on('pointerdown', () => {
+        this.button.on('pointerdown', () => {
             if (!this._scene.scale.isFullscreen) {
                 this._scene.scale.startFullscreen();
-                button.setFrame(1);
+                this.button.setFrame(1);
 
                 // game size is adjusted
                 this.setGameSizeFullscreen();
             } else {
                 this._scene.scale.stopFullscreen();
-                button.setFrame(0);
+                this.button.setFrame(0);
 
                 // game size is readjusted to original
                 this.resetGameSize();
             }
         });
+        
+        // listener in case player presses ESC to exit fullscreen
+        this._scene.scale.on('leavefullscreen', () => {
+            this._scene.time.delayedCall(1, () => {
+                this.resetGameSize();
+                this.button.setFrame(0);
+            })
+        })
+
+        // the scene gets a reference
+        this._scene.fullscreen_button = this.button;
     }
 
     // adjusts game size to fullscreen
@@ -48,7 +59,7 @@ export default class FullscreenButton extends Phaser.GameObjects.Sprite{
         const juegoDiv = document.getElementById('game');
         if (juegoDiv) {
             juegoDiv.style.width = PARAMETERS.GAME.WIDTH + 'px';    // original size
-            juegoDiv.style.height = PARAMETERS.GAME.HEIGHT + 'px';  // original size
+            juegoDiv.style.height = PARAMETERS.GAME.HEIGHT-16 + 'px';  // original size
         }
     }
 }

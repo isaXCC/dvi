@@ -67,7 +67,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.input.on('pointerdown', (pointer) => {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
-                if(!this._isShooting && !this._isJumpScare && !this._isDashing){
+                if(!this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y)){
                     this.shoot(pointer.x, pointer.y);
                 }
             }
@@ -534,6 +534,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         };
     
         return directionMap[this._last_move] || { velocityX: 0, velocityY: 0 };
+    }
+
+    onMap(x, y){
+        return !(this.scene.fullscreen_button.getBounds().contains(x, y));
     }
 
     initFrame(){
