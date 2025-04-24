@@ -54,10 +54,10 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
     }
 
     update(){
-        const segment_angle = Phaser.Math.PI2 / this._cr.JS_SEGMENTS;
+        const segment_angle = Phaser.Math.PI2 / PARAMETERS.PLAYER.JUMPSCARE_COUNT;
 
         if(this._last_take_damage_count !== this._scene.player._take_damage_count){
-            for (let i = 0; i < this._cr.JS_SEGMENTS; i++) {
+            for (let i = 0; i < PARAMETERS.PLAYER.JUMPSCARE_COUNT; i++) {
                 const graphics = this._segments[i];
                 const angle_start = i * segment_angle - Math.PI / 2; // Rotar para que empiece arriba
                 const angle_end = angle_start + segment_angle;
