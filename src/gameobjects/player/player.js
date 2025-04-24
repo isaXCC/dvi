@@ -325,21 +325,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     jumpScare(){
-        if(!this._used_jumpscare){
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this.scene.removeJumpScare();
-                this._used_jumpscare = true;
-                this._isJumpScare = true;
-                this.scene.enemies.takeDamage(this._jumpscare_damage);
-                this.displayScratch();
-                this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
-                this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
-            }
+        if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0 
+        || this._take_damage_count > (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)){
+            this.scene.removeJumpScare();
+            this._isJumpScare = true;
+            this.scene.enemies.takeDamage(this._jumpscare_damage);
+            this.displayScratch();
+            this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
+            this._take_damage_count = 1;
         }
-        else if(this._take_damage_count % PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1 === 1){
-            this._used_jumpscare = false;
-        }
-        
     }
 
     // POWERUP LOGIC
