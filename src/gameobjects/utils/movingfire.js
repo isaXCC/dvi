@@ -19,19 +19,19 @@ export default class MovingFire {
         for (let i = 1; i <= this.length; i++) {
             let new_x = 0, new_y = 0;
             if(this.fill === 'up'){
-                new_y = -PARAMETERS.FIRE.HEIGHT*i;
+                new_y = -PARAMETERS.FIRE.HEIGHT*PARAMETERS.FIRE.SCALE_Y*i;
             }
             else if(this.fill === 'down'){
-                new_y = PARAMETERS.FIRE.HEIGHT*i;
+                new_y = PARAMETERS.FIRE.HEIGHT*PARAMETERS.FIRE.SCALE_Y*i;
             }
             else if(this.fill === 'right'){
-                new_x = PARAMETERS.FIRE.WIDTH*i;
+                new_x = PARAMETERS.FIRE.WIDTH*PARAMETERS.FIRE.SCALE_X*i;
             }
             else if(this.fill === 'left'){
-                new_x = -PARAMETERS.FIRE.WIDTH*i;
+                new_x = -PARAMETERS.FIRE.WIDTH*PARAMETERS.FIRE.SCALE_X*i;
             }
             const fireball = new Fire(scene, new_x, new_y); // place in line
-            fireball.setScale(PARAMETERS.FIRE.SCALE, PARAMETERS.FIRE.SCALE);
+            fireball.setScale(PARAMETERS.FIRE.SCALE_X, PARAMETERS.FIRE.SCALE_Y);
             // fireball.setOrigin(1.1);
             fireball.setSize(PARAMETERS.FIRE.HITBOX_X, PARAMETERS.FIRE.HITBOX_Y);
             this.pivot.add(fireball);
@@ -52,13 +52,13 @@ export default class MovingFire {
     update() {
         if(this.movement === 'vertical'){
             // NEEDS TO BE CHECKED
-            if (this.pivot.y > PARAMETERS.GAME.HEIGHT - 64*1.3 || this.pivot.y < -9 ) {
+            if (this.pivot.y > PARAMETERS.GAME.HEIGHT - 112 || this.pivot.y < 64) {
                 this.speedSides *= -1;
             }
             this.pivot.y += this.speedSides;
         }
         else if(this.movement === 'horizontal'){
-            if (this.pivot.x > PARAMETERS.GAME.WIDTH - 64*1.3 || this.pivot.x < -9) {
+            if (this.pivot.x > PARAMETERS.GAME.WIDTH - 112 || this.pivot.x < 64) {
                 this.speedSides *= -1;
             }
             this.pivot.x += this.speedSides;

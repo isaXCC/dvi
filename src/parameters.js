@@ -122,13 +122,14 @@ const PARAMETERS = {
         SPEED_BOSS: 1000
     },
     FIRE: {
-        HITBOX_X: 64*0.7,
-        HITBOX_Y: 64*0.7,
-        WIDTH: 64, 
-        HEIGHT: 64,
-        SCALE: 1.5,
+        HITBOX_X: 41*0.7,
+        HITBOX_Y: 47*0.7,
+        WIDTH: 41, 
+        HEIGHT: 47,
+        SCALE_X: 1.4,
+        SCALE_Y: 1.4,
         GRID_OFFSET_X: 0,
-        GRID_OFFSET_Y: -64*1.3 +15.5,
+        GRID_OFFSET_Y: -64,
         ANIMS_DURATION: 100
     },
     MOVING_FIRE: {
