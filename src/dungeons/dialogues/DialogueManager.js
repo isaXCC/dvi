@@ -191,7 +191,7 @@ export default class DialogueManager {
                 this.current_dungeon = dungeon;
                 console.log("LOADING CSV FOR DUNGEON: " + this.current_dungeon)
                 //FOR LOCALHOST
-                fetch('dvi/public/'+this.current_dungeon+'.csv')
+                fetch('dvi/'+this.current_dungeon+'.csv')
                 //FOR GITHUB PAGES
                 //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
