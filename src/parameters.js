@@ -13,8 +13,8 @@ const PARAMETERS = {
         TILE: 64
     },
     PLAYER: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 1,
+        MAX_LIFE: 1,
         BULLETS: 7,
         MAX_AMMO: 7,
         STAMINA: 3,
@@ -243,7 +243,16 @@ const PARAMETERS = {
         }
     },
     SCENES: {
-        // TODO
+        END:{
+            DEATH_REASON:{
+                ANGEL: 'angel',
+                SERAPH: 'seraph',
+                OPHANIM: 'ophanim',
+                FIREBALL: 'fireball',
+                HOLE: 'hole',
+                FIRE: 'fire'
+            }
+        }
     },
     COLORS:{
         PHAT_CAT: 0x8FF8E2,

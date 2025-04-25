@@ -251,7 +251,7 @@ export default class Room extends Phaser.Scene {
     }
 
     gameOver(){
-        this.scene.start('end');
+        this.scene.start('end', this.player._last_damage_taken_reason);
     }
 
     menu(){

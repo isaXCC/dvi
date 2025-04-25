@@ -15,7 +15,7 @@ export default class EnemyGroup extends DefaultGroup {
             
             // Decoupled the logic so we can extend it later with
             // different amounts of damage and types of attacks
-            player.takeDamage();
+            player.takeDamage(enemy);
     
             enemy._touch_damage = true;
             let rate = 150;
