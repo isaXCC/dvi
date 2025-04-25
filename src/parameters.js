@@ -13,8 +13,8 @@ const PARAMETERS = {
         TILE: 64
     },
     PLAYER: {
-        LIFE: 1,
-        MAX_LIFE: 1,
+        LIFE: 6,
+        MAX_LIFE: 6,
         BULLETS: 7,
         MAX_AMMO: 7,
         STAMINA: 3,
@@ -240,6 +240,23 @@ const PARAMETERS = {
         FULLSCREEN_BUTTON: {
             X: 992,
             Y: 32
+        },
+        END_SCENE: {
+            DEATH_TEXT:{
+                FONT_SIZE: 40,
+                TEXT1: 'YOU WERE SENT ',
+                X1_OFFSET: -106,
+                TEXT2: 'BACK TO HELL!',
+                X2_OFFSET: 106,
+                Y_OFFSET: -100,
+            },
+            REASON_TEXT:{
+                FONT_SIZE: 30
+            },
+            BACK_TO_GAME_TEXT:{
+                Y_OFFSET: 100,
+                FONTSIZE: 30
+            }
         }
     },
     SCENES: {

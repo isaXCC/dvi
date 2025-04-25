@@ -16,6 +16,7 @@ export default class End extends Phaser.Scene {
 
     create(reason) {
         this._reason = reason;
+        this._parameters = PARAMETERS.UI.END_SCENE;
 
         // death text
         this.create_death_text();
@@ -39,13 +40,14 @@ export default class End extends Phaser.Scene {
 
     create_death_text(){
         // death text
-        this.add.text(PARAMETERS.GAME.WIDTH/2 - 106, PARAMETERS.GAME.HEIGHT/2 - 100, 'YOU WERE SENT ',
-            { fontFamily: 'font', fontSize: 40})
+        let dt = this._parameters.DEATH_TEXT;
+        this.add.text(PARAMETERS.GAME.WIDTH/2  + dt.X1_OFFSET, PARAMETERS.GAME.HEIGHT/2 + dt.Y_OFFSET, dt.TEXT1,
+            { fontFamily: 'font', fontSize: dt.FONT_SIZE})
             .setOrigin(0.5, 0.5)
             .setAlign('center');
 
-        this.add.text(PARAMETERS.GAME.WIDTH/2 + 106, PARAMETERS.GAME.HEIGHT/2 - 100, 'BACK TO HELL!',
-            { fontFamily: 'font', fontSize: 40, color: '#FF0000'})
+        this.add.text(PARAMETERS.GAME.WIDTH/2 + dt.X2_OFFSET, PARAMETERS.GAME.HEIGHT/2 + dt.Y_OFFSET, dt.TEXT2,
+            { fontFamily: 'font', fontSize: dt.FONT_SIZE, color: '#FF0000'})
             .setOrigin(0.5, 0.5)
             .setAlign('center');
     }
@@ -78,15 +80,16 @@ export default class End extends Phaser.Scene {
 
         // text is added
         this.add.text(PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2, text,
-            { fontFamily: 'font', fontSize: 30})
+            { fontFamily: 'font', fontSize: this._parameters.REASON_TEXT.FONT_SIZE})
             .setOrigin(0.5, 0.5)
             .setAlign('center');
     }
 
     create_back_to_game_text(){
         // text is added
-        this.add.text(PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2 + 100, 'Press \'P\' to come back to the overworld.',
-          { fontFamily: 'font', fontSize: 30})
+        let btg = this._parameters.BACK_TO_GAME_TEXT;
+        this.add.text(PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2 + btg.Y_OFFSET, 'Press \'P\' to come back to the overworld.',
+          { fontFamily: 'font', fontSize: btg.FONTSIZE})
           .setOrigin(0.5, 0.5)
           .setAlign('center');
     }
