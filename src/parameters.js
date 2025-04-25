@@ -179,6 +179,64 @@ const PARAMETERS = {
         }
     },
     UI: {
+        START_MENU: {
+            TITLE:{
+                P1_TEXT: 'THAT TIME I GOT REINCARNATED',
+                P1_X: 80,
+                P1_Y: 102,
+                P1_SIZE: 40,
+                P2_TEXT: 'AS A PHAT CAT',
+                P2_X: 311,
+                P2_Y: 152,
+                P2_SIZE: 40,
+                P3_TEXT: 'or the non-linear linear path to revenge',
+                P3_X: 260,
+                P3_Y: 212,
+                P3_SIZE: 16
+            },
+            START_BUTTON:{
+                ALPHA: 1,
+                X: 250,
+                Y: 270,
+                WIDTH: 524,
+                HEIGHT: 96,
+                BORDER_ALPHA: 1,
+                BORDER_WIDTH: 12,
+                INTERACTIVE_ZONE_Y_OFFSET: -5,
+                INTERACTIVE_ZONE_WIDTH_OFFSET: -10,
+                INTERACTIVE_ZONE_HEIGHT_OFFSET: -5
+            },
+            START_TEXT:{
+                X: 432,
+                Y: 275,
+                SIZE: 80,
+                STROKE_THICKNESS: 2
+            },
+            EXTRA_TEXT:{
+                Y: 415,
+                FONT_SIZE: 40,
+                T1: {
+                    TEXT: 'MEOW MEOW MEOW!!1!!',
+                    X: 360,
+                },
+                T2: {
+                    TEXT: 'THEY SAY CATS HAVE SEVEN LIVES? NOT ANYMORE!',
+                    X: 164
+                },
+                T3:{
+                    TEXT: 'GIVE \'EM REVENGE!',
+                    X: 378
+                },
+                T4:{
+                    TEXT: 'THICK BUT FLUFFY ^^',
+                    X: 360
+                },
+                T5:{
+                    TEXT: 'SHOOTING HURTS MY STOMACH :(',
+                    X: 290
+                }
+            }
+        },
         FULLSCREEN_BUTTON: {
             X: 992,
             Y: 32
@@ -186,6 +244,14 @@ const PARAMETERS = {
     },
     SCENES: {
         // TODO
+    },
+    COLORS:{
+        PHAT_CAT: 0x8FF8E2,
+        PHAT_CAT_ALT: '#8FF8E2',
+        DARKER_PHAT_CAT: 0x0CC099,
+        DARKER_PHAT_CAT_ALT: '#0CC099',
+        START_MENU_BACKGROUND: 0x31081F,
+        RANDOM_TEXT_COLOR: '#FCAA67'
     }
 };
 

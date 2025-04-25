@@ -33,6 +33,7 @@ nav{
 body {
   background-color: #d7ace4;
   cursor: url('../assets/html-utils/cursor_default.png'), auto;
+  font-family: 'Squarely', sans-serif;
 }
 
 body:active {
@@ -54,6 +55,11 @@ button:hover, .interactive:hover {
 @font-face {
   font-family: 'font';
   src: url('../assets/html-utils/VT323Regular.ttf');
+}
+
+@font-face{
+  font-family: 'oneup';
+  src: url('../assets/html-utils/1up.ttf') format('truetype');
 }
 
 /* div initial dimensions when fullscreen is not active */
