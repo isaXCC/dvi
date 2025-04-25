@@ -16,7 +16,7 @@ export default class StartMenu extends Phaser.Scene {
 
     create() {
         // creates the ui
-        this._sm = PARAMETERS.UI.START_MENU;
+        this._settings = PARAMETERS.UI.START_MENU;
 
         // creates the background
         this.create_background();
@@ -36,7 +36,7 @@ export default class StartMenu extends Phaser.Scene {
 
     create_title(){
         // creates the title, in three paragraphes
-        let t = this._sm.TITLE;
+        let t = this._settings.TITLE;
         this.add.text(t.P1_X, t.P1_Y, t.P1_TEXT,
             { fontFamily: 'oneup', fontSize: t.P1_SIZE, color: PARAMETERS.COLORS.PHAT_CAT_ALT});
 
@@ -49,7 +49,7 @@ export default class StartMenu extends Phaser.Scene {
 
     create_start_button(){
         // rounded rectangle for the start button
-        let sb = this._sm.START_BUTTON;
+        let sb = this._settings.START_BUTTON;
 
         // button is drawn
         this.graphics = this.add.graphics();
@@ -83,7 +83,7 @@ export default class StartMenu extends Phaser.Scene {
 
     draw_start_button(hovered){
         // draws the start buttom, 
-        const sb = this._sm.START_BUTTON;
+        const sb = this._settings.START_BUTTON;
         const color = hovered ? PARAMETERS.COLORS.DARKER_PHAT_CAT : PARAMETERS.COLORS.PHAT_CAT;
     
         this.graphics.clear();
@@ -113,15 +113,15 @@ export default class StartMenu extends Phaser.Scene {
 
     create_start_text(){
         // text of the start button
-        let st = this._sm.START_TEXT;
+        let st = this._settings.START_TEXT;
         this.add.text(st.X, st.Y, 'START',
             { fontFamily: 'font', fontSize: st.SIZE, stroke: '#000000', strokeThickness: st.STROKE_THICKNESS});
     }
 
     random_extra_text(){
         // random extra text
-        let et = this._sm.EXTRA_TEXT;
-        let random = Phaser.Math.Between(1, 5);
+        let et = this._settings.EXTRA_TEXT;
+        let random = Phaser.Math.Between(et.MIN_TEXT, et.MAX_TEXT);
 
         switch(random){
             case 1:
@@ -152,6 +152,7 @@ export default class StartMenu extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(PARAMETERS.COLORS.START_MENU_BACKGROUND);
 
         // creates a group of bouncing phat cats
+        this._bckg = this._settings.BACKGROUND;
         this.bouncers = this.physics.add.group({
             bounceX: 1,
             bounceY: 1,
@@ -159,10 +160,10 @@ export default class StartMenu extends Phaser.Scene {
         });
 
         // creates some phat cats and makes them bouncy
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < this._bckg.CATS_NUMBER; i++) {
             const bouncer = this.bouncers.create(
-                Phaser.Math.Between(100, 1000),
-                Phaser.Math.Between(100, 500),
+                Phaser.Math.Between(this._bckg.CAT_MIN_X, this._bckg.CAT_MAX_X),
+                Phaser.Math.Between(this._bckg.CAT_MIN_Y, this._bckg.CAT_MAX_Y),
                 'player',
                 'phatcat_walk_down_0'
             );
@@ -177,8 +178,8 @@ export default class StartMenu extends Phaser.Scene {
     random_velocity() {
         // returns a velocity between two ranges
         return Phaser.Math.RND.pick([
-            Phaser.Math.Between(-300, -150),
-            Phaser.Math.Between(150, 300)
+            Phaser.Math.Between(this._bckg.CAT_MIN_VELOCITY1, this._bckg.CAT_MAX_VELOCITY1),
+            Phaser.Math.Between(this._bckg.CAT_MIN_VELOCITY2, this._bckg.CAT_MAX_VELOCITY2)
         ]);
     }
 }
