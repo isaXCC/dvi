@@ -213,6 +213,8 @@ const PARAMETERS = {
                 STROKE_THICKNESS: 2
             },
             EXTRA_TEXT:{
+                MIN_TEXT: 1,
+                MAX_TEXT: 5,
                 Y: 415,
                 FONT_SIZE: 40,
                 T1: {
@@ -235,15 +237,52 @@ const PARAMETERS = {
                     TEXT: 'SHOOTING HURTS MY STOMACH :(',
                     X: 290
                 }
+            },
+            BACKGROUND:{
+                CATS_NUMBER: 8,
+                CAT_MIN_X: 100,
+                CAT_MAX_X: 1000,
+                CAT_MIN_Y: 100,
+                CAT_MAX_Y: 500,
+                CAT_MIN_VELOCITY1: -300,
+                CAT_MAX_VELOCITY1: -150,
+                CAT_MIN_VELOCITY2: 150,
+                CAT_MAX_VELOCITY2: 300
             }
         },
         FULLSCREEN_BUTTON: {
             X: 992,
             Y: 32
+        },
+        END_SCENE: {
+            DEATH_TEXT:{
+                FONT_SIZE: 40,
+                TEXT1: 'YOU WERE SENT ',
+                X1_OFFSET: -106,
+                TEXT2: 'BACK TO HELL!',
+                X2_OFFSET: 106,
+                Y_OFFSET: -100,
+            },
+            REASON_TEXT:{
+                FONT_SIZE: 30
+            },
+            BACK_TO_GAME_TEXT:{
+                Y_OFFSET: 100,
+                FONTSIZE: 30
+            }
         }
     },
     SCENES: {
-        // TODO
+        END:{
+            DEATH_REASON:{
+                ANGEL: 'angel',
+                SERAPH: 'seraph',
+                OPHANIM: 'ophanim',
+                FIREBALL: 'fireball',
+                HOLE: 'hole',
+                FIRE: 'fire'
+            }
+        }
     },
     COLORS:{
         PHAT_CAT: 0x8FF8E2,

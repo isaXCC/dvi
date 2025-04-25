@@ -25,6 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._speed = PARAMETERS.PLAYER.SPEED;
         this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
         this._take_damage_count = 1;
+        this._last_damage_taken_reason = '';
         this._used_jumpscare = false;
         
         this._last_move = 'phatcat_walk_down_'
@@ -94,7 +95,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(Phaser.Input.Keyboard.JustDown(this._m) && PARAMETERS.GAME.DEBUG){
             this.scene.menu();
         }
-
+        
         // Implicit State Machine
         if(!this._isFalling){
 
@@ -227,9 +228,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    takeDamage(isHole=false){
+    takeDamage(reason, isHole=false){
         if(this._life > 0){
             this._take_damage_count++;
+            isHole ? this._last_damage_taken_reason = reason : this._last_damage_taken_reason = reason.texture.key;
+            console.log('Reason of damage taken: ' + this._last_damage_taken_reason );
+
             if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
                 this.scene.addJumpScare();
             }
@@ -321,7 +325,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     fallHole(){
-        this.takeDamage(true);
+        this.takeDamage(PARAMETERS.SCENES.END.DEATH_REASON.HOLE, true);
     }
 
     jumpScare(){
