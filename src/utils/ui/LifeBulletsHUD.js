@@ -13,11 +13,13 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         this._scene = scene;
 
         // creates the rounded rectangle
-        let rr = PARAMETERS.PLAYER_HUD.LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES;
+        this._rr = PARAMETERS.PLAYER_HUD.LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES;
         // rounded rectangle for life and bullets is created
         this.graphics = this._scene.add.graphics();
-        this.graphics.fillStyle(0x000000, rr.ALPHA);
-        this.graphics.fillRoundedRect(rr.X, rr.Y, rr.WIDTH, rr.HEIGHT, rr.HEIGHT/2);
+        this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+        this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, 
+            this._rr.BASE_WIDTH + Math.max(this._rr.HEART_EXTRA_WIDTH * (this._scene.player._max_life - this._rr.BASE_MAX_LIFE)/2, 0), 
+            this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);
 
         this.add(this.graphics);
 
@@ -27,7 +29,8 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         let heart;
         let i = 0;
         for(i; i < Math.floor(this._scene.player._max_life/2); i++){
-            heart = this._scene.add.sprite(105 + i*32*PARAMETERS.PLAYER_HUD.HEART_SCALE, 38, 'hearts').setFrame(2);  // creates the array of frames
+            heart = this._scene.add.sprite(this._rr.HEART_BASE_X + i*this._rr.HEART_EXTRA_X*PARAMETERS.PLAYER_HUD.HEART_SCALE, 
+                this._rr.HEART_Y, 'hearts').setFrame(2);  // creates the array of frames
             heart.setScale(PARAMETERS.PLAYER_HUD.HEART_SCALE, PARAMETERS.PLAYER_HUD.HEART_SCALE);
             this._hearts.push(heart);
         }
@@ -52,10 +55,17 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
             // Recreate hearts based on new max life
             this._hearts = [];
             for (let i = 0; i < Math.floor(this._scene.player._max_life / 2); i++) {
-                const heart = this._scene.add.sprite(105 + i*32*PARAMETERS.PLAYER_HUD.HEART_SCALE, 38, 'hearts');
+                const heart = this._scene.add.sprite(this._rr.HEART_BASE_X + i*this._rr.HEART_EXTRA_X*PARAMETERS.PLAYER_HUD.HEART_SCALE, 
+                    this._rr.HEART_Y, 'hearts');
                 heart.setScale(PARAMETERS.PLAYER_HUD.HEART_SCALE);
                 this._hearts.push(heart);
             }
+
+            // Changes HUD size if necessary
+            this.graphics.clear();
+            this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+            this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + Math.max(this._rr.HEART_EXTRA_WIDTH * (this._scene.player._max_life - this._rr.BASE_MAX_LIFE)/2, 0), 
+                this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);            
 
             this._last_max_life = this._scene.player._max_life;
             this._last_life = -1; // force life update this frame
@@ -91,11 +101,13 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         let bullet;
         let i = 0;
         for(i; i < this._scene.player._bullets; i++){
-            bullet = this._scene.add.image(105 + i*16*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 64, 'bullet');  // creates the array of frames
+            bullet = this._scene.add.image(this._rr.BULLET_BASE_X + i*this._rr.BULLET_EXTRA_X*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 
+                this._rr.BULLET_Y, 'bullet');  // creates the array of frames
             this._info_bullets.push(bullet);
         }
         for(i; i < this._scene.player._max_ammo; i++){
-            bullet = this._scene.add.image(105 + i*16*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 64, 'bullet_shot');  // creates the array of frames
+            bullet = this._scene.add.image(this._rr.BULLET_BASE_X + i*this._rr.BULLET_EXTRA_X*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 
+                this._rr.BULLET_Y, 'bullet_shot');  // creates the array of frames
             this._info_bullets.push(bullet);
         }
         this._last_ammo = this._scene.player._bullets;

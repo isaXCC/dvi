@@ -34,6 +34,7 @@ nav{
 body {
   background-color: #9684D7;
   cursor: url('../assets/html-utils/cursor_default.png'), auto;
+  font-family: 'Squarely', sans-serif;
 }
 
 body:active {
@@ -57,10 +58,15 @@ button:hover, .interactive:hover {
   src: url('../assets/html-utils/VT323Regular.ttf');
 }
 
+@font-face{
+  font-family: 'oneup';
+  src: url('../assets/html-utils/1up.ttf') format('truetype');
+}
+
 /* div initial dimensions when fullscreen is not active */
 #game {
   width: 1024px;
-  height: 576px;
+  height: 560px;
   margin: 0 auto; /* div is centered horizontally */
   display: block;
   background-color: #000; /* bg color, in case it is shown */

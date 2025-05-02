@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_DAMAGE: 2,
-        JUMPSCARE_COUNT: 4,
+        JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
         SHAKE_INTENSITY: 0.01,
@@ -161,15 +161,22 @@ const PARAMETERS = {
             PUP_Y: 48,
             PUP_RADIUS: 28,
             JS_RADIUS: 33,
-            JS_THICKNES: 10,
-            JS_SEGMENTS: 4
+            JS_THICKNES: 10
         },
         LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
             ALPHA: 0.5,
             X: 42,
             Y: 19,
-            WIDTH: 210,
-            HEIGHT: 58
+            BASE_WIDTH: 210,
+            BASE_HEIGHT: 58,
+            BASE_MAX_LIFE: 8,
+            HEART_BASE_X: 105,
+            HEART_EXTRA_X: 32,
+            HEART_Y: 38,
+            HEART_EXTRA_WIDTH: 40,
+            BULLET_BASE_X: 105,
+            BULLET_EXTRA_X: 16,
+            BULLET_Y: 64,
         },
         STAMINA_BAR_PROPERTIES: {
             X_OFFSET: -2,
@@ -178,8 +185,119 @@ const PARAMETERS = {
             TIME_TO_DISAPPEAR: 500
         }
     },
+    UI: {
+        START_MENU: {
+            TITLE:{
+                P1_TEXT: 'THAT TIME I GOT REINCARNATED',
+                P1_X: 80,
+                P1_Y: 102,
+                P1_SIZE: 40,
+                P2_TEXT: 'AS A PHAT CAT',
+                P2_X: 311,
+                P2_Y: 152,
+                P2_SIZE: 40,
+                P3_TEXT: 'or the non-linear linear path to revenge',
+                P3_X: 260,
+                P3_Y: 212,
+                P3_SIZE: 16
+            },
+            START_BUTTON:{
+                ALPHA: 1,
+                X: 250,
+                Y: 270,
+                WIDTH: 524,
+                HEIGHT: 96,
+                BORDER_ALPHA: 1,
+                BORDER_WIDTH: 12,
+                INTERACTIVE_ZONE_Y_OFFSET: -5,
+                INTERACTIVE_ZONE_WIDTH_OFFSET: -10,
+                INTERACTIVE_ZONE_HEIGHT_OFFSET: -5
+            },
+            START_TEXT:{
+                X: 432,
+                Y: 275,
+                SIZE: 80,
+                STROKE_THICKNESS: 2
+            },
+            EXTRA_TEXT:{
+                MIN_TEXT: 1,
+                MAX_TEXT: 5,
+                Y: 415,
+                FONT_SIZE: 40,
+                T1: {
+                    TEXT: 'MEOW MEOW MEOW!!1!!',
+                    X: 360,
+                },
+                T2: {
+                    TEXT: 'THEY SAY CATS HAVE SEVEN LIVES? NOT ANYMORE!',
+                    X: 164
+                },
+                T3:{
+                    TEXT: 'GIVE \'EM REVENGE!',
+                    X: 378
+                },
+                T4:{
+                    TEXT: 'THICK BUT FLUFFY ^^',
+                    X: 360
+                },
+                T5:{
+                    TEXT: 'SHOOTING HURTS MY STOMACH :(',
+                    X: 290
+                }
+            },
+            BACKGROUND:{
+                CATS_NUMBER: 8,
+                CAT_MIN_X: 100,
+                CAT_MAX_X: 1000,
+                CAT_MIN_Y: 100,
+                CAT_MAX_Y: 500,
+                CAT_MIN_VELOCITY1: -300,
+                CAT_MAX_VELOCITY1: -150,
+                CAT_MIN_VELOCITY2: 150,
+                CAT_MAX_VELOCITY2: 300
+            }
+        },
+        FULLSCREEN_BUTTON: {
+            X: 992,
+            Y: 32
+        },
+        END_SCENE: {
+            DEATH_TEXT:{
+                FONT_SIZE: 40,
+                TEXT1: 'YOU WERE SENT ',
+                X1_OFFSET: -106,
+                TEXT2: 'BACK TO HELL!',
+                X2_OFFSET: 106,
+                Y_OFFSET: -100,
+            },
+            REASON_TEXT:{
+                FONT_SIZE: 30
+            },
+            BACK_TO_GAME_TEXT:{
+                Y_OFFSET: 100,
+                FONTSIZE: 30
+            }
+        }
+    },
     SCENES: {
-        // TODO
+        END:{
+            DEATH_REASON:{
+                ANGEL: 'angel',
+                SERAPH: 'seraph',
+                OPHANIM: 'ophanim',
+                FIREBALL: 'fireball',
+                HOLE: 'hole',
+                FIRE: 'fire'
+            }
+        }
+    },
+    COLORS:{
+        PHAT_CAT: 0x8FF8E2,
+        PHAT_CAT_ALT: '#8FF8E2',
+        DARKER_PHAT_CAT: 0x0CC099,
+        DARKER_PHAT_CAT_ALT: '#0CC099',
+        START_MENU_BACKGROUND: 0x31081F,
+        RANDOM_TEXT_COLOR: '#FCAA67'
     }
 };
 

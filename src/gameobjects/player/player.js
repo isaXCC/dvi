@@ -25,6 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._speed = PARAMETERS.PLAYER.SPEED;
         this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
         this._take_damage_count = 1;
+        this._last_damage_taken_reason = '';
         this._used_jumpscare = false;
         
         this._last_move = 'phatcat_walk_down_'
@@ -67,7 +68,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.input.on('pointerdown', (pointer) => {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
-                if(!this._isShooting && !this._isJumpScare && !this._isDashing){
+                if(!this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y)){
                     this.shoot(pointer.x, pointer.y);
                 }
             }
@@ -94,7 +95,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if(Phaser.Input.Keyboard.JustDown(this._m) && PARAMETERS.GAME.DEBUG){
             this.scene.menu();
         }
-
+        
         // Implicit State Machine
         if(!this._isFalling){
 
@@ -227,12 +228,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    takeDamage(isHole=false){
+    takeDamage(reason, isHole=false){
         if(this._life > 0){
             this._take_damage_count++;
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this.scene.add.image(50, 50, 'letters').setFrame(6)
-            }
+            isHole ? this._last_damage_taken_reason = reason : this._last_damage_taken_reason = reason.texture.key;
+            console.log('Reason of damage taken: ' + this._last_damage_taken_reason );
+
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
@@ -321,24 +322,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     fallHole(){
-        this.takeDamage(true);
+        this.takeDamage(PARAMETERS.SCENES.END.DEATH_REASON.HOLE, true);
     }
 
     jumpScare(){
-        if(!this._used_jumpscare){
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this._used_jumpscare = true;
-                this._isJumpScare = true;
-                this.scene.enemies.takeDamage(this._jumpscare_damage);
-                this.displayScratch();
-                this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
-                this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
-            }
+        if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0 
+        || this._take_damage_count > (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)){
+            this._isJumpScare = true;
+            this.scene.enemies.takeDamage(this._jumpscare_damage);
+            this.displayScratch();
+            this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
+            this._take_damage_count = 1;
         }
-        else if(this._take_damage_count % PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1 === 1){
-            this._used_jumpscare = false;
-        }
-        
     }
 
     // POWERUP LOGIC
@@ -533,6 +529,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         };
     
         return directionMap[this._last_move] || { velocityX: 0, velocityY: 0 };
+    }
+
+    onMap(x, y){
+        return !(this.scene.fullscreen_button.getBounds().contains(x, y));
     }
 
     initFrame(){
