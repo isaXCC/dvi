@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: true,
+        DEBUG: false,
         TILE: 64
     },
     PLAYER: {
@@ -287,7 +287,8 @@ const PARAMETERS = {
                 OPHANIM: 'ophanim',
                 FIREBALL: 'fireball',
                 HOLE: 'hole',
-                FIRE: 'fire'
+                FIRE: 'fire',
+                MOVING_FIRE: 'moving_fire'
             }
         }
     },
