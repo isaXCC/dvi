@@ -27,17 +27,17 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
     }
     
     createSegments(){
-        const segment_angle = Phaser.Math.PI2 / this._cr.JS_SEGMENTS;
+        const segment_angle = Phaser.Math.PI2 / PARAMETERS.PLAYER.JUMPSCARE_COUNT;
         this._last_take_damage_count = 1;
 
         // each segment is painted
-        for (let i = 0; i < this._cr.JS_SEGMENTS; i++) {
+        for (let i = 0; i < PARAMETERS.PLAYER.JUMPSCARE_COUNT; i++) {
             const graphics = this._scene.add.graphics();
             const angle_start = i * segment_angle - Math.PI / 2;
             const angle_end = angle_start + segment_angle;
 
             // color depending of its state
-            const is_active = i < (this._scene.player._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) - 1;
+            const is_active = i < (this._scene.player._take_damage_count - 1);
             const color = is_active ? 0x00CCCC : 0x555555;
 
             // the arc is painted
@@ -59,13 +59,13 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
         if(this._last_take_damage_count !== this._scene.player._take_damage_count){
             for (let i = 0; i < PARAMETERS.PLAYER.JUMPSCARE_COUNT; i++) {
                 const graphics = this._segments[i];
-                const angle_start = i * segment_angle - Math.PI / 2; // Rotar para que empiece arriba
+                const angle_start = i * segment_angle - Math.PI / 2;
                 const angle_end = angle_start + segment_angle;
 
                 // color depending of its state
-                const is_active = i < (this._scene.player._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) - 1;
+                const is_active = i < (this._scene.player._take_damage_count - 1);
                 let color;
-                if(((this._scene.player._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) - 1) !== 4) 
+                if((this._scene.player._take_damage_count) < (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) 
                     color = is_active ? 0x00CCCC : 0x555555;
                 else color = 0xff0000;
     

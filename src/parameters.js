@@ -161,8 +161,7 @@ const PARAMETERS = {
             PUP_Y: 48,
             PUP_RADIUS: 28,
             JS_RADIUS: 33,
-            JS_THICKNES: 10,
-            JS_SEGMENTS: 4
+            JS_THICKNES: 10
         },
         LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
             ALPHA: 0.5,

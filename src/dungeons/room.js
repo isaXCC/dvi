@@ -318,15 +318,6 @@ export default class Room extends Phaser.Scene {
         this.time_attack_room = null;
     }
 
-    addJumpScare(){
-        this.jumpscare_image = this.add.image(300, 25, 'letters').setFrame(6);
-        this.jumpscare_image.setScale(2,2);
-    }
-
-    removeJumpScare(){
-        this.jumpscare_image.destroy();
-    }
-
     // DISPLAY METHODS
 
     // adds player info to the HUD
