@@ -161,15 +161,22 @@ const PARAMETERS = {
             PUP_Y: 48,
             PUP_RADIUS: 28,
             JS_RADIUS: 33,
-            JS_THICKNES: 10,
-            JS_SEGMENTS: 4
+            JS_THICKNES: 10
         },
         LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
             ALPHA: 0.5,
             X: 42,
             Y: 19,
-            WIDTH: 210,
-            HEIGHT: 58
+            BASE_WIDTH: 210,
+            BASE_HEIGHT: 58,
+            BASE_MAX_LIFE: 8,
+            HEART_BASE_X: 105,
+            HEART_EXTRA_X: 32,
+            HEART_Y: 38,
+            HEART_EXTRA_WIDTH: 40,
+            BULLET_BASE_X: 105,
+            BULLET_EXTRA_X: 16,
+            BULLET_Y: 64,
         },
         STAMINA_BAR_PROPERTIES: {
             X_OFFSET: -2,

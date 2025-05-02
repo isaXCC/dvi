@@ -234,9 +234,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             isHole ? this._last_damage_taken_reason = reason : this._last_damage_taken_reason = reason.texture.key;
             console.log('Reason of damage taken: ' + this._last_damage_taken_reason );
 
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this.scene.addJumpScare();
-            }
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
@@ -331,7 +328,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     jumpScare(){
         if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0 
         || this._take_damage_count > (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)){
-            this.scene.removeJumpScare();
             this._isJumpScare = true;
             this.scene.enemies.takeDamage(this._jumpscare_damage);
             this.displayScratch();
