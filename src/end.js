@@ -58,24 +58,27 @@ export default class End extends Phaser.Scene {
         let dr = PARAMETERS.SCENES.END.DEATH_REASON;
 
         switch(this._reason){
-          case dr.ANGEL:
-              text = 'Should\'ve dodge THAT ANGEL';
-              break;
-          case dr.OPHANIM:
-              text = 'Those big eyes... Attractive! BUT DON\'T TOUCH THEM';
-              break;
-          case dr.SERAPH:
-              text = '... That was stupid. Seraph doesn\'t even move.';
-              break;
-          case dr.FIRE:
-              text = 'THIS IS NOT FINE ANYMORE, YOUR TAIL\'S ON FIRE';
-              break;
-          case dr.FIREBALL:
-              text = 'Developers don\'t recommend touching balls on fire.';
-              break;
-          case dr.HOLE:
-              text = 'wwuuuuuaaaaaaAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH';
-              break;
+            case dr.ANGEL:
+                text = 'Should\'ve dodge THAT ANGEL';
+                break;
+            case dr.OPHANIM:
+                text = 'Those big eyes... Attractive! BUT DON\'T TOUCH THEM';
+                break;
+            case dr.SERAPH:
+                text = '... That was stupid. Seraph doesn\'t even move.';
+                break;
+            case dr.FIRE:
+                text = 'THIS IS NOT FINE ANYMORE, YOUR TAIL\'S ON FIRE';
+                break;
+            case dr.FIREBALL:
+                text = 'Developers don\'t recommend touching balls on fire.';
+                break;
+            case dr.HOLE:
+                text = 'wwuuuuuaaaaaaAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH';
+                break;
+            case dr.MOVING_FIRE:
+                text = 'Now is proved! Fire DOES move faster than a cat! Thank you!!!' 
+                break;
         }
 
         // text is added
