@@ -24,6 +24,7 @@ import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
 import PlayerHUD from '../utils/ui/playerHUD.js';
+import SceneTransition from '../utils/SceneTransition.js'
 
 export default class Room extends Phaser.Scene {
 
@@ -74,6 +75,9 @@ export default class Room extends Phaser.Scene {
 
         // Blocking context menu to open
         window.addEventListener('contextmenu', (event) => event.preventDefault());
+
+        // creates in transition
+        SceneTransition.transitionIn(this);
     }
 
     update(){
@@ -240,9 +244,12 @@ export default class Room extends Phaser.Scene {
     }
 
     nextRoom(room){
-        this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
-             max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
-             portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo()});
+        SceneTransition.transitionOut(this);
+        this.time.delayedCall(200, () => {
+            this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
+                max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
+                portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo()});
+        })
     }
 
     spawnHole(x, y){

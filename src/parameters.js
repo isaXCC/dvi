@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: false,
+        DEBUG: true,
         TILE: 64
     },
     PLAYER: {
@@ -161,7 +161,12 @@ const PARAMETERS = {
             PUP_Y: 48,
             PUP_RADIUS: 28,
             JS_RADIUS: 33,
-            JS_THICKNES: 10
+            JS_THICKNES: 10,
+            HIDING_MASK_X: 42,
+            HIDING_MASK_Y: 20,
+            HIDING_MASK_HEIGHT: 58,
+            HIDING_MASK_WIDTH: 20,
+            HIDING_MASK_RADIUS: 30
         },
         LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES: {
             ALPHA: 0.5,

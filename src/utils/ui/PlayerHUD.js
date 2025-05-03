@@ -39,7 +39,8 @@ export default class PlayerHUD extends Phaser.GameObjects.Container{
         // mask shape created so the circle hides the rounded rectangle
         const maskShape = this._scene.make.graphics({ x: 0, y: 0, add: false });
         maskShape.fillStyle(0xffffff);                          // what is shown by the mask
-        maskShape.fillRoundedRect(42, 20, 20, 58, 30);          // circular rectangle
+        maskShape.fillRoundedRect(cr.HIDING_MASK_X, cr.HIDING_MASK_Y, 
+            cr.HIDING_MASK_WIDTH, cr.HIDING_MASK_HEIGHT, cr.HIDING_MASK_RADIUS);          // circular rectangle
         maskShape.fillStyle(0x000000);                          // what is not shown
         maskShape.fillCircle(cr.PUP_X, cr.PUP_Y, cr.JS_RADIUS); // the inside of the hollow circle
         

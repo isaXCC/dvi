@@ -50,6 +50,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setSize(24, 25).setOffset(20, 22.5);   // first hitbox, corresponds to "up_walk"
 
         // Creation of keystrokes
+        this._input_enabled = true;
         this._w = this.scene.input.keyboard.addKey('W');
         this._a = this.scene.input.keyboard.addKey('A');
         this._s = this.scene.input.keyboard.addKey('S');
@@ -68,7 +69,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.input.on('pointerdown', (pointer) => {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
-                if(!this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y)){
+                if(!this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y) && this._input_enabled){
                     this.shoot(pointer.x, pointer.y);
                 }
             }
@@ -91,6 +92,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+
+        if(!this._input_enabled) return;
         
         if(Phaser.Input.Keyboard.JustDown(this._m) && PARAMETERS.GAME.DEBUG){
             this.scene.menu();
@@ -143,10 +146,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
         else{
             // Stop current animation and set last movement sprite
-            this.stop();
-            this.setFrame(this._last_move.concat('1'));
-            this.body.setVelocityX(0);
-            this.body.setVelocityY(0);
+            this.stop_player();
         }
     }
 
@@ -591,4 +591,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    disable_input(){
+        this._w.off();
+        this._a.off();
+        this._s.off();
+        this._d.off();
+        this._e.off();
+        this._r.off();
+        this._q.off();
+        this._t.off();
+        this._m.off();
+        this._space.off();
+    }
+
+    stop_player(){
+        // stops player and shows correct sprite
+        this.stop();
+        this.setFrame(this._last_move.concat('1'));
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+    }
 }

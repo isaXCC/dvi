@@ -17,10 +17,12 @@ export default class D1_BOSS extends Room {
         this.enemies.addElement(new Hoarder(this, 
             PARAMETERS.GAME.WIDTH - PARAMETERS.GAME.WIDTH/8,
             PARAMETERS.GAME.HEIGHT/2));
-        if(!CONDITIONS.D1.FIGHT_BOSS){
-            this.enterDialogue('d1_boss');
-            CONDITIONS.D1.FIGHT_BOSS = true;
-        }
+        this.time.delayedCall(450, () => {
+            if(!CONDITIONS.D1.FIGHT_BOSS){
+                this.enterDialogue('d1_boss');
+                CONDITIONS.D1.FIGHT_BOSS = true;
+            }
+        })
     }
 
     init(player_state) {
