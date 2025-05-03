@@ -20,14 +20,17 @@ export default class StaminaBarHUD extends Phaser.GameObjects.Sprite{
 
     update(){
         // updates stamina
-        this._staminabar.setPosition(this._scene.player.x + this._scene.player.width/2 + this._sb.X_OFFSET, 
-            this._scene.player.y + this._sb.Y_OFFSET, 'stamina').setFrame(3 - this._scene.player._stamina);
+        if(!this._scene.player._isFalling){
+            this._staminabar.setPosition(this._scene.player.x + this._scene.player.width/2 + this._sb.X_OFFSET, 
+                this._scene.player.y + this._sb.Y_OFFSET, 'stamina').setFrame(3 - this._scene.player._stamina);
 
-        if(this._scene.player._stamina === 3){
-            this._scene.time.delayedCall(this._sb.TIME_TO_DISAPPEAR, () => {
-                this._staminabar.setVisible(false);
-            });
-        } 
-        else this._staminabar.setVisible(true);
+            if(this._scene.player._stamina === 3){
+                this._scene.time.delayedCall(this._sb.TIME_TO_DISAPPEAR, () => {
+                    this._staminabar.setVisible(false);
+                });
+            } 
+            else this._staminabar.setVisible(true);
+        }
+        else this._staminabar.setVisible(false);
     }
 }

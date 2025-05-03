@@ -13,8 +13,8 @@ const PARAMETERS = {
         TILE: 64
     },
     PLAYER: {
-        LIFE: 1,
-        MAX_LIFE: 2,
+        LIFE: 6,
+        MAX_LIFE: 6,
         BULLETS: 7,
         MAX_AMMO: 7,
         STAMINA: 3,
@@ -26,6 +26,7 @@ const PARAMETERS = {
         RELOAD_DURATION: 500,
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
+        JUMPSCARE_INVULNERABILITY_DURATION: 1250,
         JUMPSCARE_DAMAGE: 2,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
@@ -113,7 +114,7 @@ const PARAMETERS = {
     HOLE: {
         DURATION: 1750,
         DURATION_BOSS: 1750,
-        DELAY: 500,
+        DELAY: 200,
         HITBOX_X: 64*0.7,
         HITBOX_Y: 64*0.7,
         GRID_OFFSET_Y: -64,

@@ -23,7 +23,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._bullets = PARAMETERS.PLAYER.BULLETS;
         this._max_ammo = PARAMETERS.PLAYER.MAX_AMMO;
         this._speed = PARAMETERS.PLAYER.SPEED;
-        this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
+        this._jumpscare_damage = PARAMETERS.PLAYER.JUMPSCARE_DAMAGE;
         this._take_damage_count = 1;
         this._last_damage_taken_reason = '';
         this._used_jumpscare = false;
@@ -229,7 +229,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     takeDamage(reason, isHole=false){
-        if(this._life > 0){
+        if(this._life > 0 && !this._isInvulnerable){
             this._take_damage_count++;
             isHole ? this._last_damage_taken_reason = reason : this._last_damage_taken_reason = reason.texture.key;
             console.log('Reason of damage taken: ' + this._last_damage_taken_reason );
@@ -250,7 +250,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             if(this._life <= 0){
                 this._isAlive = false;
             }
-            else{
+            else if(!this._isFalling){
                 this.scene.time.delayedCall(500, () => {
                     this._isInvulnerable = false;
                 });
@@ -329,10 +329,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0 
         || this._take_damage_count > (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)){
             this._isJumpScare = true;
+            this._isInvulnerable = true;
             this.scene.enemies.takeDamage(this._jumpscare_damage);
             this.displayScratch();
             this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
-            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => {this._isJumpScare = false;});
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_INVULNERABILITY_DURATION, () => {this._isInvulnerable = false;});
             this._take_damage_count = 1;
         }
     }
@@ -371,7 +373,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     // SETTERS AND GETTERS
-    isInvulnerable(){ return this._isInvulnerable || this._isDashing || this._isJumpScare;}
+    isInvulnerable(){ return this._isInvulnerable;}
 
     changeMaxLife(i){
         PARAMETERS.PLAYER.MAX_LIFE = this._max_life + i;
@@ -589,19 +591,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                 });
             });
         }
-    }
-
-    disable_input(){
-        this._w.off();
-        this._a.off();
-        this._s.off();
-        this._d.off();
-        this._e.off();
-        this._r.off();
-        this._q.off();
-        this._t.off();
-        this._m.off();
-        this._space.off();
     }
 
     stop_player(){
