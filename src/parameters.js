@@ -13,8 +13,8 @@ const PARAMETERS = {
         TILE: 64
     },
     PLAYER: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 1,
+        MAX_LIFE: 2,
         BULLETS: 7,
         MAX_AMMO: 7,
         STAMINA: 3,
