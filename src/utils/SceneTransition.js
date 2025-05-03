@@ -2,7 +2,7 @@ export default class SceneTransition{
 
     /**
      * 
-     * @param {Phaser.Scene} scene scene that transitions in
+     * @param {Phaser.Scene} scene scene that transitions out
      */
     static transitionOut(scene){
         // transition circle
@@ -39,7 +39,7 @@ export default class SceneTransition{
 
     /**
      * 
-     * @param {Phaser.Scene} scene scene that transitions out
+     * @param {Phaser.Scene} scene scene that transitions in
      */
     static transitionIn(scene){
         // transition circle

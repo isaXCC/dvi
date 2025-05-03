@@ -43,6 +43,7 @@ export default class Room extends Phaser.Scene {
             this.setPlayerInfo(player_state);
         }
         this.dialogue_manager = new DialogueManager(this, player_state.dialogue_info);
+        this._passed = false;
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -258,7 +259,13 @@ export default class Room extends Phaser.Scene {
     }
 
     gameOver(){
-        this.scene.start('end', this.player._last_damage_taken_reason);
+        if(!this._passed){  
+            SceneTransition.transitionOut(this);    
+            this.time.delayedCall(200, () => {
+                this.scene.start('end', this.player._last_damage_taken_reason);
+            });
+            this._passed = true;
+        }
     }
 
     menu(){
