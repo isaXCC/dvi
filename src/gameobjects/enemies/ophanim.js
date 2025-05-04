@@ -1,5 +1,6 @@
 import Enemy from "./enemy";
 import PARAMETERS from "../../parameters.js";
+import getNormDist from '../../utils/vector';
 
 export default class Ophanim extends Enemy{
     
@@ -15,7 +16,11 @@ export default class Ophanim extends Enemy{
         this._isIdle = true;
         this._isAttacking = false;
         this._isMoving = false;
+        this._isRandomlyMoving = false;
+        this._isEscapingWall = false;
         this._called = false;
+
+        this.generateRand();
 
         // SPRITE CONFIG
         this.setSize(PARAMETERS.OPHANIM.HITBOX_X, PARAMETERS.OPHANIM.HITBOX_Y);
@@ -28,7 +33,8 @@ export default class Ophanim extends Enemy{
             if(this._isIdle){
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.IDLE_DURATION, () => {
+                    this.generateRand(PARAMETERS.OPHANIM.IDLE_RAND_LOW, PARAMETERS.OPHANIM.IDLE_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.IDLE_DURATION + this._rand, () => {
                         this._isIdle = false;
                         this._isMoving = true;
                         this._called = false;
@@ -39,7 +45,8 @@ export default class Ophanim extends Enemy{
                 this.move();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION, () => {
+                    this.generateRand(PARAMETERS.OPHANIM.MOVE_RAND_LOW, PARAMETERS.OPHANIM.MOVE_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.MOVE_DURATION + this._rand, () => {
                         this._isMoving = false;
                         this._isAttacking = true;
                         // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
@@ -51,7 +58,8 @@ export default class Ophanim extends Enemy{
                 if(this.active && this._isAlive && !this._called){
                     this.shoot(this.x, this.y);
                     this._called = true;
-                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION, () => {
+                    this.generateRand(PARAMETERS.OPHANIM.ATK_RAND_LOW, PARAMETERS.OPHANIM.ATK_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.OPHANIM.ATK_DURATION + this._rand, () => {
                         this._isAttacking = false;
                         this._isIdle = true;
                         // this._speed = PARAMETERS.OPHANIM.ATK_SPEED;
@@ -71,8 +79,61 @@ export default class Ophanim extends Enemy{
         this.scene.newEnemyBullet(x, y);
     }
 
-    move(){
-        this.runFromPlayer();
+    move() {
+        // if it is escaping from a wall, lets it do it
+        if(this._isEscapingWall) return;
+
+        // distance to player
+        const distance = Phaser.Math.Distance.Between(this.x, this.y, this.scene.player.x, this.scene.player.y);
+
+        // if it is too close to a wall and to close to the player, it will randomly move away from
+        if(/*(distance < PARAMETERS.OPHANIM.DANGER_ZONE) &&*/ this.closeToWall(this.x, this.y)) this.escapeWall();
+
+        // if it is too far away from the player, it will follow it
+        else if(distance > PARAMETERS.OPHANIM.FOLLOW_ZONE){ 
+            this.followPlayer();
+            this._isRandomlyMoving = false;
+        }
+        // if it is too near to the player, it will run from it
+        else if (distance < PARAMETERS.OPHANIM.DANGER_ZONE) {
+            this.runFromPlayer();
+            this._isRandomlyMoving = false;
+        }
+        // if non of those, it will also move randomly
+        else if (!this._isRandomlyMoving) this.randomMove();
+    }
+
+    randomMove() {
+        // tries MAX_TRIES times to get a new pos that is not near the player or walls
+        for (let i = 0; i < PARAMETERS.OPHANIM.RANDOM_MOVE_MAX_TRIES; i++) {
+            // generates random angle and distance
+            let angle = Phaser.Math.FloatBetween(0, Math.PI * 2);
+            let distance = Phaser.Math.Between(PARAMETERS.OPHANIM.RANDOM_MOVE_MIN_RADIUS, PARAMETERS.OPHANIM.RANDOM_NOVE_MAX_RADIUS);
+
+            // generates coords
+            let targetX = this.x + Math.cos(angle) * distance;
+            let targetY = this.y + Math.sin(angle) * distance;
+    
+            // calculates distance to player from target pos
+            let distanceToPlayer = Phaser.Math.Distance.Between(targetX, targetY, this.scene.player.x, this.scene.player.y);
+    
+            // if it is valid, moves there
+            if ((distanceToPlayer > PARAMETERS.OPHANIM.DANGER_ZONE)) {
+                let { x_norm, y_norm } = getNormDist(this.x, this.y, targetX, targetY);
+                this.body.setVelocity(x_norm * this._speed, y_norm * this._speed);
+                this._isRandomlyMoving = true;
+                return;
+            }
+        }
+    
+        // if in those tries does not find a valid point, it stays still
+        this.body.setVelocity(0, 0);
+    }
+
+    escapeWall(){
+        this._isEscapingWall = true;
+        this.followPlayer();
+        this.scene.time.delayedCall(PARAMETERS.OPHANIM.ESCAPE_WALL_DURATION, () => this._isEscapingWall = false);
     }
 
     // ANIMATION SECTION

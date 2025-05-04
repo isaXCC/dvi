@@ -63,4 +63,12 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
             this.body.setVelocity(-x_norm*this._speed, -y_norm*this._speed);
         }
     }
+
+    closeToWall(x, y){
+        return (x < 100 || x > (PARAMETERS.GAME.WIDTH - 100) || y < 100 || y > (PARAMETERS.GAME.HEIGHT - 100));
+    }
+    
+    generateRand(low, high){
+        this._rand = Phaser.Math.Between(low, high);
+    }
 }

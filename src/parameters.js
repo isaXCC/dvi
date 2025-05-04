@@ -40,19 +40,23 @@ const PARAMETERS = {
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
+        IDLE_RAND_LOW: -250,
+        IDLE_RAND_HIGH: 250,
         ATK_DURATION: 800, // in milliseconds
+        ATK_RAND_LOW: -200,
+        ATK_RAND_HIGH: 400,
         ATK_SPEED: 200,
         ATK_FRAMERATE: 4,
         MOVE_DURATION: 2500, // in milliseconds
+        MOVE_RAND_LOW: -1000,
+        MOVE_RAND_HIGH: 1500,
         MOVE_FRAMERATE: 8,
         HEIGHT: 46,
         WIDTH: 64,
         SCALE_X: 1.5,
         SCALE_Y: 1.5,
         HITBOX_X: 46*0.8,
-        HITBOX_Y: 64*0.5, 
-        RAND_LOW: -250,
-        RAND_HIGH: 250
+        HITBOX_Y: 64*0.5
     },
     OPHANIM: {
         LIFE: 6,
@@ -60,19 +64,29 @@ const PARAMETERS = {
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
+        IDLE_RAND_LOW: -400,
+        IDLE_RAND_HIGH: 200,
         ATK_DURATION: 800, // in milliseconds
+        ATK_RAND_LOW: -600,
+        ATK_RAND_HIGH: 300,
         ATK_SPEED: 200,
         ATK_FRAMERATE: 4,
+        DANGER_ZONE: 300,
+        FOLLOW_ZONE: 450,
         MOVE_DURATION: 2500, // in milliseconds
+        MOVE_RAND_LOW: -1600,
+        MOVE_RAND_HIGH: 1000,
         MOVE_FRAMERATE: 8,
+        RANDOM_MOVE_MAX_TRIES: 10,
+        RANDOM_MOVE_MIN_RADIUS: 30,
+        RANDOM_NOVE_MAX_RADIUS: 60,
+        ESCAPE_WALL_DURATION: 1500,
         HEIGHT: 64,
         WIDTH: 64,
         SCALE_X: 1.7,
         SCALE_Y: 1.7,
         HITBOX_X: 64*0.5,
-        HITBOX_Y: 64*0.5,
-        RAND_LOW: -500,
-        RAND_HIGH: 500
+        HITBOX_Y: 64*0.5
     },
     SERAPH: {
         LIFE: 6,
