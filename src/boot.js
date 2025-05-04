@@ -80,6 +80,12 @@ import d2_9 from '../assets/tiled/d2_9.json'
 import d2_10 from '../assets/tiled/d2_10.json'
 import d2_boss from '../assets/tiled/d2_boss.json'
 import df_1 from '../assets/tiled/df_1.json'
+import df_2 from '../assets/tiled/df_2.json'
+import df_3 from '../assets/tiled/df_3.json'
+import df_4 from '../assets/tiled/df_4.json'
+import df_5 from '../assets/tiled/df_5.json'
+import df_6 from '../assets/tiled/df_6.json'
+import df_7 from '../assets/tiled/df_7.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
 
@@ -183,6 +189,12 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d2_10', d2_10);
     this.load.tilemapTiledJSON('d2_boss', d2_boss);
     this.load.tilemapTiledJSON('df_1', df_1);
+    this.load.tilemapTiledJSON('df_2', df_2);
+    this.load.tilemapTiledJSON('df_3', df_3);
+    this.load.tilemapTiledJSON('df_4', df_4);
+    this.load.tilemapTiledJSON('df_5', df_5);
+    this.load.tilemapTiledJSON('df_6', df_6);
+    this.load.tilemapTiledJSON('df_7', df_7);
   }
 
   /**

@@ -31,6 +31,12 @@ import D2_9 from './dungeons/d2/d2_9.js';
 import D2_10 from './dungeons/d2/d2_10.js';
 import D2_BOSS from './dungeons/d2/d2_boss.js';
 import DF_1 from './dungeons/df/df_1.js';
+import DF_2 from './dungeons/df/df_2.js';
+import DF_3 from './dungeons/df/df_3.js';
+import DF_4 from './dungeons/df/df_4.js';
+import DF_5 from './dungeons/df/df_5.js';
+import DF_6 from './dungeons/df/df_6.js';
+import DF_7 from './dungeons/df/df_7.js';
 import MENU from './menu.js';
 import Phaser from 'phaser';
 
@@ -56,7 +62,7 @@ let config = {
     scene: [BOOT, D1_Test, DIALOGUE, MENU, START_MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
             D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS,
             D2_1, D2_2, D2_3, D2_4, D2_5, D2_6, D2_7, D2_8, D2_9, D2_10, D2_BOSS, 
-            DF_1, END],
+            DF_1, DF_2, DF_3, DF_4, DF_5, DF_6, DF_7, END],
     physics: {
         default: 'arcade',
         arcade: {
