@@ -1,0 +1,5 @@
+npc_name,cond,cmd,options,index,text,option1,option2,option3,option4
+df_1,base,,,0,"""Weeeell, is this the JAM world?""",,,,
+,,,,1,"""Guess the DEVs had a strawberry jam as a color pallet inspiration""",,,,
+,,,,2,"""Nah, nah, I get it now. This is ~supposed~ to be HELL""",,,,
+,,,,3,"""Hellish indeed, kill me with the jam power.""",,,,

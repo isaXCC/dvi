@@ -1,0 +1,22 @@
+import Room from '../room.js'
+
+export default class DF_3 extends Room {
+
+    constructor() {
+        super('df_3');
+    }
+
+    create() {
+        super.generateTiled('df_3'); 
+        super.create();;
+    }
+
+    init(player_state) {
+        super.init(player_state);
+    }
+
+    update(){
+        super.update();
+    }
+
+}

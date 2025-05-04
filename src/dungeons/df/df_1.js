@@ -8,7 +8,10 @@ export default class DF_1 extends Room {
 
     create() {
         super.generateTiled('df_1'); 
-        super.create();;
+        super.create();
+        this.time.delayedCall(450, () => {
+            this.enterDialogue('df_1');
+        });
     }
 
     init(player_state) {

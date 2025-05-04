@@ -134,13 +134,13 @@
                  "gid":31,
                  "height":64,
                  "id":8,
-                 "name":"df_2",
+                 "name":"df_6",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
                  "width":64,
                  "x":448,
-                 "y":128
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
