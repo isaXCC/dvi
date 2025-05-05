@@ -1,5 +1,9 @@
 npc_name,cond,cmd,options,index,text,option1,option2,option3,option4
 df_1,base,,,0,"""Weeeell, is this the JAM world?""",,,,
-,,,,1,"""Guess the DEVs had a strawberry jam as a color pallet inspiration""",,,,
-,,,,2,"""Nah, nah, I get it now. This is ~supposed~ to be HELL""",,,,
+,,,,1,"""Guess the DEVs had a strawberry jam as a color pallet inspiration.""",,,,
+,,,,2,"""Nah, nah, I get it now. This is ~supposed~ to be HELL.""",,,,
 ,,,,3,"""Hellish indeed, kill me with the jam power.""",,,,
+virgil,base,,,0,"""This is it, kid.""",,,,
+,,,,1,"""Time to show VALUE and COURAGE. You've died and come back to get your revenge!""",,,,
+,,,,2,"""You’ve already killed six of your ex-owners (maybe fewer—depends on what stage of development we're in, right?).""",,,,
+,,,,3,"""Best of luck! From here on out: shoot on sight—like a glitchy NPC or something.""",,,,

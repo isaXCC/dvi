@@ -18,6 +18,7 @@ import bullet from '../assets/sprites/utils/bullet.png'
 import bullet_shot from '../assets/sprites/utils/bullet_shot.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
+import block from '../assets/sprites/utils/block.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
@@ -43,6 +44,7 @@ import player_hurt from '../assets/audio/utils/player_hurt.wav'
 import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
 import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+import dfMusic from '../assets/audio/music/dfMusic.mp3'
 import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
 import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
@@ -126,6 +128,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bullet', bullet);
     this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);
+    this.load.image('block', block);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
     // POWERUPS AND ITENS
@@ -151,6 +154,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
     this.load.audio('backgroundMusic', backgroundMusic);
+    this.load.audio('dfMusic', dfMusic);
     this.load.audio('powerup_pick', powerup_pick);
     this.load.audio('time_attack_succeded', time_attack_succeded);
     this.load.audio('time_attack_failed', time_attack_failed);

@@ -102,23 +102,7 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[
-                {
-                 "height":19,
-                 "id":12,
-                 "name":"virgil",
-                 "rotation":0,
-                 "text":
-                    {
-                     "text":"virgil",
-                     "wrap":true
-                    },
-                 "type":"NPC",
-                 "visible":true,
-                 "width":83,
-                 "x":698.5,
-                 "y":115.833333333333
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -139,8 +123,8 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":128
+                 "x":896,
+                 "y":320
                 }, 
                 {
                  "gid":31,
@@ -151,8 +135,8 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":512
+                 "x":64,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",

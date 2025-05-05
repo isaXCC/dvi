@@ -3,6 +3,7 @@ import Angel from '../gameobjects/enemies/angel.js';
 import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
 import Portal from '../gameobjects/utils/portal.js';
+import Block from '../gameobjects/utils/block.js';
 import Bullet from '../gameobjects/utils/bullet.js';
 import NPC from '../gameobjects/utils/npc.js';
 import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
@@ -25,6 +26,7 @@ import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
 import PlayerHUD from '../utils/ui/playerHUD.js';
 import SceneTransition from '../utils/SceneTransition.js'
+import BlockGroup from '../gameobjects/groups/BlockGroup.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -54,6 +56,7 @@ export default class Room extends Phaser.Scene {
         this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
         this.npcs.addCollision(this.player, this.npcs.playerCollision);
+        this.blocks.addCollision(this.player, this.blocks.playerCollision);
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
         this.holes.addOverlap(this.player, this.holes.playerOverlap);
         this.fires.addOverlap(this.player, this.fires.playerOverlap);
@@ -63,12 +66,30 @@ export default class Room extends Phaser.Scene {
 
         // MUSIC SECTION
         // Background music is always playing
-        if (!this.sound.get('backgroundMusic')) {
-            this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
-            this.music.play();
-        } else {
-            this.music = this.sound.get('backgroundMusic');
-            if(!this.music.isPlaying) this.music.play();
+        if(CONDITIONS.DF.INSIDE){
+            if (!this.sound.get('backgroundMusic')) {
+                this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
+                this.music.stop();
+            } else {
+                this.music = this.sound.get('backgroundMusic');
+                this.music.stop();
+            }
+            if (!this.sound.get('dfMusic')) {
+                this.music = this.sound.add('dfMusic', { loop: true, volume: 0.2 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('dfMusic');
+                if(!this.music.isPlaying) this.music.play();
+            }
+        }
+        else{
+            if (!this.sound.get('backgroundMusic')) {
+                this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('backgroundMusic');
+                if(!this.music.isPlaying) this.music.play();
+            }
         }
 
         // adds player info to the HUD
@@ -108,6 +129,7 @@ export default class Room extends Phaser.Scene {
         this.enemies = new EnemyGroup(this);
         this.bullets = new BulletGroup(this);
         this.portals = new PortalGroup(this);
+        this.blocks = new BlockGroup(this);
         this.npcs = new NPCGroup(this);
         this.powerups = new PUPGroup(this);
         this.holes = new HoleGroup(this);
@@ -237,6 +259,13 @@ export default class Room extends Phaser.Scene {
         this.physics.add.collider(this.player, oic, null, null, this);
     }
 
+    generateBlocks(){
+        this.portals.group.getChildren().forEach((portal) => {
+            // Handle each portal object
+            this.blocks.addElement(new Block(this, portal._x, portal._y));
+        });
+    }
+
     // ROOM STATE LOGIC AND METHOD
 
     enterDialogue(nameNPC){
@@ -259,6 +288,7 @@ export default class Room extends Phaser.Scene {
     }
 
     gameOver(){
+        this.music.stop();
         if(!this._passed){  
             SceneTransition.transitionOut(this);    
             this.time.delayedCall(200, () => {

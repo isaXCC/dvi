@@ -15,7 +15,8 @@ const CONDITIONS = {
 
     },
     DF:{
-
+        INSIDE: false,
+        DF_3_KILLED: false
     }
 };
 
