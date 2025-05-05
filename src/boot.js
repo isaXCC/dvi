@@ -9,6 +9,7 @@ import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
 import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
 import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
 import hoarder from '../assets/sprites/enemies/hoarder.png'
+import devil from '../assets/sprites/enemies/devil.png'
 // Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
@@ -125,6 +126,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
+    this.load.image('devil', devil);
     this.load.image('bullet', bullet);
     this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);

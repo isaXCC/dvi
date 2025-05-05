@@ -21,6 +21,8 @@ export default class D1_6 extends Room {
                 7*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 4*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 'd1_6');        
             }
         });
+        if(!CONDITIONS.D1.D1_6_KILLED)
+            super.generateBlocks();
     }
 
     init(player_state) {
@@ -29,6 +31,10 @@ export default class D1_6 extends Room {
 
     update(){
         super.update();
+        if(!CONDITIONS.D1.D1_6_KILLED && this.enemies.isEmpty()){
+            CONDITIONS.D1.D1_6_KILLED = true;
+            super.destroyBlocks();
+        }
     }
 
 }

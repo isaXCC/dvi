@@ -260,9 +260,28 @@ export default class Room extends Phaser.Scene {
     }
 
     generateBlocks(){
+        // Blocks all portals except the one that the player entered
         this.portals.group.getChildren().forEach((portal) => {
-            // Handle each portal object
+            const portalX = portal._x - PARAMETERS.PORTAL.GRID_OFFSET_X;
+            const portalY = portal._y - PARAMETERS.PORTAL.GRID_OFFSET_Y;
+            const dx = Math.abs(this.player.x - portalX);
+            const dy = Math.abs(this.player.y - portalY);
+
+            if (dx <= 64 && dy <= 64) {
+                // Player is too close to the portal — don't spawn block
+                return;
+            }
             this.blocks.addElement(new Block(this, portal._x, portal._y));
+            portal.isBlocked = true;
+        });
+    }
+
+    destroyBlocks(){
+        this.blocks.group.getChildren().forEach((block) => {
+            this.blocks.removeElement(block);
+        });
+        this.portals.group.getChildren().forEach((portal) => {
+            portal.isBlocked = false;
         });
     }
 

@@ -13,6 +13,7 @@ export default class Portal extends Phaser.Physics.Arcade.Sprite {
         super(scene, x, y, 'portal');
         this._nextRoom = nextRoom;
         this.isActivated = false;
+        this.isBlocked = false;
         this._x = x;
         this._y = y;
         this.scene.add.existing(this);

@@ -113,19 +113,7 @@
          "draworder":"topdown",
          "id":5,
          "name":"portals",
-         "objects":[
-                {
-                 "gid":31,
-                 "height":64,
-                 "id":8,
-                 "name":"df_6",
-                 "rotation":0,
-                 "type":"Portal",
-                 "visible":true,
-                 "width":64,
-                 "x":896,
-                 "y":512
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
