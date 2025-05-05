@@ -100,7 +100,6 @@ export default class Hoarder extends Enemy{
                     this.flipX = true;
                 }
                 if(ph >= 2) {
-                    console.log("ping");
                     this.y = Phaser.Math.Between(PARAMETERS.HOARDER.OFFSET_Y, PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y)
                 }
             }
@@ -115,18 +114,18 @@ export default class Hoarder extends Enemy{
                 if (this.active && this.scene) {
                     this._hole = false;
                     let hole_x = Phaser.Math.Between(3, 12)*64;
-                    let hole_y = Phaser.Math.Between(1, 7)*64;
+                    let hole_y = Phaser.Math.Between(2, 6)*64;
                     this.scene.spawnHole(hole_x, hole_y);
                 }
         });
     }
 
     move() {
-        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y){
+        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y + 64){
             this._speed *= -1;
             this.y += 2;
         }
-        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y){
+        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y - 64){
             this._speed *= -1;
             this.y -= 2;
         }

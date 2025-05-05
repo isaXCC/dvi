@@ -1,3 +1,4 @@
+import CONDITIONS from '../conditions.js';
 import Room from '../room.js'
 
 export default class DF_3 extends Room {
@@ -8,7 +9,9 @@ export default class DF_3 extends Room {
 
     create() {
         super.generateTiled('df_3'); 
-        super.create();;
+        super.create();
+        if(!CONDITIONS.DF.DF_3_KILLED)
+            super.generateBlocks();
     }
 
     init(player_state) {

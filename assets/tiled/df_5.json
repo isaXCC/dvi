@@ -139,7 +139,7 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":448,
+                 "x":896,
                  "y":128
                 }, 
                 {
@@ -151,7 +151,7 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":448,
+                 "x":64,
                  "y":512
                 }],
          "opacity":1,
