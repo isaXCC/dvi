@@ -10,7 +10,7 @@ export default class Menu extends Phaser.Scene {
       this.add.text(PARAMETERS.GAME.WIDTH/2, 20, 'Game Menu', { font: '32px Arial', fill: '#fff' }).setOrigin(0.5);
   
       // Create an array of available scenes
-      this.sceneOptions = [ 'df_1', 'df_3', 'df_5', 'd1_test', 'd1_mid', 'd1_8', 'd1_11', 'd1_boots', 'd1_pit',
+      this.sceneOptions = [ 'df_1', 'df_3', 'df_5', 'df_7', 'd1_mid', 'd1_8', 'd1_11', 'd1_boots', 'd1_pit',
                             'd1_boss', 'd2_1']; // Add your scene names here
       this.selectedIndex = 0;
   

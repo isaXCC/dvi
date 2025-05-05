@@ -9,14 +9,25 @@ const CONDITIONS = {
         TIMEATK2: false,
         FIGHT_BOSS: false,
         KILLED_BOSS: false,
-        PORTAL_D2: false
+        PORTAL_D2: false,
+        D1_3_KILLED: false,
+        D1_4_KILLED: false,
+        D1_6_KILLED: false,
+        D1_9_KILLED: false,
+        D1_10_KILLED: false,
+        D1_11_KILLED: false,
+        D1_BOOTS_KILLED: false,
+        D1_MID_KILLED: false
     }, 
     D2:{
 
     },
     DF:{
         INSIDE: false,
-        DF_3_KILLED: false
+        VIRGIL: false,
+        DF_3_KILLED: false,
+        FIGHT_BOSS: false,
+        KILLED_BOSS: false
     }
 };
 

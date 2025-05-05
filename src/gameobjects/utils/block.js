@@ -17,6 +17,7 @@ export default class Block extends Phaser.Physics.Arcade.Sprite {
         this.body.setCollideWorldBounds();
         this.body.setImmovable();
         this.body.pushable = false;
+        
     }
     
     update(){

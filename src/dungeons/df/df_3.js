@@ -20,6 +20,9 @@ export default class DF_3 extends Room {
 
     update(){
         super.update();
+        if(!CONDITIONS.DF.DF_3_KILLED && this.enemies.isEmpty()){
+            CONDITIONS.DF.DF_3_KILLED = true;
+            super.destroyBlocks();
+        }
     }
-
 }
