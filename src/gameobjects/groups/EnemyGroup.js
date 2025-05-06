@@ -39,4 +39,9 @@ export default class EnemyGroup extends DefaultGroup {
         this.group.getChildren().forEach(enemy => enemy.takeDamage(amount));
     }
 
+    removeDead(){
+        this.group.getChildren().forEach(enemy => {
+            if(!enemy._isAlive) this.removeElement(enemy);
+        });
+    }
 }
