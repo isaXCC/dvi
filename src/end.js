@@ -79,6 +79,9 @@ export default class End extends Phaser.Scene {
             case dr.MOVING_FIRE:
                 text = 'Now is proved! Fire DOES move faster than a cat! Thank you!!!' 
                 break;
+            case dr.HOARDER:
+                text = 'HAHAHAHAHAHA!! Killing you this time felt better muehehe'; 
+                break;
         }
 
         // text is added

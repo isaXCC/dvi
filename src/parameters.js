@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_INVULNERABILITY_DURATION: 1250,
-        JUMPSCARE_DAMAGE: 2,
+        JUMPSCARE_DAMAGE: 2000,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
@@ -308,7 +308,8 @@ const PARAMETERS = {
                 FIREBALL: 'fireball',
                 HOLE: 'hole',
                 FIRE: 'fire',
-                MOVING_FIRE: 'moving_fire'
+                MOVING_FIRE: 'moving_fire',
+                HOARDER: 'hoarder'
             }
         }
     },
