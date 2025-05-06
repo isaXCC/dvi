@@ -79,6 +79,7 @@ export default class Ophanim extends Enemy{
         this.scene.newEnemyBullet(x, y);
     }
 
+    // MOVEMENT SECTION
     move() {
         // if it is escaping from a wall, lets it do it
         if(this._isEscapingWall) return;

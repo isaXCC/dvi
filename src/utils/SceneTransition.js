@@ -13,7 +13,7 @@ export default class SceneTransition{
 
         // disables player interaction and stops it
         scene.player._input_enabled = false;
-        scene.player.stop_player();
+        scene.player.stopPlayer();
 
         scene.tweens.add({
             onUpdate: () => {
