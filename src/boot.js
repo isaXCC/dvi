@@ -54,6 +54,7 @@ import cat_meow2 from '../assets/audio/utils/cat_meow2.wav'
 import cat_meow3 from '../assets/audio/utils/cat_meow3.wav'
 import cat_ripping1 from '../assets/audio/utils/cat_ripping1.wav'
 import cat_ripping2 from '../assets/audio/utils/cat_ripping2.wav'
+import fire_shoot from '../assets/audio/utils/fire_shoot.wav'
 // TILED IMPORTS
 import d1_test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -165,6 +166,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('cat_meow3', cat_meow3);
     this.load.audio('cat_ripping1', cat_ripping1);
     this.load.audio('cat_ripping2', cat_ripping2);
+    this.load.audio('fire_shoot', fire_shoot);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('d1_test', d1_test);
