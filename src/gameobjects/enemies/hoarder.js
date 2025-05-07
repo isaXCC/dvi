@@ -133,19 +133,33 @@ export default class Hoarder extends Enemy{
     }
 
     shootOne(x, y){
-        this.scene.sound.play('enemy_shoot', { volume: 6 });
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y);
     }
 
     shootTwo(x, y){
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
         this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
     }
 
     shootThree(x, y){
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
         this.scene.newEnemyForwardBullet(x, y);
         this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
+    }
+
+    playSound(){
+        let rand = Math.random();
+
+        if (rand < 0.5) {
+            this.scene.sound.play('enemy_shoot', { volume: 3 }); 
+        } 
+        else {
+            this.scene.sound.play('fire_shoot', { volume: 1.3 });
+        } 
+        
     }
 
     takeDamage(amount=1){
