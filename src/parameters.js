@@ -313,12 +313,12 @@ const PARAMETERS = {
         }
     },
     COLORS:{
-        PHAT_CAT: 0x8FF8E2,
-        PHAT_CAT_ALT: '#8FF8E2',
-        DARKER_PHAT_CAT: 0x0CC099,
-        DARKER_PHAT_CAT_ALT: '#0CC099',
-        START_MENU_BACKGROUND: 0x31081F,
-        RANDOM_TEXT_COLOR: '#FCAA67'
+        PHAT_CAT: 0x6DD3CE,
+        PHAT_CAT_ALT: '#ffffff',
+        DARKER_PHAT_CAT: 0x06B1AB,
+        DARKER_PHAT_CAT_ALT: '#CFCFEA',
+        START_MENU_BACKGROUND: 0x1E0B133,
+        RANDOM_TEXT_COLOR: '#CFCFEA'
     }
 };
 
