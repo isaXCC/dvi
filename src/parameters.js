@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_INVULNERABILITY_DURATION: 1250,
-        JUMPSCARE_DAMAGE: 2,
+        JUMPSCARE_DAMAGE: 20,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
@@ -35,8 +35,8 @@ const PARAMETERS = {
         NUM_SCRATCHES: 12
     },
     ANGEL: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 4,
+        MAX_LIFE: 4,
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
@@ -59,8 +59,8 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.5
     },
     OPHANIM: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 3,
+        MAX_LIFE: 3,
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
@@ -89,8 +89,8 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.5
     },
     SERAPH: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 5,
+        MAX_LIFE: 5,
         SPEED: 1,
         SUP_RECOVER: 5000,
         SUP_DURATION: 1000,

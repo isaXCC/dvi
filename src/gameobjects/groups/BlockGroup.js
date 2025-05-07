@@ -10,4 +10,10 @@ export default class BlockGroup extends DefaultGroup {
 
     }
 
+    removeDead(){
+        this.group.getChildren().forEach(block => {
+            if(!block._isAlive) this.removeElement(block);
+        });
+    }
+
 }
