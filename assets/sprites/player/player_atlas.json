@@ -989,7 +989,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_right_0",
+            "filename": "phatcat_atk_left_0",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1002,7 +1002,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_right_1",
+            "filename": "phatcat_atk_left_1",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1015,7 +1015,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_right_2",
+            "filename": "phatcat_atk_left_2",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1028,7 +1028,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_right_3",
+            "filename": "phatcat_atk_left_3",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1041,7 +1041,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_left_0",
+            "filename": "phatcat_atk_right_0",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1054,7 +1054,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_left_1",
+            "filename": "phatcat_atk_right_1",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1067,7 +1067,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_left_2",
+            "filename": "phatcat_atk_right_2",
             "frame": {
                 "w": 64,
                 "h": 64,
@@ -1080,7 +1080,7 @@
             }
         },
         {
-            "filename": "phatcat_atk_left_3",
+            "filename": "phatcat_atk_right_3",
             "frame": {
                 "w": 64,
                 "h": 64,
