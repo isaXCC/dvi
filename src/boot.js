@@ -33,6 +33,7 @@ import fullscreen from '../assets/sprites/utils/fullscreen.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
+import ammoup from '../assets/sprites/utils/ammoup.png'
 import boots from '../assets/sprites/utils/boots.png'
 import hole from '../assets/sprites/utils/hole.png'
 import hole_filled from '../assets/sprites/utils/hole_filled.png'
@@ -137,6 +138,7 @@ export default class Boot extends Phaser.Scene {
     // POWERUPS AND ITENS
     this.load.spritesheet('letters', letters, {frameWidth: 16, frameHeight: 18});
     this.load.image('tripleshot', tripleshot);
+    this.load.image('ammoup', ammoup);
     this.load.image('speedboost', speedboost);
     this.load.image('boots', boots);
     this.load.image('hole', hole);

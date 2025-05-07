@@ -366,6 +366,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._life = this._life + i;
     }
 
+    changeMaxAmmo(i){
+        PARAMETERS.PLAYER.MAX_AMMO = this._max_ammo + i;
+        this._max_ammo = this._max_ammo + i;
+        this._ammo = this._ammo + i;
+    }
+
     // ANIMATIONS SECTION
     updateAnims(){
         if(this._isDashing) this.play(this.updateWalkAnim() /*changeeee*/, true);
