@@ -1,3 +1,4 @@
+import CONDITIONS from '../conditions.js';
 import Room from '../room.js'
 
 export default class D2_1 extends Room {
@@ -7,8 +8,9 @@ export default class D2_1 extends Room {
     }
 
     create() {
+        CONDITIONS.D2.INSIDE = true;
         super.generateTiled('d2_1'); 
-        super.create();;
+        super.create();
     }
 
     init(player_state) {

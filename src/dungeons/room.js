@@ -110,6 +110,7 @@ export default class Room extends Phaser.Scene {
         this.fires.update();
         this.movingFires.update();
         this.fires.update();
+        this.blocks.update();
         
         if(this.player._isAlive)
             this.player.update();    
@@ -123,7 +124,8 @@ export default class Room extends Phaser.Scene {
 
         // Remove dead enemies
         this.enemies.removeDead();
-        
+        this.blocks.removeDead();
+
         // if the room is a time attack room, it gets updated
         if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
     }
@@ -287,11 +289,12 @@ export default class Room extends Phaser.Scene {
 
     destroyBlocks(){
         this.blocks.group.getChildren().forEach((block) => {
-            this.blocks.removeElement(block);
+            block._isAlive = false;
         });
         this.portals.group.getChildren().forEach((portal) => {
             portal.isBlocked = false;
         });
+
     }
 
     // ROOM STATE LOGIC AND METHOD
