@@ -70,7 +70,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.input.on('pointerdown', (pointer) => {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
-                if(!this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y) && this._input_enabled){
+                if(!this._isReloading && !this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y) && this._input_enabled){
                     this.stop();
                     this.anims.restart();
                     this.shoot(pointer.x, pointer.y);
@@ -125,14 +125,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             }
 
             if(Phaser.Input.Keyboard.JustDown(this._r)){
-                if(!this._isReloading){
+                if(!this._isReloading && !this._isDashing){
                     console.log('Reloading...');
                     this.reload();
                 }
             }
 
             if(Phaser.Input.Keyboard.JustDown(this._space)){ 
-                if(!this._isDashing && this._canDash){
+                if(!this._isDashing && this._canDash && !this._isReloading){
                     console.log('Dashing...');
                     this.dash(); 
                 }
@@ -272,6 +272,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     dash(){
         if (this._stamina > 0) {
+            this.stop();
+            this.anims.restart();
             this._canDash = false;
             this._isDashing = true;  // Prevent multiple dashes
             this._stamina--;  // Reduce stamina
@@ -374,16 +376,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     // ANIMATIONS SECTION
     updateAnims(){
-        if(this._isDashing) this.play(this.updateWalkAnim() /*changeeee*/, true);
+        if(this._isDashing){
+            const dashAnim = this.updateDashAnim();
+            if (this.anims.currentAnim?.key !== dashAnim) {
+                this.play(dashAnim, true); 
+            }
+            console.log('Anim actual:', this.anims.currentAnim?.key, 'Frame actual:', this.anims.currentFrame, 'isPlaying:', this.anims.isPlaying);
+        } 
         else if(this._isFalling) this.updateStoppedAnim();
         else if(this._isShooting) {
             const shootAnim = this.updateShootAnim();
             if (this.anims.currentAnim?.key !== shootAnim) {
                 this.play(shootAnim, true); 
             }
-            console.log('Anim actual:', this.anims.currentAnim?.key, 'Frame actual:', this.anims.currentFrame, 'isPlaying:', this.anims.isPlaying);
         } 
-        //else if(this._isReloading) anim = this.updateReloadAnim(); NON EXISTANT
+        else if(this._isReloading) {}   // empty on purpose
         else if(this._playerStopped) this.updateStoppedAnim();
         else this.play(this.updateWalkAnim(), true);
        
@@ -598,6 +605,62 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             repeat: 0
         };
 
+        const down_dash = {
+            key: 'down_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_down_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const down_left_dash = {
+            key: 'down_left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagdownleft_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const left_dash = {
+            key: 'left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_left_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_left_dash = {
+            key: 'up_left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagupleft_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_dash = {
+            key: 'up_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_up_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const down_right_dash = {
+            key: 'down_right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagdownright_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const right_dash = {
+            key: 'right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_right_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_right_dash = {
+            key: 'up_right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagupright_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
         // creation of animations
         // the player is a unique entity, so the animations are created on the sprite
         this.anims.create(left_walk);
@@ -616,6 +679,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.create(up_left_atk);
         this.anims.create(down_right_atk);
         this.anims.create(down_left_atk);
+        this.anims.create(down_dash);
+        this.anims.create(down_left_dash);
+        this.anims.create(left_dash);
+        this.anims.create(up_left_dash);
+        this.anims.create(up_dash);
+        this.anims.create(down_right_dash);
+        this.anims.create(right_dash);
+        this.anims.create(up_right_dash);
     }
 
     // AUXILIARY FUNCIONS
