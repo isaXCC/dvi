@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_INVULNERABILITY_DURATION: 1250,
-        JUMPSCARE_DAMAGE: 10,
+        JUMPSCARE_DAMAGE: 20,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
@@ -35,8 +35,8 @@ const PARAMETERS = {
         NUM_SCRATCHES: 12
     },
     ANGEL: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 4,
+        MAX_LIFE: 4,
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
@@ -59,8 +59,8 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.5
     },
     OPHANIM: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 3,
+        MAX_LIFE: 3,
         SPEED: 50,
         DAMAGE: 1,
         IDLE_DURATION: 500, // in milliseconds
@@ -89,8 +89,8 @@ const PARAMETERS = {
         HITBOX_Y: 64*0.5
     },
     SERAPH: {
-        LIFE: 6,
-        MAX_LIFE: 6,
+        LIFE: 5,
+        MAX_LIFE: 5,
         SPEED: 1,
         SUP_RECOVER: 5000,
         SUP_DURATION: 1000,
@@ -137,13 +137,14 @@ const PARAMETERS = {
         SPEED_BOSS: 1000
     },
     FIRE: {
-        HITBOX_X: 64*0.7,
-        HITBOX_Y: 64*0.7,
-        WIDTH: 64, 
-        HEIGHT: 64,
-        SCALE: 1.5,
+        HITBOX_X: 41*0.7,
+        HITBOX_Y: 47*0.7,
+        WIDTH: 41, 
+        HEIGHT: 47,
+        SCALE_X: 1.4,
+        SCALE_Y: 1.4,
         GRID_OFFSET_X: 0,
-        GRID_OFFSET_Y: -64*1.3 +15.5,
+        GRID_OFFSET_Y: -64,
         ANIMS_DURATION: 100
     },
     MOVING_FIRE: {
@@ -308,7 +309,8 @@ const PARAMETERS = {
                 FIREBALL: 'fireball',
                 HOLE: 'hole',
                 FIRE: 'fire',
-                MOVING_FIRE: 'moving_fire'
+                MOVING_FIRE: 'moving_fire',
+                HOARDER: 'hoarder'
             }
         }
     },

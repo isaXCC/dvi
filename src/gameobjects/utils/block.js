@@ -12,15 +12,17 @@ export default class Block extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, 'block');
 
+        this._isAlive = true;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.body.setCollideWorldBounds();
         this.body.setImmovable();
         this.body.pushable = false;
-        
+
+        this.setOrigin(0.5);
     }
     
     update(){
-
+        this.rotation += 0.01;
     }
 }

@@ -20,12 +20,25 @@ const CONDITIONS = {
         D1_MID_KILLED: false
     }, 
     D2:{
-
+        HITO: true,
+        INSIDE: false,
+        D2_4_KILLED: false
     },
     DF:{
-        INSIDE: false,
-        VIRGIL: false,
+        INSIDE: true,
+        VIRGIL: true,
         DF_3_KILLED: false,
+        DF_4_KILLED: false,
+        DF_5_KILLED: false,
+        VIRGIL_G: false,
+        VIRGIL_F: false,
+        MICE_FAMILY_G: false,
+        MICE_FAMILY_F: false,
+        MICE_KID_G: false,
+        MICE_KID_F: false,
+        BUNNY_G: false,
+        BUNNY_F: false,
+        GENERATE: false,
         FIGHT_BOSS: false,
         KILLED_BOSS: false
     }

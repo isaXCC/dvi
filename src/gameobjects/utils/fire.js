@@ -8,7 +8,7 @@ export default class Fire extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         
-        this.setScale(PARAMETERS.FIRE.SCALE, PARAMETERS.FIRE.SCALE);
+        this.setScale(PARAMETERS.FIRE.SCALE_X, PARAMETERS.FIRE.SCALE_Y);
 
         this._i = 2;
         this._called = false;

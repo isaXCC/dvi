@@ -110,6 +110,7 @@ export default class Room extends Phaser.Scene {
         this.fires.update();
         this.movingFires.update();
         this.fires.update();
+        this.blocks.update();
         
         if(this.player._isAlive)
             this.player.update();    
@@ -120,7 +121,11 @@ export default class Room extends Phaser.Scene {
 
         // Update player info display
         this.updatePlayerHUD();
-        
+
+        // Remove dead enemies
+        this.enemies.removeDead();
+        this.blocks.removeDead();
+
         // if the room is a time attack room, it gets updated
         if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
     }
@@ -238,6 +243,12 @@ export default class Room extends Phaser.Scene {
                         this.powerups.removeElement(pup);
                         this.player._pup.effect();
                     }
+                    if(this.player_state.take_damage_count !== undefined){
+                        this.player._take_damage_count = this.player_state.take_damage_count;
+                    }
+                    if(this.player_state.used_jumpscare !== undefined){
+                        this.player._used_jumpscare = this.player_state.used_jumpscare;
+                    }
                     //this.player.initFrame();
                 }
             }
@@ -278,11 +289,12 @@ export default class Room extends Phaser.Scene {
 
     destroyBlocks(){
         this.blocks.group.getChildren().forEach((block) => {
-            this.blocks.removeElement(block);
+            block._isAlive = false;
         });
         this.portals.group.getChildren().forEach((portal) => {
             portal.isBlocked = false;
         });
+
     }
 
     // ROOM STATE LOGIC AND METHOD
@@ -297,7 +309,8 @@ export default class Room extends Phaser.Scene {
         this.time.delayedCall(200, () => {
             this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
                 max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
-                portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo()});
+                portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo(),
+                take_damage_count: this.player._take_damage_count, used_jumpscare: this.player._used_jumpscare});
         })
     }
 

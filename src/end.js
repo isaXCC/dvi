@@ -32,6 +32,15 @@ export default class End extends Phaser.Scene {
             if(CONDITIONS.D1.FIGHT_BOSS){
               this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
+            else if(CONDITIONS.D2.HITO){
+                this.scene.start('d2_3', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
+            else if(CONDITIONS.D2.INSIDE){
+                this.scene.start('d2_2', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
+            else if(CONDITIONS.DF.INSIDE){
+                this.scene.start('df_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
             else{
               this.scene.start('d1_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
@@ -78,6 +87,9 @@ export default class End extends Phaser.Scene {
                 break;
             case dr.MOVING_FIRE:
                 text = 'Now is proved! Fire DOES move faster than a cat! Thank you!!!' 
+                break;
+            case dr.HOARDER:
+                text = 'HAHAHAHAHAHA!! Killing you this time felt better muehehe'; 
                 break;
         }
 
