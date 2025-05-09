@@ -11,6 +11,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         super(scene);
 
         this._scene = scene;
+        this._isReloading = false;
 
         // creates the rounded rectangle
         this._rr = PARAMETERS.PLAYER_HUD.LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES;
@@ -62,10 +63,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
             }
 
             // Changes HUD size if necessary
-            this.graphics.clear();
-            this.graphics.fillStyle(0x000000, this._rr.ALPHA);
-            this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + Math.max(this._rr.HEART_EXTRA_WIDTH * (this._scene.player._max_life - this._rr.BASE_MAX_LIFE)/2, 0), 
-                this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);            
+            this.changeHUDSize();
 
             this._last_max_life = this._scene.player._max_life;
             this._last_life = -1; // force life update this frame
@@ -103,6 +101,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         for(i; i < this._scene.player._bullets; i++){
             bullet = this._scene.add.image(this._rr.BULLET_BASE_X + i*this._rr.BULLET_EXTRA_X*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 
                 this._rr.BULLET_Y, 'bullet');  // creates the array of frames
+            if(this._isReloading) bullet.setAlpha(0.5);
             this._info_bullets.push(bullet);
         }
         for(i; i < this._scene.player._max_ammo; i++){
@@ -111,6 +110,32 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
             this._info_bullets.push(bullet);
         }
         this._last_ammo = this._scene.player._bullets;
+
+        // Changes HUD size if necessary
+        this.changeHUDSize();
+    }
+
+    reloading(){
+        // changes bullets alpha to grey, indicating that the player is reloading
+        this._isReloading = true;
+        this._info_bullets.forEach(bullet => bullet.setAlpha(0.5));
+    }
+
+    reloaded(){
+        // changes bullets alpha to normal, player finished reloading
+        this._isReloading = false;
+        this._info_bullets.forEach(bullet => bullet.setAlpha(1));
+    }
+
+    changeHUDSize(){
+        this.graphics.clear();
+        this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+        this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + 
+            Math.max(this._rr.HEART_EXTRA_WIDTH * this._scene.player._max_life/2,
+                        this._rr.BULLET_EXTRA_WIDTH * this._scene.player._max_ammo,
+                            0), 
+            this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);            
+
     }
 
 }

@@ -24,7 +24,7 @@ import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
-import PlayerHUD from '../utils/ui/playerHUD.js';
+import PlayerHUD from '../utils/ui/PlayerHUD.js';
 import SceneTransition from '../utils/SceneTransition.js'
 import BlockGroup from '../gameobjects/groups/BlockGroup.js';
 
@@ -381,6 +381,7 @@ export default class Room extends Phaser.Scene {
         // Add the power-up image on top
         this.powerup_image = this.add.image(PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_X, PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_Y, powerup.sprite);
         this.powerup_image.setAlpha(0.75);
+        this.powerup_image.setDepth(2);
     }
 
     deletePreviousPowerUpImage(){
