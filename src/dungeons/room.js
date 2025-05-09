@@ -381,6 +381,7 @@ export default class Room extends Phaser.Scene {
         // Add the power-up image on top
         this.powerup_image = this.add.image(PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_X, PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_Y, powerup.sprite);
         this.powerup_image.setAlpha(0.75);
+        this.powerup_image.setDepth(2);
     }
 
     deletePreviousPowerUpImage(){

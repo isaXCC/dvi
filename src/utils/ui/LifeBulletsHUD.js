@@ -11,6 +11,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         super(scene);
 
         this._scene = scene;
+        this._isReloading = false;
 
         // creates the rounded rectangle
         this._rr = PARAMETERS.PLAYER_HUD.LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES;
@@ -100,6 +101,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         for(i; i < this._scene.player._bullets; i++){
             bullet = this._scene.add.image(this._rr.BULLET_BASE_X + i*this._rr.BULLET_EXTRA_X*PARAMETERS.PLAYER_HUD.BULLET_SCALE, 
                 this._rr.BULLET_Y, 'bullet');  // creates the array of frames
+            if(this._isReloading) bullet.setAlpha(0.5);
             this._info_bullets.push(bullet);
         }
         for(i; i < this._scene.player._max_ammo; i++){
@@ -111,6 +113,18 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
 
         // Changes HUD size if necessary
         this.changeHUDSize();
+    }
+
+    reloading(){
+        // changes bullets alpha to grey, indicating that the player is reloading
+        this._isReloading = true;
+        this._info_bullets.forEach(bullet => bullet.setAlpha(0.5));
+    }
+
+    reloaded(){
+        // changes bullets alpha to normal, player finished reloading
+        this._isReloading = false;
+        this._info_bullets.forEach(bullet => bullet.setAlpha(1));
     }
 
     changeHUDSize(){

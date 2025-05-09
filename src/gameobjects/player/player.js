@@ -259,10 +259,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     reload(){
-        this._isReloading = true;
-        this._bullets = this._max_ammo;
-        this.scene.sound.play('reloadSound', { volume: 3 });
-        this.scene.time.delayedCall(PARAMETERS.PLAYER.RELOAD_DURATION, () => this._isReloading = false);
+        if(this._bullets !== this._max_ammo){
+            this._isReloading = true;
+            this._bullets = this._max_ammo;
+            this.scene.playerHUD._lfblrectangle.reloading();
+            this.scene.sound.play('reloadSound', { volume: 3 });
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.RELOAD_DURATION, () => {
+                this._isReloading = false;
+                this.scene.playerHUD._lfblrectangle.reloaded();});
+        }
     }
 
     interact(){
@@ -381,7 +386,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             if (this.anims.currentAnim?.key !== dashAnim) {
                 this.play(dashAnim, true); 
             }
-            console.log('Anim actual:', this.anims.currentAnim?.key, 'Frame actual:', this.anims.currentFrame, 'isPlaying:', this.anims.isPlaying);
+            //console.log('Anim actual:', this.anims.currentAnim?.key, 'Frame actual:', this.anims.currentFrame, 'isPlaying:', this.anims.isPlaying);
         } 
         else if(this._isFalling) this.updateStoppedAnim();
         else if(this._isShooting) {
