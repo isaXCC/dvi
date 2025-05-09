@@ -24,7 +24,7 @@ import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
-import PlayerHUD from '../utils/ui/playerHUD.js';
+import PlayerHUD from '../utils/ui/PlayerHUD.js';
 import SceneTransition from '../utils/SceneTransition.js'
 import BlockGroup from '../gameobjects/groups/BlockGroup.js';
 

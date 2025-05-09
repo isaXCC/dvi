@@ -371,7 +371,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         PARAMETERS.PLAYER.MAX_AMMO = this._max_ammo + i;
         PARAMETERS.PLAYER.BULLETS = this._bullets + i;
         this._max_ammo = this._max_ammo + i;
-        this._ammo = this._ammo + i;
+        this._bullets = this._bullets + i;
     }
 
     // ANIMATIONS SECTION

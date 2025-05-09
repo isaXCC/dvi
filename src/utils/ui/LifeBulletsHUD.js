@@ -62,10 +62,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
             }
 
             // Changes HUD size if necessary
-            this.graphics.clear();
-            this.graphics.fillStyle(0x000000, this._rr.ALPHA);
-            this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + Math.max(this._rr.HEART_EXTRA_WIDTH * (this._scene.player._max_life - this._rr.BASE_MAX_LIFE)/2, 0), 
-                this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);            
+            this.changeHUDSize();
 
             this._last_max_life = this._scene.player._max_life;
             this._last_life = -1; // force life update this frame
@@ -111,6 +108,20 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
             this._info_bullets.push(bullet);
         }
         this._last_ammo = this._scene.player._bullets;
+
+        // Changes HUD size if necessary
+        this.changeHUDSize();
+    }
+
+    changeHUDSize(){
+        this.graphics.clear();
+        this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+        this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + 
+            Math.max(this._rr.HEART_EXTRA_WIDTH * this._scene.player._max_life/2,
+                        this._rr.BULLET_EXTRA_WIDTH * this._scene.player._max_ammo,
+                            0), 
+            this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);            
+
     }
 
 }
