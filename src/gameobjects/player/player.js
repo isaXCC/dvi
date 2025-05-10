@@ -44,6 +44,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        //this.body.immovable = true;
+        this.body.setDamping(true);
+        this.body.setDrag(0.9);
+        this.body.setMaxVelocityX(500);
+        this.body.setMaxVelocityY(500);
 
         // adjusting player hitbox/size
         this.setCollideWorldBounds(true);           // to avoid player getting out of the map
@@ -220,7 +225,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
-            this._life--;
+            //this._life--;
             this.scene.sound.play('player_hurt', { volume: 10 });
 
             let time_tint = isHole ? PARAMETERS.HOLE.DURATION : 500;

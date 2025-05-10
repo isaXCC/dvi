@@ -11,6 +11,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setCollideWorldBounds(true);
+        this.body.pushable = false;
         this._touch_damage = false;
 
         // Abstract properties -> Children must override

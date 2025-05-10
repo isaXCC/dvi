@@ -10,6 +10,7 @@ export default class EnemyGroup extends DefaultGroup {
     playerCollision(player, enemy) {
         if(enemy.active){
             if (player.isInvulnerable()) return;
+            this.scene.physics.world.separate(player, enemy);
     
             console.log('touch damage');
             

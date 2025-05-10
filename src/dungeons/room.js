@@ -128,6 +128,17 @@ export default class Room extends Phaser.Scene {
 
         // if the room is a time attack room, it gets updated
         if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
+
+        const tile = this.onc.getTileAtWorldXY(this.player.x, this.player.y, true);
+        if (tile && tile.collides) {
+            // if player is inside a wall, it gets out
+            const dx = Math.sign(this.player.body.velocity.x);
+            const dy = Math.sign(this.player.body.velocity.y);
+            if (dx !== 0) this.player.x -= dx * 20;
+            if (dy !== 0) this.player.y -= dy * 20;
+
+            this.player.body.setVelocity(0);
+        }
     }
 
     generateTiled(key){
@@ -146,8 +157,8 @@ export default class Room extends Phaser.Scene {
         var tiles = map.addTilesetImage('room_tileset', 'room_tiles');
         map.createLayer('background', tiles, 0, 0);
         map.createLayer('onn', tiles, 0, 0);
-        var onc = map.createLayer('onc', tiles, 0, 0);
-        onc.setCollisionByExclusion([-1], true);
+        this.onc = map.createLayer('onc', tiles, 0, 0);
+        this.onc.setCollisionByExclusion([-1], true);
         var oic = map.createLayer('oic', tiles, 0, 0);
         oic.setCollisionByExclusion([-1], true);
         
@@ -263,9 +274,11 @@ export default class Room extends Phaser.Scene {
         }
 
         // Load gameobjects  
-        this.physics.add.collider(this.player, onc);
-        this.enemies.addCollision(onc);
-        this.bullets.addCollision(onc, this.bullets.oncCollision);
+        this.physics.add.collider(this.player, this.onc, () => {
+            this.physics.world.separate(this.onc, this.player);
+        });
+        this.enemies.addCollision(this.onc);
+        this.bullets.addCollision(this.onc, this.bullets.oncCollision);
         // OIC is useful for cage logic in d1_mid
         this.physics.add.collider(this.player, oic, null, null, this);
     }
@@ -339,8 +352,7 @@ export default class Room extends Phaser.Scene {
     getPlayerInfo() {
         return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}\nPowerUp: `;
     }
-
-
+    
     setPlayerInfo(player_state){
         console.log('ROOM: ' + player_state.portal);
         this.player_state = player_state;
