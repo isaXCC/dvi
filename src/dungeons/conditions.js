@@ -20,12 +20,12 @@ const CONDITIONS = {
         D1_MID_KILLED: false
     }, 
     D2:{
-        HITO: true,
+        HITO: false,
         INSIDE: false,
         D2_4_KILLED: false
     },
     DF:{
-        INSIDE: true,
+        INSIDE: false,
         VIRGIL: true,
         DF_3_KILLED: false,
         DF_4_KILLED: false,
