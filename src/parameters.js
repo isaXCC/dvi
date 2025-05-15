@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_INVULNERABILITY_DURATION: 1250,
-        JUMPSCARE_DAMAGE: 20,
+        JUMPSCARE_DAMAGE: 2,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
@@ -116,6 +116,26 @@ const PARAMETERS = {
         MOVE_X: 128*0.8,
         MOVE_DURATION: 2500, // in milliseconds
         ATK_DURATION: 500, // in milliseconds
+        OFFSET_Y: 85,
+        MOVE_LOW: 5000, // in milliseconds
+        MOVE_HIGH: 10000, // in milliseconds
+        HOLE_LOW: 5000, // in milliseconds
+        HOLE_HIGH: 10000 // in milliseconds
+    },
+    DEVIL: {
+        LIFE: 90,
+        MAX_LIFE: 90,
+        SPEED: 66,
+        DAMAGE: 1,
+        LIFEBAR_X: 75, 
+        LIFEBAR_Y: 30,
+        HITBOX_X: 128*0.7,
+        HITBOX_Y: 128*0.75,
+        SCALE_X: 1.7,
+        SCALE_Y: 1.7,
+        MOVE_X: 87*2,
+        MOVE_DURATION: 2500, // in milliseconds
+        ATK_DURATION: 1000, // in milliseconds
         OFFSET_Y: 85,
         MOVE_LOW: 5000, // in milliseconds
         MOVE_HIGH: 10000, // in milliseconds
