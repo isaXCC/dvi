@@ -8,41 +8,46 @@ export default class Devil extends Enemy{
     constructor(scene, x, y) {
         super(scene, x, y, 'devil');
 
-        this._life = PARAMETERS.HOARDER.LIFE;
-        this._max_life = PARAMETERS.HOARDER.MAX_LIFE;
-        this._speed = PARAMETERS.HOARDER.SPEED;
-        this._damage = PARAMETERS.HOARDER.DAMAGE;
+        this._life = PARAMETERS.DEVIL.LIFE;
+        this._max_life = PARAMETERS.DEVIL.MAX_LIFE;
+        this._speed = PARAMETERS.DEVIL.SPEED;
+        this._damage = PARAMETERS.DEVIL.DAMAGE;
 
-        this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X;
+        this.setFrame(0);
+
+        this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.DEVIL.MOVE_X;
 
         // State machine
         this._isAttacking = false;
         this._isMoving = true;
         this._called = false;
         this._shift = false;
-        this._hole = false;
+        this._enemy = false;
 
         this.lifeBar = new LifeBar(scene, 
-            PARAMETERS.HOARDER.LIFEBAR_X, 
-            PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.LIFEBAR_Y, 
+            PARAMETERS.DEVIL.LIFEBAR_X, 
+            PARAMETERS.GAME.HEIGHT - PARAMETERS.DEVIL.LIFEBAR_Y, 
             this._max_life, this._life); // Position relative to the Hoarder
 
         // SPRITE CONFIG
-        this.setSize(PARAMETERS.HOARDER.HITBOX_X, PARAMETERS.HOARDER.HITBOX_Y);
-        this.setScale(PARAMETERS.HOARDER.SCALE_X, PARAMETERS.HOARDER.SCALE_Y);
+        this.setSize(PARAMETERS.DEVIL.HITBOX_X, PARAMETERS.DEVIL.HITBOX_Y);
+        this.setScale(PARAMETERS.DEVIL.SCALE_X, PARAMETERS.DEVIL.SCALE_Y);
+
+        this._currentEdge = 'top'; // start on the top edge
+        this._edgeSpeed = PARAMETERS.DEVIL.SPEED;
+        this.setPosition(PARAMETERS.DEVIL.MOVE_X, PARAMETERS.DEVIL.MOVE_X);
+
     }
 
     update() {
         if(this._isAlive){
             this.lifeBar.setLife(this._life);
-            if(this._life > (this._max_life/3)*2){
+            if(this._life > this._max_life/2){
                 this.phase(1);
             }
-            else if(this._life > (this._max_life/3)){
-                this.phase(2);
-            }
             else{
-                this.phase(3);
+                this.setFrame(1);
+                this.phase(2);
             }
         }
         else{
@@ -59,14 +64,14 @@ export default class Devil extends Enemy{
         if(!this._shift){
             this.shift(ph);
         }
-        if(!this._hole){
-            this.hole();
+        if(!this._enemy){
+            this.enemy();
         }
     }
 
     shoot(ph){
         this._called = true;
-        this.scene.time.delayedCall(PARAMETERS.HOARDER.ATK_DURATION, () => {
+        this.scene.time.delayedCall(PARAMETERS.DEVIL.ATK_DURATION/ph, () => {
             if (this.active && this.scene) {
                 this._called = false;
                 switch(ph){
@@ -76,9 +81,6 @@ export default class Devil extends Enemy{
                     case 2:
                         this.shootTwo(this.x, this.y);
                         break;
-                    case 3:
-                        this.shootThree(this.x, this.y);
-                        break;
                 }
             }
         });
@@ -87,75 +89,107 @@ export default class Devil extends Enemy{
     shift(ph){
         this._shift = true;
         this.scene.time.delayedCall(
-            Phaser.Math.Between(PARAMETERS.HOARDER.MOVE_LOW, PARAMETERS.HOARDER.MOVE_HIGH),
+            Phaser.Math.Between(PARAMETERS.DEVIL.MOVE_LOW, PARAMETERS.DEVIL.MOVE_HIGH),
             () => {
             if (this.active && this.scene) {
                 this._shift = false;
-                if(this.x === PARAMETERS.HOARDER.MOVE_X){
-                    this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X;
+                if(this.x === PARAMETERS.DEVIL.MOVE_X){
+                    this.x = PARAMETERS.GAME.WIDTH - PARAMETERS.DEVIL.MOVE_X;
                     this.flipX = false;
                 }
-                else if (this.x === PARAMETERS.GAME.WIDTH - PARAMETERS.HOARDER.MOVE_X) {
-                    this.x = PARAMETERS.HOARDER.MOVE_X;
+                else if (this.x === PARAMETERS.GAME.WIDTH - PARAMETERS.DEVIL.MOVE_X) {
+                    this.x = PARAMETERS.DEVIL.MOVE_X;
                     this.flipX = true;
                 }
                 if(ph >= 2) {
-                    this.y = Phaser.Math.Between(PARAMETERS.HOARDER.OFFSET_Y, PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y)
+                    this.y = Phaser.Math.Between(PARAMETERS.DEVIL.OFFSET_Y, PARAMETERS.GAME.HEIGHT - PARAMETERS.DEVIL.OFFSET_Y)
                 }
             }
         });
     }
 
-    hole(){
-        this._hole = true;
+    enemy(){
+        this._enemy = true;
         this.scene.time.delayedCall(
-            Phaser.Math.Between(PARAMETERS.HOARDER.MOVE_LOW, PARAMETERS.HOARDER.MOVE_HIGH),
+            Phaser.Math.Between(PARAMETERS.DEVIL.MOVE_LOW, PARAMETERS.DEVIL.MOVE_HIGH),
             () => {
                 if (this.active && this.scene) {
-                    this._hole = false;
-                    let hole_x = Phaser.Math.Between(3, 12)*64;
-                    let hole_y = Phaser.Math.Between(2, 6)*64;
-                    this.scene.spawnHole(hole_x, hole_y);
+                    this._enemy = false;
+                    let enemy_x = Phaser.Math.Between(3, 12)*64;
+                    let enemy_y = Phaser.Math.Between(2, 6)*64;
+                    this.scene.spawnAngel(enemy_x, enemy_y);
                 }
         });
     }
 
     move() {
-        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y + 64){
-            this._speed *= -1;
-            this.y += 2;
+        const margin = PARAMETERS.DEVIL.MOVE_X;
+        const width = PARAMETERS.GAME.WIDTH;
+        const height = PARAMETERS.GAME.HEIGHT;
+
+        switch (this._currentEdge) {
+            case 'top':
+                this.body.setVelocity(this._edgeSpeed, 0);
+                if (this.x >= width - margin) {
+                    this.x = width - margin;
+                    this._currentEdge = 'right';
+                }
+                break;
+            case 'right':
+                this.body.setVelocity(0, this._edgeSpeed);
+                if (this.y >= height - margin) {
+                    this.y = height - margin;
+                    this._currentEdge = 'bottom';
+                }
+                break;
+            case 'bottom':
+                this.body.setVelocity(-this._edgeSpeed, 0);
+                if (this.x <= margin) {
+                    this.x = margin;
+                    this._currentEdge = 'left';
+                }
+                break;
+            case 'left':
+                this.body.setVelocity(0, -this._edgeSpeed);
+                if (this.y <= margin) {
+                    this.y = margin;
+                    this._currentEdge = 'top';
+                }
+                break;
         }
-        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y - 64){
-            this._speed *= -1;
-            this.y -= 2;
-        }
-        this.body.setVelocity(0, this._speed); 
     }
 
     shootOne(x, y){
-        this.scene.sound.play('enemy_shoot', { volume: 6 });
-        this.scene.newEnemyForwardBullet(x, y);
+        this.playSound();
+        this.scene.newEnemyBullet(x, y);
     }
 
     shootTwo(x, y){
-        this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
-        this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
-    }
-
-    shootThree(x, y){
-        this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
-        this.scene.newEnemyForwardBullet(x, y);
-        this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
+        this.playSound();
+        this.scene.newEnemyBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
+        this.scene.newEnemyBullet(x, y);
+        this.scene.newEnemyBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
     }
 
     takeDamage(amount=1){
         if(this._life > 0){
             this._life -= amount;
             this.scene.sound.play('enemy_hurt', { volume: 3 });
-            this.setAlpha(this._life/this._max_life);
             if(this._life <= 0){
                 this._isAlive = false;
             }
         }
+    }
+
+    playSound(){
+        let rand = Math.random();
+
+        if (rand < 0.5) {
+            this.scene.sound.play('enemy_shoot', { volume: 3 }); 
+        } 
+        else {
+            this.scene.sound.play('fire_shoot', { volume: 1.3 });
+        } 
+        
     }
 }
