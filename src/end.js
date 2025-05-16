@@ -32,9 +32,6 @@ export default class End extends Phaser.Scene {
             if(CONDITIONS.D1.FIGHT_BOSS){
               this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
-            else if(CONDITIONS.D2.HITO){
-                this.scene.start('d2_3', {life: PARAMETERS.PLAYER.MAX_LIFE});
-            }
             else if(CONDITIONS.D2.INSIDE){
                 this.scene.start('d2_2', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
