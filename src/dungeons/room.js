@@ -332,6 +332,11 @@ export default class Room extends Phaser.Scene {
         this.player.setDepth(500);
     }
 
+    spawnAngel(x, y){
+        this.enemies.addElement(new Angel(this, x, y));
+        this.player.setDepth(500);
+    }
+
     gameOver(){
         this.music.stop();
         if(!this._passed){  

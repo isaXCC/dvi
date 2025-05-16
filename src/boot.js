@@ -128,7 +128,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
-    this.load.image('devil', devil);
+    this.load.spritesheet('devil', devil, {frameWidth: 87, frameHeight: 91});
     this.load.image('bullet', bullet);
     this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);
