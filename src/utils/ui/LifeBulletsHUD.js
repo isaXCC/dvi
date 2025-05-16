@@ -17,7 +17,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
         this._rr = PARAMETERS.PLAYER_HUD.LIFE_BULLETS_ROUNDED_RECTANGLE_PROPERTIES;
         // rounded rectangle for life and bullets is created
         this.graphics = this._scene.add.graphics();
-        this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+        this.graphics.fillStyle(0x0F060A, this._rr.ALPHA);
         this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, 
             this._rr.BASE_WIDTH + Math.max(this._rr.HEART_EXTRA_WIDTH * (this._scene.player._max_life - this._rr.BASE_MAX_LIFE)/2, 0), 
             this._rr.BASE_HEIGHT, this._rr.BASE_HEIGHT/2);
@@ -129,7 +129,7 @@ export default class LifeBulletsHUD extends Phaser.GameObjects.Container{
 
     changeHUDSize(){
         this.graphics.clear();
-        this.graphics.fillStyle(0x000000, this._rr.ALPHA);
+        this.graphics.fillStyle(0x0F060A, this._rr.ALPHA);
         this.graphics.fillRoundedRect(this._rr.X, this._rr.Y, this._rr.BASE_WIDTH + 
             Math.max(this._rr.HEART_EXTRA_WIDTH * this._scene.player._max_life/2,
                         this._rr.BULLET_EXTRA_WIDTH * this._scene.player._max_ammo,

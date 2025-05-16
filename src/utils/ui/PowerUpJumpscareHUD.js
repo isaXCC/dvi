@@ -16,7 +16,7 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
         // circle for powerup and jumpscare bar is created
         this.graphics = this._scene.add.graphics();
         this.graphics.lineStyle(this._cr.JS_THICKNES, 0xFFFFFF, 1); // border
-        this.graphics.fillStyle(0xFFFFFF, 0.5);   // fill
+        this.graphics.fillStyle(0x37292F);   // fill
         this.graphics.strokeCircle(this._cr.PUP_X, this._cr.PUP_Y, this._cr.JS_RADIUS);
         this.graphics.fillCircle(this._cr.PUP_X, this._cr.PUP_Y, this._cr.PUP_RADIUS);
         this.add(this.graphics);
@@ -38,7 +38,7 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
 
             // color depending of its state
             const is_active = i < (this._scene.player._take_damage_count - 1);
-            const color = is_active ? 0x00CCCC : 0x555555;
+            const color = is_active ? 0x00CCCC : 0x0F060A;
 
             // the arc is painted
             graphics.lineStyle(this._cr.JS_THICKNES, color, 1);
@@ -66,8 +66,8 @@ export default class PowerUpJumpscareHUD extends Phaser.GameObjects.Container{
                 const is_active = i < (this._scene.player._take_damage_count - 1);
                 let color;
                 if((this._scene.player._take_damage_count) < (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) 
-                    color = is_active ? 0x00CCCC : 0x555555;
-                else color = 0xff0000;
+                    color = is_active ? 0x00CCCC : 0x0F060A;
+                else color = 0x2AFEFE;
     
                 // the current arc is cleared
                 graphics.clear();
