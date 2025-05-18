@@ -35,7 +35,7 @@ export default class Room extends Phaser.Scene {
 
         // information that will be passed between rooms
         this.player_state;
-        this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
+        this.nextLine = "Lalala ma lov";
         this.powerup_image;
         this.key = key;
     }
@@ -61,8 +61,6 @@ export default class Room extends Phaser.Scene {
         this.holes.addOverlap(this.player, this.holes.playerOverlap);
         this.fires.addOverlap(this.player, this.fires.playerOverlap);
         this.movingFires.addOverlap(this.player);
-        //maybe?
-        //this.holes.addCollision(this.enemies); 
 
         // MUSIC SECTION
         // Background music is always playing
@@ -311,7 +309,6 @@ export default class Room extends Phaser.Scene {
     }
 
     // ROOM STATE LOGIC AND METHOD
-
     enterDialogue(nameNPC){
         this.dialogue_manager.enterDialogue(nameNPC, this.key);
         this.input.enabled = false;
@@ -327,8 +324,8 @@ export default class Room extends Phaser.Scene {
         })
     }
 
-    spawnHole(x, y){
-        this.holes.addElement(new Hole(this, x, y, true));
+    spawnHole(x, y, richman, destroy_time){
+        this.holes.addElement(new Hole(this, x, y, true, richman, destroy_time));
         this.player.setDepth(500);
     }
 

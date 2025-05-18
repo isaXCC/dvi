@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: true,
+        DEBUG: false,
         TILE: 64
     },
     PLAYER: {
@@ -121,6 +121,27 @@ const PARAMETERS = {
         MOVE_HIGH: 10000, // in milliseconds
         HOLE_LOW: 5000, // in milliseconds
         HOLE_HIGH: 10000 // in milliseconds
+    },
+    RICHMAN: {
+        LIFE: 36,
+        MAX_LIFE: 36,
+        SPEED: 66,
+        DAMAGE: 1,
+        HITBOX_X: 36*1.1,
+        HITBOX_Y: 106*1.1,
+        SCALE_X: 1.6,
+        SCALE_Y: 1.6,
+        LIFEBAR_X: 75, 
+        LIFEBAR_Y: 30,
+        ATK_DURATION_LOW: 600, // in milliseconds
+        ATK_DURATION_HIGH: 1200,
+        SHOOT_TWO_OFFSET: 100,
+        MOVE_LOW: 3000, // in milliseconds
+        MOVE_HIGH: 5000, // in milliseconds
+        MOVE_X: 36*3,
+        MOVE_Y: 36*4.5,
+        HOLE_SPAWN: 500,
+        HOLE_DESTROY: 2000
     },
     DEVIL: {
         LIFE: 90,
@@ -330,7 +351,8 @@ const PARAMETERS = {
                 HOLE: 'hole',
                 FIRE: 'fire',
                 MOVING_FIRE: 'moving_fire',
-                HOARDER: 'hoarder'
+                HOARDER: 'hoarder',
+                RICHMAN: 'richman'
             }
         }
     },

@@ -225,7 +225,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
-            //this._life--;
+            this._life--;
             this.scene.sound.play('player_hurt', { volume: 10 });
 
             let time_tint = isHole ? PARAMETERS.HOLE.DURATION : 500;

@@ -22,7 +22,12 @@ const CONDITIONS = {
     D2:{
         HITO: false,
         INSIDE: false,
-        D2_4_KILLED: false
+        D2_2_KILLED: false,
+        BUNNY_2: false,
+        TIMEATK: false,
+        FIGHT_BOSS: false,
+        KILLED_BOSS: false,
+        PORTAL_D3: false
     },
     DF:{
         INSIDE: false,
@@ -40,7 +45,8 @@ const CONDITIONS = {
         BUNNY_F: false,
         GENERATE: false,
         FIGHT_BOSS: false,
-        KILLED_BOSS: false
+        KILLED_BOSS: false,
+        PORTAL_END: false
     }
 };
 

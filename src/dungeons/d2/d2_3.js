@@ -1,8 +1,5 @@
 import Room from '../room.js'
-import HeartUp from '../../gameobjects/powerups/heartup.js';
-import TripleShot from '../../gameobjects/powerups/tripleshot.js';
-import SpeedBoost from '../../gameobjects/powerups/speedboost.js';
-import AmmoUp from '../../gameobjects/powerups/ammoup.js';
+import CONDITIONS from '../conditions.js';
 
 export default class D2_3 extends Room {
 
@@ -13,10 +10,12 @@ export default class D2_3 extends Room {
     create() {
         super.generateTiled('d2_3'); 
         super.create();
-        this.powerups.addElement(new HeartUp(this.player, this, 64*2 , 64*3));
-        //this.powerups.addElement(new AmmoUp(this.player, this, 64*14 , 64*3));
-        this.powerups.addElement(new TripleShot(this.player, this, 64*2 , 64*5));
-        this.powerups.addElement(new SpeedBoost(this.player, this, 64*2 , 64*7));
+
+        CONDITIONS.D2.BUNNY_2 = true;
+        this.events.on('shutdown', () => {
+            console.log('Scene shut down');
+            CONDITIONS.D2.BUNNY_2 = false;
+        });
     }
 
     init(player_state) {

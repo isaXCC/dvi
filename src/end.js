@@ -29,14 +29,20 @@ export default class End extends Phaser.Scene {
 
         // listener to return to the game  
         this.input.keyboard.on('keydown-P', function (_event) {
-            if(CONDITIONS.D1.FIGHT_BOSS){
-              this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
-            }
-            else if(CONDITIONS.D2.INSIDE){
-                this.scene.start('d2_2', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            if(CONDITIONS.DF.FIGHT_BOSS){
+                this.scene.start('df_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
             else if(CONDITIONS.DF.INSIDE){
                 this.scene.start('df_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
+            else if(CONDITIONS.D2.FIGHT_BOSS){
+                this.scene.start('d2_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
+            else if(CONDITIONS.D2.INSIDE){
+                this.scene.start('d2_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
+            }
+            else if(CONDITIONS.D1.FIGHT_BOSS){
+              this.scene.start('d1_boss', {life: PARAMETERS.PLAYER.MAX_LIFE});
             }
             else{
               this.scene.start('d1_1', {life: PARAMETERS.PLAYER.MAX_LIFE});
@@ -87,6 +93,9 @@ export default class End extends Phaser.Scene {
                 break;
             case dr.HOARDER:
                 text = 'HAHAHAHAHAHA!! Killing you this time felt better muehehe'; 
+                break;
+            case dr.RICHMAN:
+                text = 'ROBOTO! BUY SHARES IN WHISKAS!';
                 break;
         }
 

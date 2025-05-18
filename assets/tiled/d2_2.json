@@ -11,7 +11,7 @@
  "layers":[
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAAAAAAAAAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAAAAAAAAAAAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAIsAAABlAAAAZQAAAGUAAABlAAAAAAAAAAAAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAAAAAAAAAAAAZQAAAGUAAABlAAAAiwAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAAAAAAAAAAAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAAAAAAAAAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAGUAAABlAAAAZQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAAAAAAAAAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAAAAAAAAAAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAAAAAAAAAAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAAAAAAAAAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAAAAAAAAAAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAAAAAAAAAAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAEwAAABMAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
          "encoding":"base64",
          "height":9,
          "id":1,
@@ -39,7 +39,7 @@
         }, 
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATgAAAAAAAAAAAAAAAAAAAAAAAABRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABRAAAAAAAAAAAAAAAAAAAAUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
          "encoding":"base64",
          "height":9,
          "id":10,
@@ -53,7 +53,7 @@
         }, 
         {
          "compression":"",
-         "data":"PQAAADsAAAA7AAAAOwAAADsAAAA7AAAAOwAAADsAAAA7AAAAOwAAADsAAAA7AAAAOwAAADsAAAA7AAAAPgAAADkAAADfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAADoAAAA5AAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAN8AAAAAAAAAAAAAAOAAAAA6AAAAOQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOgAAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoAAAA5AAAAAAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA6AAAAOQAAAAAAAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA4QAAAAAAAADfAAAAOgAAADkAAADhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoAAABAAAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA8AAAAPAAAADwAAAA\/AAAA",
+         "data":"CwAAAAkAAAAJAAAACQAAAAkAAAAJAAAACQAAAAkAAAAJAAAACQAAAAkAAAAJAAAACQAAAAkAAAAJAAAADAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlQAAAAAAAACVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAOAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAAKAAAACgAAAAoAAAANAAAA",
          "encoding":"base64",
          "height":9,
          "id":2,
@@ -69,31 +69,7 @@
          "draworder":"topdown",
          "id":11,
          "name":"holes",
-         "objects":[
-                {
-                 "gid":228,
-                 "height":64,
-                 "id":21,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":256,
-                 "y":384
-                }, 
-                {
-                 "gid":228,
-                 "height":64,
-                 "id":22,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":640,
-                 "y":256
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -142,7 +118,7 @@
                  "gid":31,
                  "height":64,
                  "id":8,
-                 "name":"d2_4",
+                 "name":"d2_1",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -159,8 +135,8 @@
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":896,
-                 "y":320
+                 "x":448,
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -183,238 +159,7 @@
          "draworder":"topdown",
          "id":14,
          "name":"moving_fires",
-         "objects":[
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":14,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":192,
-                 "y":384
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":15,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":256,
-                 "y":192
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":16,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":384,
-                 "y":448
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":17,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":512,
-                 "y":256
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":18,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":640,
-                 "y":384
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":19,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"-1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":768,
-                 "y":128
-                }, 
-                {
-                 "gid":226,
-                 "height":64,
-                 "id":20,
-                 "name":"Verti",
-                 "properties":[
-                        {
-                         "name":"fill",
-                         "type":"string",
-                         "value":"right"
-                        }, 
-                        {
-                         "name":"length",
-                         "type":"string",
-                         "value":"1"
-                        }, 
-                        {
-                         "name":"movement",
-                         "type":"string",
-                         "value":"vertical"
-                        }, 
-                        {
-                         "name":"starts",
-                         "type":"string",
-                         "value":"1"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":320,
-                 "y":320
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -425,7 +170,91 @@
          "draworder":"topdown",
          "id":3,
          "name":"enemies",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":25,
+                 "name":"eC_0",
+                 "rotation":0,
+                 "type":"Seraph",
+                 "visible":true,
+                 "width":64,
+                 "x":768,
+                 "y":192
+                }, 
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":26,
+                 "name":"eC_0",
+                 "rotation":0,
+                 "type":"Seraph",
+                 "visible":true,
+                 "width":64,
+                 "x":768,
+                 "y":320
+                }, 
+                {
+                 "gid":30,
+                 "height":64,
+                 "id":27,
+                 "name":"eC_0",
+                 "rotation":0,
+                 "type":"Seraph",
+                 "visible":true,
+                 "width":64,
+                 "x":768,
+                 "y":448
+                }, 
+                {
+                 "gid":29,
+                 "height":64,
+                 "id":28,
+                 "name":"eA_0",
+                 "rotation":0,
+                 "type":"Angel",
+                 "visible":true,
+                 "width":64,
+                 "x":448,
+                 "y":256
+                }, 
+                {
+                 "gid":29,
+                 "height":64,
+                 "id":29,
+                 "name":"eA_0",
+                 "rotation":0,
+                 "type":"Angel",
+                 "visible":true,
+                 "width":64,
+                 "x":256,
+                 "y":512
+                }, 
+                {
+                 "gid":29,
+                 "height":64,
+                 "id":30,
+                 "name":"eA_0",
+                 "rotation":0,
+                 "type":"Angel",
+                 "visible":true,
+                 "width":64,
+                 "x":384,
+                 "y":384
+                }, 
+                {
+                 "gid":29,
+                 "height":64,
+                 "id":31,
+                 "name":"eA_0",
+                 "rotation":0,
+                 "type":"Angel",
+                 "visible":true,
+                 "width":64,
+                 "x":640,
+                 "y":320
+                }],
          "offsetx":32,
          "offsety":-32,
          "opacity":1,
@@ -449,8 +278,8 @@
                  "type":"Player",
                  "visible":true,
                  "width":64,
-                 "x":832,
-                 "y":320
+                 "x":64,
+                 "y":384
                 }],
          "offsetx":19,
          "offsety":-19,
@@ -461,10 +290,10 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":24,
+ "nextobjectid":34,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"1.11.2",
+ "tiledversion":"2025.02.03",
  "tileheight":64,
  "tilesets":[
         {

@@ -2,7 +2,7 @@ import PARAMETERS from "../../parameters";
 
 export default class Hole extends Phaser.Physics.Arcade.Sprite {
 
-    constructor(scene, x, y, isBossHole=false) {
+    constructor(scene, x, y, isBossHole=false, richman=false, destroy_time=0) {
         super(scene, x, y, isBossHole ? 'hole_filled' : 'hole');
 
         this.scene.add.existing(this);
@@ -18,6 +18,11 @@ export default class Hole extends Phaser.Physics.Arcade.Sprite {
                 duration: PARAMETERS.HOLE.SPEED_BOSS, // 1 second
                 ease: 'Sine'
             });
+            if(richman){
+                this.scene.time.delayedCall(destroy_time, () => {
+                    this.destroy();
+                });
+            }
         }  
         else{
             this.setOrigin(0, 0);
