@@ -9,7 +9,7 @@ const PARAMETERS = {
     GAME: { // General configuration and parameters
         WIDTH: 1024, 
         HEIGHT: 576,
-        DEBUG: true,
+        DEBUG: false,
         TILE: 64
     },
     PLAYER: {
@@ -27,7 +27,7 @@ const PARAMETERS = {
         SHOOT_DURATION: 350,
         JUMPSCARE_DURATION: 150, // in milliseconds
         JUMPSCARE_INVULNERABILITY_DURATION: 1250,
-        JUMPSCARE_DAMAGE: 20,
+        JUMPSCARE_DAMAGE: 2,
         JUMPSCARE_COUNT: 2,
         DAMAGE_TINT: 0xE45F82,
         SHAKE_DURATION: 1500,
