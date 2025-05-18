@@ -284,6 +284,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         if (this._stamina > 0) {
             this.stop();
             this.anims.restart();
+            this.scene.sound.play('player_dash', { volume: 1 });
             this._canDash = false;
             this._isDashing = true;  // Prevent multiple dashes
             this._stamina--;  // Reduce stamina

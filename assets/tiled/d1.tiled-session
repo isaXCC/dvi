@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "d2_1.json",
+    "activeFile": "d2_boss.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -45,16 +45,16 @@
         },
         "d1_11.json": {
             "expandedObjectLayers": [
-                4,
                 11,
-                5,
-                3
+                4,
+                3,
+                5
             ],
             "scale": 1,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 468,
-                "y": 323.5
+                "x": 512.5,
+                "y": 288
             }
         },
         "d1_11.json#room_tileset": {
@@ -129,17 +129,17 @@
         },
         "d1_6.json": {
             "expandedObjectLayers": [
-                13,
                 11,
+                12,
                 3,
                 5,
-                12
+                13
             ],
             "scale": 0.75,
             "selectedLayer": 11,
             "viewCenter": {
                 "x": 512.6666666666666,
-                "y": 287.33333333333326
+                "y": 288
             }
         },
         "d1_6.json#room_tileset": {
@@ -272,8 +272,8 @@
             "scale": 1,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 541,
-                "y": 333.5
+                "x": 690.5,
+                "y": 357.5
             }
         },
         "d2_1.json#room_tileset": {
@@ -284,7 +284,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 512.5,
-                "y": 287.5
+                "y": 288
             }
         },
         "d2_10.json#room_tileset": {
@@ -293,17 +293,17 @@
         "d2_2.json": {
             "expandedObjectLayers": [
                 9,
-                14,
-                4,
                 11,
+                4,
+                3,
                 7,
-                5,
-                3
+                14,
+                5
             ],
             "scale": 1,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 489,
+                "x": 489.5,
                 "y": 356.5
             }
         },
@@ -313,14 +313,14 @@
         "d2_3.json": {
             "expandedObjectLayers": [
                 4,
+                3,
                 7,
-                5,
-                3
+                5
             ],
             "scale": 1,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 527,
+                "x": 527.5,
                 "y": 284.5
             }
         },
@@ -329,17 +329,17 @@
         },
         "d2_4.json": {
             "expandedObjectLayers": [
-                4,
                 11,
-                5,
+                4,
+                12,
                 3,
-                12
+                5
             ],
-            "scale": 1.5,
+            "scale": 1,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 561.3333333333334,
-                "y": 317.66666666666663
+                "x": 343.5,
+                "y": 303.5
             }
         },
         "d2_4.json#room_tileset": {
@@ -353,8 +353,8 @@
             "scale": 1.060400390625,
             "selectedLayer": 12,
             "viewCenter": {
-                "x": 480.00736750011515,
-                "y": 322.99120504673766
+                "x": 480.4788875074827,
+                "y": 322.99120504673755
             }
         },
         "d2_5.json#room_tileset": {
@@ -365,7 +365,7 @@
             "selectedLayer": 12,
             "viewCenter": {
                 "x": 511.59920799373765,
-                "y": 288.0987245015426
+                "y": 287.62720449417503
             }
         },
         "d2_6.json#room_tileset": {
@@ -376,7 +376,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 511,
-                "y": 287
+                "y": 288
             }
         },
         "d2_7.json#room_tileset": {
@@ -387,7 +387,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 511.59920799373765,
-                "y": 288.0987245015426
+                "y": 287.62720449417503
             }
         },
         "d2_8.json#room_tileset": {
@@ -398,7 +398,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 511.59920799373765,
-                "y": 288.0987245015426
+                "y": 287.62720449417503
             }
         },
         "d2_9.json#room_tileset": {
@@ -408,7 +408,7 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 458,
+                "x": 519.5,
                 "y": 220.5
             }
         },
@@ -530,19 +530,19 @@
         },
         "test.json": {
             "expandedObjectLayers": [
-                13,
                 8,
-                15,
-                7,
+                12,
                 3,
+                7,
+                15,
                 5,
-                12
+                13
             ],
             "scale": 0.75,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 512.6666666666667,
-                "y": 287.33333333333326
+                "x": 555.3333333333334,
+                "y": 286.66666666666663
             }
         },
         "test.json#room_tileset": {
@@ -567,17 +567,17 @@
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
-        "d2_2.json",
         "test.json",
-        "d1_11.json",
-        "d1_6.json",
-        "d2_boss.json",
-        "d2_10.json",
-        "d2_9.json",
-        "d2_8.json",
-        "d2_7.json",
-        "d2_6.json",
+        "d2_1.json",
+        "d2_2.json",
+        "d2_3.json",
+        "d2_4.json",
         "d2_5.json",
-        "d2_4.json"
+        "d2_6.json",
+        "d2_7.json",
+        "d2_8.json",
+        "d2_9.json",
+        "d2_10.json",
+        "d1_11.json"
     ]
 }

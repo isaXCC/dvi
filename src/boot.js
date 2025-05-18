@@ -41,6 +41,7 @@ import hole_filled from '../assets/sprites/utils/hole_filled.png'
 import fire from '../assets/sprites/utils/fire.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
+import player_dash from '../assets/audio/utils/player_dash.mp3'
 import player_reload from '../assets/audio/utils/player_reload.wav'
 import player_falling from '../assets/audio/utils/player_falling.wav'
 import player_hurt from '../assets/audio/utils/player_hurt.wav'
@@ -157,6 +158,7 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
     this.load.audio('player_hurt', player_hurt);
+    this.load.audio('player_dash', player_dash);
     this.load.audio('fallingSound', player_falling);
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
