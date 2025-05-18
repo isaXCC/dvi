@@ -1,5 +1,6 @@
 import Room from '../room.js'
 import Devil from '../../gameobjects/enemies/devil.js';
+import Portal from '../../gameobjects/utils/portal.js';
 import PARAMETERS from '../../parameters.js';
 import CONDITIONS from '../conditions.js';
 
@@ -29,6 +30,14 @@ export default class DF_7 extends Room {
 
     update(){
         super.update();
+        if(CONDITIONS.DF.KILLED_BOSS && !CONDITIONS.DF.PORTAL_END){
+            this.portals.addElement(new Portal(this, 
+                PARAMETERS.GAME.WIDTH/2 + PARAMETERS.PORTAL.GRID_OFFSET_X, 
+                32*4 + PARAMETERS.PORTAL.GRID_OFFSET_Y,
+                 'credits_scene'));
+            CONDITIONS.DF.PORTAL_END = true;
+            this.player.setDepth(500);
+        }
     }
 
 }

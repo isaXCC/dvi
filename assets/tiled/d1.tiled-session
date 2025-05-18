@@ -335,11 +335,11 @@
                 3,
                 12
             ],
-            "scale": 1,
+            "scale": 1.5,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 643,
-                "y": 347.5
+                "x": 561.3333333333334,
+                "y": 317.66666666666663
             }
         },
         "d2_4.json#room_tileset": {

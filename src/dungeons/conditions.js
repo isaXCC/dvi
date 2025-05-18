@@ -45,7 +45,8 @@ const CONDITIONS = {
         BUNNY_F: false,
         GENERATE: false,
         FIGHT_BOSS: false,
-        KILLED_BOSS: false
+        KILLED_BOSS: false,
+        PORTAL_END: false
     }
 };
 
