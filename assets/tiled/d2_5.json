@@ -117,18 +117,6 @@
                 {
                  "gid":31,
                  "height":64,
-                 "id":8,
-                 "name":"d2_6",
-                 "rotation":0,
-                 "type":"Portal",
-                 "visible":true,
-                 "width":64,
-                 "x":448,
-                 "y":512
-                }, 
-                {
-                 "gid":31,
-                 "height":64,
                  "id":14,
                  "name":"d2_4",
                  "rotation":0,
@@ -137,18 +125,6 @@
                  "width":64,
                  "x":448,
                  "y":128
-                }, 
-                {
-                 "gid":31,
-                 "height":64,
-                 "id":15,
-                 "name":"d2_5",
-                 "rotation":0,
-                 "type":"Portal",
-                 "visible":true,
-                 "width":64,
-                 "x":896,
-                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -206,8 +182,8 @@
                  "type":"Player",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":448
+                 "x":384,
+                 "y":192
                 }],
          "offsetx":19,
          "offsety":-19,
@@ -221,7 +197,7 @@
  "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"1.11.2",
+ "tiledversion":"2025.02.03",
  "tileheight":64,
  "tilesets":[
         {

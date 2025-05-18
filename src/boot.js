@@ -10,6 +10,7 @@ import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
 import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
 import hoarder from '../assets/sprites/enemies/hoarder.png'
 import devil from '../assets/sprites/enemies/devil.png'
+import richman from '../assets/sprites/enemies/richman.png'
 // Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
@@ -129,6 +130,7 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
     this.load.spritesheet('devil', devil, {frameWidth: 87, frameHeight: 91});
+    this.load.spritesheet('richman', richman, {frameWidth: 36, frameHeight: 106})
     this.load.image('bullet', bullet);
     this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);

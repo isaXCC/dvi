@@ -17,6 +17,7 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
         this.rotation = Phaser.Math.Angle.Between(destX, destY, this.x, this.y) + 1.5708;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.setDepth(5);
 
         let {x_norm, y_norm} = getNormDist(origX, origY, destX, destY);
         this.v_x = x_norm*300;

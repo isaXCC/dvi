@@ -652,8 +652,8 @@
                  "type":"Seraph",
                  "visible":true,
                  "width":64,
-                 "x":64,
-                 "y":128
+                 "x":128,
+                 "y":256
                 }, 
                 {
                  "gid":30,
@@ -677,7 +677,7 @@
                  "visible":true,
                  "width":64,
                  "x":192,
-                 "y":128
+                 "y":192
                 }, 
                 {
                  "gid":28,
@@ -753,7 +753,7 @@
  "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"1.11.2",
+ "tiledversion":"2025.02.03",
  "tileheight":64,
  "tilesets":[
         {

@@ -49,6 +49,7 @@ export default class Hoarder extends Enemy{
             this.lifeBar.destroy(); 
             this.scene.enemies.removeElement(this);
             CONDITIONS.D1.KILLED_BOSS = true;
+            CONDITIONS.D1.FIGHT_BOSS = false;
         }
     }
     phase(ph){
@@ -115,7 +116,7 @@ export default class Hoarder extends Enemy{
                     this._hole = false;
                     let hole_x = Phaser.Math.Between(3, 12)*64;
                     let hole_y = Phaser.Math.Between(2, 6)*64;
-                    this.scene.spawnHole(hole_x, hole_y);
+                    this.scene.spawnHole(hole_x, hole_y, false);
                 }
         });
     }

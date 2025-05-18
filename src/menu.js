@@ -11,7 +11,7 @@ export default class Menu extends Phaser.Scene {
   
       // Create an array of available scenes
       this.sceneOptions = [ 'df_1', 'df_3', 'df_6', 'df_7', 'd1_mid', 'd1_8', 'd1_11', 'd1_boots', 'd1_pit',
-                            'd1_boss', 'd2_1']; // Add your scene names here
+                            'd1_boss', 'd2_1', 'd2_3']; // Add your scene names here
       this.selectedIndex = 0;
   
       // Display the options with system font
