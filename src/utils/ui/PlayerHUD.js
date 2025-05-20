@@ -1,6 +1,6 @@
 import PARAMETERS from "../../parameters";
 import FullscreenButton from "./FullscreenButton";
-import LifeBulletsHUD from "./LifebulletsHUD";
+import LifeBulletsHUD from "./LifeBulletsHUD";
 import PowerUpJumpscareHUD from "./PowerUpJumpscareHUD";
 import StaminaBarHUD from "./StaminaBarHUD";
 
