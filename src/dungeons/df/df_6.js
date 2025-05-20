@@ -17,6 +17,8 @@ export default class DF_6 extends Room {
         this.mfamily = true;
         this.mkid = true;
         this.bunny = true;
+
+        CONDITIONS.DF.VIRGIL = true;
     }
 
     init(player_state) {

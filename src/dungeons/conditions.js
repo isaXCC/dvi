@@ -30,8 +30,8 @@ const CONDITIONS = {
         PORTAL_D3: false
     },
     DF:{
-        INSIDE: false,
-        VIRGIL: true,
+        INSIDE: true,
+        VIRGIL: false,
         DF_3_KILLED: false,
         DF_4_KILLED: false,
         DF_5_KILLED: false,
