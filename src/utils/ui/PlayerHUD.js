@@ -1,7 +1,7 @@
 import PARAMETERS from "../../parameters";
 import FullscreenButton from "./FullscreenButton";
-import LifeBulletsHUD from "./lifebulletsHUD";
-import PowerUpJumpscareHUD from "./powerupjumpscareHUD";
+import LifeBulletsHUD from "./LifebulletsHUD";
+import PowerUpJumpscareHUD from "./PowerUpJumpscareHUD";
 import StaminaBarHUD from "./StaminaBarHUD";
 
 export default class PlayerHUD extends Phaser.GameObjects.Container{
