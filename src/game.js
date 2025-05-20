@@ -47,6 +47,7 @@ import CreditsScene from "./CreditsScene.js";
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
 
+(async () => {
 await document.fonts.load('48px OneUp');
 await document.fonts.ready;
 
@@ -75,3 +76,4 @@ let config = {
 };
 
 new Phaser.Game(config);
+})();

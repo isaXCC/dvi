@@ -38,13 +38,16 @@ export default class StartMenu extends Phaser.Scene {
         // creates the title, in three paragraphes
         let t = this._settings.TITLE;
         this.add.text(t.P1_X, t.P1_Y, t.P1_TEXT,
-            { fontFamily: 'oneup', fontSize: t.P1_SIZE, color: PARAMETERS.COLORS.PHAT_CAT_ALT});
+            { fontFamily: 'oneup', fontSize: t.P1_SIZE, color: PARAMETERS.COLORS.PHAT_CAT_ALT}
+        );
 
         this.add.text(t.P2_X, t.P2_Y, t.P2_TEXT,
-            { fontFamily: 'oneup', fontSize: t.P2_SIZE, color: PARAMETERS.COLORS.PHAT_CAT_ALT});
+            { fontFamily: 'oneup', fontSize: t.P2_SIZE, color: PARAMETERS.COLORS.PHAT_CAT_ALT}
+        );
 
         this.add.text(t.P3_X, t.P3_Y, t.P3_TEXT,
-            { fontFamily: 'oneup', fontSize: t.P3_SIZE, color: PARAMETERS.COLORS.DARKER_PHAT_CAT_ALT});
+            { fontFamily: 'oneup', fontSize: t.P3_SIZE, color: PARAMETERS.COLORS.DARKER_PHAT_CAT_ALT}
+        );
     }
 
     create_start_button(){
@@ -115,7 +118,8 @@ export default class StartMenu extends Phaser.Scene {
         // text of the start button
         let st = this._settings.START_TEXT;
         this.add.text(st.X, st.Y, 'START',
-            { fontFamily: 'font', fontSize: st.SIZE, stroke: '#000000', strokeThickness: st.STROKE_THICKNESS});
+            { fontFamily: 'font', fontSize: st.SIZE, stroke: '#000000', strokeThickness: st.STROKE_THICKNESS}
+        );
     }
 
     random_extra_text(){
