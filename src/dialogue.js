@@ -242,12 +242,12 @@ export default class Dialogue extends Phaser.Scene{
     getCharacterAudioFile(character){
         if (character.match(/[a-z]/i)) {
             this.speech++;
-            return "dvi/assets/audio/dialogue/" + character + ".wav";
+            return "./dialogue/" + character + ".wav";
         } else if (character == " ") {
             return null;
         } else {
             this.speech = 0;
-            return "dvi/assets/audio/dialogue/bebebese.wav";
+            return "./dialogue/bebebese.wav";
         }
     }
 }
