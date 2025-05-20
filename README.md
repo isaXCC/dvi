@@ -17,7 +17,7 @@ Or __HELL__ itself!
 
 ## Information
 - Play this 2D top-down dungeon crawler now!
-- Made with Phaser 3 and JavaScript
+- Made using Phaser 3 and JavaScript
 - Check out a gameplay on our YouTube! Link avaliable on website
 
 ## Authors
