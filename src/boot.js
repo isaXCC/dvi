@@ -47,8 +47,6 @@ import player_falling from '../assets/audio/utils/player_falling.wav'
 import player_hurt from '../assets/audio/utils/player_hurt.wav'
 import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
-import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
-import dfMusic from '../assets/audio/music/dfMusic.mp3'
 import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
 import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
@@ -58,6 +56,15 @@ import cat_meow3 from '../assets/audio/utils/cat_meow3.wav'
 import cat_ripping1 from '../assets/audio/utils/cat_ripping1.wav'
 import cat_ripping2 from '../assets/audio/utils/cat_ripping2.wav'
 import fire_shoot from '../assets/audio/utils/fire_shoot.wav'
+import portal_sound from '../assets/audio/utils/portal.wav'
+import clock1 from '../assets/audio/utils/clock1.wav'
+import clock2 from '../assets/audio/utils/clock2.wav'
+import clock3 from '../assets/audio/utils/clock3.wav'
+// MUSIC
+//import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+import d1Music from '../assets/audio/music/d1.mp3'
+import d2Music from '../assets/audio/music/d2.mp3'
+import dfMusic from '../assets/audio/music/df.mp3'
 // TILED IMPORTS
 import d1_test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -162,8 +169,6 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('fallingSound', player_falling);
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
-    this.load.audio('backgroundMusic', backgroundMusic);
-    this.load.audio('dfMusic', dfMusic);
     this.load.audio('powerup_pick', powerup_pick);
     this.load.audio('time_attack_succeded', time_attack_succeded);
     this.load.audio('time_attack_failed', time_attack_failed);
@@ -173,6 +178,15 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('cat_ripping1', cat_ripping1);
     this.load.audio('cat_ripping2', cat_ripping2);
     this.load.audio('fire_shoot', fire_shoot);
+    this.load.audio('portal', portal_sound);
+    this.load.audio('clock1', clock1);
+    this.load.audio('clock2', clock2);
+    this.load.audio('clock3', clock3);
+    // MUSIC
+    //this.load.audio('backgroundMusic', backgroundMusic);
+    this.load.audio('d1Music', d1Music);
+    this.load.audio('d2Music', d2Music);
+    this.load.audio('dfMusic', dfMusic);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('d1_test', d1_test);

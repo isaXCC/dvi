@@ -25,7 +25,7 @@ export default class HoleGroup extends DefaultGroup {
             else{
                 player.fallHole();
             }
-            this.scene.sound.play('fallingSound', { volume: 2 });
+            this.scene.sound.play('fallingSound', { volume: 1 });
             this.falling = true;
             let prev_x =  player.x, prev_y = player.y;
             let hole_x = hole.x + 32, hole_y = hole.y + 32;

@@ -38,6 +38,7 @@ export default class Room extends Phaser.Scene {
         this.nextLine = "Lalala ma lov";
         this.powerup_image;
         this.key = key;
+        this.music;
     }
 
     init(player_state) {
@@ -63,29 +64,45 @@ export default class Room extends Phaser.Scene {
         this.movingFires.addOverlap(this.player);
 
         // MUSIC SECTION
-        // Background music is always playing
+       
         if(CONDITIONS.DF.INSIDE){
-            if (!this.sound.get('backgroundMusic')) {
-                this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
+            if (!this.sound.get('d2Music')) {
+                this.music = this.sound.add('d2Music', { loop: true, volume: 0.3 });
                 this.music.stop();
             } else {
-                this.music = this.sound.get('backgroundMusic');
+                this.music = this.sound.get('d2Music');
                 this.music.stop();
             }
             if (!this.sound.get('dfMusic')) {
-                this.music = this.sound.add('dfMusic', { loop: true, volume: 0.2 });
+                this.music = this.sound.add('dfMusic', { loop: true, volume: 0.3 });
                 this.music.play();
             } else {
                 this.music = this.sound.get('dfMusic');
                 if(!this.music.isPlaying) this.music.play();
             }
         }
-        else{
-            if (!this.sound.get('backgroundMusic')) {
-                this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
+        else if(CONDITIONS.D2.INSIDE){
+            if (!this.sound.get('d1Music')) {
+                this.music = this.sound.add('d1Music', { loop: true, volume: 0.3 });
+                this.music.stop();
+            } else {
+                this.music = this.sound.get('d1Music');
+                this.music.stop();
+            }
+            if (!this.sound.get('d2Music')) {
+                this.music = this.sound.add('d2Music', { loop: true, volume: 0.3 });
                 this.music.play();
             } else {
-                this.music = this.sound.get('backgroundMusic');
+                this.music = this.sound.get('d2Music');
+                if(!this.music.isPlaying) this.music.play();
+            }
+        }
+        else {
+            if (!this.sound.get('d1Music')) {
+                this.music = this.sound.add('d1Music', { loop: true, volume: 0.3 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('d1Music');
                 if(!this.music.isPlaying) this.music.play();
             }
         }
@@ -315,6 +332,7 @@ export default class Room extends Phaser.Scene {
     }
 
     nextRoom(room){
+        this.sound.play('portal', { volume: 0.1 });
         SceneTransition.transitionOut(this);
         this.time.delayedCall(200, () => {
             this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,

@@ -37,6 +37,17 @@ export default class TimeAttackRoom {
             delay: 1000,
             callback: () => {
                 this.count--;
+                switch(this.count % 3){
+                    case 0:
+                        this.scene.sound.play('clock1', { volume: 6 });
+                        break;
+                    case 1:
+                        this.scene.sound.play('clock2', { volume: 6 });
+                        break;
+                    case 2:
+                        this.scene.sound.play('clock3', { volume: 6 });
+                        break;
+                }
                 this.timerText.setText(this.count);
 
                 // the update could be done here, but it would look less exact (although it would be a little bit more efficient)

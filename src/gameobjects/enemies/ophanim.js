@@ -75,7 +75,7 @@ export default class Ophanim extends Enemy{
     }
 
     shoot(x, y){
-        this.scene.sound.play('enemy_shoot', { volume: 6 });
+        this.scene.sound.play('enemy_shoot', { volume: 0.8 });
         this.scene.newEnemyBullet(x, y);
     }
 
