@@ -23,14 +23,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._bullets = PARAMETERS.PLAYER.BULLETS;
         this._max_ammo = PARAMETERS.PLAYER.MAX_AMMO;
         this._speed = PARAMETERS.PLAYER.SPEED;
-        this._jumpscare_damage = PARAMETERS.JUMPSCARE_DAMAGE;
+        this._jumpscare_damage = PARAMETERS.PLAYER.JUMPSCARE_DAMAGE;
         this._take_damage_count = 1;
+        this._last_damage_taken_reason = '';
         this._used_jumpscare = false;
         
-        this._last_move = 'phatcat_walk_down_'
+        this._last_move = 'down'
         this._last_hitbox = { width: 25, height: 25, offsetX: 20, offsetY: 22 }; // player's current hitbox, made to optimize the hitbox changes
 
         // State machine variables
+        this._playerStopped = false;
         this._isDashing = false;
         this._isFalling = false;
         this._isAlive = true;
@@ -42,6 +44,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        //this.body.immovable = true;
+        this.body.setDamping(true);
+        this.body.setDrag(0.9);
+        this.body.setMaxVelocityX(500);
+        this.body.setMaxVelocityY(500);
 
         // adjusting player hitbox/size
         this.setCollideWorldBounds(true);           // to avoid player getting out of the map
@@ -49,6 +56,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.setSize(24, 25).setOffset(20, 22.5);   // first hitbox, corresponds to "up_walk"
 
         // Creation of keystrokes
+        this._input_enabled = true;
         this._w = this.scene.input.keyboard.addKey('W');
         this._a = this.scene.input.keyboard.addKey('A');
         this._s = this.scene.input.keyboard.addKey('S');
@@ -67,7 +75,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.input.on('pointerdown', (pointer) => {
             if (pointer.leftButtonDown()) {
                 console.log('Left-click detected at:', pointer.x, pointer.y);
-                if(!this._isShooting && !this._isJumpScare && !this._isDashing){
+                if(!this._isReloading && !this._isShooting && !this._isJumpScare && !this._isDashing && this.onMap(pointer.x, pointer.y) && this._input_enabled){
+                    this.stop();
+                    this.anims.restart();
                     this.shoot(pointer.x, pointer.y);
                 }
             }
@@ -83,18 +93,27 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     /**
-     * Métodos preUpdate de Phaser. En este caso solo se encarga del movimiento del jugador.
-     * Como se puede ver, no se tratan las colisiones con las estrellas, ysa que estas colisiones 
-     * ya son gestionadas por la estrella (no gestionar las colisiones dos veces)
+     * updates player state and handles player movement
      * @override
      */
     preUpdate(t, dt) {
         super.preUpdate(t, dt);
+
+        // avoids playing the game between transitions
+        if(!this._input_enabled) return;
         
         if(Phaser.Input.Keyboard.JustDown(this._m) && PARAMETERS.GAME.DEBUG){
             this.scene.menu();
         }
+        
+        // updates player
+        this.updateState();
 
+        // updates player animations
+        this.updateAnims();
+    }
+
+    updateState(){
         // Implicit State Machine
         if(!this._isFalling){
 
@@ -109,21 +128,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
                     this.jumpScare();
                 }
             }
-    
+
             if(Phaser.Input.Keyboard.JustDown(this._r)){
-                if(!this._isReloading){
+                if(!this._isReloading && !this._isDashing){
                     console.log('Reloading...');
                     this.reload();
                 }
             }
 
             if(Phaser.Input.Keyboard.JustDown(this._space)){ 
-                if(!this._isDashing && this._canDash){
+                if(!this._isDashing && this._canDash && !this._isReloading){
                     console.log('Dashing...');
                     this.dash(); 
                 }
             }
-    
+
             // interacts with the enviroment
             if(Phaser.Input.Keyboard.JustDown(this._e)){
                 console.log('Interacting with the enviroment...');
@@ -137,15 +156,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             else{
                 // Stop current animation and set last movement sprite
                 this.stop();
-                this.setFrame(this._last_move.concat('1'));
+                this.updateStoppedAnim();
             }
         }
         else{
             // Stop current animation and set last movement sprite
-            this.stop();
-            this.setFrame(this._last_move.concat('1'));
-            this.body.setVelocityX(0);
-            this.body.setVelocityY(0);
+            this.stopPlayer();
         }
     }
 
@@ -159,80 +175,53 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     move(){
         // player's movement
         let x_orig = this.x, y_orig = this.y;
-        let new_animation = 'up_walk';
-        let player_stopped = false;
+        this._playerStopped = false;
         if(this._w.isDown){
             y_orig -= 1;
             if(this._a.isDown){
                 x_orig -= 1;
-                new_animation = 'up_left_walk';
-                this._last_move = 'phatcat_walk_diagupleft_';
+                this._last_move = 'upleft';
             }
             else if(this._d.isDown){
                 x_orig += 1;
-                new_animation = 'up_right_walk';
-                this._last_move = 'phatcat_walk_diagupright_';
+                this._last_move = 'upright';
             }
-            else{
-                new_animation = 'up_walk';
-                this._last_move = 'phatcat_walk_up_';
-            } 
+            else  this._last_move = 'up';
         }
         else if(this._s.isDown){
             y_orig += 1;
             if(this._a.isDown){
                 x_orig -= 1;
-                new_animation = 'down_left_walk';
-                this._last_move = 'phatcat_walk_diagdownleft_';
+                this._last_move = 'downleft';
             }
             else if(this._d.isDown){
                 x_orig += 1;
-                new_animation = 'down_right_walk';
-                this._last_move = 'phatcat_walk_diagdownright_';
+                this._last_move = 'downright';
             }
-            else{
-                new_animation = 'down_walk';
-                this._last_move = 'phatcat_walk_down_';
-            } 
+            else this._last_move = 'down';
         }
         else if(this._a.isDown){
             x_orig -= 1;
-            new_animation = 'left_walk';
-            this._last_move = 'phatcat_walk_left_';
+            this._last_move = 'left';
         }
         else if(this._d.isDown){
             x_orig += 1;
-            new_animation = 'right_walk';
-            this._last_move = 'phatcat_walk_right_';
+            this._last_move = 'right';
         }
-        else {
-            this.stop();
-            player_stopped = true;
-            // when the player is still, the last direction stays (should be change if an idle animation is created)
-            this.setFrame(this._last_move.concat('1'));
-        }
-
-        let {x_norm, y_norm} = getNormDist(this.x, this.y, x_orig, y_orig);
+        else this._playerStopped = true;
 
         if(!this._isDashing){
+            let {x_norm, y_norm} = getNormDist(this.x, this.y, x_orig, y_orig);
             this.setVelocity(x_norm*this._speed, y_norm*this._speed);
-        }
-
-        // if player is not standing still, a new animation is played
-        if(!player_stopped){ 
-            this.play(new_animation, true);
-
-            // forces the hitbox to update to the current animation
-            // this.updateHitbox(this.anims.get(new_animation));
         }
     }
 
-    takeDamage(isHole=false){
-        if(this._life > 0){
+    takeDamage(reason, isHole=false){
+        if(this._life > 0 && !this._isInvulnerable){
             this._take_damage_count++;
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this.scene.add.image(50, 50, 'letters').setFrame(6)
-            }
+            isHole ? this._last_damage_taken_reason = reason : this._last_damage_taken_reason = reason.texture.key;
+            console.log('Reason of damage taken: ' + this._last_damage_taken_reason );
+
             this.resetPowerUp();
             this.scene.defaultPowerUpDisplay();
             this._isInvulnerable = true;
@@ -249,7 +238,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             if(this._life <= 0){
                 this._isAlive = false;
             }
-            else{
+            else if(!this._isFalling){
                 this.scene.time.delayedCall(500, () => {
                     this._isInvulnerable = false;
                 });
@@ -263,7 +252,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             if(this._bullets > 0){
                 this._isShooting = true;
                 this._pup.newBullet(this.x, this.y, x, y);
-                this.scene.sound.play('shootSound', { volume: 1 });
+                this.scene.sound.play('shootSound', { volume: 0.5 });
                 this._bullets--;
                 this.scene.time.delayedCall(PARAMETERS.PLAYER.SHOOT_DURATION, () => this._isShooting = false);
             }
@@ -275,10 +264,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     reload(){
-        this._isReloading = true;
-        this._bullets = this._max_ammo;
-        this.scene.sound.play('reloadSound', { volume: 3 });
-        this.scene.time.delayedCall(PARAMETERS.PLAYER.RELOAD_DURATION, () => this._isReloading = false);
+        if(this._bullets !== this._max_ammo){
+            this._isReloading = true;
+            this._bullets = this._max_ammo;
+            this.scene.playerHUD._lfblrectangle.reloading();
+            this.scene.sound.play('reloadSound', { volume: 3 });
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.RELOAD_DURATION, () => {
+                this._isReloading = false;
+                this.scene.playerHUD._lfblrectangle.reloaded();});
+        }
     }
 
     interact(){
@@ -288,6 +282,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     dash(){
         if (this._stamina > 0) {
+            this.stop();
+            this.anims.restart();
+            this.scene.sound.play('player_dash', { volume: 0.3 });
             this._canDash = false;
             this._isDashing = true;  // Prevent multiple dashes
             this._stamina--;  // Reduce stamina
@@ -321,24 +318,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     fallHole(){
-        this.takeDamage(true);
+        this.takeDamage(PARAMETERS.SCENES.END.DEATH_REASON.HOLE, true);
     }
 
     jumpScare(){
-        if(!this._used_jumpscare){
-            if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0){
-                this._used_jumpscare = true;
-                this._isJumpScare = true;
-                this.scene.enemies.takeDamage(this._jumpscare_damage);
-                this.displayScratch();
-                this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
-                this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => this._isJumpScare = false);
-            }
+        if((this._take_damage_count % (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)) === 0 
+        || this._take_damage_count > (PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1)){
+            this._isJumpScare = true;
+            this._isInvulnerable = true;
+            this.scene.enemies.takeDamage(this._jumpscare_damage);
+            this.displayScratch();
+            this.scene.cameras.main.shake(PARAMETERS.PLAYER.SHAKE_DURATION, PARAMETERS.PLAYER.SHAKE_INTENSITY);
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_DURATION, () => {this._isJumpScare = false;});
+            this.scene.time.delayedCall(PARAMETERS.PLAYER.JUMPSCARE_INVULNERABILITY_DURATION, () => {this._isInvulnerable = false;});
+            this._take_damage_count = 1;
         }
-        else if(this._take_damage_count % PARAMETERS.PLAYER.JUMPSCARE_COUNT + 1 === 1){
-            this._used_jumpscare = false;
-        }
-        
     }
 
     // POWERUP LOGIC
@@ -375,7 +369,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     // SETTERS AND GETTERS
-    isInvulnerable(){ return this._isInvulnerable || this._isDashing || this._isJumpScare;}
+    isInvulnerable(){ return this._isInvulnerable;}
 
     changeMaxLife(i){
         PARAMETERS.PLAYER.MAX_LIFE = this._max_life + i;
@@ -384,7 +378,130 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this._life = this._life + i;
     }
 
+    changeMaxAmmo(i){
+        PARAMETERS.PLAYER.MAX_AMMO = this._max_ammo + i;
+        PARAMETERS.PLAYER.BULLETS = this._bullets + i;
+        this._max_ammo = this._max_ammo + i;
+        this._bullets = this._bullets + i;
+    }
+
     // ANIMATIONS SECTION
+    updateAnims(){
+        if(this._isDashing){
+            const dashAnim = this.updateDashAnim();
+            if (this.anims.currentAnim?.key !== dashAnim) {
+                this.play(dashAnim, true); 
+            }
+            //console.log('Anim actual:', this.anims.currentAnim?.key, 'Frame actual:', this.anims.currentFrame, 'isPlaying:', this.anims.isPlaying);
+        } 
+        else if(this._isFalling) this.updateStoppedAnim();
+        else if(this._isShooting) {
+            const shootAnim = this.updateShootAnim();
+            if (this.anims.currentAnim?.key !== shootAnim) {
+                this.play(shootAnim, true); 
+            }
+        } 
+        else if(this._isReloading) {}   // empty on purpose
+        else if(this._playerStopped) this.updateStoppedAnim();
+        else this.play(this.updateWalkAnim(), true);
+       
+    }
+
+    updateDashAnim(){
+        switch(this._last_move){
+            case 'upleft':
+                return 'up_left_dash';
+            case 'upright':
+                return 'up_right_dash';
+            case 'up':
+                return 'up_dash';
+            case 'downleft':
+                return 'down_left_dash';
+            case 'downright':
+                return 'down_right_dash';
+            case 'down':
+                return 'down_dash';
+            case 'left':
+                return 'left_dash';
+            case 'right':
+                return 'right_dash';
+        }
+    }
+
+    updateShootAnim(){
+        switch(this._last_move){
+            case 'upleft':
+                return 'up_left_atk';
+            case 'upright':
+                return 'up_right_atk';
+            case 'up':
+                return 'up_atk';
+            case 'downleft':
+                return 'down_left_atk';
+            case 'downright':
+                return 'down_right_atk';
+            case 'down':
+                return 'down_atk';
+            case 'left':
+                return 'left_atk';
+            case 'right':
+                return 'right_atk';
+        }
+    }
+
+    updateStoppedAnim(){
+        // when the player is still, the last direction stays (should be change if an idle animation is created)
+        let frame;
+        switch(this._last_move){
+            case 'upleft':
+                frame = 'walk_diagupleft';
+                break;
+            case 'upright':
+                frame = 'walk_diagupright';
+                break;
+            case 'up':
+                frame = 'walk_up';
+                break;
+            case 'downleft':
+                frame = 'walk_diagdownleft';
+                break;
+            case 'downright':
+                frame = 'walk_diagdownright';
+                break;
+            case 'down':
+                frame = 'walk_down';
+                break;
+            case 'left':
+                frame = 'walk_left';
+                break;
+            case 'right':
+                frame = 'walk_right';
+                break;
+        }
+        this.setFrame('phatcat_'.concat(frame, '_1'));
+    }
+
+    updateWalkAnim(){
+        switch(this._last_move){
+            case 'upleft':
+                return 'up_left_walk';
+            case 'upright':
+                return 'up_right_walk';
+            case 'up':
+                return 'up_walk';
+            case 'downleft':
+                return 'down_left_walk';
+            case 'downright':
+                return 'down_right_walk';
+            case 'down':
+                return 'down_walk';
+            case 'left':
+                return 'left_walk';
+            case 'right':
+                return 'right_walk';
+        }
+    }
+
     createAnims(){
         // creation of walk animations, there are 8, one for each direction
         const up_walk = {
@@ -445,58 +562,114 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         const up_atk = {
             key: 'up_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_up_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_up_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
         
         const right_atk = {
             key: 'right_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_right_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_right_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
         
         const left_atk = {
             key: 'left_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_left_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_left_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
         
         const down_atk = {
             key: 'down_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_down_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_down_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
 
         const up_right_atk = {
             key: 'up_right_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagupright_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagupright_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
 
         const up_left_atk = {
             key: 'up_left_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagupleft_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagupleft_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
 
         const down_right_atk = {
             key: 'down_right_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagdownright_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagdownright_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
         };
 
         const down_left_atk = {
             key: 'down_left_atk',
-            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagdownleft_", end: 3}),
-            frameRate: 4,
-            repeat: -1
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_atk_diagdownleft_", start: 3, end: 0}),
+            frameRate: 8,
+            repeat: 0
+        };
+
+        const down_dash = {
+            key: 'down_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_down_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const down_left_dash = {
+            key: 'down_left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagdownleft_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const left_dash = {
+            key: 'left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_left_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_left_dash = {
+            key: 'up_left_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagupleft_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_dash = {
+            key: 'up_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_up_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const down_right_dash = {
+            key: 'down_right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagdownright_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const right_dash = {
+            key: 'right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_right_", end: 3}),
+            frameRate: 24,
+            repeat: 0
+        };
+
+        const up_right_dash = {
+            key: 'up_right_dash',
+            frames: this.scene.anims.generateFrameNames('player', {prefix: "phatcat_dash_diagupright_", end: 3}),
+            frameRate: 24,
+            repeat: 0
         };
 
         // creation of animations
@@ -517,22 +690,34 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.anims.create(up_left_atk);
         this.anims.create(down_right_atk);
         this.anims.create(down_left_atk);
+        this.anims.create(down_dash);
+        this.anims.create(down_left_dash);
+        this.anims.create(left_dash);
+        this.anims.create(up_left_dash);
+        this.anims.create(up_dash);
+        this.anims.create(down_right_dash);
+        this.anims.create(right_dash);
+        this.anims.create(up_right_dash);
     }
 
     // AUXILIARY FUNCIONS
     getDirectionVector() {
         let directionMap = {
-            'phatcat_walk_up_': { velocityX: 0, velocityY: -1 },
-            'phatcat_walk_down_': { velocityX: 0, velocityY: 1 },
-            'phatcat_walk_left_': { velocityX: -1, velocityY: 0 },
-            'phatcat_walk_right_': { velocityX: 1, velocityY: 0 },
-            'phatcat_walk_diagupleft_': { velocityX: -1, velocityY: -1 },
-            'phatcat_walk_diagupright_': { velocityX: 1, velocityY: -1 },
-            'phatcat_walk_diagdownleft_': { velocityX: -1, velocityY: 1 },
-            'phatcat_walk_diagdownright_': { velocityX: 1, velocityY: 1 }
+            'up': { velocityX: 0, velocityY: -1 },
+            'down': { velocityX: 0, velocityY: 1 },
+            'left': { velocityX: -1, velocityY: 0 },
+            'right': { velocityX: 1, velocityY: 0 },
+            'upleft': { velocityX: -1, velocityY: -1 },
+            'upright': { velocityX: 1, velocityY: -1 },
+            'downleft': { velocityX: -1, velocityY: 1 },
+            'downright': { velocityX: 1, velocityY: 1 }
         };
     
         return directionMap[this._last_move] || { velocityX: 0, velocityY: 0 };
+    }
+
+    onMap(x, y){
+        return !(this.scene.fullscreen_button.getBounds().contains(x, y));
     }
 
     initFrame(){
@@ -542,10 +727,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         console.log(PARAMETERS.GAME.WIDTH, PARAMETERS.GAME.HEIGHT)
         console.log(x_ratio, y_ratio)
         if(y_ratio < 0.5){
-            this._last_move = 'phatcat_walk_down_';
+            this._last_move = 'down';
         }
         else{
-            this._last_move = 'phatcat_walk_up_';
+            this._last_move = 'up';
         }
         this._last_move
     }
@@ -591,4 +776,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    stopPlayer(){
+        // stops player and shows correct sprite
+        this.stop();
+        this.updateStoppedAnim();
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);
+    }
 }

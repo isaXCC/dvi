@@ -49,6 +49,7 @@ export default class Hoarder extends Enemy{
             this.lifeBar.destroy(); 
             this.scene.enemies.removeElement(this);
             CONDITIONS.D1.KILLED_BOSS = true;
+            CONDITIONS.D1.FIGHT_BOSS = false;
         }
     }
     phase(ph){
@@ -100,7 +101,6 @@ export default class Hoarder extends Enemy{
                     this.flipX = true;
                 }
                 if(ph >= 2) {
-                    console.log("ping");
                     this.y = Phaser.Math.Between(PARAMETERS.HOARDER.OFFSET_Y, PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y)
                 }
             }
@@ -115,18 +115,18 @@ export default class Hoarder extends Enemy{
                 if (this.active && this.scene) {
                     this._hole = false;
                     let hole_x = Phaser.Math.Between(3, 12)*64;
-                    let hole_y = Phaser.Math.Between(1, 7)*64;
-                    this.scene.spawnHole(hole_x, hole_y);
+                    let hole_y = Phaser.Math.Between(2, 6)*64;
+                    this.scene.spawnHole(hole_x, hole_y, false);
                 }
         });
     }
 
     move() {
-        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y){
+        if(this.y <= PARAMETERS.HOARDER.OFFSET_Y + 64){
             this._speed *= -1;
             this.y += 2;
         }
-        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y){
+        else if(this.y >= PARAMETERS.GAME.HEIGHT - PARAMETERS.HOARDER.OFFSET_Y - 64){
             this._speed *= -1;
             this.y -= 2;
         }
@@ -134,19 +134,33 @@ export default class Hoarder extends Enemy{
     }
 
     shootOne(x, y){
-        this.scene.sound.play('enemy_shoot', { volume: 6 });
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y);
     }
 
     shootTwo(x, y){
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
         this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
     }
 
     shootThree(x, y){
+        this.playSound();
         this.scene.newEnemyForwardBullet(x, y - PARAMETERS.HOARDER.HITBOX_Y/2);
         this.scene.newEnemyForwardBullet(x, y);
         this.scene.newEnemyForwardBullet(x, y + PARAMETERS.HOARDER.HITBOX_Y/2);
+    }
+
+    playSound(){
+        let rand = Math.random();
+
+        if (rand < 0.5) {
+            this.scene.sound.play('enemy_shoot', { volume: 3 }); 
+        } 
+        else {
+            this.scene.sound.play('fire_shoot', { volume: 1.3 });
+        } 
+        
     }
 
     takeDamage(amount=1){

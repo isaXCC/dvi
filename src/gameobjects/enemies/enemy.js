@@ -11,6 +11,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setCollideWorldBounds(true);
+        this.body.pushable = false;
         this._touch_damage = false;
 
         // Abstract properties -> Children must override
@@ -30,11 +31,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     takeDamage(amount=1){
         if(this._life > 0){
             this._life -= amount;
-            this.scene.sound.play('enemy_hurt', { volume: 3 });
+            this.scene.sound.play('enemy_hurt', { volume: 0.9 });
             this.setAlpha(this._life/this._max_life);
             if(this._life <= 0){
                 this._isAlive = false;
-                this.scene.enemies.removeElement(this);
+                //this.scene.enemies.removeElement(this);
             }
         }
     }
@@ -62,5 +63,13 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
             let {x_norm, y_norm} = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
             this.body.setVelocity(-x_norm*this._speed, -y_norm*this._speed);
         }
+    }
+
+    closeToWall(x, y){
+        return (x < 100 || x > (PARAMETERS.GAME.WIDTH - 100) || y < 100 || y > (PARAMETERS.GAME.HEIGHT - 100));
+    }
+    
+    generateRand(low, high){
+        this._rand = Phaser.Math.Between(low, high);
     }
 }

@@ -9,13 +9,44 @@ const CONDITIONS = {
         TIMEATK2: false,
         FIGHT_BOSS: false,
         KILLED_BOSS: false,
-        PORTAL_D2: false
+        PORTAL_D2: false,
+        D1_3_KILLED: false,
+        D1_4_KILLED: false,
+        D1_6_KILLED: false,
+        D1_9_KILLED: false,
+        D1_10_KILLED: false,
+        D1_11_KILLED: false,
+        D1_BOOTS_KILLED: false,
+        D1_MID_KILLED: false
     }, 
     D2:{
-
+        HITO: false,
+        INSIDE: false,
+        D2_2_KILLED: false,
+        BUNNY_2: false,
+        TIMEATK: false,
+        FIGHT_BOSS: false,
+        KILLED_BOSS: false,
+        PORTAL_D3: false
     },
     DF:{
-
+        INSIDE: false,
+        VIRGIL: false,
+        DF_3_KILLED: false,
+        DF_4_KILLED: false,
+        DF_5_KILLED: false,
+        VIRGIL_G: false,
+        VIRGIL_F: false,
+        MICE_FAMILY_G: false,
+        MICE_FAMILY_F: false,
+        MICE_KID_G: false,
+        MICE_KID_F: false,
+        BUNNY_G: false,
+        BUNNY_F: false,
+        GENERATE: false,
+        FIGHT_BOSS: false,
+        KILLED_BOSS: false,
+        PORTAL_END: false
     }
 };
 

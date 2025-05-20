@@ -17,10 +17,12 @@ export default class D1_BOSS extends Room {
         this.enemies.addElement(new Hoarder(this, 
             PARAMETERS.GAME.WIDTH - PARAMETERS.GAME.WIDTH/8,
             PARAMETERS.GAME.HEIGHT/2));
-        if(!CONDITIONS.D1.FIGHT_BOSS){
-            this.enterDialogue('d1_boss');
-            CONDITIONS.D1.FIGHT_BOSS = true;
-        }
+        this.time.delayedCall(450, () => {
+            if(!CONDITIONS.D1.FIGHT_BOSS){
+                this.enterDialogue('d1_boss');
+                CONDITIONS.D1.FIGHT_BOSS = true;
+            }
+        })
     }
 
     init(player_state) {
@@ -32,7 +34,7 @@ export default class D1_BOSS extends Room {
         if(CONDITIONS.D1.KILLED_BOSS && !CONDITIONS.D1.PORTAL_D2){
             this.portals.addElement(new Portal(this, 
                 PARAMETERS.GAME.WIDTH/2 + PARAMETERS.PORTAL.GRID_OFFSET_X, 
-                32 + PARAMETERS.PORTAL.GRID_OFFSET_Y,
+                32*4 + PARAMETERS.PORTAL.GRID_OFFSET_Y,
                  'd2_1'));
             this.powerups.addElement(new HeartUp(this.player, this, PARAMETERS.GAME.WIDTH/2, PARAMETERS.GAME.HEIGHT/2));
             CONDITIONS.D1.PORTAL_D2 = true;

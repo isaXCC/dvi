@@ -9,14 +9,18 @@ import ophanim_atlas from '../assets/sprites/enemies/ophanim_atlas.json'
 import seraph from '../assets/sprites/enemies/seraph_spreadsheet.png'
 import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
 import hoarder from '../assets/sprites/enemies/hoarder.png'
+import devil from '../assets/sprites/enemies/devil.png'
+import richman from '../assets/sprites/enemies/richman.png'
 // Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
 // Utils
 import letters from '../assets/sprites/utils/letter_spreadsheet.png'
 import bullet from '../assets/sprites/utils/bullet.png'
+import bullet_shot from '../assets/sprites/utils/bullet_shot.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
+import block from '../assets/sprites/utils/block.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
@@ -26,21 +30,23 @@ import scratch1 from '../assets/sprites/utils/scratch1.png'
 import scratch2 from '../assets/sprites/utils/scratch2.png'
 import scratch3 from '../assets/sprites/utils/scratch3.png'
 import scratch4 from '../assets/sprites/utils/scratch4.png'
+import fullscreen from '../assets/sprites/utils/fullscreen.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
+import ammoup from '../assets/sprites/utils/ammoup.png'
 import boots from '../assets/sprites/utils/boots.png'
 import hole from '../assets/sprites/utils/hole.png'
 import hole_filled from '../assets/sprites/utils/hole_filled.png'
 import fire from '../assets/sprites/utils/fire.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
+import player_dash from '../assets/audio/utils/player_dash.mp3'
 import player_reload from '../assets/audio/utils/player_reload.wav'
 import player_falling from '../assets/audio/utils/player_falling.wav'
 import player_hurt from '../assets/audio/utils/player_hurt.wav'
 import enemy_hurt from '../assets/audio/utils/enemy_hurt.wav'
 import enemy_shoot from '../assets/audio/utils/enemy_shoot.wav'
-import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
 import powerup_pick from '../assets/audio/utils/powerup_pick.wav'
 import time_attack_succeded from '../assets/audio/utils/time_attack_succeded.wav'
 import time_attack_failed from '../assets/audio/utils/time_attack_failed.wav'
@@ -49,6 +55,16 @@ import cat_meow2 from '../assets/audio/utils/cat_meow2.wav'
 import cat_meow3 from '../assets/audio/utils/cat_meow3.wav'
 import cat_ripping1 from '../assets/audio/utils/cat_ripping1.wav'
 import cat_ripping2 from '../assets/audio/utils/cat_ripping2.wav'
+import fire_shoot from '../assets/audio/utils/fire_shoot.wav'
+import portal_sound from '../assets/audio/utils/portal.wav'
+import clock1 from '../assets/audio/utils/clock1.wav'
+import clock2 from '../assets/audio/utils/clock2.wav'
+import clock3 from '../assets/audio/utils/clock3.wav'
+// MUSIC
+//import backgroundMusic from '../assets/audio/music/backgroundMusic.mp3'
+import d1Music from '../assets/audio/music/d1.mp3'
+import d2Music from '../assets/audio/music/d2.mp3'
+import dfMusic from '../assets/audio/music/df.mp3'
 // TILED IMPORTS
 import d1_test from '../assets/tiled/test.json'
 import d1_1 from '../assets/tiled/d1_1.json'
@@ -78,6 +94,12 @@ import d2_9 from '../assets/tiled/d2_9.json'
 import d2_10 from '../assets/tiled/d2_10.json'
 import d2_boss from '../assets/tiled/d2_boss.json'
 import df_1 from '../assets/tiled/df_1.json'
+import df_2 from '../assets/tiled/df_2.json'
+import df_3 from '../assets/tiled/df_3.json'
+import df_4 from '../assets/tiled/df_4.json'
+import df_5 from '../assets/tiled/df_5.json'
+import df_6 from '../assets/tiled/df_6.json'
+import df_7 from '../assets/tiled/df_7.json'
 import room_tiles from '../assets/tiled/room_tileset.png'
 
 
@@ -115,33 +137,38 @@ export default class Boot extends Phaser.Scene {
     this.load.atlas('player', player, player_atlas);
     this.load.atlas('npcs', npcs, npcs_atlas);
     this.load.image('hoarder', hoarder);
-
+    this.load.spritesheet('devil', devil, {frameWidth: 87, frameHeight: 91});
+    this.load.spritesheet('richman', richman, {frameWidth: 36, frameHeight: 106})
     this.load.image('bullet', bullet);
+    this.load.image('bullet_shot', bullet_shot);
     this.load.image('fireball', fireball);
+    this.load.image('block', block);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
     // POWERUPS AND ITENS
     this.load.spritesheet('letters', letters, {frameWidth: 16, frameHeight: 18});
     this.load.image('tripleshot', tripleshot);
+    this.load.image('ammoup', ammoup);
     this.load.image('speedboost', speedboost);
     this.load.image('boots', boots);
     this.load.image('hole', hole);
     this.load.image('hole_filled', hole_filled);
     this.load.spritesheet('fire', fire, {frameWidth: 41, frameHeight: 47});
     this.load.spritesheet('hearts', hearts, {frameWidth: 22, frameHeight: 19});
-    this.load.spritesheet('stamina', stamina, {frameWidth: 32, frameHeight: 8});
+    this.load.spritesheet('stamina', stamina, {frameWidth: 6, frameHeight: 24});
     this.load.image('scratch1', scratch1);
     this.load.image('scratch2', scratch2);
     this.load.image('scratch3', scratch3);
     this.load.image('scratch4', scratch4);
+    this.load.spritesheet('fullscreen', fullscreen, {frameWidth: 32, frameHeight: 32});
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
     this.load.audio('player_hurt', player_hurt);
+    this.load.audio('player_dash', player_dash);
     this.load.audio('fallingSound', player_falling);
     this.load.audio('enemy_shoot', enemy_shoot);
     this.load.audio('enemy_hurt', enemy_hurt);
-    this.load.audio('backgroundMusic', backgroundMusic);
     this.load.audio('powerup_pick', powerup_pick);
     this.load.audio('time_attack_succeded', time_attack_succeded);
     this.load.audio('time_attack_failed', time_attack_failed);
@@ -150,6 +177,16 @@ export default class Boot extends Phaser.Scene {
     this.load.audio('cat_meow3', cat_meow3);
     this.load.audio('cat_ripping1', cat_ripping1);
     this.load.audio('cat_ripping2', cat_ripping2);
+    this.load.audio('fire_shoot', fire_shoot);
+    this.load.audio('portal', portal_sound);
+    this.load.audio('clock1', clock1);
+    this.load.audio('clock2', clock2);
+    this.load.audio('clock3', clock3);
+    // MUSIC
+    //this.load.audio('backgroundMusic', backgroundMusic);
+    this.load.audio('d1Music', d1Music);
+    this.load.audio('d2Music', d2Music);
+    this.load.audio('dfMusic', dfMusic);
     // TILED PRELOAD
     this.load.image('room_tiles', room_tiles);
     this.load.tilemapTiledJSON('d1_test', d1_test);
@@ -180,6 +217,12 @@ export default class Boot extends Phaser.Scene {
     this.load.tilemapTiledJSON('d2_10', d2_10);
     this.load.tilemapTiledJSON('d2_boss', d2_boss);
     this.load.tilemapTiledJSON('df_1', df_1);
+    this.load.tilemapTiledJSON('df_2', df_2);
+    this.load.tilemapTiledJSON('df_3', df_3);
+    this.load.tilemapTiledJSON('df_4', df_4);
+    this.load.tilemapTiledJSON('df_5', df_5);
+    this.load.tilemapTiledJSON('df_6', df_6);
+    this.load.tilemapTiledJSON('df_7', df_7);
   }
 
   /**
@@ -188,7 +231,7 @@ export default class Boot extends Phaser.Scene {
    */
   create() {
     this.add.image(320, 256, 'loading');
-    this.scene.start('d1_1');
+    this.scene.start('start_menu');
   }
 
   // creates, manages and shows the initial loading progress bar

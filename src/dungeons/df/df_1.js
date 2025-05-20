@@ -1,3 +1,4 @@
+import CONDITIONS from '../conditions.js';
 import Room from '../room.js'
 
 export default class DF_1 extends Room {
@@ -7,8 +8,12 @@ export default class DF_1 extends Room {
     }
 
     create() {
+        CONDITIONS.DF.INSIDE = true;
         super.generateTiled('df_1'); 
-        super.create();;
+        super.create();
+        this.time.delayedCall(450, () => {
+            this.enterDialogue('df_1');
+        });
     }
 
     init(player_state) {

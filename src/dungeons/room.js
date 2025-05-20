@@ -3,6 +3,7 @@ import Angel from '../gameobjects/enemies/angel.js';
 import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
 import Portal from '../gameobjects/utils/portal.js';
+import Block from '../gameobjects/utils/block.js';
 import Bullet from '../gameobjects/utils/bullet.js';
 import NPC from '../gameobjects/utils/npc.js';
 import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
@@ -23,6 +24,9 @@ import CONDITIONS from './conditions.js';
 import MovingFireGroup from '../gameobjects/groups/MovingFireGroup.js';
 import MovingFire from '../gameobjects/utils/movingfire.js';
 import DialogueManager from './dialogues/DialogueManager.js';
+import PlayerHUD from '../utils/ui/PlayerHUD.js';
+import SceneTransition from '../utils/SceneTransition.js'
+import BlockGroup from '../gameobjects/groups/BlockGroup.js';
 
 export default class Room extends Phaser.Scene {
 
@@ -31,16 +35,18 @@ export default class Room extends Phaser.Scene {
 
         // information that will be passed between rooms
         this.player_state;
-        this.nextLine = "Lalala ma lov"; // PROTOTYPE for Hito 1
+        this.nextLine = "Lalala ma lov";
         this.powerup_image;
         this.key = key;
+        this.music;
     }
 
     init(player_state) {
-        this.dialogue_manager = new DialogueManager(this);
         if(player_state !== undefined){
             this.setPlayerInfo(player_state);
         }
+        this.dialogue_manager = new DialogueManager(this, player_state.dialogue_info);
+        this._passed = false;
     }
 
     // ROOM GENERATION AND TILED INTEGRATION
@@ -51,21 +57,54 @@ export default class Room extends Phaser.Scene {
         this.bullets.addOverlap(this.player, this.bullets.playerOverlap);
         this.enemies.addCollision(this.player, this.enemies.playerCollision);
         this.npcs.addCollision(this.player, this.npcs.playerCollision);
+        this.blocks.addCollision(this.player, this.blocks.playerCollision);
         this.powerups.addOverlap(this.player, this.powerups.playerOverlap);
         this.holes.addOverlap(this.player, this.holes.playerOverlap);
         this.fires.addOverlap(this.player, this.fires.playerOverlap);
         this.movingFires.addOverlap(this.player);
-        //maybe?
-        //this.holes.addCollision(this.enemies); 
 
         // MUSIC SECTION
-        // Background music is always playing
-        if (!this.sound.get('backgroundMusic')) {
-            this.music = this.sound.add('backgroundMusic', { loop: true, volume: 0.2 });
-            this.music.play();
-        } else {
-            this.music = this.sound.get('backgroundMusic');
-            if(!this.music.isPlaying) this.music.play();
+       
+        if(CONDITIONS.DF.INSIDE){
+            if (!this.sound.get('d2Music')) {
+                this.music = this.sound.add('d2Music', { loop: true, volume: 0.3 });
+                this.music.stop();
+            } else {
+                this.music = this.sound.get('d2Music');
+                this.music.stop();
+            }
+            if (!this.sound.get('dfMusic')) {
+                this.music = this.sound.add('dfMusic', { loop: true, volume: 0.3 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('dfMusic');
+                if(!this.music.isPlaying) this.music.play();
+            }
+        }
+        else if(CONDITIONS.D2.INSIDE){
+            if (!this.sound.get('d1Music')) {
+                this.music = this.sound.add('d1Music', { loop: true, volume: 0.3 });
+                this.music.stop();
+            } else {
+                this.music = this.sound.get('d1Music');
+                this.music.stop();
+            }
+            if (!this.sound.get('d2Music')) {
+                this.music = this.sound.add('d2Music', { loop: true, volume: 0.3 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('d2Music');
+                if(!this.music.isPlaying) this.music.play();
+            }
+        }
+        else {
+            if (!this.sound.get('d1Music')) {
+                this.music = this.sound.add('d1Music', { loop: true, volume: 0.3 });
+                this.music.play();
+            } else {
+                this.music = this.sound.get('d1Music');
+                if(!this.music.isPlaying) this.music.play();
+            }
         }
 
         // adds player info to the HUD
@@ -73,6 +112,9 @@ export default class Room extends Phaser.Scene {
 
         // Blocking context menu to open
         window.addEventListener('contextmenu', (event) => event.preventDefault());
+
+        // creates in transition
+        SceneTransition.transitionIn(this);
     }
 
     update(){
@@ -83,6 +125,7 @@ export default class Room extends Phaser.Scene {
         this.fires.update();
         this.movingFires.update();
         this.fires.update();
+        this.blocks.update();
         
         if(this.player._isAlive)
             this.player.update();    
@@ -93,15 +136,31 @@ export default class Room extends Phaser.Scene {
 
         // Update player info display
         this.updatePlayerHUD();
-        
+
+        // Remove dead enemies
+        this.enemies.removeDead();
+        this.blocks.removeDead();
+
         // if the room is a time attack room, it gets updated
         if(this.time_attack_room !== null && this.time_attack_room !== undefined) this.time_attack_room.update();
+
+        const tile = this.onc.getTileAtWorldXY(this.player.x, this.player.y, true);
+        if (tile && tile.collides) {
+            // if player is inside a wall, it gets out
+            const dx = Math.sign(this.player.body.velocity.x);
+            const dy = Math.sign(this.player.body.velocity.y);
+            if (dx !== 0) this.player.x -= dx * 20;
+            if (dy !== 0) this.player.y -= dy * 20;
+
+            this.player.body.setVelocity(0);
+        }
     }
 
     generateTiled(key){
         this.enemies = new EnemyGroup(this);
         this.bullets = new BulletGroup(this);
         this.portals = new PortalGroup(this);
+        this.blocks = new BlockGroup(this);
         this.npcs = new NPCGroup(this);
         this.powerups = new PUPGroup(this);
         this.holes = new HoleGroup(this);
@@ -113,8 +172,8 @@ export default class Room extends Phaser.Scene {
         var tiles = map.addTilesetImage('room_tileset', 'room_tiles');
         map.createLayer('background', tiles, 0, 0);
         map.createLayer('onn', tiles, 0, 0);
-        var onc = map.createLayer('onc', tiles, 0, 0);
-        onc.setCollisionByExclusion([-1], true);
+        this.onc = map.createLayer('onc', tiles, 0, 0);
+        this.onc.setCollisionByExclusion([-1], true);
         var oic = map.createLayer('oic', tiles, 0, 0);
         oic.setCollisionByExclusion([-1], true);
         
@@ -210,6 +269,12 @@ export default class Room extends Phaser.Scene {
                         this.powerups.removeElement(pup);
                         this.player._pup.effect();
                     }
+                    if(this.player_state.take_damage_count !== undefined){
+                        this.player._take_damage_count = this.player_state.take_damage_count;
+                    }
+                    if(this.player_state.used_jumpscare !== undefined){
+                        this.player._used_jumpscare = this.player_state.used_jumpscare;
+                    }
                     //this.player.initFrame();
                 }
             }
@@ -224,33 +289,78 @@ export default class Room extends Phaser.Scene {
         }
 
         // Load gameobjects  
-        this.physics.add.collider(this.player, onc);
-        this.enemies.addCollision(onc);
-        this.bullets.addCollision(onc, this.bullets.oncCollision);
+        this.physics.add.collider(this.player, this.onc, () => {
+            this.physics.world.separate(this.onc, this.player);
+        });
+        this.enemies.addCollision(this.onc);
+        this.bullets.addCollision(this.onc, this.bullets.oncCollision);
         // OIC is useful for cage logic in d1_mid
         this.physics.add.collider(this.player, oic, null, null, this);
     }
 
-    // ROOM STATE LOGIC AND METHOD
+    generateBlocks(){
+        // Blocks all portals except the one that the player entered
+        this.portals.group.getChildren().forEach((portal) => {
+            const portalX = portal._x - PARAMETERS.PORTAL.GRID_OFFSET_X;
+            const portalY = portal._y - PARAMETERS.PORTAL.GRID_OFFSET_Y;
+            const dx = Math.abs(this.player.x - portalX);
+            const dy = Math.abs(this.player.y - portalY);
 
+            if (dx <= 64 && dy <= 64) {
+                // Player is too close to the portal — don't spawn block
+                return;
+            }
+            this.blocks.addElement(new Block(this, portal._x, portal._y));
+            portal.isBlocked = true;
+        });
+    }
+
+    destroyBlocks(){
+        this.blocks.group.getChildren().forEach((block) => {
+            block._isAlive = false;
+        });
+        this.portals.group.getChildren().forEach((portal) => {
+            portal.isBlocked = false;
+        });
+
+    }
+
+    // ROOM STATE LOGIC AND METHOD
     enterDialogue(nameNPC){
         this.dialogue_manager.enterDialogue(nameNPC, this.key);
         this.input.enabled = false;
     }
 
     nextRoom(room){
-        this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
-             max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
-             portal: this.scene.key, powerup: this.player._pup});
+        this.sound.play('portal', { volume: 0.1 });
+        SceneTransition.transitionOut(this);
+        this.time.delayedCall(200, () => {
+            this.scene.start(room, {max_life: this.player._max_life, life: this.player._life,
+                max_ammo: this.player._max_ammo, bullets: this.player._bullets, 
+                portal: this.scene.key, powerup: this.player._pup, dialogue_info: this.dialogue_manager.getInfo(),
+                take_damage_count: this.player._take_damage_count, used_jumpscare: this.player._used_jumpscare});
+        })
     }
 
-    spawnHole(x, y){
-        this.holes.addElement(new Hole(this, x, y, true));
+    spawnHole(x, y, richman, destroy_time){
+        this.holes.addElement(new Hole(this, x, y, true, richman, destroy_time));
+        this.player.setDepth(500);
+    }
+
+    spawnAngel(x, y){
+        this.enemies.addElement(new Angel(this, x, y));
         this.player.setDepth(500);
     }
 
     gameOver(){
-        this.scene.start('end');
+        this.music.stop();
+        if(!this._passed){  
+            SceneTransition.transitionOut(this);    
+            this.time.delayedCall(200, () => {
+                this.scene.start('end', this.player._last_damage_taken_reason);
+            });
+            this._passed = true;
+        }
     }
 
     menu(){
@@ -262,8 +372,7 @@ export default class Room extends Phaser.Scene {
     getPlayerInfo() {
         return `HP: ${this.player._life}\nStamina: ${this.player._stamina}\nAmmo: ${this.player._bullets}/${this.player._max_ammo}\nPowerUp: `;
     }
-
-
+    
     setPlayerInfo(player_state){
         console.log('ROOM: ' + player_state.portal);
         this.player_state = player_state;
@@ -298,13 +407,13 @@ export default class Room extends Phaser.Scene {
         this.powerup_image = this.add.image(32, 556, null);
         this.powerup_image.setVisible(false);
     }
-a
-
+    
     newPowerUpDisplay(powerup) {
         this.deletePreviousPowerUpImage();
         // Add the power-up image on top
-        this.powerup_image = this.add.image(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, powerup.sprite);
+        this.powerup_image = this.add.image(PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_X, PARAMETERS.PLAYER_HUD.POWERUP_JUMPSCARE_CIRCLE_PROPERTIES.PUP_Y, powerup.sprite);
         this.powerup_image.setAlpha(0.75);
+        this.powerup_image.setDepth(2);
     }
 
     deletePreviousPowerUpImage(){
@@ -322,92 +431,15 @@ a
 
     // adds player info to the HUD
     createPlayerHUD(){
-        // first creates the life
-        this.hearts = [];
-        let heart;
-        let i = 0;
-        for(i; i < Math.floor(this.player._max_life/2); i++){
-            heart = this.add.sprite(30 + i*22*PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts').setFrame(2);  // creates the array of frames
-            heart.setScale(PARAMETERS.ROOM.HEART_SCALE, PARAMETERS.ROOM.HEART_SCALE);
-            this.hearts.push(heart);
-        }
-        this.last_life = -1;
-        this.last_max_life = this.player._max_life;
-
-        // then, the stamina bar
-        this.stamina_bar = [];
-        let stamina;
-        for(i = 0; i < this.player._stamina; i++){
-            stamina = this.add.sprite(10 + (i + 1)*32, 50, 'stamina').setFrame(1);  // creates the array of frames
-            this.stamina_bar.push(stamina);
-        }
-        this.last_stamina = this.player._stamina;
-
-        // The bullets 
-        this.playerBulletsText = this.add.text(PARAMETERS.ROOM.AMMO_X, PARAMETERS.ROOM.AMMO_Y, 
-            `Bullets: ${this.player._bullets}/${this.player._max_ammo}`, {
-            fontSize: '16px',
-            fill: '#fff',
-            fontFamily: 'Comic Sans MS'
-        });
-
-        // The PowerUP Display circle
-        // Create graphics for white circle with black border
-        const graphics = this.add.graphics();
-    
-        graphics.lineStyle(2.5, 0x000000, 1); // black border
-        graphics.fillStyle(0xffffff, 0.5);   // white fill
-        graphics.strokeCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
-        graphics.fillCircle(PARAMETERS.ROOM.PUP_X, PARAMETERS.ROOM.PUP_Y, PARAMETERS.ROOM.PUP_RAD);
+        // creates player HUD
+        this.playerHUD = new PlayerHUD(this);
     }
 
     updatePlayerHUD(){
-        // Detect and update max_life change
-        if (this.player._max_life !== this.last_max_life) {
-            // Remove old hearts from scene
-            this.hearts.forEach(heart => heart.destroy());
+        // updates player HUD
+        this.playerHUD.update();
 
-            // Recreate hearts based on new max life
-            this.hearts = [];
-            for (let i = 0; i < Math.floor(this.player._max_life / 2); i++) {
-                const heart = this.add.sprite(30 + i * 22 * PARAMETERS.ROOM.HEART_SCALE, 30, 'hearts');
-                heart.setScale(PARAMETERS.ROOM.HEART_SCALE);
-                this.hearts.push(heart);
-            }
-
-            this.last_max_life = this.player._max_life;
-            this.last_life = -1; // force life update this frame
-        }
-        // updates life
-        if(this.player._life !== this.last_life){
-            for (let i = 0; i < Math.floor(this.player._max_life/2); i++) {
-                if (this.player._life >= (i + 1) * 2) {
-                    this.hearts[i].setFrame(2); // full heart
-                } else if (this.player._life === (i * 2) + 1) {
-                    this.hearts[i].setFrame(1); // half heart
-                } else {
-                    this.hearts[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_life = this.player._life;
-        }
-
-        // updates stamina
-        if(this.player._stamina !== this.last_stamina){
-            for (let i = 0; i < this.stamina_bar.length; i++) {
-                if (this.player._stamina >= (i + 1)) {
-                    this.stamina_bar[i].setFrame(1); // full heart
-                } else {
-                    this.stamina_bar[i].setFrame(0); // lost heart
-                }
-            }
-            this.last_stamina = this.player._stamina;
-        }
-
-        // updates bullets
-        this.playerBulletsText.setText(`Bullets: ${this.player._bullets}/${this.player._max_ammo}`);
-        //this.defaultPowerUpDisplay();
-        // Blocking context menu to open
+        // blocking context menu to open
         window.addEventListener('contextmenu', (event) => event.preventDefault());
     }
 

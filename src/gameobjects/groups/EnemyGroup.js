@@ -10,12 +10,13 @@ export default class EnemyGroup extends DefaultGroup {
     playerCollision(player, enemy) {
         if(enemy.active){
             if (player.isInvulnerable()) return;
+            this.scene.physics.world.separate(player, enemy);
     
             console.log('touch damage');
             
             // Decoupled the logic so we can extend it later with
             // different amounts of damage and types of attacks
-            player.takeDamage();
+            player.takeDamage(enemy);
     
             enemy._touch_damage = true;
             let rate = 150;
@@ -39,4 +40,9 @@ export default class EnemyGroup extends DefaultGroup {
         this.group.getChildren().forEach(enemy => enemy.takeDamage(amount));
     }
 
+    removeDead(){
+        this.group.getChildren().forEach(enemy => {
+            if(!enemy._isAlive) this.removeElement(enemy);
+        });
+    }
 }

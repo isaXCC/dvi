@@ -1,7 +1,9 @@
 import PARAMETERS from "./parameters.js";
-import Boot from './boot.js';
-import Dialogue from './dialogue.js';
-import End from './end.js';
+import BOOT from './boot.js';
+import START_MENU from './StartMenu.js'
+import DIALOGUE from './dialogue.js';
+import END from './end.js';
+import CREDITS_SCENE from './CreditsScene.js';
 import D1_Test from './dungeons/d1/d1_test.js';
 import D1_1 from './dungeons/d1/d1_1.js';
 import D1_2 from './dungeons/d1/d1_2.js';
@@ -30,27 +32,39 @@ import D2_9 from './dungeons/d2/d2_9.js';
 import D2_10 from './dungeons/d2/d2_10.js';
 import D2_BOSS from './dungeons/d2/d2_boss.js';
 import DF_1 from './dungeons/df/df_1.js';
+import DF_2 from './dungeons/df/df_2.js';
+import DF_3 from './dungeons/df/df_3.js';
+import DF_4 from './dungeons/df/df_4.js';
+import DF_5 from './dungeons/df/df_5.js';
+import DF_6 from './dungeons/df/df_6.js';
+import DF_7 from './dungeons/df/df_7.js';
 import MENU from './menu.js';
 import Phaser from 'phaser';
+import CreditsScene from "./CreditsScene.js";
 
 /**
  * Inicio del juego en Phaser. Creamos el archivo de configuración del juego y creamos
  * la clase Game de Phaser, encargada de crear e iniciar el juego.
  */
+
+await document.fonts.load('48px OneUp');
+await document.fonts.ready;
+
 let config = {
     type: Phaser.AUTO,
     width: PARAMETERS.GAME.WIDTH,
     height: PARAMETERS.GAME.HEIGHT,
-    parent: 'juego',
+    parent: 'game',
     scale: {
-        //mode: Phaser.Scale.FIT,  
+        // the game window size fits its parents. initially a div that is 1024x576. if fullscreen, fits the whole screen.
+        mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_HORIZONTALLY
     },
     pixelArt: true,
-    scene: [Boot, D1_Test, Dialogue, MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
+    scene: [BOOT, D1_Test, DIALOGUE, MENU, START_MENU, D1_1, D1_2, D1_MID, D1_3, D1_4, D1_PIT,
             D1_5, D1_6, D1_7, D1_8, D1_9, D1_10, D1_11, D1_BOOTS, D1_BOSS,
             D2_1, D2_2, D2_3, D2_4, D2_5, D2_6, D2_7, D2_8, D2_9, D2_10, D2_BOSS, 
-            DF_1, End],
+            DF_1, DF_2, DF_3, DF_4, DF_5, DF_6, DF_7, END, CREDITS_SCENE],
     physics: {
         default: 'arcade',
         arcade: {

@@ -11,6 +11,8 @@ export default class Angel extends Enemy{
         this._max_life = PARAMETERS.ANGEL.MAX_LIFE;
         this._speed = PARAMETERS.ANGEL.SPEED;
         this._damage = PARAMETERS.ANGEL.DAMAGE;
+        this.body.setMaxVelocityX(200);
+        this.body.setMaxVelocityY(200);
 
         // State machine
         this._isAttacking = false;
@@ -18,7 +20,7 @@ export default class Angel extends Enemy{
         this._isMoving = false;
         this._called = false;
         
-        this._rand = Phaser.Math.Between(PARAMETERS.ANGEL.RAND_LOW, PARAMETERS.ANGEL.RAND_HIGH);
+        this.generateRand();
         this.pos; // TMP
 
         // SPRITE CONFIG
@@ -32,6 +34,7 @@ export default class Angel extends Enemy{
             if(this._isIdle){
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
+                    this.generateRand(PARAMETERS.ANGEL.IDLE_RAND_LOW, PARAMETERS.ANGEL.IDLE_RAND_HIGH);
                     this.scene.time.delayedCall((PARAMETERS.ANGEL.IDLE_DURATION + this._rand), () => {
                         this._isIdle = false;
                         this._isMoving = true;
@@ -43,6 +46,7 @@ export default class Angel extends Enemy{
                 this.move();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
+                    this.generateRand(PARAMETERS.ANGEL.MOVE_RAND_LOW, PARAMETERS.ANGEL.MOVE_RAND_HIGH);
                     this.scene.time.delayedCall((PARAMETERS.ANGEL.MOVE_DURATION + this._rand), () => {
                         this._isMoving = false;
                         this._isAttacking = true;
@@ -55,6 +59,7 @@ export default class Angel extends Enemy{
                 this.attack();
                 if(this.active && this._isAlive && !this._called){
                     this._called = true;
+                    this.generateRand(PARAMETERS.ANGEL.ATK_RAND_LOW, PARAMETERS.ANGEL.ATK_RAND_HIGH);
                     this.scene.time.delayedCall((PARAMETERS.ANGEL.ATK_DURATION + this._rand), () => {
                         this._isAttacking = false;
                         this._isIdle = true;
@@ -78,7 +83,7 @@ export default class Angel extends Enemy{
         if(!this._called){
             this.pos = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
         }
-        this.body.setVelocity(this.pos.x_norm*this._speed, this.pos.y_norm*this._speed);
+        if(!this._touch_damage) this.body.setVelocity(this.pos.x_norm*this._speed, this.pos.y_norm*this._speed);
     }
 
     // ANIMATION SECTION

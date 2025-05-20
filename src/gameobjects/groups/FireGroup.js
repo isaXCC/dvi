@@ -14,7 +14,7 @@ export default class FireGroup extends DefaultGroup {
         //console.log(player._isDashing);
         if(!this.took_damage && !player._isDashing){
             console.log("player is taking damage")
-            player.takeDamage();
+            player.takeDamage(fire);
             this.took_damage = true;
             this.scene.time.delayedCall(3000, () => {
                 console.log("player can take damage again");

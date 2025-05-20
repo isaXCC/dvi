@@ -1,4 +1,8 @@
+import CONDITIONS from '../conditions.js';
+import PARAMETERS from '../../parameters.js';
 import Room from '../room.js'
+import TimeAttackRoom from '../timeattack/timeattackroom.js';
+import AllEnemiesKilledCondition from '../timeattack/conditions/AllEnemiesKilledCondition.js';
 
 export default class D2_4 extends Room {
 
@@ -8,7 +12,15 @@ export default class D2_4 extends Room {
 
     create() {
         super.generateTiled('d2_4'); 
-        super.create();;
+        super.create();
+        this.time.delayedCall(450, () => {
+            // this room have a TIME ATK
+            if(!CONDITIONS.D2.TIMEATK){
+                this.enterDialogue('d2_4');
+                this.time_attack_room = new TimeAttackRoom(this, 60, new AllEnemiesKilledCondition(this), 'SpeedBoost', 
+                6*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 4*PARAMETERS.GAME.TILE+PARAMETERS.PUP.PUP_OFFSET, 'd2_4');        
+            }
+        });
     }
 
     init(player_state) {

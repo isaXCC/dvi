@@ -1,16 +1,26 @@
 import CONDITIONS from '../conditions.js';
 
 export default class DialogueManager {
-    constructor(scene) {
+    constructor(scene, info) {
         this.RoomScene = scene;
-        this.current_dungeon = null;
-        this.info = {}
+        if(info !== undefined){
+            this.current_dungeon = info.current_dungeon;
+            this.info = info.info;
+        }
+        else{
+            this.current_dungeon = null;
+            this.info = {}
+        }
     }
 
     async enterDialogue(nameNPC, key){
         await this.loadData(key);
         let path = this.decidePath(nameNPC);
         this.processData(nameNPC, path);
+    }
+
+    getInfo(){
+        return {info: this.info, current_dungeon: this.current_dungeon};
     }
 
     decidePath(nameNPC){
@@ -179,10 +189,11 @@ export default class DialogueManager {
             let dungeon = key.slice(0, 2);
             if(this.current_dungeon !== dungeon){
                 this.current_dungeon = dungeon;
+                console.log("LOADING CSV FOR DUNGEON: " + this.current_dungeon)
                 //FOR LOCALHOST
-                //fetch('dvi/public/'+this.current_dungeon+'.csv')
+                fetch('dvi/'+this.current_dungeon+'.csv')
                 //FOR GITHUB PAGES
-                fetch('./' + this.current_dungeon + '.csv')
+                //fetch('./' + this.current_dungeon + '.csv')
                 .then(res => res.text())
                 .then(data => {
                     let i = 0;

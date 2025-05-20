@@ -13,6 +13,7 @@ export default class HoleGroup extends DefaultGroup {
     playerOverlap(player, hole) {
         if(!this.falling){
             let time_falling = PARAMETERS.HOLE.DURATION;
+            player._isFalling = true;
             if(this.scene.scene.key === "d1_pit"){
                 if(!CONDITIONS.D1.BOOTS){
                     player.fallHole();
@@ -24,9 +25,8 @@ export default class HoleGroup extends DefaultGroup {
             else{
                 player.fallHole();
             }
-            this.scene.sound.play('fallingSound', { volume: 2 });
+            this.scene.sound.play('fallingSound', { volume: 1 });
             this.falling = true;
-            player._isFalling = true;
             let prev_x =  player.x, prev_y = player.y;
             let hole_x = hole.x + 32, hole_y = hole.y + 32;
             let speed = player._speed;
@@ -58,6 +58,7 @@ export default class HoleGroup extends DefaultGroup {
                         player._speed = speed;
                         this.falling = false;
                         player._isFalling = false;
+                        player._isInvulnerable = false;
                     });
                 }
             });
