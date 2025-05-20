@@ -1,2 +1,2 @@
-# dvi
-Repositorio para el proyecto de DVI 2024-2025.
+# THAT TIME I GOT REINCARNATED AS A PHAT CAT
+Get reincarnated as a __CAT__ and __AVANGE__ your former __OWNERS__!
