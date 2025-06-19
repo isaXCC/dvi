@@ -19,6 +19,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this._life = 3;
         this._speed = 50;
         this._isAlive = true;
+        this._speedBoost = 1;
+        this._isFrozen = false;
+        this._esBurned = false;
     }
 
     update() {
@@ -44,6 +47,52 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         if(this._life < this._max_life){
             this._life += amount;
             this.setAlpha(this._life/this._max_life);
+        }
+    }
+
+    getFreezed(duration, reduction){
+        if ( this._isAlive && !this._isFrozen) {
+            this._isFrozen = true;
+
+            let orginalSpeed = this._speed;
+            this._speed = orginalSpeed * reduction;
+
+            let originalBoost = this._speedBoost;
+            this._speedBoost = reduction;
+
+            this.scene.time.delayedCall(duration, () => {
+                   this._speed = orginalSpeed;
+                   this._speedBoost = originalBoost;
+                   this._isFrozen = false;
+            });
+        }
+    }
+
+   getBurned(duration, dot, maxStacks) {
+        if ( this._isAlive && !this._isBurned) {
+            this._isBurned = true;
+
+            // Espera el tiempo de initialDelay antes de comenzar a aplicar daño
+            this.scene.time.delayedCall(duration, () => {
+                for (let i = 0; i < maxStacks; i++) {
+                    this.scene.time.addEvent({
+                        delay: duration * i,
+                        callback: () => {
+                            if(this._isAlive){
+                                this.takeDamage(dot);
+                                console.log("burn stack");
+                            }
+                        },
+                        callbackScope: this
+                    });
+                }
+
+                this.scene.time.delayedCall(duration * maxStacks, () => {
+                    if(this._isAlive){
+                        this._isBurned = false;
+                    }
+                });
+            });
         }
     }
 
