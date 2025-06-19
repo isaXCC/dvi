@@ -50,7 +50,7 @@ export default class Angel extends Enemy{
                     this.scene.time.delayedCall((PARAMETERS.ANGEL.MOVE_DURATION + this._rand), () => {
                         this._isMoving = false;
                         this._isAttacking = true;
-                        this._speed = this._speed + PARAMETERS.ANGEL.ATK_SPEED;
+                        this._speed = this._speed + (PARAMETERS.ANGEL.ATK_SPEED*this._speedBoost);
                         this._called = false;
                     });
                 }
@@ -63,7 +63,7 @@ export default class Angel extends Enemy{
                     this.scene.time.delayedCall((PARAMETERS.ANGEL.ATK_DURATION + this._rand), () => {
                         this._isAttacking = false;
                         this._isIdle = true;
-                        this._speed = this._speed - PARAMETERS.ANGEL.ATK_SPEED;
+                        this._speed = this._speed - (PARAMETERS.ANGEL.ATK_SPEED*this._speedBoost);
                         this._called = false;
                     });
                 }

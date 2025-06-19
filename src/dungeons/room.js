@@ -2,6 +2,7 @@ import Player from '../gameobjects/player/player.js';
 import Angel from '../gameobjects/enemies/angel.js';
 import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
+import Sword from '../gameobjects/enemies/sword.js';
 import Portal from '../gameobjects/utils/portal.js';
 import Block from '../gameobjects/utils/block.js';
 import Bullet from '../gameobjects/utils/bullet.js';
@@ -14,6 +15,10 @@ import NPCGroup from '../gameobjects/groups/NPCGroup.js';
 import PUPGroup from '../gameobjects/groups/PUPGroup.js';
 import TripleShot from '../gameobjects/powerups/tripleshot.js';
 import SpeedBoost from '../gameobjects/powerups/speedboost.js';
+import BigShot from '../gameobjects/powerups/bigshot.js';
+import IceCube from '../gameobjects/powerups/icecube.js';
+import BowlingBall from '../gameobjects/powerups/bowlingball.js';
+import Chili from '../gameobjects/powerups/chili.js';
 import GhostHitbox from '../gameobjects/utils/ghosthitbox.js';
 import Hole from '../gameobjects/utils/hole.js';
 import HoleGroup from '../gameobjects/groups/HoleGroup.js';
@@ -223,6 +228,9 @@ export default class Room extends Phaser.Scene {
             if (object.type === 'Seraph') {
                 this.enemies.addElement(new Seraph(this, object.x, object.y))
             }
+             if (object.type === 'Sword') {
+                this.enemies.addElement(new Sword(this, object.x, object.y))
+            }
         }
         for (const object of map.getObjectLayer('npcs').objects) {
             if (object.type === 'NPC') { 
@@ -285,6 +293,18 @@ export default class Room extends Phaser.Scene {
             }
             if (object.type === 'TripleShot') { 
                 this.powerups.addElement(new TripleShot(this.player, this, object.x, object.y));
+            }
+            if (object.type === 'BigShot') { 
+                this.powerups.addElement(new BigShot(this.player, this, object.x, object.y));
+            }
+            if (object.type === 'IceCube') { 
+                this.powerups.addElement(new IceCube(this.player, this, object.x, object.y));
+            }
+            if (object.type === 'BowlingBall') { 
+                this.powerups.addElement(new BowlingBall(this.player, this, object.x, object.y));
+            }
+             if (object.type === 'Chili') { 
+                this.powerups.addElement(new Chili(this.player, this, object.x, object.y));
             }
         }
 
