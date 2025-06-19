@@ -112,8 +112,8 @@
                  "type":"NPC",
                  "visible":true,
                  "width":64,
-                 "x":64,
-                 "y":320
+                 "x":255,
+                 "y":257
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -161,6 +161,18 @@
                  "width":64,
                  "x":896,
                  "y":320
+                }, 
+                {
+                 "gid":31,
+                 "height":64,
+                 "id":26,
+                 "name":"d2_5",
+                 "rotation":0,
+                 "type":"Portal",
+                 "visible":true,
+                 "width":64,
+                 "x":64.1212121212121,
+                 "y":320.30303030303
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -242,10 +254,10 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":21,
+ "nextobjectid":29,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"2025.02.03",
+ "tiledversion":"1.11.2",
  "tileheight":64,
  "tilesets":[
         {

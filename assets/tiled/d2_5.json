@@ -118,13 +118,13 @@
                  "gid":31,
                  "height":64,
                  "id":14,
-                 "name":"d2_4",
+                 "name":"d2_3",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
                  "width":64,
-                 "x":448,
-                 "y":128
+                 "x":896.341592468406,
+                 "y":320.198344824122
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -182,8 +182,8 @@
                  "type":"Player",
                  "visible":true,
                  "width":64,
-                 "x":384,
-                 "y":192
+                 "x":812.75,
+                 "y":339.916666666667
                 }],
          "offsetx":19,
          "offsety":-19,
@@ -197,7 +197,7 @@
  "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"2025.02.03",
+ "tiledversion":"1.11.2",
  "tileheight":64,
  "tilesets":[
         {

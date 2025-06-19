@@ -102,6 +102,26 @@ const PARAMETERS = {
         PATROL_LOW: 50, 
         PATROL_HIGH: 100
     },
+    SWORD:{
+        LIFE: 4,
+        MAX_LIFE: 4,
+        SPEED: 30,
+        DAMAGE: 1,
+        IDLE_DURATION: 500,
+        IDLE_RAND_LOW: -250,
+        IDLE_RAND_HIGH: 250,
+        AIM_DURATION: 800,
+        AIM_RAND_LOW: -200,
+        AIM_RAND_HIGH: 400,
+        ATK_DURATION: 800,
+        ATK_RAND_LOW: -200,
+        ATK_RAND_HIGH: 400,
+        ATK_SPEED: 500,
+        SCALE_X: 1.5,
+        SCALE_Y: 1.5,
+        HITBOX_X: 54 * 0.8,
+        HITBOX_Y: 32 * 0.5
+    },
     HOARDER: {
         LIFE: 60,
         MAX_LIFE: 60,
