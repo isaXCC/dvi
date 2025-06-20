@@ -23,6 +23,7 @@ const CONDITIONS = {
         HITO: false,
         INSIDE: false,
         D2_2_KILLED: false,
+        D2_3_KILLED: false,
         BUNNY_2: false,
         TIMEATK: false,
         FIGHT_BOSS: false,

@@ -3,6 +3,7 @@ import PARAMETERS from '../../parameters.js';
 import Room from '../room.js'
 import TimeAttackRoom from '../timeattack/timeattackroom.js';
 import AllEnemiesKilledCondition from '../timeattack/conditions/AllEnemiesKilledCondition.js';
+import BowlingBall from '../../gameobjects/powerups/bowlingball.js';
 
 export default class D2_4 extends Room {
 
@@ -13,6 +14,7 @@ export default class D2_4 extends Room {
     create() {
         super.generateTiled('d2_4'); 
         super.create();
+        this.powerups.addElement(new BowlingBall(this.player, this.player.scene, 160, 280));
         this.time.delayedCall(450, () => {
             // this room have a TIME ATK
             if(!CONDITIONS.D2.TIMEATK){

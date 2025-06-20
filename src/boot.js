@@ -36,6 +36,7 @@ import bigshot from '../assets/sprites/utils/bigShot.png'
 import snowball from '../assets/sprites/utils/snowball.png'
 import bowlingshot from '../assets/sprites/utils/bowlingShot.png'
 import fireshot from '../assets/sprites/utils/fireShot.png'
+import note from '../assets/sprites/utils/note.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
@@ -179,6 +180,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('snowBall', snowball);
     this.load.image('bowlingShot', bowlingshot);
     this.load.image('fireShot', fireshot);
+     this.load.image('note', note);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);
