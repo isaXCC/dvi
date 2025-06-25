@@ -29,7 +29,7 @@ export default class BulletGroup extends DefaultGroup {
                 enemy.takeDamage(bullet.getDamage());
 
                 if (bullet instanceof SnowBall) {
-                    enemy.getFreezed(bullet.getDuration(), bullet.getReduction());
+                    enemy.getFreezed();
                 }
                 else if(bullet instanceof FireBall){
                     enemy.getBurned(bullet.getFrecuency(), bullet.getDot(), bullet.getMaxStacks());

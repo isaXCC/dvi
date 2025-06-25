@@ -186,6 +186,10 @@ const PARAMETERS = {
     PUP: {
         PUP_OFFSET: 32
     },
+    SNOWBALL: {
+        DURATION: 4000,
+        SPEED_REDUCTION: 0.4
+    },
     HOLE: {
         DURATION: 1750,
         DURATION_BOSS: 1750,

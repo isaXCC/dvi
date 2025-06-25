@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "d2_3.json",
+    "activeFile": "d2_7.json",
     "expandedProjectPaths": [
         "."
     ],
@@ -359,11 +359,11 @@
                 5,
                 11
             ],
-            "scale": 0.5,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 512,
-                "y": 287
+                "x": 493.33333333333326,
+                "y": 396.6666666666667
             }
         },
         "d2_5.json#room_tileset": {
@@ -593,21 +593,24 @@
         "d2_10.json",
         "d1_boots.json",
         "d2_7.json",
-        "df_6.json"
+        "df_6.json",
+        "d1_mid.json",
+        "d1_6.json",
+        "d1_8.json"
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
-        "d1_9.json",
-        "d1_5.json",
-        "d1_1.json",
         "d2_2.json",
-        "df_6.json",
-        "d2_7.json",
-        "d1_boots.json",
-        "d2_10.json",
-        "d2_9.json",
-        "d2_8.json",
+        "d2_3.json",
+        "d2_4.json",
+        "d2_5.json",
         "d2_6.json",
-        "d2_5.json"
+        "d2_8.json",
+        "d2_9.json",
+        "d2_10.json",
+        "d1_boots.json",
+        "d1_8.json",
+        "d1_6.json",
+        "d1_mid.json"
     ]
 }

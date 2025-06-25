@@ -22,6 +22,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this._speedBoost = 1;
         this._isFrozen = false;
         this._esBurned = false;
+        this._freezeMultiplier = 1.0;
     }
 
     update() {
@@ -50,19 +51,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    getFreezed(duration, reduction){
+    getFreezed(){
         if ( this._isAlive && !this._isFrozen) {
             this._isFrozen = true;
 
-            let orginalSpeed = this._speed;
-            this._speed = orginalSpeed * reduction;
-
-            let originalBoost = this._speedBoost;
-            this._speedBoost = reduction;
-
-            this.scene.time.delayedCall(duration, () => {
-                   this._speed = orginalSpeed;
-                   this._speedBoost = originalBoost;
+            this.scene.time.delayedCall(PARAMETERS.SNOWBALL.DURATION, () => {
                    this._isFrozen = false;
             });
         }
@@ -72,7 +65,6 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         if ( this._isAlive && !this._isBurned) {
             this._isBurned = true;
 
-            // Espera el tiempo de initialDelay antes de comenzar a aplicar daño
             this.scene.time.delayedCall(duration, () => {
                 for (let i = 0; i < maxStacks; i++) {
                     this.scene.time.addEvent({
@@ -120,5 +112,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     
     generateRand(low, high){
         this._rand = Phaser.Math.Between(low, high);
+    }
+
+    getCurrentSpeed(){
+        return this._speed;
     }
 }

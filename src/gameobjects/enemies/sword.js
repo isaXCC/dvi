@@ -24,55 +24,65 @@ export default class Sword extends Enemy {
     }
 
     update() {
-        if (!this._isAlive) {
-            this.scene.enemies.removeElement(this);
-            return;
-        }
+        if(this._isAlive){
+            if (this._isIdle) {
+                if(this.active && this._isAlive && !this._called){
+                    this._called = true;
+                    this.generateRand(PARAMETERS.SWORD.IDLE_RAND_LOW, PARAMETERS.SWORD.IDLE_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.SWORD.IDLE_DURATION + this._rand, () => {
+                        this._isIdle = false;
+                        this._isAiming = true;
+                        this._called = false;
+                    });
+                }
+            } else if (this._isAiming) {
+                this.aim();
+                if(this.active && this._isAlive && !this._called){
+                    this._called = true;
+                    this.generateRand(PARAMETERS.SWORD.AIM_RAND_LOW, PARAMETERS.SWORD.AIM_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.SWORD.AIM_DURATION + this._rand, () => {
+                        if(this.active && this._isAlive){
+                            this._isAiming = false;
+                            this._isAttacking = true;
+                            // visual change while charging
+                            this.setBlendMode(Phaser.BlendModes.ADD);
+                            
 
-        if (this._isIdle) {
-            if (this.active && !this._called) {
-                this._called = true;
-                this.generateRand(PARAMETERS.SWORD.IDLE_RAND_LOW, PARAMETERS.SWORD.IDLE_RAND_HIGH);
-                this.scene.time.delayedCall(PARAMETERS.SWORD.IDLE_DURATION + this._rand, () => {
-                    this._isIdle = false;
-                    this._isAiming = true;
-                    this._called = false;
-                });
-            }
-        } else if (this._isAiming) {
-            this.aim();
-            if (this.active && !this._called) {
-                this._called = true;
-                this.generateRand(PARAMETERS.SWORD.AIM_RAND_LOW, PARAMETERS.SWORD.AIM_RAND_HIGH);
-                this.scene.time.delayedCall(PARAMETERS.SWORD.AIM_DURATION + this._rand, () => {
-                    this._isAiming = false;
-                    this._isAttacking = true;
-                     // visual change while charging
-                    this.setBlendMode(Phaser.BlendModes.ADD);
-                        this.scene.time.delayedCall(PARAMETERS.SWORD.ATK_DURATION, () => {
-                        this.setBlendMode(Phaser.BlendModes.NORMAL);
+                                this.scene.time.delayedCall(PARAMETERS.SWORD.ATK_DURATION, () => {
+                                    this.setBlendMode(Phaser.BlendModes.NORMAL);
+                                });
+
+                            this._speed = this._speed +  (PARAMETERS.SWORD.ATK_SPEED * this._speedBoost);
+                            this.attack()
+                            this._called = false;
+                        }   
+                    });
+                }
+            } else if (this._isAttacking) {
+
+                if (this.active && this._isAlive && !this._called) {
+                    this._called = true;
+                    this.generateRand(PARAMETERS.SWORD.ATK_RAND_LOW, PARAMETERS.SWORD.ATK_RAND_HIGH);
+                    this.scene.time.delayedCall(PARAMETERS.SWORD.ATK_DURATION + this._rand, () => {
+                        this._isAttacking = false;
+                        this._isIdle = true;
+                        this.body?.setVelocity(0, 0);
+                        this._speed = this._speed - (PARAMETERS.SWORD.ATK_SPEED * this._speedBoost) ;
+                        this._called = false;
+                        this.setFrame(0);
                     });
 
-                    this._speed = this._speed +  (PARAMETERS.SWORD.ATK_SPEED * this._speedBoost);
-                    this.attack()
-                    this._called = false;
-                });
+                }
             }
-        } else if (this._isAttacking) {
-
-            if (this.active && this._isAlive && !this._called) {
-                this._called = true;
-                this.generateRand(PARAMETERS.SWORD.ATK_RAND_LOW, PARAMETERS.SWORD.ATK_RAND_HIGH);
-                this.scene.time.delayedCall(PARAMETERS.SWORD.ATK_DURATION + this._rand, () => {
-                    this._isAttacking = false;
-                    this._isIdle = true;
-                    this.body.setVelocity(0, 0);
-                    this._speed = this._speed - (PARAMETERS.SWORD.ATK_SPEED * this._speedBoost) ;
-                    this._called = false;
-                    this.setFrame(0);
-                });
-
+            
+            if(this._isFrozen){
+                if(this._isAttacking)
+                    this._speed = (PARAMETERS.SWORD.SPEED + (PARAMETERS.SWORD.ATK_SPEED*this._speedBoost)) * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
+                else this._speed = PARAMETERS.SWORD.SPEED * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
             }
+        }
+        else{
+            this.scene.enemies.removeElement(this);
         }
     }
 
@@ -94,6 +104,13 @@ export default class Sword extends Enemy {
         if (!this._touch_damage) {
              this.body.setVelocity(this.pos.x_norm * this._speed, this.pos.y_norm * this._speed);
         }
+    }
+
+    getCurrentSpeed(){
+        if(this._isAttacking)
+            return this._speed + (PARAMETERS.SWORD.ATK_SPEED*this._speedBoost);
+        else 
+            return this._speed;
     }
 
 }

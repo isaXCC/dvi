@@ -68,6 +68,13 @@ export default class Angel extends Enemy{
                     });
                 }
             }
+             
+            if(this._isFrozen){
+                if(this._isAttacking)
+                    this._speed = (PARAMETERS.ANGEL.SPEED + (PARAMETERS.ANGEL.ATK_SPEED*this._speedBoost)) * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
+                else this._speed = PARAMETERS.ANGEL.SPEED * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
+            }
+
             this.updateAnims();
         }
         else{
@@ -84,6 +91,13 @@ export default class Angel extends Enemy{
             this.pos = getNormDist(this.x, this.y, this.scene.player.x, this.scene.player.y);
         }
         if(!this._touch_damage) this.body.setVelocity(this.pos.x_norm*this._speed, this.pos.y_norm*this._speed);
+    }
+
+    getCurrentSpeed(){
+        if(this._isAttacking)
+            return this._speed + (PARAMETERS.ANGEL.ATK_SPEED*this._speedBoost);
+        else 
+            return this._speed;
     }
 
     // ANIMATION SECTION

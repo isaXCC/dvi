@@ -36,6 +36,8 @@ export default class Seraph extends Enemy {
         if(this._can_heal){
             this.healEnemies();
         }
+        if(this._isFrozen) this._speed = PARAMETERS.SERAPH.SPEED * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
+
         this.updateAnims();
     }
 
