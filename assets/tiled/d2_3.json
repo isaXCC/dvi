@@ -218,19 +218,7 @@
          "draworder":"topdown",
          "id":3,
          "name":"enemies",
-         "objects":[
-                {
-                 "gid":28,
-                 "height":64,
-                 "id":19,
-                 "name":"eO_0",
-                 "rotation":0,
-                 "type":"Ophanim",
-                 "visible":true,
-                 "width":64,
-                 "x":640,
-                 "y":384
-                }],
+         "objects":[],
          "offsetx":32,
          "offsety":-32,
          "opacity":1,

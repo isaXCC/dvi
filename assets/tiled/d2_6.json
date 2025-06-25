@@ -743,16 +743,16 @@
          "name":"npcs",
          "objects":[
                 {
-                 "gid":276,
+                 "gid":227,
                  "height":64,
-                 "id":21,
-                 "name":"",
+                 "id":75,
+                 "name":"bunny3",
                  "rotation":0,
-                 "type":"",
+                 "type":"NPC",
                  "visible":true,
                  "width":64,
-                 "x":477.666666666667,
-                 "y":318.333333333333
+                 "x":479,
+                 "y":320
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -905,7 +905,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":75,
+ "nextobjectid":77,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

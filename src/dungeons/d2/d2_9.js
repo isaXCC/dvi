@@ -22,7 +22,7 @@ export default class D2_9 extends Room {
         this.powerups.addElement(new BigShot(this.player, this.player.scene, 300, 300));
         this.powerups.addElement(new IceCube(this.player, this.player.scene, 300, 360));
         this.enemies.addElement(new DummyAngel(this, 225, 160));
-        //this.enemies.addElement(new Seraph(this, 825, 160));
+        this.enemies.addElement(new Sword(this, 825, 160));
         //this.enemies.addElement(new Ophanim(this, 825, 400));
     }
 

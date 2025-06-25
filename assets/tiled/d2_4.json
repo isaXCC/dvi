@@ -463,7 +463,19 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":227,
+                 "height":64,
+                 "id":163,
+                 "name":"bunny1",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":64,
+                 "x":896,
+                 "y":320
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -687,7 +699,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":163,
+ "nextobjectid":164,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

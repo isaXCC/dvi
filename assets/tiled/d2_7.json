@@ -500,7 +500,19 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":227,
+                 "height":64,
+                 "id":54,
+                 "name":"bunny2",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":64,
+                 "x":480.666666666667,
+                 "y":128
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -591,7 +603,7 @@
                  "visible":true,
                  "width":64,
                  "x":192,
-                 "y":384
+                 "y":320
                 }, 
                 {
                  "gid":3,
@@ -603,7 +615,7 @@
                  "visible":true,
                  "width":64,
                  "x":704,
-                 "y":384
+                 "y":320
                 }, 
                 {
                  "gid":29,
@@ -652,7 +664,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":54,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",

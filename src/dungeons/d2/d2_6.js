@@ -1,4 +1,5 @@
 import Room from '../room.js'
+import CONDITIONS from '../conditions.js';
 
 export default class D2_6 extends Room {
 
@@ -8,7 +9,7 @@ export default class D2_6 extends Room {
 
     create() {
         super.generateTiled('d2_6'); 
-        super.create();;
+        super.create();
     }
 
     init(player_state) {
@@ -17,6 +18,10 @@ export default class D2_6 extends Room {
 
     update(){
         super.update();
+        this.npcs;
+        if(!CONDITIONS.D2.D2_6_KILLED && this.enemies.isEmpty()){
+             CONDITIONS.D2.D2_6_KILLED = true;
+        }
     }
 
 }

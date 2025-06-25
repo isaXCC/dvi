@@ -116,7 +116,7 @@ const PARAMETERS = {
         ATK_DURATION: 800,
         ATK_RAND_LOW: -200,
         ATK_RAND_HIGH: 400,
-        ATK_SPEED: 500,
+        ATK_SPEED: 350,
         SCALE_X: 1.5,
         SCALE_Y: 1.5,
         HITBOX_X: 54 * 0.8,
