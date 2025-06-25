@@ -14,9 +14,9 @@
         },
         "d1_1.json": {
             "expandedObjectLayers": [
+                4,
                 7,
-                5,
-                4
+                5
             ],
             "scale": 0.75,
             "selectedLayer": 8,
@@ -111,11 +111,11 @@
         },
         "d1_5.json": {
             "expandedObjectLayers": [
-                13,
-                12,
-                5,
                 4,
+                12,
                 3,
+                5,
+                13,
                 11
             ],
             "scale": 0.8646484375,
@@ -130,10 +130,10 @@
         },
         "d1_6.json": {
             "expandedObjectLayers": [
-                13,
                 12,
-                5,
                 3,
+                5,
+                13,
                 11
             ],
             "scale": 0.75,
@@ -167,17 +167,17 @@
         },
         "d1_8.json": {
             "expandedObjectLayers": [
-                13,
-                7,
-                5,
                 4,
                 3,
+                7,
+                5,
+                13,
                 11
             ],
             "scale": 0.75,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 384,
+                "x": 542.6666666666666,
                 "y": 332.6666666666667
             }
         },
@@ -186,8 +186,8 @@
         },
         "d1_9.json": {
             "expandedObjectLayers": [
-                5,
                 4,
+                5,
                 11
             ],
             "scale": 0.75,
@@ -202,11 +202,11 @@
         },
         "d1_boots.json": {
             "expandedObjectLayers": [
+                4,
                 12,
-                5,
                 3,
-                11,
-                4
+                5,
+                11
             ],
             "scale": 1,
             "selectedLayer": 11,
@@ -234,8 +234,8 @@
         },
         "d1_mid.json": {
             "expandedObjectLayers": [
-                7,
-                3
+                3,
+                7
             ],
             "scale": 0.75,
             "selectedLayer": 7,
@@ -282,10 +282,10 @@
         },
         "d2_10.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 3,
-                11,
-                4
+                5,
+                11
             ],
             "scale": 0.5,
             "selectedLayer": 11,
@@ -299,12 +299,12 @@
         },
         "d2_2.json": {
             "expandedObjectLayers": [
+                4,
+                3,
+                7,
                 14,
                 5,
-                3,
                 11,
-                4,
-                7,
                 9
             ],
             "scale": 0.75,
@@ -319,16 +319,16 @@
         },
         "d2_3.json": {
             "expandedObjectLayers": [
-                5,
-                3,
                 4,
-                7
+                3,
+                7,
+                5
             ],
-            "scale": 1,
-            "selectedLayer": 7,
+            "scale": 0.75,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 512,
-                "y": 288.5
+                "x": 286.6666666666667,
+                "y": 288.6666666666667
             }
         },
         "d2_3.json#room_tileset": {
@@ -336,11 +336,11 @@
         },
         "d2_4.json": {
             "expandedObjectLayers": [
+                4,
                 12,
-                5,
                 3,
-                11,
-                4
+                5,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 8,
@@ -354,16 +354,16 @@
         },
         "d2_5.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 3,
-                11,
-                4
+                5,
+                11
             ],
-            "scale": 1,
-            "selectedLayer": 11,
+            "scale": 0.5,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 512,
-                "y": 288.5
+                "y": 287
             }
         },
         "d2_5.json#room_tileset": {
@@ -371,16 +371,16 @@
         },
         "d2_6.json": {
             "expandedObjectLayers": [
-                5,
-                3,
                 4,
-                7
+                7,
+                5,
+                11
             ],
-            "scale": 1,
-            "selectedLayer": 7,
+            "scale": 0.75,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 512,
-                "y": 288.5
+                "x": 524,
+                "y": 395.33333333333326
             }
         },
         "d2_6.json#room_tileset": {
@@ -388,12 +388,13 @@
         },
         "d2_7.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 3,
-                4
+                5,
+                11
             ],
             "scale": 0.75,
-            "selectedLayer": 8,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 512,
                 "y": 287.33333333333326
@@ -404,13 +405,13 @@
         },
         "d2_8.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 3,
-                11,
-                4
+                5,
+                11
             ],
             "scale": 0.75,
-            "selectedLayer": 6,
+            "selectedLayer": 2,
             "viewCenter": {
                 "x": 512,
                 "y": 287.33333333333326
@@ -421,10 +422,10 @@
         },
         "d2_9.json": {
             "expandedObjectLayers": [
-                5,
+                4,
                 3,
-                11,
-                4
+                5,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 3,
@@ -532,8 +533,8 @@
         },
         "df_6.json": {
             "expandedObjectLayers": [
-                5,
-                7
+                7,
+                5
             ],
             "scale": 0.867431640625,
             "selectedLayer": 3,
@@ -596,6 +597,9 @@
     ],
     "project": "d1.tiled-project",
     "recentFiles": [
+        "d1_9.json",
+        "d1_5.json",
+        "d1_1.json",
         "d2_2.json",
         "df_6.json",
         "d2_7.json",
@@ -604,9 +608,6 @@
         "d2_9.json",
         "d2_8.json",
         "d2_6.json",
-        "d2_5.json",
-        "d2_4.json",
-        "d2_3.json",
-        "d1_5.json"
+        "d2_5.json"
     ]
 }

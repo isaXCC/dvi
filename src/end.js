@@ -77,13 +77,16 @@ export default class End extends Phaser.Scene {
                 text = 'Those big eyes... Attractive! BUT DON\'T TOUCH THEM';
                 break;
             case dr.SERAPH:
-                text = '... That was stupid. Seraph doesn\'t even move.';
+                text = '... That was stupid. Seraph doesn\'t even move';
+                break;
+            case dr.SWORD:
+                text = 'Yooo nice haircut';
                 break;
             case dr.FIRE:
                 text = 'THIS IS NOT FINE ANYMORE, YOUR TAIL\'S ON FIRE';
                 break;
             case dr.FIREBALL:
-                text = 'Developers don\'t recommend touching balls on fire.';
+                text = 'Developers don\'t recommend touching balls on fire';
                 break;
             case dr.HOLE:
                 text = 'wwuuuuuaaaaaaAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH';

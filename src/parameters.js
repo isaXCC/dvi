@@ -367,6 +367,7 @@ const PARAMETERS = {
                 ANGEL: 'angel',
                 SERAPH: 'seraph',
                 OPHANIM: 'ophanim',
+                SWORD: 'sword',
                 FIREBALL: 'fireball',
                 HOLE: 'hole',
                 FIRE: 'fire',
