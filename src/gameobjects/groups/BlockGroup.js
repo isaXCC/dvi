@@ -1,4 +1,5 @@
 import DefaultGroup from "./DefaultGroup";
+import StrongBoxBlock from "../utils/strongBoxBlock"
 
 export default class BlockGroup extends DefaultGroup {
 

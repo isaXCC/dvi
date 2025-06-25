@@ -4,7 +4,9 @@ import Ophanim from '../gameobjects/enemies/ophanim.js';
 import Seraph from '../gameobjects/enemies/seraph.js';
 import Sword from '../gameobjects/enemies/sword.js';
 import Portal from '../gameobjects/utils/portal.js';
+import StrongBox from '../gameobjects/utils/strongBox.js';
 import Block from '../gameobjects/utils/block.js';
+import StrongBoxBlock from '../gameobjects/utils/strongBoxBlock.js';
 import Bullet from '../gameobjects/utils/bullet.js';
 import NPC from '../gameobjects/utils/npc.js';
 import EnemyGroup from '../gameobjects/groups/EnemyGroup.js';
@@ -188,7 +190,18 @@ export default class Room extends Phaser.Scene {
                 this.portals.addElement(new Portal(this, 
                     object.x + PARAMETERS.PORTAL.GRID_OFFSET_X, 
                     object.y + PARAMETERS.PORTAL.GRID_OFFSET_Y,
-                     object.name));
+                    object.name));
+                if(object.name === this.player_state.portal){
+                    console.log('NEW POS');
+                    this.player_state.x = object.x;
+                    this.player_state.y = object.y;
+                }
+            }
+            if (object.type === 'StrongBox') { 
+                this.portals.addElement(new StrongBox(this, 
+                    object.x + PARAMETERS.PORTAL.GRID_OFFSET_X, 
+                    object.y + PARAMETERS.PORTAL.GRID_OFFSET_Y,
+                    object.name));
                 if(object.name === this.player_state.portal){
                     console.log('NEW POS');
                     this.player_state.x = object.x;
@@ -335,6 +348,16 @@ export default class Room extends Phaser.Scene {
         });
     }
 
+    generateStrongBoxBlock(){
+        // only blocks strongBox portal
+        this.portals.group.getChildren().forEach((portal) => {
+            if(portal instanceof StrongBox){
+                this.blocks.addElement(new StrongBoxBlock(this, portal._x, portal._y));
+                portal.isBlocked = true;
+            }
+        });
+    }
+
     destroyBlocks(){
         this.blocks.group.getChildren().forEach((block) => {
             block._isAlive = false;
@@ -343,6 +366,13 @@ export default class Room extends Phaser.Scene {
             portal.isBlocked = false;
         });
 
+    }
+
+    destroyStrongBoxBlock(){
+        this.portals.group.getChildren().forEach((portal) => {
+            if(portal instanceof StrongBox)
+                portal.isBlocked = false;
+        });
     }
 
     // ROOM STATE LOGIC AND METHOD
@@ -412,7 +442,6 @@ export default class Room extends Phaser.Scene {
 
     // creates the ghost hitbox to make interactions possible
     interact(player_x, player_y, player_hitbox){
-
         // destroy should be in room update(), but, for some reason, doesnt work properly
         if(this.ghost_hitbox !== undefined) this.ghost_hitbox.destroy();
         this.ghost_hitbox = new GhostHitbox(this, player_x, player_y, player_hitbox, this.player.getDirectionVector());

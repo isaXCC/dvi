@@ -22,6 +22,8 @@ import bullet_shot from '../assets/sprites/utils/bullet_shot.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
 import block from '../assets/sprites/utils/block.png'
+import strongBox_open from '../assets/sprites/utils/strongBox_open.png'
+import strongBox_closed from '../assets/sprites/utils/strongBox_closed.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
@@ -156,6 +158,8 @@ export default class Boot extends Phaser.Scene {
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
     this.load.spritesheet('sword', sword, {frameWidth: 32, frameHeight: 54});
+    this.load.image('strongBox_open', strongBox_open);
+    this.load.image('strongBox_closed', strongBox_closed);
     // POWERUPS AND ITENS
     this.load.spritesheet('letters', letters, {frameWidth: 16, frameHeight: 18});
     this.load.image('tripleshot', tripleshot);

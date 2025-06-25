@@ -9,8 +9,8 @@ export default class Block extends Phaser.Physics.Arcade.Sprite {
      * @param {number} y Coordenada Y
      */
 
-    constructor(scene, x, y) {
-        super(scene, x, y, 'block');
+    constructor(scene, x, y, sprite = 'block') {
+        super(scene, x, y, sprite);
 
         this._isAlive = true;
         this.scene.add.existing(this);

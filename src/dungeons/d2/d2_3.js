@@ -1,5 +1,6 @@
 import Room from '../room.js'
 import CONDITIONS from '../conditions.js';
+import StrongBox from '../../gameobjects/utils/strongBox.js';
 
 export default class D2_3 extends Room {
 
@@ -16,6 +17,10 @@ export default class D2_3 extends Room {
             console.log('Scene shut down');
             CONDITIONS.D2.BUNNY_2 = false;
         });
+
+        if(!CONDITIONS.D2.STRONGBOX_OPEN){
+            this.generateStrongBoxBlock();
+        }
     }
 
     init(player_state) {
@@ -24,6 +29,10 @@ export default class D2_3 extends Room {
 
     update(){
         super.update();
+        this.npcs;
+        if(CONDITIONS.D2.STRONGBOX_OPEN){
+           this.destroyStrongBoxBlock();
+        }
     }
 
 }

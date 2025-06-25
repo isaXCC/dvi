@@ -24,6 +24,7 @@ const CONDITIONS = {
         INSIDE: false,
         D2_2_KILLED: false,
         D2_3_KILLED: false,
+        STRONGBOX_OPEN: false,
         BUNNY_2: false,
         TIMEATK: false,
         FIGHT_BOSS: false,
