@@ -83,6 +83,7 @@ export default class DialogueManager {
         let choices_set = [];
         let passed_check;
         let should_store = false;
+        let dungeon;
 
         const launchNext = () => {
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
@@ -130,9 +131,17 @@ export default class DialogueManager {
                     
                     break;
                 case 'toggle':
-                    let dungeon = this.current_dungeon.toUpperCase();
+                    dungeon = this.current_dungeon.toUpperCase();
                     CONDITIONS[dungeon][cmd[1]] = !CONDITIONS[dungeon][cmd[1]];
                     break;
+                case 'settrue':
+                    dungeon = this.current_dungeon.toUpperCase();
+                    CONDITIONS[dungeon][cmd[1]] = true;
+                    break;
+                case 'setfalse':
+                    dungeon = this.current_dungeon.toUpperCase();
+                    CONDITIONS[dungeon][cmd[1]] = false;
+                break;
             }
 
             // Launch dialogue and wait for it to finish

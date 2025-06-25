@@ -370,7 +370,7 @@ export default class Room extends Phaser.Scene {
 
     destroyStrongBoxBlock(){
          this.blocks.group.getChildren().forEach((block) => {
-            if(block instanceof StrongBox)
+            if(block instanceof StrongBoxBlock)
                 block._isAlive = false;
         });
         this.portals.group.getChildren().forEach((portal) => {
