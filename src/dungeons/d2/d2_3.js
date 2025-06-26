@@ -26,7 +26,10 @@ export default class D2_3 extends Room {
         if(CONDITIONS.D2.D2_4_KILLED && CONDITIONS.D2.D2_7_KILLED &&
             CONDITIONS.D2.D2_6_KILLED && CONDITIONS.D2.D2_10_KILLED){
             CONDITIONS.D2.ALL_KILLED = true;
+
         }
+
+       
 
     }
 
@@ -41,9 +44,12 @@ export default class D2_3 extends Room {
            this.destroyStrongBoxBlock();
         }
 
-        if(CONDITIONS.D2.STRONGBOX_OPEN && this.bunny){
-            this.bunny=false;
-            this.powerups.addElement(new BowlingBall(this.player, this.player.scene, 384, 384));
+        if(CONDITIONS.D2.GENERATE){
+            CONDITIONS.D2.GENERATE = false;
+            if(CONDITIONS.D2.STRONGBOX_OPEN && this.bunny){
+                this.bunny = false;
+                 this.powerups.addElement(new BigShot(this.player, this.player.scene, 417, 350));
+            }
         }
     }
 

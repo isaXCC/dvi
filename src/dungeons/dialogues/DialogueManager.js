@@ -84,6 +84,8 @@ export default class DialogueManager {
         let passed_check;
         let should_store = false;
         let dungeon;
+        let i; 
+        let different;
 
         const launchNext = () => {
             if (currentIndex >= this.info[nameNPC].paths[path].contents.length) {
@@ -115,8 +117,8 @@ export default class DialogueManager {
                     should_store = true;
                     break;
                 case 'check':
-                    let i = 0;
-                    let different = false;
+                    i = 0;
+                    different = false;
                     while(i < cmd[1].length && !different){
                         if(cmd[1][i] !== 'x'){
                             if(cmd[1][i] != choices_set[i]){
@@ -129,6 +131,22 @@ export default class DialogueManager {
                     choices_set = []
                     passed_check = !different;
                     
+                    break;
+                case 'checkCode':
+                    i = 0;
+                    different = false;
+                    while(i < cmd[2].length && !different){
+                        if(cmd[2][i] !== 'x'){
+                            if(cmd[2][i] != choices_set[i]){
+                                different = true;
+                            }
+                        }
+                        i++;
+                    }
+
+                    dungeon = this.current_dungeon.toUpperCase();
+                    CONDITIONS[dungeon][cmd[1]] = !different;
+
                     break;
                 case 'toggle':
                     dungeon = this.current_dungeon.toUpperCase();
@@ -150,43 +168,43 @@ export default class DialogueManager {
                 next: this.info[nameNPC].paths[path].contents[currentIndex].texto,
                 choices: this.info[nameNPC].paths[path].contents[currentIndex].options || [],
                 onComplete: (choice) => {
-                    if(choice != undefined){
-                        if(should_store){
-                            choices_set.push(choice + 1);
-                        }
-                    }
+    if(choice != undefined){
+        if(should_store){
+            choices_set.push(choice + 1);
+        }
+    }
                         
 
-                    if(next !== -1){
-                        currentIndex = next;
-                        next = -1;
-                    }
-                    else{
+    if(next !== -1){
+        currentIndex = next;
+        next = -1;
+    }
+    else{
                         if(cmd[0] === 'check'){
-                            if(passed_check){
-                                currentIndex = currentIndex + 2;
-                                next = -1;
-                            }
-                            else{
-                                currentIndex = currentIndex + 1;
-                                next = check_point;
-                            }
-                        }
-                        else{
-                            if(choice != undefined){
-                                let l = this.info[nameNPC].paths[path].contents[currentIndex].options.length;
-                                currentIndex = currentIndex + 1 + choice;
-                                next = currentIndex + l - choice;
-                            }
-                            else{
-                                currentIndex = currentIndex + 1;
-                                next = -1;
-                            }
-                        }
-                    }
+            if(passed_check){
+                currentIndex = currentIndex + 2;
+                next = -1;
+            }
+            else{
+                    currentIndex = currentIndex + 1;
+                    next = check_point;
+            }
+        }
+        else{
+            if(choice != undefined){
+                let l = this.info[nameNPC].paths[path].contents[currentIndex].options.length;
+                currentIndex = currentIndex + 1 + choice;
+                next = currentIndex + l - choice;
+            }
+            else{
+                currentIndex = currentIndex + 1;
+                next = -1;
+            }
+        }
+    }
 
                     launchNext(); // Launch next line
-                }
+}
             });
         };
 

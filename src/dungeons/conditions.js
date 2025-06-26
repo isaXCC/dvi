@@ -30,12 +30,14 @@ const CONDITIONS = {
         D2_8_KILLED: false,
         D2_10_KILLED: false,
         STRONGBOX_OPEN: false,
+        STRONGBOX_CLOSED: true,
         BUNNY_2: false,
         ALL_KILLED: false,
         TIMEATK: false,
         FIGHT_BOSS: false,
         KILLED_BOSS: false,
-        PORTAL_D3: false
+        PORTAL_D3: false,
+        GENERATE: false,
     },
     DF:{
         INSIDE: false,
