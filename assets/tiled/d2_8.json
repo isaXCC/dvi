@@ -39,7 +39,7 @@
         }, 
         {
          "compression":"",
-         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAACLAAAAAAAAAAAAAABbAAAAXAAAAAAAAABOAAAAiwAAAAAAAAAAAAAAWwAAAAAAAAAAAAAAowAAAFwAAABNAAAAAAAAAFEAAAAAAAAAdAAAAHUAAAAAAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAAAAAAAAAAAAHIAAACjAAAAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAByAAAAAAAAAAAAAAByAAAAcgAAAKMAAABcAAAAAAAAAAAAAABPAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAByAAAAcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+         "data":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAUQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAACLAAAAAAAAAAAAAACNAAAAjgAAAAAAAABOAAAAiwAAAAAAAAAAAAAAWwAAAAAAAAAAAAAAowAAAFwAAABNAAAAAAAAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAAAAAAAAAAAAHIAAACjAAAAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAByAAAAAAAAAAAAAAByAAAAcgAAAKMAAABcAAAAAAAAAAAAAABPAAAAAAAAAAAAAAAAAAAAWwAAAKUAAAByAAAAcgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
          "encoding":"base64",
          "height":9,
          "id":10,
@@ -253,31 +253,6 @@
                 {
                  "gid":228,
                  "height":64,
-                 "id":39,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":448,
-                 "y":384
-                },
-            
-                {
-                 "gid":228,
-                 "height":64,
-                 "id":40,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":512,
-                 "y":384
-                }, 
-                {
-                 "gid":228,
-                 "height":64,
                  "id":41,
                  "name":"",
                  "rotation":0,
@@ -286,7 +261,8 @@
                  "width":64,
                  "x":512,
                  "y":320
-                }, 
+                },
+            
                 {
                  "gid":228,
                  "height":64,
@@ -445,7 +421,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -565,8 +541,8 @@
                  "type":"Ophanim",
                  "visible":true,
                  "width":64,
-                 "x":449.333333333333,
-                 "y":480
+                 "x":452,
+                 "y":350.666666666667
                 }, 
                 {
                  "gid":28,
