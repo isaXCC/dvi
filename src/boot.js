@@ -35,7 +35,7 @@ import scratch3 from '../assets/sprites/utils/scratch3.png'
 import scratch4 from '../assets/sprites/utils/scratch4.png'
 import fullscreen from '../assets/sprites/utils/fullscreen.png'
 import bigshot from '../assets/sprites/utils/bigShot.png'
-import snowball from '../assets/sprites/utils/snowball.png'
+import snowBall from '../assets/sprites/utils/snowBall.png'
 import bowlingshot from '../assets/sprites/utils/bowlingShot.png'
 import fireshot from '../assets/sprites/utils/fireShot.png'
 import note from '../assets/sprites/utils/note.png'
@@ -181,7 +181,7 @@ export default class Boot extends Phaser.Scene {
     this.load.image('bowlingBall', bowlingball);
     this.load.image('chili', chili);
     this.load.image('bigShot', bigshot);
-    this.load.image('snowBall', snowball);
+    this.load.image('snowBall', snowBall);
     this.load.image('bowlingShot', bowlingshot);
     this.load.image('fireShot', fireshot);
      this.load.image('note', note);
