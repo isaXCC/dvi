@@ -9,7 +9,7 @@ export default class BigShot extends PowerUp {
     }
 
     newBullet(p_x, p_y, b_x, b_y){
-        if(this._count % 2 == 0){
+        if(this._count % 3 == 0){
             this.player.scene.bullets.addElement(new BigBullet(this.player.scene, p_x, p_y, b_x, b_y));
         }
         else {
