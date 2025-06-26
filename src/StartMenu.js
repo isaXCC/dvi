@@ -79,7 +79,7 @@ export default class StartMenu extends Phaser.Scene {
             this.fade_to_black();
 
             // and then, changes scene
-            this.time.delayedCall(100, () => {this.scene.start('d2_3');}, [], this);
+            this.time.delayedCall(100, () => {this.scene.start('d1_1');}, [], this);
         });
 
     }
