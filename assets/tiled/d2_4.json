@@ -463,7 +463,19 @@
          "draworder":"topdown",
          "id":7,
          "name":"npcs",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":227,
+                 "height":64,
+                 "id":163,
+                 "name":"bunny1",
+                 "rotation":0,
+                 "type":"NPC",
+                 "visible":true,
+                 "width":64,
+                 "x":896,
+                 "y":320
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -486,6 +498,18 @@
                  "width":64,
                  "x":64,
                  "y":320
+                }, 
+                {
+                 "gid":31,
+                 "height":64,
+                 "id":162,
+                 "name":"d2_7",
+                 "rotation":0,
+                 "type":"Portal",
+                 "visible":true,
+                 "width":64,
+                 "x":608,
+                 "y":132.636363636364
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -675,10 +699,10 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":161,
+ "nextobjectid":164,
  "orientation":"orthogonal",
  "renderorder":"right-up",
- "tiledversion":"2025.02.03",
+ "tiledversion":"1.11.2",
  "tileheight":64,
  "tilesets":[
         {

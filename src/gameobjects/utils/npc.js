@@ -9,6 +9,7 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
         if(this.nameNPC === "mice_incomplete" && CONDITIONS.D1.MICE_FAMILY){
             this.nameNPC = "mice_complete";
         }
+
         this.scene = scene;
         this.createAnims();
         this.scene.add.existing(this);
@@ -57,10 +58,36 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite{
             frameRate: 4,
             repeat: -1
         };
+        const bunny1 = {
+            key: 'bunny1',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "bunny_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
+        const bunny2 = {
+            key: 'bunny2',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "bunny_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };const bunny3 = {
+            key: 'bunny3',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "bunny_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };const bunny4 = {
+            key: 'bunny4',
+            frames: this.scene.anims.generateFrameNames('npcs', {prefix: "bunny_", end: 1}),
+            frameRate: 4,
+            repeat: -1
+        };
         this.anims.create(virgil);
         this.anims.create(mice_incomplete);
         this.anims.create(mice_complete);
         this.anims.create(mice_kid);
         this.anims.create(bunny);
+        this.anims.create(bunny1);
+        this.anims.create(bunny2);
+        this.anims.create(bunny3);
+        this.anims.create(bunny4);
     }
 }

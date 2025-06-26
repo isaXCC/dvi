@@ -19,6 +19,10 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         this._life = 3;
         this._speed = 50;
         this._isAlive = true;
+        this._speedBoost = 1;
+        this._isFrozen = false;
+        this._esBurned = false;
+        this._freezeMultiplier = 1.0;
     }
 
     update() {
@@ -47,6 +51,43 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
+    getFreezed(){
+        if ( this._isAlive && !this._isFrozen) {
+            this._isFrozen = true;
+
+            this.scene.time.delayedCall(PARAMETERS.SNOWBALL.DURATION, () => {
+                   this._isFrozen = false;
+            });
+        }
+    }
+
+   getBurned(duration, dot, maxStacks) {
+        if ( this._isAlive && !this._isBurned) {
+            this._isBurned = true;
+
+            this.scene.time.delayedCall(duration, () => {
+                for (let i = 0; i < maxStacks; i++) {
+                    this.scene.time.addEvent({
+                        delay: duration * i,
+                        callback: () => {
+                            if(this._isAlive){
+                                this.takeDamage(dot);
+                                console.log("burn stack");
+                            }
+                        },
+                        callbackScope: this
+                    });
+                }
+
+                this.scene.time.delayedCall(duration * maxStacks, () => {
+                    if(this._isAlive){
+                        this._isBurned = false;
+                    }
+                });
+            });
+        }
+    }
+
     move(){
 
     }
@@ -71,5 +112,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
     
     generateRand(low, high){
         this._rand = Phaser.Math.Between(low, high);
+    }
+
+    getCurrentSpeed(){
+        return this._speed;
     }
 }

@@ -11,13 +11,14 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
      * @param {number} destY Coordenada Y
      */
 
-    constructor(scene, origX, origY, destX, destY, enemyBullet) {
-        let sprite = enemyBullet ? 'fireball' : 'bullet';
+    constructor(scene, origX, origY, destX, destY, enemyBullet, playerBulletSprite='bullet') {
+        let sprite = enemyBullet ? 'fireball' : playerBulletSprite;
         super(scene, origX, origY, sprite);
         this.rotation = Phaser.Math.Angle.Between(destX, destY, this.x, this.y) + 1.5708;
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
         this.setDepth(5);
+        this._damage = 1;
 
         let {x_norm, y_norm} = getNormDist(origX, origY, destX, destY);
         this.v_x = x_norm*300;
@@ -44,6 +45,10 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
             // Destroy or handle the object as needed
             this.scene.bullets.removeElement(this);
         }
+    }
+
+    getDamage(){
+        return this._damage;
     }
 
 }

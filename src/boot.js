@@ -11,6 +11,7 @@ import seraph_atlas from '../assets/sprites/enemies/seraph_atlas.json'
 import hoarder from '../assets/sprites/enemies/hoarder.png'
 import devil from '../assets/sprites/enemies/devil.png'
 import richman from '../assets/sprites/enemies/richman.png'
+import sword from '../assets/sprites/enemies/sword.png'
 // Player
 import player from '../assets/sprites/player/player.png'
 import player_atlas from '../assets/sprites/player/player_atlas.json'
@@ -21,6 +22,8 @@ import bullet_shot from '../assets/sprites/utils/bullet_shot.png'
 import fireball from '../assets/sprites/utils/fireball.png'
 import portal from '../assets/sprites/utils/portal.png'
 import block from '../assets/sprites/utils/block.png'
+import strongBox_open from '../assets/sprites/utils/strongBox_open.png'
+import strongBox_closed from '../assets/sprites/utils/strongBox_closed.png'
 import activated_portal from '../assets/sprites/utils/activated_portal.png'
 import npcs from '../assets/sprites/utils/NPCs_spreadsheet.png'
 import npcs_atlas from '../assets/sprites/utils/npc_atlas.json'
@@ -31,6 +34,11 @@ import scratch2 from '../assets/sprites/utils/scratch2.png'
 import scratch3 from '../assets/sprites/utils/scratch3.png'
 import scratch4 from '../assets/sprites/utils/scratch4.png'
 import fullscreen from '../assets/sprites/utils/fullscreen.png'
+import bigshot from '../assets/sprites/utils/bigShot.png'
+import snowball from '../assets/sprites/utils/snowball.png'
+import bowlingshot from '../assets/sprites/utils/bowlingShot.png'
+import fireshot from '../assets/sprites/utils/fireShot.png'
+import note from '../assets/sprites/utils/note.png'
 // POWERUPS
 import speedboost from '../assets/sprites/utils/speedboost.png'
 import tripleshot from '../assets/sprites/utils/tripleshot.png'
@@ -39,6 +47,10 @@ import boots from '../assets/sprites/utils/boots.png'
 import hole from '../assets/sprites/utils/hole.png'
 import hole_filled from '../assets/sprites/utils/hole_filled.png'
 import fire from '../assets/sprites/utils/fire.png'
+import bigbullet from '../assets/sprites/utils/bigBullet.png'
+import icecube from '../assets/sprites/utils/iceCube.png'
+import bowlingball from '../assets/sprites/utils/bowlingBall.png'
+import chili from '../assets/sprites/utils/chili.png'
 // SOUND IMPORTS
 import player_shoot from '../assets/audio/utils/player_shoot.wav'
 import player_dash from '../assets/audio/utils/player_dash.mp3'
@@ -145,6 +157,9 @@ export default class Boot extends Phaser.Scene {
     this.load.image('block', block);
     this.load.image('portal', portal);
     this.load.image('activated_portal', activated_portal);
+    this.load.spritesheet('sword', sword, {frameWidth: 32, frameHeight: 54});
+    this.load.image('strongBox_open', strongBox_open);
+    this.load.image('strongBox_closed', strongBox_closed);
     // POWERUPS AND ITENS
     this.load.spritesheet('letters', letters, {frameWidth: 16, frameHeight: 18});
     this.load.image('tripleshot', tripleshot);
@@ -161,6 +176,15 @@ export default class Boot extends Phaser.Scene {
     this.load.image('scratch3', scratch3);
     this.load.image('scratch4', scratch4);
     this.load.spritesheet('fullscreen', fullscreen, {frameWidth: 32, frameHeight: 32});
+    this.load.image('bigBullet', bigbullet);
+    this.load.image('iceCube', icecube);
+    this.load.image('bowlingBall', bowlingball);
+    this.load.image('chili', chili);
+    this.load.image('bigShot', bigshot);
+    this.load.image('snowBall', snowball);
+    this.load.image('bowlingShot', bowlingshot);
+    this.load.image('fireShot', fireshot);
+     this.load.image('note', note);
     // SOUNDS PRELOAD
     this.load.audio('shootSound', player_shoot);
     this.load.audio('reloadSound', player_reload);

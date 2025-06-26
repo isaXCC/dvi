@@ -67,6 +67,8 @@ export default class Ophanim extends Enemy{
                     });
                 }
             }
+            if(this._isFrozen) this._speed = PARAMETERS.OPHANIM.SPEED * PARAMETERS.SNOWBALL.SPEED_REDUCTION;
+
             this.updateAnims();
         }
         else{
