@@ -283,10 +283,10 @@
         "d2_10.json": {
             "expandedObjectLayers": [
                 7,
-                3,
-                11,
                 5,
-                4
+                4,
+                3,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 7,
@@ -301,12 +301,12 @@
         "d2_2.json": {
             "expandedObjectLayers": [
                 7,
-                9,
-                3,
-                11,
                 5,
+                4,
                 14,
-                4
+                3,
+                9,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 8,
@@ -321,9 +321,9 @@
         "d2_3.json": {
             "expandedObjectLayers": [
                 7,
-                3,
                 5,
-                4
+                4,
+                3
             ],
             "scale": 0.75,
             "selectedLayer": 11,
@@ -337,12 +337,12 @@
         },
         "d2_4.json": {
             "expandedObjectLayers": [
-                12,
                 7,
-                3,
-                11,
                 5,
-                4
+                12,
+                4,
+                3,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 7,
@@ -374,10 +374,10 @@
         "d2_6.json": {
             "expandedObjectLayers": [
                 7,
-                3,
-                11,
                 5,
-                4
+                4,
+                3,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 7,
@@ -392,10 +392,10 @@
         "d2_7.json": {
             "expandedObjectLayers": [
                 7,
-                3,
-                11,
                 5,
-                4
+                4,
+                3,
+                11
             ],
             "scale": 0.75,
             "selectedLayer": 7,

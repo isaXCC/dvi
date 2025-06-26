@@ -141,6 +141,18 @@
                  "width":64,
                  "x":448,
                  "y":128
+                }, 
+                {
+                 "gid":31,
+                 "height":64,
+                 "id":14,
+                 "name":"d2_3",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":768,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -210,7 +222,7 @@
          "y":0
         }],
  "nextlayerid":15,
- "nextobjectid":14,
+ "nextobjectid":15,
  "orientation":"orthogonal",
  "renderorder":"right-up",
  "tiledversion":"1.11.2",
